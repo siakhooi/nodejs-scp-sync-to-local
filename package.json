@@ -1,0 +1,29 @@
+{
+  "name": "scp-sync-to-local",
+  "version": "0.1.0",
+  "description": "SCP all files in remote directory to local directory",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test/index.test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/siakhooi/nodejs-scp-sync-to-local.git"
+  },
+  "keywords": [
+    "scp"
+  ],
+  "author": {
+    "name": "Siak Hooi Ng",
+    "email": "siakhooi@gmail.com",
+    "url": "https://siakhooi.github.io"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/siakhooi/nodejs-scp-sync-to-local/issues"
+  },
+  "homepage": "https://github.com/siakhooi/nodejs-scp-sync-to-local#readme",
+  "dependencies": {
+    "node-scp": "^0.0.14"
+  }
+}
