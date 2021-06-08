@@ -4,10 +4,33 @@ const fs = require('fs');
 function err(e) { console.error(e); }
 
 exports.download = function (option) {
-    return loginscp(option)
+    return verify(option)
+        .then(loginscp)
         .then(getRemoteFileList)
         .then(downloadRemoteFile)
         .catch(err);
+}
+function verify(option) {
+    return new Promise((resolve, reject) => {
+        if (option.host == "" || option.host == undefined) reject("Error: host is not defined.");
+        else if (option.username == "" || option.username == undefined) reject("Error: username is not defined.");
+        else if (option.password == "" || option.password == undefined) reject("Error: password is not defined.");
+        else {
+            if (option.port == "" || option.port == undefined) {
+                option.port = 22;
+                console.log("Warning: port undefined, defaulting to 22.")
+            }
+            if (option.remotepath == "" || option.remotepath == undefined) {
+                option.remotepath = '.';
+                console.log("Warning: remotepath undefined, defaulting to current directory(.).")
+            }
+            if (option.localpath == "" || option.localpath == undefined) {
+                option.localpath = '.';
+                console.log("Warning: localpath undefined, defaulting to current directory(.).")
+            }
+            resolve(option);
+        }
+    });
 }
 
 function loginscp(option) {
