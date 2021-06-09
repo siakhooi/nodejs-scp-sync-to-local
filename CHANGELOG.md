@@ -1,5 +1,9 @@
 # Change Log
 
+## `0.3.0` - localpath verification
+
+- As scp user, I want to auto create local path if it is not exist.
+
 ## `0.2.0` - options verification
 
 - As scp user, I want to default port=`22` if not provided.
