@@ -1,15 +1,31 @@
 const scp = require('node-scp');
 const fs = require('fs');
+const util = require('util');
 
 function err(e) { console.error(e); }
 
 exports.download = function (option) {
     return verify(option)
+        .then(verifyLocalPath)
         .then(loginscp)
         .then(getRemoteFileList)
         .then(downloadRemoteFile)
         .catch(err);
 }
+function verifyLocalPath(option) {
+    return new Promise((resolve, reject) => {
+        if (fs.existsSync(option.localpath)) {
+            if (!fs.lstatSync(option.localpath).isDirectory()) {
+                reject(util.format("Error: localpath exists and is not a directory.[%s]", option.localpath));
+            }
+        } else {
+            console.warn("Warning: localpath not exists, auto create. [%s]", option.localpath);
+            fs.mkdirSync(option.localpath);
+        }
+        resolve(option);
+    });
+}
+
 function verify(option) {
     return new Promise((resolve, reject) => {
         if (option.host == "" || option.host == undefined) reject("Error: host is not defined.");
