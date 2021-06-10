@@ -1,5 +1,9 @@
 # Change Log
 
+## `0.3.1`
+
+- bug: change `console.log` to `console.warn` for warnings.
+
 ## `0.3.0` - localpath verification
 
 - As scp user, I want to auto create local path if it is not exist.
