@@ -16,7 +16,7 @@ function verifyLocalPath(option) {
     return new Promise((resolve, reject) => {
         if (fs.existsSync(option.localpath)) {
             if (!fs.lstatSync(option.localpath).isDirectory()) {
-                reject(util.format("Error: localpath exists and is not a directory.[%s]", option.localpath));
+                reject(util.format("Error: localpath exists and is not a directory. [%s]", option.localpath));
             }
         } else {
             console.warn("Warning: localpath not exists, auto create. [%s]", option.localpath);
@@ -34,15 +34,15 @@ function verify(option) {
         else {
             if (option.port == "" || option.port == undefined) {
                 option.port = 22;
-                console.log("Warning: port undefined, defaulting to 22.")
+                console.warn("Warning: port undefined, defaulting to %d.", option.port);
             }
             if (option.remotepath == "" || option.remotepath == undefined) {
                 option.remotepath = '.';
-                console.log("Warning: remotepath undefined, defaulting to current directory(.).")
+                console.warn("Warning: remotepath undefined, defaulting to current directory. [%s]", option.remotepath);
             }
             if (option.localpath == "" || option.localpath == undefined) {
                 option.localpath = '.';
-                console.log("Warning: localpath undefined, defaulting to current directory(.).")
+                console.warn("Warning: localpath undefined, defaulting to current directory. [%s]", option.localpath);
             }
             resolve(option);
         }
@@ -104,7 +104,7 @@ function downloadRemoteFile(option) {
             option.client.close();
         });
     } else {
-        console.log("No file to download");
+        console.warn("No file to download");
         option.client.close();
     }
 }
