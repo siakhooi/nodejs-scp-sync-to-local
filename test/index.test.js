@@ -5,8 +5,8 @@ var option = {
   port: "22",
   username: "testuser",
   password: "testpassword",
-  remotepath: "/home/testuser/data",
-  localpath: "./test/data",
+  remotePath: "/home/testuser/data",
+  localPath: "./test/data",
   skipIfExists: true
 };
 
