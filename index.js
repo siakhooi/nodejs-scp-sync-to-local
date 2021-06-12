@@ -12,26 +12,52 @@ exports.download = function (option) {
         .then(downloadRemoteFile)
         .catch(err);
 }
-function verifyLocalPath(option) {
-    return new Promise((resolve, reject) => {
-        if (fs.existsSync(option.localpath)) {
-            if (!fs.lstatSync(option.localpath).isDirectory()) {
-                reject(util.format("Error: localpath exists and is not a directory. [%s]", option.localpath));
-            }
-        } else {
-            console.warn("Warning: localpath not exists, auto create. [%s]", option.localpath);
-            fs.mkdirSync(option.localpath);
-        }
-        resolve(option);
-    });
+function isTrue(s) {
+    var i = s.toLowerCase().trim();
+    switch (i) {
+        case "false":
+        case "0":
+        case "off":
+        case "no":
+        case "n":
+            return false;
+    }
+    return !!s;
 }
-
+function isBoolean(s) {
+    var i = s.toLowerCase().trim();
+    switch (i) {
+        case "false":
+        case "0":
+        case "off":
+        case "no":
+        case "n":
+            return true;
+        case "true":
+        case "1":
+        case "on":
+        case "yes":
+        case "y":
+            return true;
+    }
+    return false;
+}
 function verify(option) {
     return new Promise((resolve, reject) => {
         if (option.host == "" || option.host == undefined) reject("Error: host is not defined.");
         else if (option.username == "" || option.username == undefined) reject("Error: username is not defined.");
         else if (option.password == "" || option.password == undefined) reject("Error: password is not defined.");
         else {
+            if (option.skipIfExists == undefined) {
+                option.skipIfExists = true;
+                console.warn("Warning: skipIfExists undefined, defaulting to %s.", option.skipIfExists);
+            } else if (typeof (option.skipIfExists) !== "boolean") {
+                if (isBoolean(option.skipIfExists)) {
+                    option.skipIfExists = isTrue(option.skipIfExists);
+                } else {
+                    reject("Error: skipIfExists is not a boolean value [%s].", option.skipIfExists);
+                }
+            }
             if (option.port == "" || option.port == undefined) {
                 option.port = 22;
                 console.warn("Warning: port undefined, defaulting to %d.", option.port);
@@ -46,6 +72,19 @@ function verify(option) {
             }
             resolve(option);
         }
+    });
+}
+function verifyLocalPath(option) {
+    return new Promise((resolve, reject) => {
+        if (fs.existsSync(option.localpath)) {
+            if (!fs.lstatSync(option.localpath).isDirectory()) {
+                reject(util.format("Error: localpath exists and is not a directory. [%s]", option.localpath));
+            }
+        } else {
+            console.warn("Warning: localpath not exists, auto create. [%s]", option.localpath);
+            fs.mkdirSync(option.localpath);
+        }
+        resolve(option);
     });
 }
 
@@ -77,7 +116,12 @@ function getRemoteFileList(option) {
 }
 
 function downloadRemoteFile(option) {
-    var d = option.remoteFileList.map((f1, n) => {
+    var d = option.remoteFileList.filter((f1) => {
+        if (option.skipIfExists) {
+            var localfile = option.localpath + '/' + f1.name;
+            return !fs.existsSync(localfile);
+        } else return true;
+    }).map((f1, n) => {
         return new Promise((resolve, reject) => {
             var localfile = option.localpath + '/' + f1.name;
             var remotefile = option.remotepath + '/' + f1.name;
