@@ -5,10 +5,14 @@
 ## Install
 
 ```bash
-npm install scp-sync-to-local
+npm install scp-sync-to-local [--save]
 ```
 
 ## Usage
+
+- see [USAGE.md](USAGE.md)
+
+### Quick Example
 
 ```js
 const scp = require("scp-sync-to-local");
