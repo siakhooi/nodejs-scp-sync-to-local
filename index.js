@@ -126,10 +126,11 @@ function downloadRemoteFile(option) {
             var localfile = option.localPath + '/' + f1.name;
             var remotefile = option.remotePath + '/' + f1.name;
             var filesize = f1.size;
-            console.log(`${n} downloading ${remotefile}`);
+            var filenum = n + 1;
+            console.log(`${filenum} downloading ${remotefile}`);
             option.client.downloadFile(remotefile, localfile)
                 .then((response) => {
-                    console.log(`${n} downloaded ${remotefile} ${localfile} ${filesize}`);
+                    console.log(`${filenum} downloaded ${remotefile} ${localfile} ${filesize}`);
                     resolve(f1.name);
                 }).catch((e) => {
                     err(e);
