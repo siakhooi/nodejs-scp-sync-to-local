@@ -20,10 +20,10 @@ const scp = require("scp-sync-to-local");
 var option = {
   host: "hostname",
   port: "22",
-  username: "yourusername",
-  password: "yourpassword",
-  remotepath: "remotepath",
-  localpath: "localpath",
+  username: "yourUsername",
+  password: "yourPassword",
+  remotePath: "remotePath",
+  localPath: "localPath",
   skipIfExists: true,
 };
 

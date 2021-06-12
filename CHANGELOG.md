@@ -1,8 +1,9 @@
 # Change Log
 
-## Upcoming
+## Upcoming (0.4.1)
 
 - As scp user, I want to have API documentation.
+- bug: rename `localpath`, `remotepath` to camel case (`localPath`, `remotePath`).
 
 ## `0.4.0`
 
@@ -23,7 +24,7 @@
 - As scp user, I want to default remotepath=current directory (`.`) if not provided.
 - As scp user, I want to have error if username not provided.
 - As scp user, I want to have error if password not provided.
-- As scp user, I want to have error if hostname not provided.
+- As scp user, I want to have error if host not provided.
 
 ## `0.1.1`
 

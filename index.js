@@ -62,13 +62,13 @@ function verify(option) {
                 option.port = 22;
                 console.warn("Warning: port undefined, defaulting to %d.", option.port);
             }
-            if (option.remotepath == "" || option.remotepath == undefined) {
-                option.remotepath = '.';
-                console.warn("Warning: remotepath undefined, defaulting to current directory. [%s]", option.remotepath);
+            if (option.remotePath == "" || option.remotePath == undefined) {
+                option.remotePath = '.';
+                console.warn("Warning: remotePath undefined, defaulting to current directory. [%s]", option.remotePath);
             }
-            if (option.localpath == "" || option.localpath == undefined) {
-                option.localpath = '.';
-                console.warn("Warning: localpath undefined, defaulting to current directory. [%s]", option.localpath);
+            if (option.localPath == "" || option.localPath == undefined) {
+                option.localPath = '.';
+                console.warn("Warning: localPath undefined, defaulting to current directory. [%s]", option.localPath);
             }
             resolve(option);
         }
@@ -76,13 +76,13 @@ function verify(option) {
 }
 function verifyLocalPath(option) {
     return new Promise((resolve, reject) => {
-        if (fs.existsSync(option.localpath)) {
-            if (!fs.lstatSync(option.localpath).isDirectory()) {
-                reject(util.format("Error: localpath exists and is not a directory. [%s]", option.localpath));
+        if (fs.existsSync(option.localPath)) {
+            if (!fs.lstatSync(option.localPath).isDirectory()) {
+                reject(util.format("Error: localPath exists and is not a directory. [%s]", option.localPath));
             }
         } else {
-            console.warn("Warning: localpath not exists, auto create. [%s]", option.localpath);
-            fs.mkdirSync(option.localpath);
+            console.warn("Warning: localPath not exists, auto create. [%s]", option.localPath);
+            fs.mkdirSync(option.localPath);
         }
         resolve(option);
     });
@@ -106,7 +106,7 @@ function loginscp(option) {
 function getRemoteFileList(option) {
     return new Promise((resolve, reject) => {
         process.stdout.write("Downloading Remote File List...");
-        option.client.list(option.remotepath)
+        option.client.list(option.remotePath)
             .then((remoteFileList) => {
                 console.log("done");
                 option.remoteFileList = remoteFileList;
@@ -118,13 +118,13 @@ function getRemoteFileList(option) {
 function downloadRemoteFile(option) {
     var d = option.remoteFileList.filter((f1) => {
         if (option.skipIfExists) {
-            var localfile = option.localpath + '/' + f1.name;
+            var localfile = option.localPath + '/' + f1.name;
             return !fs.existsSync(localfile);
         } else return true;
     }).map((f1, n) => {
         return new Promise((resolve, reject) => {
-            var localfile = option.localpath + '/' + f1.name;
-            var remotefile = option.remotepath + '/' + f1.name;
+            var localfile = option.localPath + '/' + f1.name;
+            var remotefile = option.remotePath + '/' + f1.name;
             var filesize = f1.size;
             console.log(`${n} downloading ${remotefile}`);
             option.client.downloadFile(remotefile, localfile)

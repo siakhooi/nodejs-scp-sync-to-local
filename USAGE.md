@@ -24,8 +24,8 @@ const scp = require("scp-sync-to-local");
 | `port`         | `integer` | `22`          |             |
 | `username`     | `String`  |               |             |
 | `password`     | `String`  |               |             |
-| `remotepath`   | `String`  | `.`           |             |
-| `localpath`    | `String`  | `.`           |             |
+| `remotePath`   | `String`  | `.`           |             |
+| `localPath`    | `String`  | `.`           |             |
 | `skipIfExists` | `boolean` | `true`        |             |
 
 ### Example
@@ -34,10 +34,10 @@ const scp = require("scp-sync-to-local");
 var option = {
   host: "hostname",
   port: "22",
-  username: "yourusername",
-  password: "yourpassword",
-  remotepath: "remotepath",
-  localpath: "localpath",
+  username: "yourUsername",
+  password: "yourPassword",
+  remotePath: "remotePath",
+  localPath: "localPath",
   skipIfExists: true,
 };
 
