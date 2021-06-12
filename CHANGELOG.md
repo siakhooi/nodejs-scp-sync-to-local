@@ -1,5 +1,9 @@
 # Change Log
 
+## Upcoming
+
+- As scp user, I want to have API documentation.
+
 ## `0.4.0`
 
 - As scp user, I want to choose skip/replace download if file already exists. (`option.skipIfExists` default to `true`)
