@@ -4,6 +4,7 @@
 
 - As scp user, I want to have API documentation.
 - bug: rename `localpath`, `remotepath` to camel case (`localPath`, `remotePath`).
+- bug: As scp user, I want to see file numbering start from 1 (not 0)
 
 ## `0.4.0`
 
