@@ -1,5 +1,9 @@
 # Change Log
 
+## `0.4.0`
+
+- As scp user, I want to choose skip/replace download if file already exists. (`option.skipIfExists` default to `true`)
+
 ## `0.3.1`
 
 - bug: change `console.log` to `console.warn` for warnings.

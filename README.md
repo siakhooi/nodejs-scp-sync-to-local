@@ -20,6 +20,7 @@ var option = {
   password: "yourpassword",
   remotepath: "remotepath",
   localpath: "localpath",
+  skipIfExists: true,
 };
 
 scp.download(option);
