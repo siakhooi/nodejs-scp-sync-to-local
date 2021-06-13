@@ -1,10 +1,11 @@
 # Change Log
 
-## Upcoming (0.4.1)
+## 0.4.1
 
 - As scp user, I want to have API documentation.
 - bug: rename `localpath`, `remotepath` to camel case (`localPath`, `remotePath`).
 - bug: As scp user, I want to see file numbering start from 1 (not 0)
+- bug: As dev, i want to separate working value from options. (security, internal state should not be exposed.)
 
 ## `0.4.0`
 
