@@ -2,12 +2,16 @@ const scp = require('node-scp');
 const fs = require('fs');
 const util = require('util');
 
+const PROGRAM_NAME = "scp-sync-to-local";
+const PROGRAM_VERSION = "0.5.0";
+
 function err(e) { console.error(e); }
 
 exports.download = function (option) {
     return init(option)
         .then(verifyOptions)
         .then(verifyLocalPath)
+        .then(printVerbose)
         .then(loginscp)
         .then(getRemoteFileList)
         .then(downloadRemoteFiles)
@@ -117,8 +121,21 @@ function verifyOptions(workingObject) {
         } else {
             validatedOption.localPath = userOption.localPath;
         }
-        resolve(workingObject);
 
+        if (userOption.verbose == undefined) {
+            validatedOption.verbose = false;
+        } else if (typeof (userOption.verbose) !== "boolean") {
+            if (isBoolean(userOption.verbose)) {
+                validatedOption.verbose = isTrue(userOption.verbose);
+            } else {
+                reject("Error: verbose is not a boolean value [%s].", userOption.verbose);
+                return;
+            }
+        } else {
+            validatedOption.verbose = userOption.verbose;
+        }
+
+        resolve(workingObject);
     });
 }
 function verifyLocalPath(workingObject) {
@@ -138,7 +155,28 @@ function verifyLocalPath(workingObject) {
         }
     });
 }
+function printVerbose(workingObject) {
+    return new Promise((resolve, reject) => {
+        var option = workingObject.validatedOption;
+        if (option.verbose == false) {
+            resolve(workingObject);
+            return;
+        }
+        console.log("%s %s", PROGRAM_NAME, PROGRAM_VERSION);
+        console.log("");
+        console.log("[Parameters]");
+        console.log('        host: %s', option.host);
+        console.log('        port: %s', option.port);
+        console.log('    username: %s', option.username);
+        console.log('    password: %s', "**********");
+        console.log('  remotePath: %s', option.remotePath);
+        console.log('   localPath: %s', option.localPath);
+        console.log('skipIfExists: %s', option.skipIfExists);
+        console.log('     verbose: %s', option.verbose);
 
+        resolve(workingObject);
+    });
+}
 function loginscp(workingObject) {
     return new Promise((resolve, reject) => {
         var validatedOption = workingObject.validatedOption;
