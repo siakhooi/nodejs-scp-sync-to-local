@@ -18,16 +18,17 @@ const scp = require("scp-sync-to-local");
 
 ### `option`
 
-| name           | type      | default value | description                                |
-| -------------- | --------- | ------------- | ------------------------------------------ |
-| `host`         | `String`  |               |                                            |
-| `port`         | `integer` | `22`          |                                            |
-| `username`     | `String`  |               |                                            |
-| `password`     | `String`  |               |                                            |
-| `remotePath`   | `String`  | `.`           |                                            |
-| `localPath`    | `String`  | `.`           |                                            |
-| `skipIfExists` | `boolean` | `true`        | Skip download if file exists locally.      |
-| `verbose`      | `boolean` | `false`       | Print full option values before downloads. |
+| name           | type      | default value | description                                                    |
+| -------------- | --------- | ------------- | -------------------------------------------------------------- |
+| `host`         | `String`  |               |                                                                |
+| `port`         | `integer` | `22`          |                                                                |
+| `username`     | `String`  |               |                                                                |
+| `password`     | `String`  |               |                                                                |
+| `remotePath`   | `String`  | `.`           |                                                                |
+| `localPath`    | `String`  | `.`           |                                                                |
+| `skipIfExists` | `boolean` | `true`        | Skip download if file exists locally.                          |
+| `verbose`      | `boolean` | `false`       | Print full option values before downloads. Override by `quiet` |
+| `quiet`        | `boolean` | `false`       | no output, except error. override `verbose`                    |
 
 ### Example
 
@@ -41,6 +42,7 @@ var option = {
   localPath: "localPath",
   skipIfExists: true,
   verbose: false,
+  quiet: false,
 };
 
 scp.download(option);

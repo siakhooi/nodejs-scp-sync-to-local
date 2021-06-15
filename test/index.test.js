@@ -8,7 +8,8 @@ var option = {
   remotePath: "/home/testuser/data",
   localPath: "./test/data",
   skipIfExists: true,
-  verbose: false
+  verbose: true,
+  quiet: true
 };
 
 scp.download(option);

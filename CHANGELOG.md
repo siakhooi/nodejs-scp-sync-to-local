@@ -3,6 +3,7 @@
 ## `0.5.0` (upcoming)
 
 - `#21`: As scp user, I want to print full option values before downloads. (`option.verbose`=`true`, default to `false`)
+- `#20`: As scp user, I want to have quiet mode, no output on stdout. (`option.quiet`=`true`, default to `false`)
 
 ## `0.4.1`
 
