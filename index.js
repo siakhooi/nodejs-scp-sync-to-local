@@ -10,10 +10,12 @@ function err(e) { console.error(e); }
 exports.download = function (option) {
     return init(option)
         .then(verifyOptions)
+        .then(verifyExclusiveFilters)
         .then(verifyLocalPath)
         .then(printVerbose)
         .then(loginscp)
         .then(getRemoteFileList)
+        .then(filterFiles)
         .then(downloadRemoteFiles)
         .then(DisconnectOnAllDone)
         .catch(err);
@@ -56,6 +58,7 @@ function init(option) {
         workingObject.scpLoginOption = {};
         workingObject.scpClient = null;
         workingObject.remoteFileList = [];
+        workingObject.filteredFileList = [];
         workingObject.allDownloadPromises = [];
 
         resolve(workingObject);
@@ -99,6 +102,20 @@ function verifyOptions(workingObject) {
             }
         } else {
             validatedOption.skipIfExists = userOption.skipIfExists;
+        }
+
+        if (userOption.skipIfNotExists == undefined) {
+            validatedOption.skipIfNotExists = false;
+            console.warn("Warning: skipIfNotExists undefined, defaulting to %s.", validatedOption.skipIfNotExists);
+        } else if (typeof (userOption.skipIfNotExists) !== "boolean") {
+            if (isBoolean(userOption.skipIfNotExists)) {
+                validatedOption.skipIfNotExists = isTrue(userOption.skipIfNotExists);
+            } else {
+                reject("Error: skipIfNotExists is not a boolean value [%s].", userOption.skipIfNotExists);
+                return;
+            }
+        } else {
+            validatedOption.skipIfNotExists = userOption.skipIfNotExists;
         }
 
         if (userOption.port == "" || userOption.port == undefined) {
@@ -151,6 +168,16 @@ function verifyOptions(workingObject) {
         resolve(workingObject);
     });
 }
+function verifyExclusiveFilters(workingObject) {
+    return new Promise((resolve, reject) => {
+        var option = workingObject.validatedOption;
+        if (option.skipIfExists && option.skipIfNotExists) {
+            reject("Error: skipIfExists and skipIfNotExists are mutually exclusive.");
+            return;
+        }
+        resolve(workingObject);
+    });
+}
 function verifyLocalPath(workingObject) {
     return new Promise((resolve, reject) => {
         var option = workingObject.validatedOption;
@@ -178,14 +205,16 @@ function printVerbose(workingObject) {
         console.log("%s %s", PROGRAM_NAME, PROGRAM_VERSION);
         console.log("");
         console.log("[Parameters]");
-        console.log('        host: %s', option.host);
-        console.log('        port: %s', option.port);
-        console.log('    username: %s', option.username);
-        console.log('    password: %s', "**********");
-        console.log('  remotePath: %s', option.remotePath);
-        console.log('   localPath: %s', option.localPath);
-        console.log('skipIfExists: %s', option.skipIfExists);
-        console.log('     verbose: %s', option.verbose);
+        console.log('           host: %s', option.host);
+        console.log('           port: %s', option.port);
+        console.log('       username: %s', option.username);
+        console.log('       password: %s', "**********");
+        console.log('     remotePath: %s', option.remotePath);
+        console.log('      localPath: %s', option.localPath);
+        console.log('   skipIfExists: %s', option.skipIfExists);
+        console.log('skipIfNotExists: %s', option.skipIfNotExists);
+        console.log('        verbose: %s', option.verbose);
+        console.log('          quiet: %s', option.quiet);
 
         resolve(workingObject);
     });
@@ -221,20 +250,32 @@ function getRemoteFileList(workingObject) {
             });
     });
 }
-
-function downloadRemoteFiles(workingObject) {
-    var option = workingObject.validatedOption;
-    var remoteFileList = workingObject.remoteFileList;
-    var client = workingObject.scpClient;
-
+function filterFiles(workingObject) {
     return new Promise((resolve, reject) => {
-        var d = remoteFileList.filter((f1) => {
+        var option = workingObject.validatedOption;
+        var remoteFileList = workingObject.remoteFileList;
+        workingObject.filteredFileList = remoteFileList.filter((f1) => {
 
             if (option.skipIfExists) {
                 var localfile = option.localPath + '/' + f1.name;
                 return !fs.existsSync(localfile);
-            } else return true;
-        }).map((f1, n) => {
+            }
+            if (option.skipIfNotExists) {
+                var localfile = option.localPath + '/' + f1.name;
+                return fs.existsSync(localfile);
+            }
+            return true;
+        });
+        resolve(workingObject);
+    });
+}
+function downloadRemoteFiles(workingObject) {
+    var option = workingObject.validatedOption;
+    var filteredFileList = workingObject.filteredFileList;
+    var client = workingObject.scpClient;
+
+    return new Promise((resolve, reject) => {
+        var d = filteredFileList.map((f1, n) => {
 
             return new Promise((resolve, reject) => {
                 var localfile = option.localPath + '/' + f1.name;
