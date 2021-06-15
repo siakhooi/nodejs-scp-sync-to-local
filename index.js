@@ -135,6 +135,19 @@ function verifyOptions(workingObject) {
             validatedOption.verbose = userOption.verbose;
         }
 
+        if (userOption.quiet == undefined) {
+            validatedOption.quiet = false;
+        } else if (typeof (userOption.quiet) !== "boolean") {
+            if (isBoolean(userOption.quiet)) {
+                validatedOption.quiet = isTrue(userOption.quiet);
+            } else {
+                reject("Error: quiet is not a boolean value [%s].", userOption.quiet);
+                return;
+            }
+        } else {
+            validatedOption.quiet = userOption.quiet;
+        }
+
         resolve(workingObject);
     });
 }
@@ -158,7 +171,7 @@ function verifyLocalPath(workingObject) {
 function printVerbose(workingObject) {
     return new Promise((resolve, reject) => {
         var option = workingObject.validatedOption;
-        if (option.verbose == false) {
+        if (option.verbose == false || option.quiet == true) {
             resolve(workingObject);
             return;
         }
@@ -199,10 +212,10 @@ function getRemoteFileList(workingObject) {
     var client = workingObject.scpClient;
 
     return new Promise((resolve, reject) => {
-        process.stdout.write("Downloading Remote File List...");
+        if (option.quiet != true) process.stdout.write("Downloading Remote File List...");
         client.list(option.remotePath)
             .then((remoteFileList) => {
-                console.log("done");
+                if (option.quiet != true) console.log("done");
                 workingObject.remoteFileList = remoteFileList;
                 resolve(workingObject);
             });
@@ -229,10 +242,12 @@ function downloadRemoteFiles(workingObject) {
                 var filesize = f1.size;
                 var filenum = n + 1;
 
-                console.log(`${filenum} downloading ${remotefile}`);
+                if (option.quiet != true)
+                    console.log(`${filenum} downloading ${remotefile}`);
                 client.downloadFile(remotefile, localfile)
                     .then((response) => {
-                        console.log(`${filenum} downloaded ${remotefile} ${localfile} ${filesize}`);
+                        if (option.quiet != true)
+                            console.log(`${filenum} downloaded ${remotefile} ${localfile} ${filesize}`);
                         resolve(f1.name);
                     }).catch((e) => {
                         err(e);
@@ -249,10 +264,12 @@ function DisconnectOnAllDone(workingObject) {
     return new Promise((resolve, reject) => {
         var d = workingObject.allDownloadPromises;
         var client = workingObject.scpClient;
+        var option = workingObject.validatedOption;
 
         if (d.length > 0) {
             Promise.all(d).then((r) => {
-                console.log("All done, total downloads = %d.", d.length);
+                if (option.quiet != true)
+                    console.log("All done, total downloads = %d.", d.length);
                 client.close();
                 resolve();
             }).catch((e) => {
