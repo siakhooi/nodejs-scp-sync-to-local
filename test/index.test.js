@@ -7,9 +7,8 @@ var option = {
   password: "testpassword",
   remotePath: "/home/testuser/data",
   localPath: "./test/data",
-  skipIfExists: true,
-  verbose: true,
-  quiet: true
+  skipIfExists: false,
+  skipIfNotExists: false
 };
 
 scp.download(option);
