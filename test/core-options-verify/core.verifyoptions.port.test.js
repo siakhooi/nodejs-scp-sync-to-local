@@ -2,10 +2,10 @@ const util = require('util');
 const core = require("../../lib/core-options.js");
 const conf = require('../../index.conf.js')
 
-test("verifyOptionsPort", () => {
+test.each([23, "34"])("verifyOptionsPort", (value) => {
     var workingObject = {
         userOption: {
-            port: 23
+            port: value
         },
         validatedOption: {}
     };
@@ -14,10 +14,10 @@ test("verifyOptionsPort", () => {
         .resolves
         .toMatchObject({
             userOption: {
-                port: 23
+                port: value
             },
             validatedOption: {
-                port: 23
+                port: Number(value)
             }
         });
 });
@@ -65,4 +65,18 @@ test("verifyOptionsPort-undefined", () => {
         });
     expect(console.info).toBeCalled();
     expect(consoleOutput).toContain(msg);
+});
+
+test("verifyOptionsPort-not number", () => {
+    var workingObject = {
+        userOption: {
+            port: "xxx"
+        },
+        validatedOption: {}
+    };
+
+    var msg = util.format("Error: port is not an integer number [%s].", workingObject.userOption.port);
+    expect(core.verifyOptionsPort(workingObject))
+        .rejects
+        .toThrow(msg);
 });

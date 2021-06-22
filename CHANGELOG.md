@@ -7,6 +7,7 @@
 - `#41`: As scp user, I want to get Version Number. add `getVersion()`
 - `#42`: As scp user, I want to throw all errors as `Error()` objects.
 - `#32`: As scp user, I want to change warning to info if port is not defined, and default to `22`.
+- `#28`: As scp user, I want to have error if port is not a number.
 
 ## `0.5.0`
 
