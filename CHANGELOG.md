@@ -1,5 +1,9 @@
 # Change Log
 
+## `0.10.0` upcoming
+
+- `#30`: As dev/test, I want to use jest for test framework. (Major code refactoring)
+
 ## `0.5.0`
 
 - `#21`: As scp user, I want to print full option values before downloads. (`option.verbose`=`true`, default to `false`)
