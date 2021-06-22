@@ -1,4 +1,5 @@
 const core = require("../../lib/core-options.js");
+const conf = require('../../index.conf.js')
 const util = require('util');
 
 test("verifyOptionsRemotePath", () => {
@@ -31,7 +32,7 @@ test("verifyOptionsRemotePath-blank", () => {
 
     var warnOutput = [];
     global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s); })
-    var msg = util.format("Warning: remotePath undefined, defaulting to current directory. [%s]", ".");
+    var msg = util.format("Warning: remotePath undefined, defaulting to current directory. [%s]", conf.DEFAULT_REMOTEPATH);
 
     expect(core.verifyOptionsRemotePath(workingObject))
         .resolves
@@ -40,7 +41,7 @@ test("verifyOptionsRemotePath-blank", () => {
                 remotePath: ""
             },
             validatedOption: {
-                remotePath: "."
+                remotePath: conf.DEFAULT_REMOTEPATH
             }
         });
     expect(console.warn).toBeCalled();
@@ -54,13 +55,13 @@ test("verifyOptionsRemotePath-undefined", () => {
 
     var warnOutput = [];
     global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s); })
-    var msg = util.format("Warning: remotePath undefined, defaulting to current directory. [%s]", ".");
+    var msg = util.format("Warning: remotePath undefined, defaulting to current directory. [%s]", conf.DEFAULT_REMOTEPATH);
     expect(core.verifyOptionsRemotePath(workingObject))
         .resolves
         .toMatchObject({
             userOption: {},
             validatedOption: {
-                remotePath: "."
+                remotePath: conf.DEFAULT_REMOTEPATH
             }
         });
     expect(console.warn).toBeCalled();

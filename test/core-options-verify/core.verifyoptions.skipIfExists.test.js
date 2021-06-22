@@ -1,7 +1,10 @@
 const core = require("../../lib/core-options.js");
+const conf = require('../../index.conf.js')
 const util = require('util');
 
-test.each([true, "Y", "on", 1, "y", "yes"])("verifyOptionsSkipIfExists-Good-True", (value) => {
+test.each([
+    true, "Y", "on", 1, "y", "yes"
+])("verifyOptionsSkipIfExists-Good-True", (value) => {
     var workingObject = {
         userOption: {
             skipIfExists: value
@@ -21,7 +24,9 @@ test.each([true, "Y", "on", 1, "y", "yes"])("verifyOptionsSkipIfExists-Good-True
         });
 });
 
-test.each([false, "N", "off", 0, "n", "no"])("verifyOptionsSkipIfExists-Good-False", (value) => {
+test.each([
+    false, "N", "off", 0, "n", "no"
+])("verifyOptionsSkipIfExists-Good-False", (value) => {
     var workingObject = {
         userOption: {
             skipIfExists: value
@@ -54,11 +59,12 @@ test("verifyOptionsSkipIfExists-undefined", () => {
         .toMatchObject({
             userOption: {},
             validatedOption: {
-                skipIfExists: true
+                skipIfExists: conf.DEFAULT_SKIPIFEXISTS
             }
         });
+    var msg = util.format("Warning: skipIfExists undefined, defaulting to %s.", conf.DEFAULT_SKIPIFEXISTS);
     expect(console.warn).toBeCalled();
-    expect(warnOutput).toContain("Warning: skipIfExists undefined, defaulting to true.");
+    expect(warnOutput).toContain(msg);
 });
 
 test.each(["ANC", "3453"])("verifyOptionsSkipIfExists-Not Boolean", (value) => {

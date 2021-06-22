@@ -1,4 +1,5 @@
 const core = require("../../lib/core-options.js");
+const conf = require('../../index.conf.js')
 const util = require('util');
 
 test.each([true, "Y", "on", 1, "y", "yes"])("verifyOptionsVerbose-Good-True", (value) => {
@@ -52,7 +53,7 @@ test("verifyOptionsVerbose-undefined", () => {
         .toMatchObject({
             userOption: {},
             validatedOption: {
-                verbose: false
+                verbose: conf.DEFAULT_VERBOSE
             }
         });
 });
