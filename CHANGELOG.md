@@ -3,7 +3,8 @@
 ## `0.10.0` upcoming
 
 - `#30`: As dev/test, I want to use jest for test framework.
-- `#43`: As dev, I want to move all default value to conf.js.
+- `#43`: As dev, I want to move all default value to `index.conf.js`.
+- `#41`: As scp user, I want to get Version Number. add `getVersion()`
 
 ## `0.5.0`
 

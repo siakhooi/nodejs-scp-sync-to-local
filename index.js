@@ -3,6 +3,11 @@ const fs = require('fs');
 const coreparam = require('./lib/core-options');
 const coreparamcheck = require('./lib/core-options-exclusive-check');
 const corelocal = require('./lib/core-local');
+const coreconf = require('./index.conf');
+
+exports.getVersionNumber = function () {
+    return coreconf.PROGRAM_VERSION;
+}
 
 exports.download = function (option) {
     return coreparam.initOptions(option)

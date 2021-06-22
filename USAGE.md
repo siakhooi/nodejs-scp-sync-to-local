@@ -49,3 +49,7 @@ var option = {
 
 scp.download(option);
 ```
+
+## `scp.getVersion()`
+
+- return the version number in `string`.
