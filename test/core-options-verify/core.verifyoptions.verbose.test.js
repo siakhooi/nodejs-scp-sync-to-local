@@ -68,5 +68,5 @@ test.each(["ANC", "3453"])("verifyOptionsVerbose-Not Boolean", (value) => {
     var msg = util.format("Error: verbose is not a boolean value [%s].", value);
     expect(core.verifyOptionsVerbose(workingObject))
         .rejects
-        .toMatch(msg);
+        .toThrow(msg);
 });

@@ -68,5 +68,5 @@ test.each(["ANC", "3453"])("verifyOptionsQuiet-Not Boolean", (value) => {
     var msg = util.format("Error: quiet is not a boolean value [%s].", value);
     expect(core.verifyOptionsQuiet(workingObject))
         .rejects
-        .toMatch(msg);
+        .toThrow(msg);
 });

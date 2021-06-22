@@ -9,7 +9,7 @@ test("verifySkipExistsExclusive", () => {
 
     expect(core.verifySkipExistsExclusive(workingObject))
         .rejects
-        .toMatch("Error: skipIfExists and skipIfNotExists are mutually exclusive.");
+        .toThrow("Error: skipIfExists and skipIfNotExists are mutually exclusive.");
 });
 
 test.each([

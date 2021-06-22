@@ -30,7 +30,7 @@ test("verifyOptionsHost-blank", () => {
 
     expect(core.verifyOptionsHost(workingObject))
         .rejects
-        .toMatch("Error: host is not defined.");
+        .toThrow("Error: host is not defined.");
 });
 test("verifyOptionsHost-undefined", () => {
     var workingObject = {
@@ -40,5 +40,5 @@ test("verifyOptionsHost-undefined", () => {
 
     expect(core.verifyOptionsHost(workingObject))
         .rejects
-        .toMatch("Error: host is not defined.");
+        .toThrow("Error: host is not defined.");
 });
