@@ -1,10 +1,11 @@
 {
   "name": "scp-sync-to-local",
-  "version": "0.5.0",
+  "version": "0.10.0",
   "description": "SCP all files in remote directory to local directory",
   "main": "index.js",
   "scripts": {
-    "test": "node test/index.test.js"
+    "test": "jest",
+    "download-from-vm": "node test/download-from-vm.js"
   },
   "repository": {
     "type": "git",
@@ -25,5 +26,8 @@
   "homepage": "https://github.com/siakhooi/nodejs-scp-sync-to-local#readme",
   "dependencies": {
     "node-scp": "^0.0.14"
+  },
+  "devDependencies": {
+    "jest": "^27.0.4"
   }
 }
