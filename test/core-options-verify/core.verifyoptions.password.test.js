@@ -30,7 +30,7 @@ test("verifyOptionsPassword-blank", () => {
 
     expect(core.verifyOptionsPassword(workingObject))
         .rejects
-        .toMatch("Error: password is not defined.");
+        .toThrow("Error: password is not defined.");
 });
 test("verifyOptionsPassword-undefined", () => {
     var workingObject = {
@@ -40,5 +40,5 @@ test("verifyOptionsPassword-undefined", () => {
 
     expect(core.verifyOptionsPassword(workingObject))
         .rejects
-        .toMatch("Error: password is not defined.");
+        .toThrow("Error: password is not defined.");
 });

@@ -30,7 +30,7 @@ test("verifyOptionsUser-blank", () => {
 
     expect(core.verifyOptionsUser(workingObject))
         .rejects
-        .toMatch("Error: username is not defined.");
+        .toThrow("Error: username is not defined.");
 });
 test("verifyOptionsUser-undefined", () => {
     var workingObject = {
@@ -40,5 +40,5 @@ test("verifyOptionsUser-undefined", () => {
 
     expect(core.verifyOptionsUser(workingObject))
         .rejects
-        .toMatch("Error: username is not defined.");
+        .toThrow("Error: username is not defined.");
 });

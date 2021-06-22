@@ -77,5 +77,5 @@ test.each(["ANC", "3453"])("verifyOptionsSkipIfExists-Not Boolean", (value) => {
     var msg = util.format("Error: skipIfExists is not a boolean value [%s].", value);
     expect(core.verifyOptionsSkipIfExists(workingObject))
         .rejects
-        .toMatch(msg);
+        .toThrow(msg);
 });

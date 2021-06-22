@@ -13,7 +13,7 @@ test("verifyLocalPath", () => {
     jest.spyOn(fs1, "isDirectory").mockImplementation(() => { return false; });
 
     var msg = util.format("Error: localPath exists and is not a directory. [%s]", workingObject.validatedOption.localPath);
-    expect(core.verifyLocalPath(workingObject)).rejects.toMatch(msg);
+    expect(core.verifyLocalPath(workingObject)).rejects.toThrow(msg);
 
     expect(fs1.isPathExist).toBeCalled();
     expect(fs1.isDirectory).toBeCalled();
