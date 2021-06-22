@@ -2,9 +2,11 @@
 
 ## `0.10.0` upcoming
 
-- `#30`: As dev/test, I want to use jest for test framework.
-- `#43`: As dev, I want to move all default value to `index.conf.js`.
+- `#30`: As dev/test, I want to use jest for test framework (init/options)
+- `#43`: As dev, I want to move all default values to `index.conf.js`.
 - `#41`: As scp user, I want to get Version Number. add `getVersion()`
+- `#42`: As scp user, I want to throw all errors as `Error()` objects.
+- `#32`: As scp user, I want to change warning to info if port is not defined, and default to `22`.
 
 ## `0.5.0`
 

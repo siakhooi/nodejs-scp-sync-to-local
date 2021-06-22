@@ -30,9 +30,9 @@ test("verifyOptionsPort-blank", () => {
         validatedOption: {}
     };
 
-    var warnOutput = [];
-    global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s); })
-    var msg = util.format("Warning: port undefined, defaulting to %d.", conf.DEFAULT_PORT);
+    var consoleOutput = [];
+    global.console.info = jest.fn().mockImplementation((s) => { consoleOutput.push(s); })
+    var msg = util.format("Info: port undefined, defaulting to %d.", conf.DEFAULT_PORT);
     expect(core.verifyOptionsPort(workingObject))
         .resolves
         .toMatchObject({
@@ -43,8 +43,8 @@ test("verifyOptionsPort-blank", () => {
                 port: conf.DEFAULT_PORT
             }
         });
-    expect(console.warn).toBeCalled();
-    expect(warnOutput).toContain(msg);
+    expect(console.info).toBeCalled();
+    expect(consoleOutput).toContain(msg);
 });
 test("verifyOptionsPort-undefined", () => {
     var workingObject = {
@@ -52,9 +52,9 @@ test("verifyOptionsPort-undefined", () => {
         validatedOption: {}
     };
 
-    var warnOutput = [];
-    global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s); })
-    var msg = util.format("Warning: port undefined, defaulting to %d.", conf.DEFAULT_PORT);
+    var consoleOutput = [];
+    global.console.info = jest.fn().mockImplementation((s) => { consoleOutput.push(s); })
+    var msg = util.format("Info: port undefined, defaulting to %d.", conf.DEFAULT_PORT);
     expect(core.verifyOptionsPort(workingObject))
         .resolves
         .toMatchObject({
@@ -63,6 +63,6 @@ test("verifyOptionsPort-undefined", () => {
                 port: conf.DEFAULT_PORT
             }
         });
-    expect(console.warn).toBeCalled();
-    expect(warnOutput).toContain(msg);
+    expect(console.info).toBeCalled();
+    expect(consoleOutput).toContain(msg);
 });
