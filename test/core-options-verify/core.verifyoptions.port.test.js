@@ -1,5 +1,6 @@
 const util = require('util');
 const core = require("../../lib/core-options.js");
+const conf = require('../../index.conf.js')
 
 test("verifyOptionsPort", () => {
     var workingObject = {
@@ -31,7 +32,7 @@ test("verifyOptionsPort-blank", () => {
 
     var warnOutput = [];
     global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s); })
-    var msg = util.format("Warning: port undefined, defaulting to %d.", 22);
+    var msg = util.format("Warning: port undefined, defaulting to %d.", conf.DEFAULT_PORT);
     expect(core.verifyOptionsPort(workingObject))
         .resolves
         .toMatchObject({
@@ -39,7 +40,7 @@ test("verifyOptionsPort-blank", () => {
                 port: ""
             },
             validatedOption: {
-                port: 22
+                port: conf.DEFAULT_PORT
             }
         });
     expect(console.warn).toBeCalled();
@@ -53,13 +54,13 @@ test("verifyOptionsPort-undefined", () => {
 
     var warnOutput = [];
     global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s); })
-    var msg = util.format("Warning: port undefined, defaulting to %d.", 22);
+    var msg = util.format("Warning: port undefined, defaulting to %d.", conf.DEFAULT_PORT);
     expect(core.verifyOptionsPort(workingObject))
         .resolves
         .toMatchObject({
             userOption: {},
             validatedOption: {
-                port: 22
+                port: conf.DEFAULT_PORT
             }
         });
     expect(console.warn).toBeCalled();
