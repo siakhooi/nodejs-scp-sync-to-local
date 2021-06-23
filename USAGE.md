@@ -20,7 +20,7 @@ const scp = require("scp-sync-to-local");
 
 | name              | type      | default value | description                                                                      |
 | ----------------- | --------- | ------------- | -------------------------------------------------------------------------------- |
-| `host`            | `String`  |               |                                                                                  |
+| `host`            | `String`  | `localhost`   |                                                                                  |
 | `port`            | `integer` | `22`          |                                                                                  |
 | `username`        | `String`  |               |                                                                                  |
 | `password`        | `String`  |               |                                                                                  |

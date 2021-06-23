@@ -1,6 +1,6 @@
 # Change Log
 
-## `0.10.0` upcoming
+## `0.6.0`
 
 - `#30`: As dev/test, I want to use jest for test framework (init/options)
 - `#43`: As dev, I want to move all default values to `index.conf.js`.
@@ -9,6 +9,7 @@
 - `#32`: As scp user, I want to change warning to info if `port` is not defined, and default to `22`.
 - `#28`: As scp user, I want to have error if `port` is not a number.
 - `#39`: As scp user, I want to see warning of `quiet` override `verbose`.
+- `#45`: As scp user, I want to default `host` to `localhost` if not specified.
 
 ## `0.5.0`
 
