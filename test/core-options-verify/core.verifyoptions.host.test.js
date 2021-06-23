@@ -1,4 +1,7 @@
-const core = require("../../lib/core-options.js");
+const util = require('util');
+const core = require("../../lib/core-options");
+const conf = require('../../index.conf')
+
 
 test("verifyOptionsHost", () => {
     var workingObject = {
@@ -28,9 +31,22 @@ test("verifyOptionsHost-blank", () => {
         validatedOption: {}
     };
 
+    var warnOutput = [];
+    global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s); })
+    var msg = util.format("Warning: host undefined, defaulting to %s.", conf.DEFAULT_HOSTNAME)
+
     expect(core.verifyOptionsHost(workingObject))
-        .rejects
-        .toThrow("Error: host is not defined.");
+        .resolves
+        .toMatchObject({
+            userOption: {
+                host: ""
+            },
+            validatedOption: {
+                host: conf.DEFAULT_HOSTNAME
+            }
+        });
+    expect(console.warn).toBeCalled();
+    expect(warnOutput).toContain(msg);
 });
 test("verifyOptionsHost-undefined", () => {
     var workingObject = {
@@ -38,7 +54,18 @@ test("verifyOptionsHost-undefined", () => {
         validatedOption: {}
     };
 
+    var warnOutput = [];
+    global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s); })
+    var msg = util.format("Warning: host undefined, defaulting to %s.", conf.DEFAULT_HOSTNAME)
+
     expect(core.verifyOptionsHost(workingObject))
-        .rejects
-        .toThrow("Error: host is not defined.");
+        .resolves
+        .toMatchObject({
+            userOption: {},
+            validatedOption: {
+                host: conf.DEFAULT_HOSTNAME
+            }
+        });
+    expect(console.warn).toBeCalled();
+    expect(warnOutput).toContain(msg);
 });
