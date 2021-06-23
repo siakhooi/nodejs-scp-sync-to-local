@@ -6,8 +6,9 @@
 - `#43`: As dev, I want to move all default values to `index.conf.js`.
 - `#41`: As scp user, I want to get Version Number. add `getVersion()`
 - `#42`: As scp user, I want to throw all errors as `Error()` objects.
-- `#32`: As scp user, I want to change warning to info if port is not defined, and default to `22`.
-- `#28`: As scp user, I want to have error if port is not a number.
+- `#32`: As scp user, I want to change warning to info if `port` is not defined, and default to `22`.
+- `#28`: As scp user, I want to have error if `port` is not a number.
+- `#39`: As scp user, I want to see warning of `quiet` override `verbose`.
 
 ## `0.5.0`
 

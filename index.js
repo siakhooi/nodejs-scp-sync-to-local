@@ -1,7 +1,7 @@
 const scp = require('node-scp');
 const fs = require('fs');
 const coreparam = require('./lib/core-options');
-const coreparamcheck = require('./lib/core-options-exclusive-check');
+const coreparamcheck = require('./lib/core-options-check');
 const corelocal = require('./lib/core-local');
 const coreconf = require('./index.conf');
 
@@ -12,7 +12,7 @@ exports.getVersionNumber = function () {
 exports.download = function (option) {
     return coreparam.initOptions(option)
         .then(verifyOptions)
-        .then(coreparamcheck.verifySkipExistsExclusive)
+        .then(optionsMutualCheck)
         .then(corelocal.verifyLocalPath)
         .then(coreparam.printOptions)
         .then(loginscp)
@@ -34,6 +34,10 @@ function verifyOptions(workingObject) {
         .then(coreparam.verifyOptionsVerbose)
         .then(coreparam.verifyOptionsQuiet);
 };
+function optionsMutualCheck(workingObject) {
+    return coreparamcheck.verifySkipExistsExclusive(workingObject)
+        .then(coreparamcheck.quietAndVerbose);
+}
 
 function loginscp(workingObject) {
     return new Promise((resolve, reject) => {

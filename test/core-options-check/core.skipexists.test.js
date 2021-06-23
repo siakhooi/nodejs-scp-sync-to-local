@@ -1,4 +1,4 @@
-const core = require("../../lib/core-options-exclusive-check.js");
+const core = require("../../lib/core-options-check");
 const util = require('util');
 
 test("verifySkipExistsExclusive", () => {
