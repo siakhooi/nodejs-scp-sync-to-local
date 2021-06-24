@@ -2,6 +2,7 @@ const util = require('util');
 const core = require("../../lib/core-options");
 const conf = require('../../index.conf')
 
+const DEFAULT_HOSTNAME = "localhost";
 
 test("verifyOptionsHost", () => {
     var workingObject = {
@@ -33,7 +34,7 @@ test("verifyOptionsHost-blank", () => {
 
     var warnOutput = [];
     global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s); })
-    var msg = util.format("Warning: host undefined, defaulting to %s.", conf.DEFAULT_HOSTNAME)
+    var msg = util.format("Warning: host undefined, defaulting to %s.", DEFAULT_HOSTNAME)
 
     expect(core.verifyOptionsHost(workingObject))
         .resolves
@@ -42,7 +43,7 @@ test("verifyOptionsHost-blank", () => {
                 host: ""
             },
             validatedOption: {
-                host: conf.DEFAULT_HOSTNAME
+                host: DEFAULT_HOSTNAME
             }
         });
     expect(console.warn).toBeCalled();
@@ -56,14 +57,14 @@ test("verifyOptionsHost-undefined", () => {
 
     var warnOutput = [];
     global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s); })
-    var msg = util.format("Warning: host undefined, defaulting to %s.", conf.DEFAULT_HOSTNAME)
+    var msg = util.format("Warning: host undefined, defaulting to %s.", DEFAULT_HOSTNAME)
 
     expect(core.verifyOptionsHost(workingObject))
         .resolves
         .toMatchObject({
             userOption: {},
             validatedOption: {
-                host: conf.DEFAULT_HOSTNAME
+                host: DEFAULT_HOSTNAME
             }
         });
     expect(console.warn).toBeCalled();

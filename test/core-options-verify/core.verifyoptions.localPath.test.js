@@ -1,6 +1,7 @@
 const util = require('util');
-const core = require("../../lib/core-options.js");
-const conf = require('../../index.conf.js')
+const core = require("../../lib/core-options");
+
+const DEFAULT_LOCALPATH = ".";
 
 test("verifyOptionsLocalPath", () => {
     var workingObject = {
@@ -32,7 +33,7 @@ test("verifyOptionsLocalPath-blank", () => {
 
     var warnOutput = [];
     global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s); })
-    var msg = util.format("Warning: localPath undefined, defaulting to current directory. [%s]", conf.DEFAULT_LOCALPATH);
+    var msg = util.format("Warning: localPath undefined, defaulting to current directory. [%s]", DEFAULT_LOCALPATH);
 
     expect(core.verifyOptionsLocalPath(workingObject))
         .resolves
@@ -41,7 +42,7 @@ test("verifyOptionsLocalPath-blank", () => {
                 localPath: ""
             },
             validatedOption: {
-                localPath: conf.DEFAULT_LOCALPATH
+                localPath: DEFAULT_LOCALPATH
             }
         });
     expect(console.warn).toBeCalled();
@@ -55,13 +56,13 @@ test("verifyOptionsLocalPath-undefined", () => {
 
     var warnOutput = [];
     global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s); })
-    var msg = util.format("Warning: localPath undefined, defaulting to current directory. [%s]", conf.DEFAULT_LOCALPATH);
+    var msg = util.format("Warning: localPath undefined, defaulting to current directory. [%s]", DEFAULT_LOCALPATH);
     expect(core.verifyOptionsLocalPath(workingObject))
         .resolves
         .toMatchObject({
             userOption: {},
             validatedOption: {
-                localPath: conf.DEFAULT_LOCALPATH
+                localPath: DEFAULT_LOCALPATH
             }
         });
     expect(console.warn).toBeCalled();
