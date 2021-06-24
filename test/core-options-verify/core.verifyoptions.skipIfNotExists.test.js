@@ -1,6 +1,8 @@
-const core = require("../../lib/core-options.js");
-const conf = require('../../index.conf.js')
+const core = require("../../lib/core-options");
 const util = require('util');
+
+const DEFAULT_SKIPIFNOTEXISTS = false;
+
 
 test.each([true, "Y", "on", 1, "y", "yes"])("verifyOptionsSkipIfNotExists-Good-True", (value) => {
     var workingObject = {
@@ -55,10 +57,10 @@ test("verifyOptionsSkipIfNotExists-undefined", () => {
         .toMatchObject({
             userOption: {},
             validatedOption: {
-                skipIfNotExists: conf.DEFAULT_SKIPIFNOTEXISTS
+                skipIfNotExists: DEFAULT_SKIPIFNOTEXISTS
             }
         });
-    var msg = util.format("Warning: skipIfNotExists undefined, defaulting to %s.", conf.DEFAULT_SKIPIFNOTEXISTS);
+    var msg = util.format("Warning: skipIfNotExists undefined, defaulting to %s.", DEFAULT_SKIPIFNOTEXISTS);
     expect(console.warn).toBeCalled();
     expect(warnOutput).toContain(msg);
 });

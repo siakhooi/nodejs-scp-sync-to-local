@@ -1,6 +1,8 @@
 const util = require('util');
-const core = require("../../lib/core-options.js");
-const conf = require('../../index.conf.js')
+const core = require("../../lib/core-options");
+
+const DEFAULT_QUIET = false;
+
 
 test.each([true, "Y", "on", 1, "y", "yes"])("verifyOptionsQuiet-Good-True", (value) => {
     var workingObject = {
@@ -53,7 +55,7 @@ test("verifyOptionsQuiet-undefined", () => {
         .toMatchObject({
             userOption: {},
             validatedOption: {
-                quiet: conf.DEFAULT_QUIET
+                quiet: DEFAULT_QUIET
             }
         });
 });

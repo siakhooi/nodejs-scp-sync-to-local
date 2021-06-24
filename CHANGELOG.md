@@ -1,5 +1,9 @@
 # Change Log
 
+## `0.6.1`
+
+- `#59` : bug: `#25`: As scp user, I want to choose skip download if file not exists.(`option.skipIfNotExists` default to `false`)
+
 ## `0.6.0`
 
 - `#30`: As dev/test, I want to use jest for test framework (init/options)

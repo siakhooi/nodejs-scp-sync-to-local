@@ -1,9 +1,9 @@
 exports.PROGRAM_NAME = "scp-sync-to-local";
-exports.PROGRAM_VERSION = "0.6.0";
+exports.PROGRAM_VERSION = "0.6.1";
 exports.PASSWORD_MASK = "**********";
 
 exports.DEFAULT_SKIPIFEXISTS = true;
-exports.DEFAULT_SKIPIFNOTEXISTS = true;
+exports.DEFAULT_SKIPIFNOTEXISTS = false;
 exports.DEFAULT_PORT = 22;
 exports.DEFAULT_REMOTEPATH = ".";
 exports.DEFAULT_LOCALPATH = ".";
