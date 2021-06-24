@@ -23,7 +23,9 @@ exports.download = function (option) {
 };
 
 function verifyOptions(workingObject) {
-    return coreparam.verifyOptionsHost(workingObject)
+    return coreparam.verifyOptionsQuiet(workingObject)
+        .then(coreparam.verifyOptionsVerbose)
+        .then(coreparam.verifyOptionsHost)
         .then(coreparam.verifyOptionsUser)
         .then(coreparam.verifyOptionsPassword)
         .then(coreparam.verifyOptionsSkipIfExists)
@@ -31,8 +33,7 @@ function verifyOptions(workingObject) {
         .then(coreparam.verifyOptionsPort)
         .then(coreparam.verifyOptionsRemotePath)
         .then(coreparam.verifyOptionsLocalPath)
-        .then(coreparam.verifyOptionsVerbose)
-        .then(coreparam.verifyOptionsQuiet);
+        ;
 };
 function optionsMutualCheck(workingObject) {
     return coreparamcheck.verifySkipExistsExclusive(workingObject)

@@ -24,11 +24,9 @@ test("verifyOptionsHost", () => {
         });
 });
 
-test("verifyOptionsHost-blank", () => {
+test("verifyOptionsHost/blank", () => {
     var workingObject = {
-        userOption: {
-            host: ""
-        },
+        userOption: { host: "" },
         validatedOption: {}
     };
 
@@ -39,9 +37,7 @@ test("verifyOptionsHost-blank", () => {
     expect(core.verifyOptionsHost(workingObject))
         .resolves
         .toMatchObject({
-            userOption: {
-                host: ""
-            },
+            userOption: { host: "" },
             validatedOption: {
                 host: DEFAULT_HOSTNAME
             }
@@ -49,7 +45,7 @@ test("verifyOptionsHost-blank", () => {
     expect(console.warn).toBeCalled();
     expect(warnOutput).toContain(msg);
 });
-test("verifyOptionsHost-undefined", () => {
+test("verifyOptionsHost/undefined", () => {
     var workingObject = {
         userOption: {},
         validatedOption: {}
@@ -69,4 +65,43 @@ test("verifyOptionsHost-undefined", () => {
         });
     expect(console.warn).toBeCalled();
     expect(warnOutput).toContain(msg);
+});
+
+test("verifyOptionsHost/blank/quiet", () => {
+    var workingObject = {
+        userOption: { host: "" },
+        validatedOption: { quiet: true }
+    };
+
+    global.console.warn = jest.fn();
+
+    expect(core.verifyOptionsHost(workingObject))
+        .resolves
+        .toMatchObject({
+            userOption: { host: "" },
+            validatedOption: {
+                host: DEFAULT_HOSTNAME,
+                quiet: true
+            }
+        });
+    expect(console.warn).not.toBeCalled();
+});
+test("verifyOptionsHost/undefined/quiet", () => {
+    var workingObject = {
+        userOption: {},
+        validatedOption: { quiet: true }
+    };
+
+    global.console.warn = jest.fn();
+
+    expect(core.verifyOptionsHost(workingObject))
+        .resolves
+        .toMatchObject({
+            userOption: {},
+            validatedOption: {
+                host: DEFAULT_HOSTNAME,
+                quiet: true
+            }
+        });
+    expect(console.warn).not.toBeCalled();
 });

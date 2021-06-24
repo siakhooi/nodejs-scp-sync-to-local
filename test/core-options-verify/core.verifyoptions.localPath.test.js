@@ -5,29 +5,21 @@ const DEFAULT_LOCALPATH = ".";
 
 test("verifyOptionsLocalPath", () => {
     var workingObject = {
-        userOption: {
-            localPath: "/home/testuser/files/"
-        },
+        userOption: { localPath: "/home/testuser/files/" },
         validatedOption: {}
     };
 
     expect(core.verifyOptionsLocalPath(workingObject))
         .resolves
         .toMatchObject({
-            userOption: {
-                localPath: "/home/testuser/files/"
-            },
-            validatedOption: {
-                localPath: "/home/testuser/files/"
-            }
+            userOption: { localPath: "/home/testuser/files/" },
+            validatedOption: { localPath: "/home/testuser/files/" }
         });
 });
 
-test("verifyOptionsLocalPath-blank", () => {
+test("verifyOptionsLocalPath/blank", () => {
     var workingObject = {
-        userOption: {
-            localPath: ""
-        },
+        userOption: { localPath: "" },
         validatedOption: {}
     };
 
@@ -38,9 +30,7 @@ test("verifyOptionsLocalPath-blank", () => {
     expect(core.verifyOptionsLocalPath(workingObject))
         .resolves
         .toMatchObject({
-            userOption: {
-                localPath: ""
-            },
+            userOption: { localPath: "" },
             validatedOption: {
                 localPath: DEFAULT_LOCALPATH
             }
@@ -48,7 +38,7 @@ test("verifyOptionsLocalPath-blank", () => {
     expect(console.warn).toBeCalled();
     expect(warnOutput).toContain(msg);
 });
-test("verifyOptionsLocalPath-undefined", () => {
+test("verifyOptionsLocalPath/undefined", () => {
     var workingObject = {
         userOption: {},
         validatedOption: {}
@@ -67,4 +57,42 @@ test("verifyOptionsLocalPath-undefined", () => {
         });
     expect(console.warn).toBeCalled();
     expect(warnOutput).toContain(msg);
+});
+
+test("verifyOptionsLocalPath/blank/quiet", () => {
+    var workingObject = {
+        userOption: { localPath: "" },
+        validatedOption: { quiet: true }
+    };
+
+    global.console.warn = jest.fn();
+
+    expect(core.verifyOptionsLocalPath(workingObject))
+        .resolves
+        .toMatchObject({
+            userOption: { localPath: "" },
+            validatedOption: {
+                localPath: DEFAULT_LOCALPATH,
+                quiet: true
+            }
+        });
+    expect(console.warn).not.toBeCalled();
+});
+test("verifyOptionsLocalPath/undefined/quiet", () => {
+    var workingObject = {
+        userOption: {},
+        validatedOption: { quiet: true }
+    };
+
+    global.console.warn = jest.fn();
+    expect(core.verifyOptionsLocalPath(workingObject))
+        .resolves
+        .toMatchObject({
+            userOption: {},
+            validatedOption: {
+                localPath: DEFAULT_LOCALPATH,
+                quiet: true
+            }
+        });
+    expect(console.warn).not.toBeCalled();
 });

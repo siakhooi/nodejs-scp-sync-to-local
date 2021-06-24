@@ -2,7 +2,7 @@ const util = require('util');
 const core = require("../../lib/core-local");
 const fs1 = require('../../lib/core-util');
 
-test("verifyLocalPath", () => {
+test("verifyLocalPath/path-not-directory", () => {
     var workingObject = {
         validatedOption: {
             localPath: "./test-data/aeeeaaa"
@@ -19,7 +19,7 @@ test("verifyLocalPath", () => {
     expect(fs1.isDirectory).toBeCalled();
 });
 
-test("verifyLocalPath", () => {
+test("verifyLocalPath/path-exist", () => {
     var workingObject = {
         validatedOption: {
             localPath: "./test-data/aeeeaaa"
@@ -34,7 +34,7 @@ test("verifyLocalPath", () => {
     expect(fs1.isDirectory).toBeCalled();
 });
 
-test("verifyLocalPath", () => {
+test("verifyLocalPath/path-auto-create", () => {
     var workingObject = {
         validatedOption: {
             localPath: "./test-data/aeeeaaa"
@@ -55,5 +55,24 @@ test("verifyLocalPath", () => {
     expect(console.warn).toBeCalled();
     expect(warnOutput).toContain(msg);
 
+});
+
+test("verifyLocalPath/path-auto-create/quiet", () => {
+    var workingObject = {
+        validatedOption: {
+            localPath: "./test-data/aeeeaaa",
+            quiet: true
+        }
+    };
+    jest.mock("../../lib/core-util");
+    jest.spyOn(fs1, "isPathExist").mockImplementation(() => { return false; });
+    jest.spyOn(fs1, "mkdir").mockImplementation(() => { });
+
+    global.console.warn = jest.fn();
+
+    expect(core.verifyLocalPath(workingObject)).resolves;
+    expect(fs1.isPathExist).toBeCalled();
+    expect(fs1.mkdir).toBeCalled();
+    expect(console.warn).not.toBeCalled();
 });
 

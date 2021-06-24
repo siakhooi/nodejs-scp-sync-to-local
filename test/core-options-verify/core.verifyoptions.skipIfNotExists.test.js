@@ -4,47 +4,35 @@ const util = require('util');
 const DEFAULT_SKIPIFNOTEXISTS = false;
 
 
-test.each([true, "Y", "on", 1, "y", "yes"])("verifyOptionsSkipIfNotExists-Good-True", (value) => {
+test.each([true, "Y", "on", 1, "y", "yes"])("verifyOptionsSkipIfNotExists/true", (value) => {
     var workingObject = {
-        userOption: {
-            skipIfNotExists: value
-        },
+        userOption: { skipIfNotExists: value },
         validatedOption: {}
     };
 
     expect(core.verifyOptionsSkipIfNotExists(workingObject))
         .resolves
         .toMatchObject({
-            userOption: {
-                skipIfNotExists: value
-            },
-            validatedOption: {
-                skipIfNotExists: true
-            }
+            userOption: { skipIfNotExists: value },
+            validatedOption: { skipIfNotExists: true }
         });
 });
 
-test.each([false, "N", "off", 0, "n", "no"])("verifyOptionsSkipIfNotExists-Good-False", (value) => {
+test.each([false, "N", "off", 0, "n", "no"])("verifyOptionsSkipIfNotExists/false", (value) => {
     var workingObject = {
-        userOption: {
-            skipIfNotExists: value
-        },
+        userOption: { skipIfNotExists: value },
         validatedOption: {}
     };
 
     expect(core.verifyOptionsSkipIfNotExists(workingObject))
         .resolves
         .toMatchObject({
-            userOption: {
-                skipIfNotExists: value
-            },
-            validatedOption: {
-                skipIfNotExists: false
-            }
+            userOption: { skipIfNotExists: value },
+            validatedOption: { skipIfNotExists: false }
         });
 });
 
-test("verifyOptionsSkipIfNotExists-undefined", () => {
+test("verifyOptionsSkipIfNotExists/undefined", () => {
     var workingObject = {
         userOption: {},
         validatedOption: {}
@@ -65,7 +53,7 @@ test("verifyOptionsSkipIfNotExists-undefined", () => {
     expect(warnOutput).toContain(msg);
 });
 
-test.each(["ANC", "3453", "xxx", 567])("verifyOptionsSkipIfNotExists-Not Boolaen", (value) => {
+test.each(["ANC", "3453", "xxx", 567])("verifyOptionsSkipIfNotExists/not-boolaen", (value) => {
     var workingObject = {
         userOption: {
             skipIfNotExists: value
@@ -76,4 +64,23 @@ test.each(["ANC", "3453", "xxx", 567])("verifyOptionsSkipIfNotExists-Not Boolaen
     expect(core.verifyOptionsSkipIfNotExists(workingObject))
         .rejects
         .toThrow(msg);
+});
+
+test("verifyOptionsSkipIfNotExists/undefined/quiet", () => {
+    var workingObject = {
+        userOption: {},
+        validatedOption: { quiet: true }
+    };
+    global.console.warn = jest.fn();
+
+    expect(core.verifyOptionsSkipIfNotExists(workingObject))
+        .resolves
+        .toMatchObject({
+            userOption: {},
+            validatedOption: {
+                skipIfNotExists: DEFAULT_SKIPIFNOTEXISTS,
+                quiet: true
+            }
+        });
+    expect(console.warn).not.toBeCalled();
 });

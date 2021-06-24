@@ -1,5 +1,9 @@
 # Change Log
 
+## `0.7.0`
+
+- `#50`: As scp user, I want to `quiet` to turn off option verification info & warning.
+
 ## `0.6.1`
 
 - `#59` : bug: `#25`: As scp user, I want to choose skip download if file not exists.(`option.skipIfNotExists` default to `false`)
