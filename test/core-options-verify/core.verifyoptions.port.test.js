@@ -6,29 +6,23 @@ const DEFAULT_PORT = 22;
 
 test.each([23, "34"])("verifyOptionsPort", (value) => {
     var workingObject = {
-        userOption: {
-            port: value
-        },
+        userOption: { port: value },
         validatedOption: {}
     };
 
     expect(core.verifyOptionsPort(workingObject))
         .resolves
         .toMatchObject({
-            userOption: {
-                port: value
-            },
+            userOption: { port: value },
             validatedOption: {
                 port: Number(value)
             }
         });
 });
 
-test("verifyOptionsPort-blank", () => {
+test("verifyOptionsPort/blank", () => {
     var workingObject = {
-        userOption: {
-            port: ""
-        },
+        userOption: { port: "" },
         validatedOption: {}
     };
 
@@ -38,17 +32,13 @@ test("verifyOptionsPort-blank", () => {
     expect(core.verifyOptionsPort(workingObject))
         .resolves
         .toMatchObject({
-            userOption: {
-                port: ""
-            },
-            validatedOption: {
-                port: DEFAULT_PORT
-            }
+            userOption: { port: "" },
+            validatedOption: { port: DEFAULT_PORT }
         });
     expect(console.info).toBeCalled();
     expect(consoleOutput).toContain(msg);
 });
-test("verifyOptionsPort-undefined", () => {
+test("verifyOptionsPort/undefined", () => {
     var workingObject = {
         userOption: {},
         validatedOption: {}
@@ -61,19 +51,15 @@ test("verifyOptionsPort-undefined", () => {
         .resolves
         .toMatchObject({
             userOption: {},
-            validatedOption: {
-                port: DEFAULT_PORT
-            }
+            validatedOption: { port: DEFAULT_PORT }
         });
     expect(console.info).toBeCalled();
     expect(consoleOutput).toContain(msg);
 });
 
-test("verifyOptionsPort-not number", () => {
+test("verifyOptionsPort/not-number", () => {
     var workingObject = {
-        userOption: {
-            port: "xxx"
-        },
+        userOption: { port: "xxx" },
         validatedOption: {}
     };
 
@@ -82,3 +68,42 @@ test("verifyOptionsPort-not number", () => {
         .rejects
         .toThrow(msg);
 });
+
+
+test("verifyOptionsPort/blank/quiet", () => {
+    var workingObject = {
+        userOption: { port: "" },
+        validatedOption: { quiet: true }
+    };
+
+    global.console.info = jest.fn();
+    expect(core.verifyOptionsPort(workingObject))
+        .resolves
+        .toMatchObject({
+            userOption: { port: "" },
+            validatedOption: {
+                port: DEFAULT_PORT,
+                quiet: true
+            }
+        });
+    expect(console.info).not.toBeCalled();
+});
+test("verifyOptionsPort/undefined/quiet", () => {
+    var workingObject = {
+        userOption: {},
+        validatedOption: { quiet: true }
+    };
+
+    global.console.info = jest.fn();
+    expect(core.verifyOptionsPort(workingObject))
+        .resolves
+        .toMatchObject({
+            userOption: {},
+            validatedOption: {
+                port: DEFAULT_PORT,
+                quiet: true
+            }
+        });
+    expect(console.info).not.toBeCalled();
+});
+
