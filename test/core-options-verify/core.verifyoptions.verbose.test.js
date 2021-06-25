@@ -1,5 +1,5 @@
-const core = require("../../lib/core-options");
 const util = require('util');
+const core = require("../../lib/core-options");
 
 const DEFAULT_VERBOSE = false;
 
