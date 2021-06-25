@@ -1,8 +1,9 @@
 # Change Log
 
-## `0.7.0`
+## `0.7.0` (upcoming)
 
 - `#50`: As scp user, I want to `quiet` to turn off option verification info & warning.
+- `#62`: bug: As dev/test, I want to not include github files in npm package.
 
 ## `0.6.1`
 
