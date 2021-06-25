@@ -4,6 +4,7 @@
 
 - `#50`: As scp user, I want to `quiet` to turn off option verification info & warning.
 - `#62`: bug: As dev/test, I want to not include github files in npm package.
+- `#64`: As dev/test, I want to npm test on build & release enhancement.
 
 ## `0.6.1`
 
