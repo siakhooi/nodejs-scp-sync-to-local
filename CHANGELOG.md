@@ -1,10 +1,11 @@
 # Change Log
 
-## `0.7.0` (upcoming)
+## `0.7.0`
 
 - `#50`: As scp user, I want to `quiet` to turn off option verification info & warning.
 - `#62`: bug: As dev/test, I want to not include github files in npm package.
 - `#64`: As dev/test, I want to npm test on build & release enhancement.
+- `#11`: As scp user, I want to choose to error or auto create local path if it is not exist. (`option.autoCreateLocalPath` default to `true`)
 
 ## `0.6.1`
 

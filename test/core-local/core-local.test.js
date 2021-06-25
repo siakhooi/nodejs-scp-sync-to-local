@@ -2,10 +2,12 @@ const util = require('util');
 const core = require("../../lib/core-local");
 const fs1 = require('../../lib/core-util');
 
+beforeEach(() => jest.clearAllMocks());
+
 test("verifyLocalPath/path-not-directory", () => {
     var workingObject = {
         validatedOption: {
-            localPath: "./test-data/aeeeaaa"
+            localPath: "./test-data/aeeeaaa1"
         }
     };
     jest.mock("../../lib/core-util");
@@ -22,7 +24,7 @@ test("verifyLocalPath/path-not-directory", () => {
 test("verifyLocalPath/path-exist", () => {
     var workingObject = {
         validatedOption: {
-            localPath: "./test-data/aeeeaaa"
+            localPath: "./test-data/aeeeaaa2"
         }
     };
     jest.mock("../../lib/core-util");
@@ -34,10 +36,11 @@ test("verifyLocalPath/path-exist", () => {
     expect(fs1.isDirectory).toBeCalled();
 });
 
-test("verifyLocalPath/path-auto-create", () => {
+test("verifyLocalPath/path-not-exist/auto-create", () => {
     var workingObject = {
         validatedOption: {
-            localPath: "./test-data/aeeeaaa"
+            localPath: "./test-data/aeeeaaa3",
+            autoCreateLocalPath: true
         }
     };
     jest.mock("../../lib/core-util");
@@ -57,10 +60,11 @@ test("verifyLocalPath/path-auto-create", () => {
 
 });
 
-test("verifyLocalPath/path-auto-create/quiet", () => {
+test("verifyLocalPath/path-not-exist/auto-create/quiet", () => {
     var workingObject = {
         validatedOption: {
-            localPath: "./test-data/aeeeaaa",
+            localPath: "./test-data/aeeeaaa4",
+            autoCreateLocalPath: true,
             quiet: true
         }
     };
@@ -74,5 +78,24 @@ test("verifyLocalPath/path-auto-create/quiet", () => {
     expect(fs1.isPathExist).toBeCalled();
     expect(fs1.mkdir).toBeCalled();
     expect(console.warn).not.toBeCalled();
+});
+
+test("verifyLocalPath/path-not-exist/not-auto-create", () => {
+    var workingObject = {
+        validatedOption: {
+            localPath: "./test-data/aeeeaaa5",
+            autoCreateLocalPath: false
+        }
+    };
+    jest.mock("../../lib/core-util");
+    jest.spyOn(fs1, "isPathExist").mockImplementation(() => { return false; });
+    jest.spyOn(fs1, "mkdir").mockImplementation(() => { });
+
+    var msg = util.format("Error: localPath not exists and autoCreateLocalPath=false. [%s]", workingObject.validatedOption.localPath);
+
+    expect(core.verifyLocalPath(workingObject)).rejects.toThrow(msg);
+    expect(fs1.isPathExist).toBeCalled();
+    expect(fs1.mkdir).not.toBeCalled();
+
 });
 
