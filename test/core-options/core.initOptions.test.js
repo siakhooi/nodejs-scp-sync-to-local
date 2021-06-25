@@ -1,4 +1,4 @@
-const core = require("../../lib/core-options.js");
+const core = require("../../lib/core-options");
 
 test("initOptions", () => {
     var option = {
