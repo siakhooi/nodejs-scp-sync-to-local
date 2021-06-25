@@ -33,6 +33,7 @@ function verifyOptions(workingObject) {
         .then(coreparam.verifyOptionsPort)
         .then(coreparam.verifyOptionsRemotePath)
         .then(coreparam.verifyOptionsLocalPath)
+        .then(coreparam.verifyOptionsAutoCreateLocalPath)
         ;
 };
 function optionsMutualCheck(workingObject) {
