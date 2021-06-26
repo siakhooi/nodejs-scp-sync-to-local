@@ -16,6 +16,7 @@ test("initOptions", () => {
             },
             validatedOption: {},
             scpLoginOption: {},
+            fileFilters: [],
             scpClient: null,
             remoteFileList: [],
             filteredFileList: [],
