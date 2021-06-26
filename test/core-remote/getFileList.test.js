@@ -1,8 +1,6 @@
 scp = require('node-scp');
 const coreremote = require('../../lib/core-remote');
 
-//beforeEach(() => jest.clearAllMocks());
-
 test('remote/getFileList/success', () => {
     var workingObject = {
         validatedOption: {

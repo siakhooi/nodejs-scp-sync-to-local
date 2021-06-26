@@ -13,11 +13,12 @@ exports.download = function (option) {
     return coreparam.initOptions(option)
         .then(verifyOptions)
         .then(optionsMutualCheck)
+        .then(corefilters.setupFilters)
         .then(corelocal.verifyLocalPath)
         .then(coreparam.printOptions)
         .then(coreremote.login)
         .then(coreremote.getFileList)
-        .then(filterFiles)
+        .then(corefilters.filterFiles)
         .then(downloadRemoteFiles)
         .then(DisconnectOnAllDone);
 };
@@ -39,25 +40,6 @@ function verifyOptions(workingObject) {
 function optionsMutualCheck(workingObject) {
     return coreparamcheck.verifySkipExistsExclusive(workingObject)
         .then(coreparamcheck.quietAndVerbose);
-}
-function filterFiles(workingObject) {
-    return new Promise((resolve, reject) => {
-        var option = workingObject.validatedOption;
-        var remoteFileList = workingObject.remoteFileList;
-        workingObject.filteredFileList = remoteFileList.filter((f1) => {
-
-            if (option.skipIfExists) {
-                var localfile = option.localPath + '/' + f1.name;
-                return !fs.existsSync(localfile);
-            }
-            if (option.skipIfNotExists) {
-                var localfile = option.localPath + '/' + f1.name;
-                return fs.existsSync(localfile);
-            }
-            return true;
-        });
-        resolve(workingObject);
-    });
 }
 function downloadRemoteFiles(workingObject) {
     var option = workingObject.validatedOption;
