@@ -4,6 +4,7 @@
 
 - `#67`: As dev, I want to standardize `require()` without `.js`.
 - `#49`: As dev/test, I want to refactor code and do jest testing. (`scp.login` to `core-remote.login`)
+- `#54`: As dev/test, I want to refactor code and do jest testing. (`scp.getRemoteFileList` tp `core-remote.getFileList`)
 
 ## `0.7.0`
 
