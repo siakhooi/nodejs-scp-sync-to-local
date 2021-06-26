@@ -16,7 +16,7 @@ exports.download = function (option) {
         .then(corelocal.verifyLocalPath)
         .then(coreparam.printOptions)
         .then(coreremote.login)
-        .then(getRemoteFileList)
+        .then(coreremote.getFileList)
         .then(filterFiles)
         .then(downloadRemoteFiles)
         .then(DisconnectOnAllDone);
@@ -39,21 +39,6 @@ function verifyOptions(workingObject) {
 function optionsMutualCheck(workingObject) {
     return coreparamcheck.verifySkipExistsExclusive(workingObject)
         .then(coreparamcheck.quietAndVerbose);
-}
-
-function getRemoteFileList(workingObject) {
-    var option = workingObject.validatedOption;
-    var client = workingObject.scpClient;
-
-    return new Promise((resolve, reject) => {
-        if (option.quiet != true) process.stdout.write("Downloading Remote File List...");
-        client.list(option.remotePath)
-            .then((remoteFileList) => {
-                if (option.quiet != true) console.log("done");
-                workingObject.remoteFileList = remoteFileList;
-                resolve(workingObject);
-            });
-    });
 }
 function filterFiles(workingObject) {
     return new Promise((resolve, reject) => {
