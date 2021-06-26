@@ -12,7 +12,7 @@ var option = {
   skipIfExists: false,
   skipIfNotExists: false,
   verbose: true,
-  quiet: true
+  quiet: false
 };
 
 scp.download(option).catch(err);

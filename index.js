@@ -1,9 +1,9 @@
-const scp = require('node-scp');
 const fs = require('fs');
 const coreparam = require('./lib/core-options');
 const coreparamcheck = require('./lib/core-options-check');
 const corelocal = require('./lib/core-local');
 const coreconf = require('./index.conf');
+const coreremote = require('./lib/core-remote');
 
 exports.getVersionNumber = function () {
     return coreconf.PROGRAM_VERSION;
@@ -15,7 +15,7 @@ exports.download = function (option) {
         .then(optionsMutualCheck)
         .then(corelocal.verifyLocalPath)
         .then(coreparam.printOptions)
-        .then(loginscp)
+        .then(coreremote.login)
         .then(getRemoteFileList)
         .then(filterFiles)
         .then(downloadRemoteFiles)
@@ -39,23 +39,6 @@ function verifyOptions(workingObject) {
 function optionsMutualCheck(workingObject) {
     return coreparamcheck.verifySkipExistsExclusive(workingObject)
         .then(coreparamcheck.quietAndVerbose);
-}
-
-function loginscp(workingObject) {
-    return new Promise((resolve, reject) => {
-        var validatedOption = workingObject.validatedOption;
-        var scpLoginOption = workingObject.scpLoginOption;
-
-        scpLoginOption.host = validatedOption.host;
-        scpLoginOption.port = validatedOption.port;
-        scpLoginOption.username = validatedOption.username;
-        scpLoginOption.password = validatedOption.password;
-
-        return scp(scpLoginOption).then((client) => {
-            workingObject.scpClient = client;
-            resolve(workingObject);
-        });
-    });
 }
 
 function getRemoteFileList(workingObject) {
