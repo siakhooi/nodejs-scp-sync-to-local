@@ -5,7 +5,8 @@ test("filter/setupFilters/skipIfExists/true", () => {
         validatedOption: {
             skipIfExists: true,
             skipIfNotExists: false,
-            skipIfNewer: false
+            skipIfNewer: false,
+            skipIfOlder: false
         },
         fileFilters: []
     };
@@ -20,7 +21,8 @@ test("filter/setupFilters/skipIfExists/false", () => {
         validatedOption: {
             skipIfExists: false,
             skipIfNotExists: true,
-            skipIfNewer: false
+            skipIfNewer: false,
+            skipIfOlder: false
         },
         fileFilters: []
     };

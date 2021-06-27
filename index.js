@@ -33,6 +33,7 @@ function verifyOptions(workingObject) {
         .then(coreparam.verifyOptionsSkipIfExists)
         .then(coreparam.verifyOptionsSkipIfNotExists)
         .then(coreparam.verifyOptionsSkipIfNewer)
+        .then(coreparam.verifyOptionsSkipIfOlder)
         .then(coreparam.verifyOptionsPort)
         .then(coreparam.verifyOptionsRemotePath)
         .then(coreparam.verifyOptionsLocalPath)
@@ -41,6 +42,7 @@ function verifyOptions(workingObject) {
 };
 function optionsMutualCheck(workingObject) {
     return coreparamcheck.verifySkipExistsExclusive(workingObject)
+        .then(coreparamcheck.verifySkipAgeExclusive)
         .then(coreparamcheck.quietAndVerbose);
 }
 function downloadRemoteFiles(workingObject) {

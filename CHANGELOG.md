@@ -1,6 +1,6 @@
 # Change Log
 
-## `0.8.0` Upcoming
+## `0.8.0`
 
 - `#67`: As dev, I want to standardize `require()` without `.js`.
 - `#49`: As dev/test, I want to refactor code and do jest testing. (`scp.login` to `core-remote.login`)
@@ -9,6 +9,7 @@
 - `#73`: As test, I want to combine to mock-data files.
 - `#26`: As scp user, I want to choose skip download if local file is newer. (`option.skipIfNewer` default to `false`)
 - `#77`: bugs in `#26` test scripts.
+- `#27`: As scp user, I want to choose skip download if local file is older. (`option.skipIfOlder`default to `false`)
 
 ## `0.7.0`
 

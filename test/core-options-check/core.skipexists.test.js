@@ -1,7 +1,7 @@
 const core = require("../../lib/core-options-check");
 const util = require('util');
 
-test("verifySkipExistsExclusive", () => {
+test("verifySkipExistsExclusive/error", () => {
     var workingObject = {
         userOption: {},
         validatedOption: { skipIfExists: true, skipIfNotExists: true }
@@ -16,7 +16,7 @@ test.each([
     [true, false],
     [false, true],
     [false, false]
-])("verifySkipExistsExclusive-true", (exist, notExist) => {
+])("verifySkipExistsExclusive/ok", (exist, notExist) => {
     var workingObject = {
         userOption: {},
         validatedOption: { skipIfExists: exist, skipIfNotExists: notExist }

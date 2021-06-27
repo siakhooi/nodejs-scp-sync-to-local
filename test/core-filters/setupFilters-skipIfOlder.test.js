@@ -1,28 +1,10 @@
 const corefilters = require("../../lib/core-filters");
 
-test("filter/setupFilters/mixed", () => {
-    var workingObject = {
-        validatedOption: {
-            skipIfExists: true,
-            skipIfNotExists: false,
-            skipIfNewer: true,
-            skipIfOlder: false
-        },
-        fileFilters: []
-    };
-
-    return expect(corefilters.setupFilters(workingObject))
-        .resolves
-        .toMatchObject({
-            fileFilters: [corefilters.skipIfExists, corefilters.skipIfNewer]
-        });
-});
-
-test("filter/setupFilters/mixed", () => {
+test("filter/setupFilters/skipIfOlder/true", () => {
     var workingObject = {
         validatedOption: {
             skipIfExists: false,
-            skipIfNotExists: true,
+            skipIfNotExists: false,
             skipIfNewer: false,
             skipIfOlder: true
         },
@@ -32,6 +14,24 @@ test("filter/setupFilters/mixed", () => {
     return expect(corefilters.setupFilters(workingObject))
         .resolves
         .toMatchObject({
-            fileFilters: [corefilters.skipIfNotExists, corefilters.skipIfOlder]
+            fileFilters: [corefilters.skipIfOlder]
+        });
+});
+
+test("filter/setupFilters/skipIfOlder/false", () => {
+    var workingObject = {
+        validatedOption: {
+            skipIfExists: true,
+            skipIfNotExists: false,
+            skipIfNewer: false,
+            skipIfOlder: false
+        },
+        fileFilters: []
+    };
+
+    return expect(corefilters.setupFilters(workingObject))
+        .resolves.not
+        .toMatchObject({
+            fileFilters: [corefilters.skipIfOlder]
         });
 });

@@ -61,6 +61,7 @@ test.each([
             skipIfExists: false,
             skipIfNotExists: false,
             skipIfNewer: false,
+            skipIfOlder: false,
             autoCreateLocalPath: true,
             verbose: verbose,
             quiet: quiet
@@ -80,6 +81,7 @@ test.each([
         ["       skipIfExists: %s", false, undefined],
         ["    skipIfNotExists: %s", false, undefined],
         ["        skipIfNewer: %s", false, undefined],
+        ["        skipIfOlder: %s", false, undefined],
         ["autoCreateLocalPath: %s", true, undefined],
         ["            verbose: %s", verbose, undefined],
         ["              quiet: %s", quiet, undefined]
