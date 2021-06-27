@@ -60,6 +60,7 @@ test.each([
             port: 22,
             skipIfExists: false,
             skipIfNotExists: false,
+            skipIfNewer: false,
             autoCreateLocalPath: true,
             verbose: verbose,
             quiet: quiet
@@ -78,6 +79,7 @@ test.each([
         ["          localPath: %s", "./test-data", undefined],
         ["       skipIfExists: %s", false, undefined],
         ["    skipIfNotExists: %s", false, undefined],
+        ["        skipIfNewer: %s", false, undefined],
         ["autoCreateLocalPath: %s", true, undefined],
         ["            verbose: %s", verbose, undefined],
         ["              quiet: %s", quiet, undefined]

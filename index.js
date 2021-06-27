@@ -4,6 +4,7 @@ const coreparamcheck = require('./lib/core-options-check');
 const corelocal = require('./lib/core-local');
 const coreconf = require('./index.conf');
 const coreremote = require('./lib/core-remote');
+const corefilters = require('./lib/core-filters');
 
 exports.getVersionNumber = function () {
     return coreconf.PROGRAM_VERSION;
@@ -31,6 +32,7 @@ function verifyOptions(workingObject) {
         .then(coreparam.verifyOptionsPassword)
         .then(coreparam.verifyOptionsSkipIfExists)
         .then(coreparam.verifyOptionsSkipIfNotExists)
+        .then(coreparam.verifyOptionsSkipIfNewer)
         .then(coreparam.verifyOptionsPort)
         .then(coreparam.verifyOptionsRemotePath)
         .then(coreparam.verifyOptionsLocalPath)
