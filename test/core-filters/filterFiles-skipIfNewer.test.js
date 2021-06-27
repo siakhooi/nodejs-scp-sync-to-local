@@ -12,7 +12,7 @@ test("filter/setupFilters/skipIfNewer/fileExist", () => {
     jest.spyOn(fs1, "isNewer").mockReturnValue(true);
 
     return expect(corefilters.filterFiles(workingObject))
-        .resolves
+        .resolves.not
         .toMatchObject({
             filteredFileList: [
                 { name: 'Mock_File_1.zip' },
@@ -31,7 +31,7 @@ test("filter/setupFilters/skipIfNewer/fileNotExist", () => {
     jest.spyOn(fs1, "isNewer").mockReturnValue(false);
 
     return expect(corefilters.filterFiles(workingObject))
-        .resolves.not
+        .resolves
         .toMatchObject({
             filteredFileList: [
                 { name: 'Mock_File_1.zip' },
