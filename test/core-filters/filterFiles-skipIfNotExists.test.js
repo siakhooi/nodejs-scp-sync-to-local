@@ -1,6 +1,6 @@
 const corefilters = require("../../lib/core-filters");
 const fs1 = require('../../lib/core-util');
-const mockdata = require('./mock-data')
+const mockdata = require('../mock-remotefilelist')
 
 test("filter/setupFilters/skipIfNotExists/fileExist", () => {
     var workingObject = {
