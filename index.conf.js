@@ -4,6 +4,7 @@ exports.PASSWORD_MASK = "**********";
 
 exports.DEFAULT_SKIPIFEXISTS = true;
 exports.DEFAULT_SKIPIFNOTEXISTS = false;
+exports.DEFAULT_SKIPIFNEWER = false;
 exports.DEFAULT_PORT = 22;
 exports.DEFAULT_REMOTEPATH = ".";
 exports.DEFAULT_LOCALPATH = ".";

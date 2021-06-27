@@ -11,6 +11,7 @@ var option = {
   localPath: "./test-data",
   skipIfExists: false,
   skipIfNotExists: false,
+  skipIfNewer: false,
   verbose: true,
   quiet: false
 };
