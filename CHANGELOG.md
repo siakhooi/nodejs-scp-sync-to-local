@@ -8,6 +8,7 @@
 - `#55`: As dev/test, I want to refactor code and do jest testing. (`scp.filterFiles` to `corefilters.filterFiles`, `corefilters.setupFilters`)
 - `#73`: As test, I want to combine to mock-data files.
 - `#26`: As scp user, I want to choose skip download if local file is newer. (`option.skipIfNewer` default to `false`)
+- `#77`: bugs in `#26` test scripts.
 
 ## `0.7.0`
 
