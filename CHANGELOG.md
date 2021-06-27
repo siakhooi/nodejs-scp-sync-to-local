@@ -1,5 +1,9 @@
 # Change Log
 
+## Upcoming
+
+- `#80`: As dev, I want to have build/test/deploy status badge on `README.md`
+
 ## `0.8.0`
 
 - `#67`: As dev, I want to standardize `require()` without `.js`.
