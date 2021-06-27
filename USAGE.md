@@ -28,7 +28,8 @@ const scp = require("scp-sync-to-local");
 | `localPath`           | `String`  | `.`           |                                                                                  |
 | `skipIfExists`        | `boolean` | `true`        | Skip download if file exists locally, mutually exclusive with `skipIfNotExists`  |
 | `skipIfNotExists`     | `boolean` | `false`       | Skip download if file NOT exists locally, mutually exclusive with `skipIfExists` |
-| `skipIfNewer`         | `boolean` | `false`       | Skip download if local file is newer.                                            |
+| `skipIfNewer`         | `boolean` | `false`       | Skip download if local file is newer, mutually exclusive with `skipIfOlder`.     |
+| `skipIfOlder`         | `boolean` | `false`       | Skip download if local file is older, mutually exclusive with `skipIfNewer`.     |
 | `verbose`             | `boolean` | `false`       | Print full option values before downloads. Override by `quiet`                   |
 | `quiet`               | `boolean` | `false`       | no output, except error. override `verbose`                                      |
 | `autoCreateLocalPath` | `boolean` | `true`        | auto Create Local Path if it is not exist, otherwise, throw an Error.            |
@@ -46,6 +47,7 @@ var option = {
   skipIfExists: true,
   skipIfNotExists: false,
   skipIfNewer: false,
+  skipIfOlder: false,
   verbose: false,
   quiet: false,
 };
