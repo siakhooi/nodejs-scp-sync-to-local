@@ -35,3 +35,19 @@ test("filter/setupFilters/mixed", () => {
             fileFilters: [corefilters.skipIfNotExists, corefilters.skipIfOlder]
         });
 });
+
+test("filter/setupFilters/mixed", () => {
+    var workingObject = {
+        validatedOption: {
+            skipIfBigger: true,
+            skipIfSmaller: true
+        },
+        fileFilters: []
+    };
+
+    return expect(corefilters.setupFilters(workingObject))
+        .resolves
+        .toMatchObject({
+            fileFilters: [corefilters.skipIfBigger, corefilters.skipIfSmaller]
+        });
+});
