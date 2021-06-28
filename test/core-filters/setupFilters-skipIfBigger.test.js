@@ -1,13 +1,13 @@
 const corefilters = require("../../lib/core-filters");
 
-test("filter/setupFilters/skipIfNewer/true", () => {
+test("filter/setupFilters/skipIfBigger/true", () => {
     var workingObject = {
         validatedOption: {
             skipIfExists: false,
             skipIfNotExists: false,
-            skipIfNewer: true,
+            skipIfNewer: false,
             skipIfOlder: false,
-            skipIfBigger: false
+            skipIfBigger: true
         },
         fileFilters: []
     };
@@ -15,11 +15,11 @@ test("filter/setupFilters/skipIfNewer/true", () => {
     return expect(corefilters.setupFilters(workingObject))
         .resolves
         .toMatchObject({
-            fileFilters: [corefilters.skipIfNewer]
+            fileFilters: [corefilters.skipIfBigger]
         });
 });
 
-test("filter/setupFilters/skipIfNewer/false", () => {
+test("filter/setupFilters/skipIfBigger/false", () => {
     var workingObject = {
         validatedOption: {
             skipIfExists: true,
@@ -34,6 +34,6 @@ test("filter/setupFilters/skipIfNewer/false", () => {
     return expect(corefilters.setupFilters(workingObject))
         .resolves.not
         .toMatchObject({
-            fileFilters: [corefilters.skipIfNewer]
+            fileFilters: [corefilters.skipIfBigger]
         });
 });

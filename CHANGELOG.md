@@ -1,8 +1,9 @@
 # Change Log
 
-## Upcoming
+## `0.9.0` Upcoming
 
 - `#80`: As dev, I want to have build/test/deploy status badge on `README.md`
+- `#35`: As scp user, I want to choose skip download if local file has bigger size. (`option.skipIfBigger` default to `false`)
 
 ## `0.8.0`
 

@@ -13,6 +13,7 @@ var option = {
   skipIfNotExists: false,
   skipIfNewer: false,
   skipIfOlder: false,
+  skipIfBigger: true,
   verbose: true,
   quiet: false
 };
