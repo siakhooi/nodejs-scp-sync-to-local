@@ -28,8 +28,8 @@ const scp = require("scp-sync-to-local");
 | `localPath`           | `String`  | `.`           |                                                                                  |
 | `skipIfExists`        | `boolean` | `true`        | Skip download if file exists locally, mutually exclusive with `skipIfNotExists`  |
 | `skipIfNotExists`     | `boolean` | `false`       | Skip download if file NOT exists locally, mutually exclusive with `skipIfExists` |
-| `skipIfNewer`         | `boolean` | `false`       | Skip download if local file is newer, mutually exclusive with `skipIfOlder`.     |
-| `skipIfOlder`         | `boolean` | `false`       | Skip download if local file is older, mutually exclusive with `skipIfNewer`.     |
+| `skipIfNewer`         | `boolean` | `false`       | Skip download if local file is newer.                                            |
+| `skipIfOlder`         | `boolean` | `false`       | Skip download if local file is older.                                            |
 | `skipIfBigger`        | `boolean` | `false`       | Skip download if local file is bigger in size.                                   |
 | `skipIfSmaller`       | `boolean` | `false`       | Skip download if local file is smaller in size.                                  |
 | `verbose`             | `boolean` | `false`       | Print full option values before downloads. Override by `quiet`                   |

@@ -43,7 +43,6 @@ function verifyOptions(workingObject) {
 };
 function optionsMutualCheck(workingObject) {
     return coreparamcheck.verifySkipExistsExclusive(workingObject)
-        .then(coreparamcheck.verifySkipAgeExclusive)
         .then(coreparamcheck.quietAndVerbose);
 }
 function downloadRemoteFiles(workingObject) {
