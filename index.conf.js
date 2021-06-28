@@ -7,6 +7,7 @@ exports.DEFAULT_SKIPIFNOTEXISTS = false;
 exports.DEFAULT_SKIPIFNEWER = false;
 exports.DEFAULT_SKIPIFOLDER = false;
 exports.DEFAULT_SKIPIFBIGGER = false;
+exports.DEFAULT_SKIPIFSMALLER = false;
 exports.DEFAULT_PORT = 22;
 exports.DEFAULT_REMOTEPATH = ".";
 exports.DEFAULT_LOCALPATH = ".";

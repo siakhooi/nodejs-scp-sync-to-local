@@ -4,6 +4,7 @@
 
 - `#80`: As dev, I want to have build/test/deploy status badge on `README.md`
 - `#35`: As scp user, I want to choose skip download if local file has bigger size. (`option.skipIfBigger` default to `false`)
+- `#36`: As scp user, I want to choose skip download if local file has smaller size. (`option.skipIfSmaller` default to `false`)
 
 ## `0.8.0`
 

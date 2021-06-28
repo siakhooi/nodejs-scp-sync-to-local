@@ -5,20 +5,21 @@ const conf = require('../../index.conf')
 scp-sync-to-local 0.10.0
 
 [Parameters]
-               host: 192.168.0.106
-               port: 22
-           username: testuser
-           password: **********
-         remotePath: /home/testuser/data
-          localPath: ./test-data
-       skipIfExists: false
-    skipIfNotExists: false
-        skipIfNewer: false
-        skipIfOlder: false
-       skipIfBigger: false
+                   host: 192.168.0.106
+                   port: 22
+               username: testuser
+               password: **********
+             remotePath: /home/testuser/data
+              localPath: ./test-data
+           skipIfExists: false
+        skipIfNotExists: false
+            skipIfNewer: false
+            skipIfOlder: false
+           skipIfBigger: false
+          skipIfSmaller: false
     autoCreateLocalPath: true
-            verbose: true
-              quiet: false
+                verbose: true
+                  quiet: false
 */
 
 test.each([
@@ -39,6 +40,7 @@ test.each([
             skipIfNewer: false,
             skipIfOlder: false,
             skipIfBigger: false,
+            skipIfSmaller: false,
             autoCreateLocalPath: true,
             verbose: verbose,
             quiet: quiet
@@ -69,6 +71,7 @@ test.each([
             skipIfNewer: false,
             skipIfOlder: false,
             skipIfBigger: false,
+            skipIfSmaller: false,
             autoCreateLocalPath: true,
             verbose: verbose,
             quiet: quiet
@@ -90,12 +93,11 @@ test.each([
         ["        skipIfNewer: %s", false, undefined],
         ["        skipIfOlder: %s", false, undefined],
         ["       skipIfBigger: %s", false, undefined],
+        ["      skipIfSmaller: %s", false, undefined],
         ["autoCreateLocalPath: %s", true, undefined],
         ["            verbose: %s", verbose, undefined],
         ["              quiet: %s", quiet, undefined]
     ];
-
-
 
     var logOutput = [];
     global.console.log = jest.fn().mockImplementation((s, i, j) => { logOutput.push([s, i, j]); })
