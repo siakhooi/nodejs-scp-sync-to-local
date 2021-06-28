@@ -13,7 +13,10 @@ scp-sync-to-local 0.10.0
           localPath: ./test-data
        skipIfExists: false
     skipIfNotExists: false
-autoCreateLocalPath: true
+        skipIfNewer: false
+        skipIfOlder: false
+       skipIfBigger: false
+    autoCreateLocalPath: true
             verbose: true
               quiet: false
 */
@@ -33,6 +36,9 @@ test.each([
             port: 22,
             skipIfExists: false,
             skipIfNotExists: false,
+            skipIfNewer: false,
+            skipIfOlder: false,
+            skipIfBigger: false,
             autoCreateLocalPath: true,
             verbose: verbose,
             quiet: quiet
@@ -62,6 +68,7 @@ test.each([
             skipIfNotExists: false,
             skipIfNewer: false,
             skipIfOlder: false,
+            skipIfBigger: false,
             autoCreateLocalPath: true,
             verbose: verbose,
             quiet: quiet
@@ -82,10 +89,13 @@ test.each([
         ["    skipIfNotExists: %s", false, undefined],
         ["        skipIfNewer: %s", false, undefined],
         ["        skipIfOlder: %s", false, undefined],
+        ["       skipIfBigger: %s", false, undefined],
         ["autoCreateLocalPath: %s", true, undefined],
         ["            verbose: %s", verbose, undefined],
         ["              quiet: %s", quiet, undefined]
     ];
+
+
 
     var logOutput = [];
     global.console.log = jest.fn().mockImplementation((s, i, j) => { logOutput.push([s, i, j]); })
@@ -93,4 +103,5 @@ test.each([
     expect(core.printOptions(workingObject)).resolves;
     expect(console.log).toBeCalled();
     logValues.forEach((x) => expect(logOutput).toContainEqual(x));
+    logOutput.forEach((x) => expect(logValues).toContainEqual(x));
 });
