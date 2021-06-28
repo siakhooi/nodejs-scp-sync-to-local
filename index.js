@@ -44,7 +44,6 @@ function verifyOptions(workingObject) {
 function optionsMutualCheck(workingObject) {
     return coreparamcheck.verifySkipExistsExclusive(workingObject)
         .then(coreparamcheck.verifySkipAgeExclusive)
-        .then(coreparamcheck.verifySkipSizeExclusive)
         .then(coreparamcheck.quietAndVerbose);
 }
 function downloadRemoteFiles(workingObject) {
