@@ -7,7 +7,8 @@ test("filter/setupFilters/skipIfBigger/true", () => {
             skipIfNotExists: false,
             skipIfNewer: false,
             skipIfOlder: false,
-            skipIfBigger: true
+            skipIfBigger: true,
+            skipIfSmaller: false
         },
         fileFilters: []
     };
@@ -26,7 +27,8 @@ test("filter/setupFilters/skipIfBigger/false", () => {
             skipIfNotExists: false,
             skipIfNewer: false,
             skipIfOlder: false,
-            skipIfBigger: false
+            skipIfBigger: false,
+            skipIfSmaller: false
         },
         fileFilters: []
     };
