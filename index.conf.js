@@ -6,6 +6,7 @@ exports.DEFAULT_SKIPIFEXISTS = true;
 exports.DEFAULT_SKIPIFNOTEXISTS = false;
 exports.DEFAULT_SKIPIFNEWER = false;
 exports.DEFAULT_SKIPIFOLDER = false;
+exports.DEFAULT_SKIPIFSAMEAGE = false;
 exports.DEFAULT_SKIPIFBIGGER = false;
 exports.DEFAULT_SKIPIFSMALLER = false;
 exports.DEFAULT_SKIPIFSAMESIZE = false;
