@@ -33,6 +33,7 @@ function verifyOptions(workingObject) {
         .then(coreparam.verifyOptionsSkipIfNotExists)
         .then(coreparam.verifyOptionsSkipIfNewer)
         .then(coreparam.verifyOptionsSkipIfOlder)
+        .then(coreparam.verifyOptionsSkipIfSameAge)
         .then(coreparam.verifyOptionsSkipIfBigger)
         .then(coreparam.verifyOptionsSkipIfSmaller)
         .then(coreparam.verifyOptionsSkipIfSameSize)

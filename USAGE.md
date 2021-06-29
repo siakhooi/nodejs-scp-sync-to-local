@@ -30,6 +30,7 @@ const scp = require("scp-sync-to-local");
 | `skipIfNotExists`     | `boolean` | `false`       | Skip download if file NOT exists locally, mutually exclusive with `skipIfExists` |
 | `skipIfNewer`         | `boolean` | `false`       | Skip download if local file is newer.                                            |
 | `skipIfOlder`         | `boolean` | `false`       | Skip download if local file is older.                                            |
+| `skipIfSameAge`       | `boolean` | `false`       | Skip download if local file and remote file have same file modified time.        |
 | `skipIfBigger`        | `boolean` | `false`       | Skip download if local file is bigger in size.                                   |
 | `skipIfSmaller`       | `boolean` | `false`       | Skip download if local file is smaller in size.                                  |
 | `skipIfSameSize`      | `boolean` | `false`       | Skip download if local file and remote file is same in size.                     |
@@ -51,7 +52,10 @@ var option = {
   skipIfNotExists: false,
   skipIfNewer: false,
   skipIfOlder: false,
+  skipIfSameAge: false,
   skipIfBigger: false,
+  skipIfSmaller: false,
+  skipIfSameSize: false,
   verbose: false,
   quiet: false,
 };

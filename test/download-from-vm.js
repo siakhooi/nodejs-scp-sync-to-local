@@ -13,9 +13,10 @@ var option = {
   skipIfNotExists: false,
   skipIfNewer: false,
   skipIfOlder: false,
+  skipIfSameAge: true,
   skipIfBigger: false,
   skipIfSmaller: false,
-  skipIfSameSize: true,
+  skipIfSameSize: false,
   verbose: true,
   quiet: false
 };

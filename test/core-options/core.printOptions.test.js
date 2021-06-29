@@ -15,8 +15,10 @@ scp-sync-to-local 0.10.0
         skipIfNotExists: false
             skipIfNewer: false
             skipIfOlder: false
+          skipIfSameAge: false
            skipIfBigger: false
           skipIfSmaller: false
+         skipIfSameSize: false
     autoCreateLocalPath: true
                 verbose: true
                   quiet: false
@@ -39,6 +41,7 @@ test.each([
             skipIfNotExists: false,
             skipIfNewer: false,
             skipIfOlder: false,
+            skipIfSameAge: false,
             skipIfBigger: false,
             skipIfSmaller: false,
             skipIfSameSize: false,
@@ -71,6 +74,7 @@ test.each([
             skipIfNotExists: false,
             skipIfNewer: false,
             skipIfOlder: false,
+            skipIfSameAge: false,
             skipIfBigger: false,
             skipIfSmaller: false,
             skipIfSameSize: false,
@@ -94,6 +98,7 @@ test.each([
         ["    skipIfNotExists: %s", false, undefined],
         ["        skipIfNewer: %s", false, undefined],
         ["        skipIfOlder: %s", false, undefined],
+        ["      skipIfSameAge: %s", false, undefined],
         ["       skipIfBigger: %s", false, undefined],
         ["      skipIfSmaller: %s", false, undefined],
         ["     skipIfSameSize: %s", false, undefined],
