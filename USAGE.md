@@ -32,6 +32,7 @@ const scp = require("scp-sync-to-local");
 | `skipIfOlder`         | `boolean` | `false`       | Skip download if local file is older.                                            |
 | `skipIfBigger`        | `boolean` | `false`       | Skip download if local file is bigger in size.                                   |
 | `skipIfSmaller`       | `boolean` | `false`       | Skip download if local file is smaller in size.                                  |
+| `skipIfSameSize`      | `boolean` | `false`       | Skip download if local file and remote file is same in size.                     |
 | `verbose`             | `boolean` | `false`       | Print full option values before downloads. Override by `quiet`                   |
 | `quiet`               | `boolean` | `false`       | no output, except error. override `verbose`                                      |
 | `autoCreateLocalPath` | `boolean` | `true`        | auto Create Local Path if it is not exist, otherwise, throw an Error.            |

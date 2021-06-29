@@ -7,6 +7,7 @@
 - `#36`: As scp user, I want to choose skip download if local file has smaller size. (`option.skipIfSmaller` default to `false`)
 - `#85`: bug: As scp user, I want to remove mutual exclusive check on file size filters.
 - `#87`: bug: As scp user, I want to remove mutual exclusive check on file modified time filters.
+- `#84`: As scp user, I want to choose skip download if file sizes are same. (`option.skipIfSameSize` default to `false`)
 
 ## `0.8.0`
 
