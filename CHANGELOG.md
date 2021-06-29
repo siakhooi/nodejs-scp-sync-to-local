@@ -1,6 +1,6 @@
 # Change Log
 
-## `0.9.0`
+## `0.9.0` 2021-Jun-29
 
 - `#80`: As dev, I want to have build/test/deploy status badge on `README.md`
 - `#35`: As scp user, I want to choose skip download if local file has bigger size. (`option.skipIfBigger` default to `false`)
@@ -9,8 +9,9 @@
 - `#87`: bug: As scp user, I want to remove mutual exclusive check on file modified time filters.
 - `#84`: As scp user, I want to choose skip download if file sizes are same. (`option.skipIfSameSize` default to `false`)
 - `#86`: As scp user, I want to choose skip download if file modified time are same. (`option.skipIfSameAge` default to `false`)
+- `#91`: As scp user, I want to view print options before all actions.
 
-## `0.8.0`
+## `0.8.0` 2021-Jun-27
 
 - `#67`: As dev, I want to standardize `require()` without `.js`.
 - `#49`: As dev/test, I want to refactor code and do jest testing. (`scp.login` to `core-remote.login`)
@@ -21,18 +22,18 @@
 - `#77`: bugs in `#26` test scripts.
 - `#27`: As scp user, I want to choose skip download if local file is older. (`option.skipIfOlder`default to `false`)
 
-## `0.7.0`
+## `0.7.0` 2021-Jun-25
 
 - `#50`: As scp user, I want to `quiet` to turn off option verification info & warning.
 - `#62`: bug: As dev/test, I want to not include github files in npm package.
 - `#64`: As dev/test, I want to npm test on build & release enhancement.
 - `#11`: As scp user, I want to choose to error or auto create local path if it is not exist. (`option.autoCreateLocalPath` default to `true`)
 
-## `0.6.1`
+## `0.6.1` 2021-Jun-24
 
 - `#59` : bug: `#25`: As scp user, I want to choose skip download if file not exists.(`option.skipIfNotExists` default to `false`)
 
-## `0.6.0`
+## `0.6.0` 2021-Jun-23
 
 - `#30`: As dev/test, I want to use jest for test framework (init/options)
 - `#43`: As dev, I want to move all default values to `index.conf.js`.
@@ -43,32 +44,32 @@
 - `#39`: As scp user, I want to see warning of `quiet` override `verbose`.
 - `#45`: As scp user, I want to default `host` to `localhost` if not specified.
 
-## `0.5.0`
+## `0.5.0` 2021-Jun-15
 
 - `#21`: As scp user, I want to print full option values before downloads. (`option.verbose`=`true`, default to `false`)
 - `#20`: As scp user, I want to have quiet mode, no output on stdout. (`option.quiet`=`true`, default to `false`)
 - `#25`: As scp user, I want to choose skip download if file not exists.(`option.skipIfNotExists` default to `false`)
 
-## `0.4.1`
+## `0.4.1` 2021-Jun-13
 
 - `#15`: As scp user, I want to have API documentation.
 - `#16`: bug: As dev, I want to rename `localpath`, `remotepath` to camel case (`localPath`, `remotePath`).
 - `#18`: bug: As scp user, I want to see file numbering start from 1 (not 0)
 - `#17`: bug: As dev, I want to separate working value from options. (security, internal state should not be exposed.)
 
-## `0.4.0`
+## `0.4.0` 2021-Jun-12
 
 - `#4`: As scp user, I want to choose skip download if file already exists. (`option.skipIfExists` default to `true`)
 
-## `0.3.1`
+## `0.3.1` 2021-Jun-10
 
 - `#12`: bug: As dev, I want to change `console.log` to `console.warn` for warnings.
 
-## `0.3.0` - localpath verification
+## `0.3.0` 2021-Jun-09
 
 - `#2`: As scp user, I want to auto create local path if it is not exist.
 
-## `0.2.0` - options verification
+## `0.2.0` 2021-Jun-08
 
 - `#3`: As scp user, I want to default port=`22` if not provided.
   - As scp user, I want to default localpath=current directory (`.`) if not provided.
@@ -77,6 +78,6 @@
   - As scp user, I want to have error if password not provided.
   - As scp user, I want to have error if host not provided.
 
-## `0.1.1`
+## `0.1.1` 2021-Jun-06
 
 - `#1`: As scp user, I want to download all files from a remote directory to a local directory.
