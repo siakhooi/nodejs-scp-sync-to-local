@@ -41,6 +41,7 @@ test.each([
             skipIfOlder: false,
             skipIfBigger: false,
             skipIfSmaller: false,
+            skipIfSameSize: false,
             autoCreateLocalPath: true,
             verbose: verbose,
             quiet: quiet
@@ -72,6 +73,7 @@ test.each([
             skipIfOlder: false,
             skipIfBigger: false,
             skipIfSmaller: false,
+            skipIfSameSize: false,
             autoCreateLocalPath: true,
             verbose: verbose,
             quiet: quiet
@@ -94,6 +96,7 @@ test.each([
         ["        skipIfOlder: %s", false, undefined],
         ["       skipIfBigger: %s", false, undefined],
         ["      skipIfSmaller: %s", false, undefined],
+        ["     skipIfSameSize: %s", false, undefined],
         ["autoCreateLocalPath: %s", true, undefined],
         ["            verbose: %s", verbose, undefined],
         ["              quiet: %s", quiet, undefined]

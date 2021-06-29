@@ -14,7 +14,8 @@ var option = {
   skipIfNewer: false,
   skipIfOlder: false,
   skipIfBigger: false,
-  skipIfSmaller: true,
+  skipIfSmaller: false,
+  skipIfSameSize: true,
   verbose: true,
   quiet: false
 };

@@ -35,6 +35,7 @@ function verifyOptions(workingObject) {
         .then(coreparam.verifyOptionsSkipIfOlder)
         .then(coreparam.verifyOptionsSkipIfBigger)
         .then(coreparam.verifyOptionsSkipIfSmaller)
+        .then(coreparam.verifyOptionsSkipIfSameSize)
         .then(coreparam.verifyOptionsPort)
         .then(coreparam.verifyOptionsRemotePath)
         .then(coreparam.verifyOptionsLocalPath)
