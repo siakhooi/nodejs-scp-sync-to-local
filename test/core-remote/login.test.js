@@ -1,4 +1,4 @@
-const coreremote = require('../../lib/core-remote');
+const cr0 = require('../../lib/core-remote');
 
 test('remote/login/success', () => {
     var workingObject = {
@@ -12,10 +12,9 @@ test('remote/login/success', () => {
         scpClient: {}
     }
 
-    expect(coreremote.login(workingObject))
+    expect(cr0.login(workingObject))
         .resolves
         .toHaveProperty("scpClient.result", "Mock Connection: Success");
-
 });
 
 test('remote/login/fail', () => {
@@ -29,7 +28,7 @@ test('remote/login/fail', () => {
         scpLoginOption: {},
         scpClient: {}
     }
-    expect(coreremote.login(workingObject))
+    expect(cr0.login(workingObject))
         .rejects
         .toThrow("Mock Connection: Fail");
 });

@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "download-from-vm": "node test/download-from-vm.js"
+    "download-from-vm": "node test-runner/download-from-vm.js"
   },
   "repository": {
     "type": "git",

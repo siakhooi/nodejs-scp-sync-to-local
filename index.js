@@ -1,51 +1,50 @@
-const coreparam = require('./lib/core-options');
-const coreparamcheck = require('./lib/core-options-check');
-const corelocal = require('./lib/core-local');
-const coreconf = require('./index.conf');
-const coreremote = require('./lib/core-remote');
-const corefilters = require('./lib/core-filters');
+const cv0 = require('./lib/core-version');
+const co0 = require('./lib/core-options');
+const cov = require('./lib/core-options-verify');
+const coc = require('./lib/core-options-crosscheck');
+const cf0 = require('./lib/core-filters');
+const cl0 = require('./lib/core-local');
+const cr0 = require('./lib/core-remote');
 
-exports.getVersionNumber = function () {
-    return coreconf.PROGRAM_VERSION;
-}
+exports.getVersionNumber = cv0.getVersionNumber;
 
 exports.download = function (option) {
-    return coreparam.initOptions(option)
+    return co0.init(option)
         .then(verifyOptions)
         .then(optionsMutualCheck)
-        .then(coreparam.printOptions)
-        .then(corefilters.setupFilters)
-        .then(corelocal.verifyLocalPath)
-        .then(coreremote.login)
-        .then(coreremote.getFileList)
-        .then(corefilters.filterFiles)
+        .then(co0.print)
+        .then(cf0.setupFilters)
+        .then(cl0.verifyLocalPath)
+        .then(cr0.login)
+        .then(cr0.getFileList)
+        .then(cf0.filterFiles)
         .then(downloadRemoteFiles)
         .then(DisconnectOnAllDone);
 };
 
 function verifyOptions(workingObject) {
-    return coreparam.verifyOptionsQuiet(workingObject)
-        .then(coreparam.verifyOptionsVerbose)
-        .then(coreparam.verifyOptionsHost)
-        .then(coreparam.verifyOptionsUser)
-        .then(coreparam.verifyOptionsPassword)
-        .then(coreparam.verifyOptionsSkipIfExists)
-        .then(coreparam.verifyOptionsSkipIfNotExists)
-        .then(coreparam.verifyOptionsSkipIfNewer)
-        .then(coreparam.verifyOptionsSkipIfOlder)
-        .then(coreparam.verifyOptionsSkipIfSameAge)
-        .then(coreparam.verifyOptionsSkipIfBigger)
-        .then(coreparam.verifyOptionsSkipIfSmaller)
-        .then(coreparam.verifyOptionsSkipIfSameSize)
-        .then(coreparam.verifyOptionsPort)
-        .then(coreparam.verifyOptionsRemotePath)
-        .then(coreparam.verifyOptionsLocalPath)
-        .then(coreparam.verifyOptionsAutoCreateLocalPath)
+    return cov.verifyQuiet(workingObject)
+        .then(cov.verifyVerbose)
+        .then(cov.verifyHost)
+        .then(cov.verifyUser)
+        .then(cov.verifyPassword)
+        .then(cov.verifySkipIfExists)
+        .then(cov.verifySkipIfNotExists)
+        .then(cov.verifySkipIfNewer)
+        .then(cov.verifySkipIfOlder)
+        .then(cov.verifySkipIfSameAge)
+        .then(cov.verifySkipIfBigger)
+        .then(cov.verifySkipIfSmaller)
+        .then(cov.verifySkipIfSameSize)
+        .then(cov.verifyPort)
+        .then(cov.verifyRemotePath)
+        .then(cov.verifyLocalPath)
+        .then(cov.verifyAutoCreateLocalPath)
         ;
 };
 function optionsMutualCheck(workingObject) {
-    return coreparamcheck.verifySkipExistsExclusive(workingObject)
-        .then(coreparamcheck.quietAndVerbose);
+    return coc.checkExistsRule(workingObject)
+        .then(coc.checkQuietAndVerbose);
 }
 function downloadRemoteFiles(workingObject) {
     var option = workingObject.validatedOption;

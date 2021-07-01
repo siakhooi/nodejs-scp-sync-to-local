@@ -1,5 +1,9 @@
 # Change Log
 
+## Unreleased
+
+- `#82`: As dev/test, I want to refactor test scripts directory/files to follow product files.
+
 ## `0.9.0` 2021-Jun-29
 
 - `#80`: As dev, I want to have build/test/deploy status badge on `README.md`

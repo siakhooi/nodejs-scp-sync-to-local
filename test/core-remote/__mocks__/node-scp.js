@@ -1,4 +1,4 @@
-const mockdata = require('../../mock-remotefilelist')
+const md0 = require('../../mock-data/remotefilelist')
 
 module.exports = function (scpLoginOption) {
     return new Promise((resolve, reject) => {
@@ -15,7 +15,7 @@ module.exports.mockClient = {
         return new Promise((resolve, reject) => {
             if (expect.getState().currentTestName == 'remote/getFileList/success' ||
                 expect.getState().currentTestName == 'remote/getFileList/success/quiet') {
-                resolve(mockdata.mockRemoteFileList);
+                resolve(md0.mockRemoteFileList);
             } else if (expect.getState().currentTestName == 'remote/getFileList/fail' ||
                 expect.getState().currentTestName == 'remote/getFileList/fail/quiet'
             )

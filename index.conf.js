@@ -1,5 +1,6 @@
 exports.PROGRAM_NAME = "scp-sync-to-local";
 exports.PROGRAM_VERSION = "0.9.0";
+
 exports.PASSWORD_MASK = "**********";
 
 exports.DEFAULT_SKIPIFEXISTS = true;
