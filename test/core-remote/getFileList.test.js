@@ -1,5 +1,5 @@
 scp = require('node-scp');
-const coreremote = require('../../lib/core-remote');
+const cr0 = require('../../lib/core-remote');
 
 test('remote/getFileList/success', () => {
     var workingObject = {
@@ -17,7 +17,7 @@ test('remote/getFileList/success', () => {
     var msg1 = "Downloading Remote File List...";
     var msg2 = "done";
 
-    coreremote.getFileList(workingObject).then((workingObject) => {
+    cr0.getFileList(workingObject).then((workingObject) => {
         expect(workingObject)
             .toMatchObject({
                 remoteFileList: [
@@ -29,7 +29,6 @@ test('remote/getFileList/success', () => {
         expect(console.info).toBeCalled();
         expect(writeOutput).toContain(msg1);
         expect(consoleOutput).toContain(msg2);
-
     });
 
 });
@@ -46,7 +45,7 @@ test('remote/getFileList/success/quiet', () => {
     global.process.stdout.write = jest.fn();
     global.console.info = jest.fn();
 
-    coreremote.getFileList(workingObject).then((workingObject) => {
+    cr0.getFileList(workingObject).then((workingObject) => {
         expect(workingObject)
             .toMatchObject({
                 remoteFileList: [
@@ -74,7 +73,7 @@ test('remote/getFileList/fail', () => {
     global.process.stdout.write = jest.fn().mockImplementation((s) => { consoleOutput.push(s); })
     var msg = "Downloading Remote File List...";
 
-    expect(coreremote.getFileList(workingObject))
+    expect(cr0.getFileList(workingObject))
         .rejects
         .toThrow("Mock getList: Fail");
     expect(process.stdout.write).toBeCalled();
@@ -93,7 +92,7 @@ test('remote/getFileList/fail/quiet', () => {
 
     global.process.stdout.write = jest.fn();
 
-    expect(coreremote.getFileList(workingObject))
+    expect(cr0.getFileList(workingObject))
         .rejects
         .toThrow("Mock getList: Fail");
     expect(process.stdout.write).not.toBeCalled();
