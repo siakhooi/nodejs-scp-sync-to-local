@@ -1,6 +1,5 @@
 const cv0 = require('./lib/core-version');
 const co0 = require('./lib/core-options');
-const coc = require('./lib/core-options-crosscheck');
 const cf0 = require('./lib/core-filters');
 const cl0 = require('./lib/core-local');
 const cr0 = require('./lib/core-remote');
@@ -10,7 +9,7 @@ exports.getVersionNumber = cv0.getVersionNumber;
 exports.download = function (option) {
     return co0.init(option)
         .then(co0.verify)
-        .then(optionsMutualCheck)
+        .then(co0.crossVerify)
         .then(co0.print)
         .then(cf0.setupFilters)
         .then(cl0.verifyLocalPath)
@@ -21,10 +20,6 @@ exports.download = function (option) {
         .then(DisconnectOnAllDone);
 };
 
-function optionsMutualCheck(workingObject) {
-    return coc.checkExistsRule(workingObject)
-        .then(coc.checkQuietAndVerbose);
-}
 function downloadRemoteFiles(workingObject) {
     var option = workingObject.validatedOption;
     var filteredFileList = workingObject.filteredFileList;
