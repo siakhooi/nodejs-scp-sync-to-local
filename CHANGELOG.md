@@ -4,7 +4,8 @@
 
 - **Code Refactor**
   - `#82`: As dev/test, I want to refactor test scripts directory/files to follow product files.
-  - `#96`: As dev/test, I want to refactor code and do jest testing. (`verifyOptions`)
+  - `#96`: As dev/test, I want to refactor code and do jest testing. (`core-option.verify`)
+  - `#97`: As dev/test, I want to refactor code and do jest testing. (`core-option.crossVerify`)
 - **Documentation**
   - `#94`: As dev, I want to refactor CHANGELOG to follow recommendation from <https://keepachangelog.com>
 
