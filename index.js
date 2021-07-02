@@ -1,6 +1,5 @@
 const cv0 = require('./lib/core-version');
 const co0 = require('./lib/core-options');
-const cov = require('./lib/core-options-verify');
 const coc = require('./lib/core-options-crosscheck');
 const cf0 = require('./lib/core-filters');
 const cl0 = require('./lib/core-local');
@@ -10,7 +9,7 @@ exports.getVersionNumber = cv0.getVersionNumber;
 
 exports.download = function (option) {
     return co0.init(option)
-        .then(verifyOptions)
+        .then(co0.verify)
         .then(optionsMutualCheck)
         .then(co0.print)
         .then(cf0.setupFilters)
@@ -22,26 +21,6 @@ exports.download = function (option) {
         .then(DisconnectOnAllDone);
 };
 
-function verifyOptions(workingObject) {
-    return cov.verifyQuiet(workingObject)
-        .then(cov.verifyVerbose)
-        .then(cov.verifyHost)
-        .then(cov.verifyUser)
-        .then(cov.verifyPassword)
-        .then(cov.verifySkipIfExists)
-        .then(cov.verifySkipIfNotExists)
-        .then(cov.verifySkipIfNewer)
-        .then(cov.verifySkipIfOlder)
-        .then(cov.verifySkipIfSameAge)
-        .then(cov.verifySkipIfBigger)
-        .then(cov.verifySkipIfSmaller)
-        .then(cov.verifySkipIfSameSize)
-        .then(cov.verifyPort)
-        .then(cov.verifyRemotePath)
-        .then(cov.verifyLocalPath)
-        .then(cov.verifyAutoCreateLocalPath)
-        ;
-};
 function optionsMutualCheck(workingObject) {
     return coc.checkExistsRule(workingObject)
         .then(coc.checkQuietAndVerbose);
