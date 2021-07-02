@@ -38,3 +38,7 @@ scp.download(option);
 
 - <https://www.npmjs.com/package/scp-sync-to-local>
 - <https://github.com/siakhooi/nodejs-scp-sync-to-local>
+
+## Other Reference
+
+- <https://keepachangelog.com>

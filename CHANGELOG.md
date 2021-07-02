@@ -2,86 +2,111 @@
 
 ## Unreleased
 
-- `#82`: As dev/test, I want to refactor test scripts directory/files to follow product files.
+- **Code Refactor**
+  - `#82`: As dev/test, I want to refactor test scripts directory/files to follow product files.
+- **Documentation**
+  - `#94`: As dev, I want to refactor CHANGELOG to follow recommendation from <https://keepachangelog.com>
 
 ## `0.9.0` 2021-Jun-29
 
-- `#80`: As dev, I want to have build/test/deploy status badge on `README.md`
-- `#35`: As scp user, I want to choose skip download if local file has bigger size. (`option.skipIfBigger` default to `false`)
-- `#36`: As scp user, I want to choose skip download if local file has smaller size. (`option.skipIfSmaller` default to `false`)
-- `#85`: bug: As scp user, I want to remove mutual exclusive check on file size filters.
-- `#87`: bug: As scp user, I want to remove mutual exclusive check on file modified time filters.
-- `#84`: As scp user, I want to choose skip download if file sizes are same. (`option.skipIfSameSize` default to `false`)
-- `#86`: As scp user, I want to choose skip download if file modified time are same. (`option.skipIfSameAge` default to `false`)
-- `#91`: As scp user, I want to view print options before all actions.
+- **Added**
+  - `#35`: As scp user, I want to choose skip download if local file has bigger size. (`option.skipIfBigger` default to `false`)
+  - `#36`: As scp user, I want to choose skip download if local file has smaller size. (`option.skipIfSmaller` default to `false`)
+  - `#84`: As scp user, I want to choose skip download if file sizes are same. (`option.skipIfSameSize` default to `false`)
+  - `#86`: As scp user, I want to choose skip download if file modified time are same. (`option.skipIfSameAge` default to `false`)
+- **Changed**
+  - `#91`: As scp user, I want to view print options before all actions.
+- **Fixed**
+  - `#85`: bug: As scp user, I want to remove mutual exclusive check on file size filters.
+  - `#87`: bug: As scp user, I want to remove mutual exclusive check on file modified time filters.
+- **Documentation**
+  - `#80`: As dev, I want to have build/test/deploy status badge on `README.md`
 
 ## `0.8.0` 2021-Jun-27
 
-- `#67`: As dev, I want to standardize `require()` without `.js`.
-- `#49`: As dev/test, I want to refactor code and do jest testing. (`scp.login` to `core-remote.login`)
-- `#54`: As dev/test, I want to refactor code and do jest testing. (`scp.getRemoteFileList` to `core-remote.getFileList`)
-- `#55`: As dev/test, I want to refactor code and do jest testing. (`scp.filterFiles` to `corefilters.filterFiles`, `corefilters.setupFilters`)
-- `#73`: As test, I want to combine to mock-data files.
-- `#26`: As scp user, I want to choose skip download if local file is newer. (`option.skipIfNewer` default to `false`)
-- `#77`: bugs in `#26` test scripts.
-- `#27`: As scp user, I want to choose skip download if local file is older. (`option.skipIfOlder`default to `false`)
+- **Added**
+  - `#26`: As scp user, I want to choose skip download if local file is newer. (`option.skipIfNewer` default to `false`)
+  - `#27`: As scp user, I want to choose skip download if local file is older. (`option.skipIfOlder` default to `false`)
+- **Fixed**
+  - `#77`: bugs in `#26` test scripts.
+- **Code Refactor**
+  - `#49`: As dev/test, I want to refactor code and do jest testing. (`scp.login` to `core-remote.login`)
+  - `#54`: As dev/test, I want to refactor code and do jest testing. (`scp.getRemoteFileList` to `core-remote.getFileList`)
+  - `#55`: As dev/test, I want to refactor code and do jest testing. (`scp.filterFiles` to `corefilters.filterFiles`, `corefilters.setupFilters`)
+  - `#67`: As dev, I want to standardize `require()` without `.js`.
+  - `#73`: As test, I want to combine the mock-data files.
 
 ## `0.7.0` 2021-Jun-25
 
-- `#50`: As scp user, I want to `quiet` to turn off option verification info & warning.
-- `#62`: bug: As dev/test, I want to not include github files in npm package.
-- `#64`: As dev/test, I want to npm test on build & release enhancement.
-- `#11`: As scp user, I want to choose to error or auto create local path if it is not exist. (`option.autoCreateLocalPath` default to `true`)
+- **Added**
+  - `#11`: As scp user, I want to choose to error or auto create local path if it is not exist. (`option.autoCreateLocalPath` default to `true`)
+  - `#50`: As scp user, I want to `quiet` to turn off option verification info & warning.
+- **Fixed**
+  - `#62`: bug: As dev/test, I want to not include github files in npm package.
+- **Others**
+  - `#64`: As dev/test, I want to npm test on build & release enhancement.
 
 ## `0.6.1` 2021-Jun-24
 
-- `#59` : bug: `#25`: As scp user, I want to choose skip download if file not exists.(`option.skipIfNotExists` default to `false`)
+- **Fixed**
+  - `#59` : bug: `#25`: As scp user, I want to choose skip download if file not exists.(`option.skipIfNotExists` default to `false`)
 
 ## `0.6.0` 2021-Jun-23
 
-- `#30`: As dev/test, I want to use jest for test framework (init/options)
-- `#43`: As dev, I want to move all default values to `index.conf.js`.
-- `#41`: As scp user, I want to get Version Number. add `getVersion()`
-- `#42`: As scp user, I want to throw all errors as `Error()` objects.
-- `#32`: As scp user, I want to change warning to info if `port` is not defined, and default to `22`.
-- `#28`: As scp user, I want to have error if `port` is not a number.
-- `#39`: As scp user, I want to see warning of `quiet` override `verbose`.
-- `#45`: As scp user, I want to default `host` to `localhost` if not specified.
+- **Added**
+  - `#28`: As scp user, I want to have error if `port` is not a number.
+  - `#39`: As scp user, I want to see warning of `quiet` override `verbose`.
+  - `#41`: As scp user, I want to get Version Number. add `getVersion()`
+  - `#45`: As scp user, I want to default `host` to `localhost` if not specified.
+- **Changed**
+  - `#32`: As scp user, I want to change warning to info if `port` is not defined, and default to `22`.
+  - `#42`: As scp user, I want to throw all errors as `Error()` objects.
+- **Code Refactor**
+  - `#30`: As dev/test, I want to use jest for test framework (`init/options`)
+  - `#43`: As dev, I want to move all default values to `index.conf.js`.
 
 ## `0.5.0` 2021-Jun-15
 
-- `#21`: As scp user, I want to print full option values before downloads. (`option.verbose`=`true`, default to `false`)
-- `#20`: As scp user, I want to have quiet mode, no output on stdout. (`option.quiet`=`true`, default to `false`)
-- `#25`: As scp user, I want to choose skip download if file not exists.(`option.skipIfNotExists` default to `false`)
+- **Added**
+  - `#20`: As scp user, I want to have quiet mode, no output on stdout. (`option.quiet` default to `false`)
+  - `#21`: As scp user, I want to print full option values before downloads. (`option.verbose` default to `false`)
+  - `#25`: As scp user, I want to choose skip download if file not exists.(`option.skipIfNotExists` default to `false`)
 
 ## `0.4.1` 2021-Jun-13
 
-- `#15`: As scp user, I want to have API documentation.
-- `#16`: bug: As dev, I want to rename `localpath`, `remotepath` to camel case (`localPath`, `remotePath`).
-- `#18`: bug: As scp user, I want to see file numbering start from 1 (not 0)
-- `#17`: bug: As dev, I want to separate working value from options. (security, internal state should not be exposed.)
+- **Documentation**
+  - `#15`: As scp user, I want to have API documentation.
+- **Fixed**
+  - `#16`: bug: As dev, I want to rename `localpath`, `remotepath` to camel case (`localPath`, `remotePath`).
+  - `#17`: bug: As dev, I want to separate working value from options. (security, internal state should not be exposed.)
+  - `#18`: bug: As scp user, I want to see file numbering start from 1 (not 0)
 
 ## `0.4.0` 2021-Jun-12
 
-- `#4`: As scp user, I want to choose skip download if file already exists. (`option.skipIfExists` default to `true`)
+- **Added**
+  - `#4`: As scp user, I want to choose skip download if file already exists. (`option.skipIfExists` default to `true`)
 
 ## `0.3.1` 2021-Jun-10
 
-- `#12`: bug: As dev, I want to change `console.log` to `console.warn` for warnings.
+- **Fixed**
+  - `#12`: bug: As dev, I want to change `console.log` to `console.warn` for warnings.
 
 ## `0.3.0` 2021-Jun-09
 
-- `#2`: As scp user, I want to auto create local path if it is not exist.
+- **Added**
+  - `#2`: As scp user, I want to auto create local path if it is not exist.
 
 ## `0.2.0` 2021-Jun-08
 
-- `#3`: As scp user, I want to default port=`22` if not provided.
-  - As scp user, I want to default localpath=current directory (`.`) if not provided.
-  - As scp user, I want to default remotepath=current directory (`.`) if not provided.
-  - As scp user, I want to have error if username not provided.
-  - As scp user, I want to have error if password not provided.
-  - As scp user, I want to have error if host not provided.
+- **Added**
+  - `#3`: As scp user, I want to default port=`22` if not provided.
+    - As scp user, I want to default localpath=current directory (`.`) if not provided.
+    - As scp user, I want to default remotepath=current directory (`.`) if not provided.
+    - As scp user, I want to have error if username not provided.
+    - As scp user, I want to have error if password not provided.
+    - As scp user, I want to have error if host not provided.
 
 ## `0.1.1` 2021-Jun-06
 
-- `#1`: As scp user, I want to download all files from a remote directory to a local directory.
+- **Added**
+  - `#1`: As scp user, I want to download all files from a remote directory to a local directory.
