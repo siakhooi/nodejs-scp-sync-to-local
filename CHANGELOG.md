@@ -7,6 +7,7 @@
   - `#96`: As dev/test, I want to refactor code and do jest testing. (`verifyOptions` to `core-option.verify`)
   - `#97`: As dev/test, I want to refactor code and do jest testing. (`optionMutualCheck` to `core-option.crossVerify`)
   - `#56`: As dev/test, I want to refactor code and do jest testing. (`downloadRemoteFiles` to `core-remote.downloadFiles`)
+  - `#57`: As dev/test, I want to refactor code and do jest testing. (`DisconnectOnAllDone` to `core-remote.disconnectOnAllDone`)
 - **Fixed**
   - `#104`: bug in `#96`: As test, I have to fix `core-options-verify.js` uncapture warning.
 - **Documentation**
