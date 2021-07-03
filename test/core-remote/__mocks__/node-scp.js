@@ -37,5 +37,13 @@ module.exports.mockClient = {
                 return Promise.resolve();
             } else reject(new Error("Unexpected Test"));
         });
+    },
+    close: function () {
+        var testName = expect.getState().currentTestName;
+        if (testName == "remote/disconnectOnAllDone/success" ||
+            testName == "remote/disconnectOnAllDone/success/quiet" ||
+            testName == "remote/disconnectOnAllDone/no-download") {
+            // Doing Nothing
+        } else reject(new Error("Unexpected Test"));
     }
 }

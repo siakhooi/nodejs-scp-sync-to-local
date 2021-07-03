@@ -17,29 +17,5 @@ exports.download = function (option) {
         .then(cr0.getFileList)
         .then(cf0.filterFiles)
         .then(cr0.downloadFiles)
-        .then(DisconnectOnAllDone);
+        .then(cr0.disconnectOnAllDone);
 };
-
-function DisconnectOnAllDone(workingObject) {
-    return new Promise((resolve, reject) => {
-        var d = workingObject.allDownloadPromises;
-        var client = workingObject.scpClient;
-        var option = workingObject.validatedOption;
-
-        if (d.length > 0) {
-            Promise.all(d).then((r) => {
-                if (option.quiet != true)
-                    console.log("All done, total downloads = %d.", d.length);
-                client.close();
-                resolve();
-            }).catch((e) => {
-                client.close();
-                reject(e);
-            });
-        } else {
-            console.warn("No file to download");
-            client.close();
-            resolve();
-        }
-    });
-}
