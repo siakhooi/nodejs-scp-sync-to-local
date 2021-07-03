@@ -16,42 +16,10 @@ exports.download = function (option) {
         .then(cr0.login)
         .then(cr0.getFileList)
         .then(cf0.filterFiles)
-        .then(downloadRemoteFiles)
+        .then(cr0.downloadFiles)
         .then(DisconnectOnAllDone);
 };
 
-function downloadRemoteFiles(workingObject) {
-    var option = workingObject.validatedOption;
-    var filteredFileList = workingObject.filteredFileList;
-    var client = workingObject.scpClient;
-
-    return new Promise((resolve, reject) => {
-        var d = filteredFileList.map((f1, n) => {
-
-            return new Promise((resolve, reject) => {
-                var localfile = option.localPath + '/' + f1.name;
-                var remotefile = option.remotePath + '/' + f1.name;
-                var filesize = f1.size;
-                var filenum = n + 1;
-
-                if (option.quiet != true)
-                    console.log(`${filenum} downloading ${remotefile}`);
-                client.downloadFile(remotefile, localfile)
-                    .then((response) => {
-                        if (option.quiet != true)
-                            console.log(`${filenum} downloaded ${remotefile} ${localfile} ${filesize}`);
-                        resolve(f1.name);
-                    }).catch((e) => {
-                        err(e);
-                        reject(f1.name);
-                    });
-            });
-        });
-
-        workingObject.allDownloadPromises = d;
-        resolve(workingObject);
-    });
-}
 function DisconnectOnAllDone(workingObject) {
     return new Promise((resolve, reject) => {
         var d = workingObject.allDownloadPromises;
