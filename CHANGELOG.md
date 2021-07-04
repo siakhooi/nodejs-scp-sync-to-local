@@ -9,9 +9,10 @@
   - `#56`: As dev/test, I want to refactor code and do jest testing. (`downloadRemoteFiles` to `core-remote.downloadFiles`)
   - `#57`: As dev/test, I want to refactor code and do jest testing. (`DisconnectOnAllDone` to `core-remote.disconnectOnAllDone`)
 - **Fixed**
-  - `#104`: bug in `#96`: As test, I have to fix `core-options-verify.js` uncapture warning.
+  - `#104`: bug in `#96`: As test, I want to fix `core-options-verify.js` uncapture warning.
 - **Documentation**
   - `#94`: As dev, I want to refactor CHANGELOG to follow recommendation from <https://keepachangelog.com>
+  - `#109`: As dev, I want to add badges for code size and npm download counts documentation.
 
 ## `0.9.0` 2021-Jun-29
 
