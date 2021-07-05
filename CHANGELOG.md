@@ -2,6 +2,12 @@
 
 ## Unreleased
 
+- **Documentation**
+  - `#115` - As dev, I want to rename workflow `Build` workflow to `Test with Jest`.
+    - As dev, I want to remove jest badge.
+    - As dev, I want to rename `Publish to GPR` and `Publish to NPM` workflow.
+    - As dev, I want to rename npm version badge to `release`.
+
 ## `0.10.0` - 2021-Jul-5
 
 - **Add**
