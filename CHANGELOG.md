@@ -13,6 +13,7 @@
 - **Documentation**
   - `#94`: As dev, I want to refactor CHANGELOG to follow recommendation from <https://keepachangelog.com>
   - `#109`: As dev, I want to add badges for code size and npm download counts documentation.
+  - `#113`: As dev, I want to add fundings to package.
 
 ## `0.9.0` 2021-Jun-29
 

@@ -24,6 +24,10 @@
     "url": "https://github.com/siakhooi/nodejs-scp-sync-to-local/issues"
   },
   "homepage": "https://github.com/siakhooi/nodejs-scp-sync-to-local#readme",
+  "funding": [
+    "https://www.buymeacoffee.com/siakhooi",
+    "https://ko-fi.com/siakhooi"
+  ],
   "dependencies": {
     "node-scp": "^0.0.14"
   },
