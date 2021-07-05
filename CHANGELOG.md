@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## `0.10.0` - 2021-Jul-5
+
+- **Add**
+  - `#10`: As scp user, I want to specify custom function to filter files. (`option.customFilter`)
 - **Code Refactor**
   - `#82`: As dev/test, I want to refactor test scripts directory/files to follow product files.
   - `#96`: As dev/test, I want to refactor code and do jest testing. (`verifyOptions` to `core-option.verify`)
