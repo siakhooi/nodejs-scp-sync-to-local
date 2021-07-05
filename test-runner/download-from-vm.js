@@ -2,6 +2,8 @@ const scp = require("../index.js");
 
 function err(e) { console.error(e); }
 
+//downloadOnlyThisFile = (l, r) => { return r.name == 'xxx.zip' }
+
 var option = {
   host: "192.168.0.106", //local vm
   port: 22,
@@ -9,7 +11,7 @@ var option = {
   password: "testpassword",
   remotePath: "/home/testuser/data",
   localPath: "./test-data",
-  skipIfExists: true,
+  skipIfExists: false,
   skipIfNotExists: false,
   skipIfNewer: false,
   skipIfOlder: false,
@@ -17,6 +19,7 @@ var option = {
   skipIfBigger: false,
   skipIfSmaller: false,
   skipIfSameSize: false,
+  customFilter: null,
   verbose: true,
   quiet: false
 };

@@ -46,7 +46,7 @@ test("verifyAutoCreateLocalPath/undefined", () => {
         });
 });
 
-test.each(["ANC", "3453"])("verifyOptions/autoCreateLocalPath/not-boolean", (value) => {
+test.each(["ANC", "3453"])("verifyAutoCreateLocalPath/not-boolean", (value) => {
     var workingObject = {
         userOption: { autoCreateLocalPath: value },
         validatedOption: {}
