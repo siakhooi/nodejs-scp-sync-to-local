@@ -1,4 +1,4 @@
-name: Publish to gpr registry
+name: Publish to GitHub Package Registry
 on:
   release:
     types: [created]
