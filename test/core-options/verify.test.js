@@ -44,9 +44,7 @@ test("verify/defaults", () => {
                     skipIfBigger: false,
                     skipIfSmaller: false,
                     skipIfSameSize: false,
-                    autoCreateLocalPath: true,
-                    verbose: false,
-                    quiet: false
+                    autoCreateLocalPath: true
                 }
             });
         expect(console.warn).toBeCalled();
@@ -75,9 +73,7 @@ test("verify/all", () => {
             skipIfBigger: true,
             skipIfSmaller: true,
             skipIfSameSize: true,
-            autoCreateLocalPath: false,
-            verbose: true,
-            quiet: true
+            autoCreateLocalPath: false
         },
         validatedOption: {}
     };
@@ -99,9 +95,7 @@ test("verify/all", () => {
                 skipIfBigger: true,
                 skipIfSmaller: true,
                 skipIfSameSize: true,
-                autoCreateLocalPath: false,
-                verbose: true,
-                quiet: true
+                autoCreateLocalPath: false
             }
         });
 });

@@ -8,6 +8,8 @@ exports.getVersionNumber = cv0.getVersionNumber;
 
 exports.download = function (option) {
     return co0.init(option)
+        .then(co0.verifyBasic)
+        .then(co0.printProgramName)
         .then(co0.verify)
         .then(co0.crossVerify)
         .then(co0.print)

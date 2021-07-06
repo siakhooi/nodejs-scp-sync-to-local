@@ -1,5 +1,5 @@
 const util = require('util');
-const cov = require("../../lib/core-options-verify");
+const covb = require("../../lib/core-options-verify-basic");
 
 const DEFAULT_QUIET = false;
 
@@ -10,7 +10,7 @@ test.each([true, "Y", "on", 1, "y", "yes"])("verifyQuiet/true", (value) => {
         validatedOption: {}
     };
 
-    expect(cov.verifyQuiet(workingObject))
+    expect(covb.verifyQuiet(workingObject))
         .resolves
         .toMatchObject({
             userOption: { quiet: value },
@@ -24,7 +24,7 @@ test.each([false, "N", "off", 0, "n", "no"])("verifyQuiet/false", (value) => {
         validatedOption: {}
     };
 
-    expect(cov.verifyQuiet(workingObject))
+    expect(covb.verifyQuiet(workingObject))
         .resolves
         .toMatchObject({
             userOption: { quiet: value },
@@ -38,7 +38,7 @@ test("verifyQuiet/undefined", () => {
         validatedOption: {}
     };
 
-    expect(cov.verifyQuiet(workingObject))
+    expect(covb.verifyQuiet(workingObject))
         .resolves
         .toMatchObject({
             userOption: {},
@@ -52,7 +52,7 @@ test.each(["ANC", "3453"])("verifyQuiet/not-boolean", (value) => {
         validatedOption: {}
     };
     var msg = util.format("Error: quiet is not a boolean value [%s].", value);
-    expect(cov.verifyQuiet(workingObject))
+    expect(covb.verifyQuiet(workingObject))
         .rejects
         .toThrow(msg);
 });

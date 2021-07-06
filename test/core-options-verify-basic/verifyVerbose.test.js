@@ -1,5 +1,5 @@
 const util = require('util');
-const cov = require("../../lib/core-options-verify");
+const covb = require("../../lib/core-options-verify-basic");
 
 const DEFAULT_VERBOSE = false;
 
@@ -10,7 +10,7 @@ test.each([true, "Y", "on", 1, "y", "yes"])("verifyVerbose/true", (value) => {
         validatedOption: {}
     };
 
-    expect(cov.verifyVerbose(workingObject))
+    expect(covb.verifyVerbose(workingObject))
         .resolves
         .toMatchObject({
             userOption: { verbose: value },
@@ -24,7 +24,7 @@ test.each([false, "N", "off", 0, "n", "no"])("verifyVerbose/false", (value) => {
         validatedOption: {}
     };
 
-    expect(cov.verifyVerbose(workingObject))
+    expect(covb.verifyVerbose(workingObject))
         .resolves
         .toMatchObject({
             userOption: { verbose: value },
@@ -38,7 +38,7 @@ test("verifyVerbose/undefined", () => {
         validatedOption: {}
     };
 
-    expect(cov.verifyVerbose(workingObject))
+    expect(covb.verifyVerbose(workingObject))
         .resolves
         .toMatchObject({
             userOption: {},
@@ -52,7 +52,7 @@ test.each(["ANC", "3453"])("verifyVerbose/not-boolean", (value) => {
         validatedOption: {}
     };
     var msg = util.format("Error: verbose is not a boolean value [%s].", value);
-    expect(cov.verifyVerbose(workingObject))
+    expect(covb.verifyVerbose(workingObject))
         .rejects
         .toThrow(msg);
 });

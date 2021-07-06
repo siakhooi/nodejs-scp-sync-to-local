@@ -2,8 +2,6 @@ const co0 = require("../../lib/core-options");
 const conf = require('../../index.conf')
 
 /* -- Sample Output
-scp-sync-to-local 0.10.0
-
 [Parameters]
                    host: 192.168.0.106
                    port: 22
@@ -52,11 +50,11 @@ test.each([
         }
     };
 
-    var logOutput = [];
     global.console.log = jest.fn();
 
-    expect(co0.print(workingObject)).resolves;
-    expect(console.log).not.toBeCalled();
+    co0.print(workingObject).then(() => {
+        expect(console.log).not.toBeCalled();
+    });
 });
 
 
@@ -87,8 +85,6 @@ test.each([
     };
 
     var logValues = [
-        ["%s %s", conf.PROGRAM_NAME, conf.PROGRAM_VERSION],
-        ["", undefined, undefined],
         ["[Parameters]", undefined, undefined],
         ["               host: %s", "localhost", undefined],
         ["               port: %d", 22, undefined],
@@ -147,8 +143,6 @@ test.each([
     };
 
     var logValues = [
-        ["%s %s", conf.PROGRAM_NAME, conf.PROGRAM_VERSION],
-        ["", undefined, undefined],
         ["[Parameters]", undefined, undefined],
         ["               host: %s", "localhost", undefined],
         ["               port: %d", 22, undefined],

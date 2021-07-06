@@ -4,6 +4,8 @@
 
 - **Add**
   - `#111`: As scp user, I want to use built-in filters with custom logic (`scp-sync-to-loca/filters`).
+- **Change**
+  - `#112`: As scp user, I want to see program name and version prior to parameter verifications. (`lib/core-option-verify-basic`)
 - **Documentation**
   - `#115`: As dev, I want to rename workflow `Build` workflow to `Test with Jest`.
     - As dev, I want to remove jest badge.
