@@ -2,8 +2,10 @@
 
 ## Unreleased
 
+- **Add**
+  - `#111`: As scp user, I want to use built-in filters with custom logic (`scp-sync-to-loca/filters`).
 - **Documentation**
-  - `#115` - As dev, I want to rename workflow `Build` workflow to `Test with Jest`.
+  - `#115`: As dev, I want to rename workflow `Build` workflow to `Test with Jest`.
     - As dev, I want to remove jest badge.
     - As dev, I want to rename `Publish to GPR` and `Publish to NPM` workflow.
     - As dev, I want to rename npm version badge to `release`.

@@ -72,12 +72,13 @@ scp.download(option);
 
 ### Custom Filter
 
+- Custom filter allows user to define a function to filter the file to be downloaded based on custom logic.
 - Example of the function
 
 ```js
 function myCustomFilter(localPath, remotePathObject) {
   //conditions..
-  if(...)  return false; // not downlolad
+  if(...) return false; // not downlolad
   if(...) return true; // to download
 }
 ```
@@ -98,3 +99,35 @@ function myCustomFilter(localPath, remotePathObject) {
         group: 1001
     }
 ```
+
+## Built-In Filters with customFilters
+
+- Filters are AND together when checking all files. In order to have a OR relationship, you have to disable the option and use the `customFilter`.
+
+```js
+const cf = require("scp-sync-to-local/filters");       //include the built-in filters
+
+function myCustomFilter(localPath, remotePathObject) { //define customFilters
+  return <...other condition...> ||                    //custom condition
+         cf.skipIfExists(localPath, remotePathObject); //or with built in filters
+}
+var option = {
+  username: "yourUsername",
+  password: "yourPassword",
+  skipIfExists: false,                                //disable, if enable, this will an AND condition
+  customFilter: myCustomFilter                        //declare customFilter
+};
+
+scp.download(option);
+```
+
+| Built-in Filter   | description                                                               |
+| ----------------- | ------------------------------------------------------------------------- |
+| `skipIfExists`    | Skip download if file exists locally, not to use with `skipIfNotExists`   |
+| `skipIfNotExists` | Skip download if file NOT exists locally, not to use with `skipIfExists`  |
+| `skipIfNewer`     | Skip download if local file is newer.                                     |
+| `skipIfOlder`     | Skip download if local file is older.                                     |
+| `skipIfSameAge`   | Skip download if local file and remote file have same file modified time. |
+| `skipIfBigger`    | Skip download if local file is bigger in size.                            |
+| `skipIfSmaller`   | Skip download if local file is smaller in size.                           |
+| `skipIfSameSize`  | Skip download if local file and remote file is same in size.              |
