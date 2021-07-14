@@ -1,13 +1,13 @@
-const fs = require('fs');
-const cus = require('../../lib/core-util-fs');
+const fs = require('fs')
+const cus = require('../../lib/core-util-fs')
 
 test.each([
-    true, false
-])("isPathExist", (test_value) => {
-    var localFile = 'xxxx';
+  true, false
+])('isPathExist', (testValue) => {
+  const localFile = 'xxxx'
 
-    jest.mock("fs");
-    jest.spyOn(fs, "existsSync").mockImplementation(() => { return test_value; });
+  jest.mock('fs')
+  jest.spyOn(fs, 'existsSync').mockImplementation(() => { return testValue })
 
-    return expect(cus.isPathExist(localFile)).toBe(test_value);
-});
+  return expect(cus.isPathExist(localFile)).toBe(testValue)
+})

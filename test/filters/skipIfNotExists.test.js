@@ -1,14 +1,13 @@
-const cf0 = require("../../filters");
-const cuf = require('../../lib/core-util-fs');
+const cf0 = require('../../filters')
+const cuf = require('../../lib/core-util-fs')
 
-var localFile = 'xxxx';
+const localFile = 'xxxx'
 
 test.each([
-    [true, true],
-    [false, false]
-])("skipIfNotExists", (test_value, test_result) => {
+  [true, true],
+  [false, false]
+])('skipIfNotExists', (testValue, testResult) => {
+  jest.spyOn(cuf, 'isPathExist').mockImplementation(() => { return testValue })
 
-    jest.spyOn(cuf, "isPathExist").mockImplementation(() => { return test_value; });
-
-    return expect(cf0.skipIfNotExists(localFile)).toBe(test_result);
-});
+  return expect(cf0.skipIfNotExists(localFile)).toBe(testResult)
+})

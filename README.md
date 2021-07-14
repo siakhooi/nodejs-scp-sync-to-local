@@ -58,3 +58,4 @@ scp.download(option);
 ## Other Reference
 
 - <https://keepachangelog.com>
+- <https://github.com/standard/standard>

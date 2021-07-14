@@ -12,6 +12,8 @@
     - As dev, I want to rename `Publish to GPR` and `Publish to NPM` workflow.
     - As dev, I want to rename npm version badge to `release`.
   - `#122`: As Dev, I want to add github top language badge to `README.md`.
+- **Other**
+  - `#121`: As dev, i want to use `eslint` to standardize coding style so that the code has better quality.
 
 ## `0.10.0` - 2021-Jul-5
 
