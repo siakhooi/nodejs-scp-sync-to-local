@@ -1,18 +1,18 @@
-const scp = require("../index");
-const cf = require("../filters");
+const scp = require('../index')
+// const cf = require('../filters')
 
-function err(e) { console.error(e); }
+function err(e) { console.error(e) }
 
-//downloadOnlyThisFile = (l, r) => { return r.name == 'xxx.zip' }
-//downloadOnlyThisFile = (l, r) => { return r.name == 'xxx.zip' || cf.skipIfExists(l, r); }
+// downloadOnlyThisFile = (l, r) => { return r.name == 'xxx.zip' }
+// downloadOnlyThisFile = (l, r) => { return r.name == 'xxx.zip' || cf.skipIfExists(l, r); }
 
-var option = {
-  host: "192.168.0.106", //local vm
+const option = {
+  host: '192.168.0.106', // local vm
   port: 22,
-  username: "testuser",
-  password: "testpassword",
-  remotePath: "/home/testuser/data",
-  localPath: "./test-data",
+  username: 'testuser',
+  password: 'testpassword',
+  remotePath: '/home/testuser/data',
+  localPath: './test-data',
   skipIfExists: false,
   skipIfNotExists: false,
   skipIfNewer: false,
@@ -24,6 +24,6 @@ var option = {
   customFilter: null,
   verbose: true,
   quiet: false
-};
+}
 
-scp.download(option).catch(err);
+scp.download(option).catch(err)
