@@ -43,3 +43,17 @@ test.each(['ANC', 3453, true])('verifyCustomFilter/not-function', (value) => {
     .rejects
     .toThrow(msg)
 })
+
+test.each([null, ''])('verifyCustomFilter/null', (value) => {
+  const workingObject = {
+    userOption: { customFilter: value },
+    validatedOption: {}
+  }
+
+  expect(cov.verifyCustomFilter(workingObject))
+    .resolves
+    .toMatchObject({
+      userOption: { customFilter: value },
+      validatedOption: { customFilter: DEFAULT_CUSTOMFILTER }
+    })
+})
