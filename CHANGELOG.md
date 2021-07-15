@@ -1,5 +1,10 @@
 # Change Log
 
+## Unreleased
+
+- **Other**
+- `#131`: As dev, I want to change license to `MIT` license.
+
 ## `0.11.0` - 2021-Jul-15
 
 - **Add**

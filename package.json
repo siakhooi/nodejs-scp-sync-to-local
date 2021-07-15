@@ -20,7 +20,7 @@
     "email": "siakhooi@gmail.com",
     "url": "https://siakhooi.github.io"
   },
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/siakhooi/nodejs-scp-sync-to-local/issues"
   },
