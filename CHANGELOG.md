@@ -1,9 +1,10 @@
 # Change Log
 
-## Unreleased
+## `0.11.0` - 2021-Jul-15
 
 - **Add**
   - `#111`: As scp user, I want to use built-in filters with custom logic (`scp-sync-to-loca/filters`).
+  - `#7`: As scp user, I want to have file datestamp same with original files (`option.keepTimestamp`).
 - **Change**
   - `#112`: As scp user, I want to see program name and version prior to parameter verifications. (`lib/core-option-verify-basic`)
 - **Documentation**

@@ -21,7 +21,7 @@ const option = {
   skipIfBigger: false,
   skipIfSmaller: false,
   skipIfSameSize: false,
-  customFilter: null,
+  keepTimestamp: true,
   verbose: true,
   quiet: false
 }

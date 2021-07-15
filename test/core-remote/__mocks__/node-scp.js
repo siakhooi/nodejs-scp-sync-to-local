@@ -27,7 +27,8 @@ module.exports.mockClient = {
     return new Promise((resolve, reject) => {
       const testName = expect.getState().currentTestName
       if (testName === 'remote/downloadFiles/success' ||
-        testName === 'remote/downloadFiles/success/quiet') {
+        testName === 'remote/downloadFiles/success/quiet' ||
+        testName === 'remote/downloadFiles/success/quiet/keepTimestamp') {
         return Promise.resolve()
       } else reject(new Error('Unexpected Test'))
     })
