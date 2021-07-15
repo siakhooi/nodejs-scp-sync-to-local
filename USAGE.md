@@ -42,6 +42,7 @@ const scp = require("scp-sync-to-local");
 | `quiet`               | `boolean`  | `false`       | no output, except error. override `verbose`                                      |
 | `autoCreateLocalPath` | `boolean`  | `true`        | auto Create Local Path if it is not exist, otherwise, throw an Error.            |
 | `customFilter`        | `function` | `null`        | use custom filter function                                                       |
+| `keepTimestamp`       | `boolean`  | `false`       | Keep the Timestamp of file same with remote.                                     |
 
 - A file will be downloaded only if **all filters** return `true`.
 
@@ -65,6 +66,7 @@ var option = {
   skipIfSameSize: false,
   verbose: false,
   quiet: false,
+  keepTimestamp: false,
 };
 
 scp.download(option);

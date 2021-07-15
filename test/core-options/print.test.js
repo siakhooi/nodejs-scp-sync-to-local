@@ -18,6 +18,7 @@ const conf = require('../../index.conf')
           skipIfSmaller: false
          skipIfSameSize: false
     autoCreateLocalPath: true
+          keepTimestamp: false
            customFilter: Yes
                 verbose: true
                   quiet: false
@@ -45,6 +46,7 @@ test.each([
       skipIfSmaller: false,
       skipIfSameSize: false,
       autoCreateLocalPath: true,
+      keepTimestamp: false,
       verbose: verbose,
       quiet: quiet
     }
@@ -77,6 +79,7 @@ test.each([
       skipIfSmaller: false,
       skipIfSameSize: false,
       autoCreateLocalPath: true,
+      keepTimestamp: false,
       customFilter: () => { },
       verbose: verbose,
       quiet: quiet
@@ -100,6 +103,7 @@ test.each([
     ['      skipIfSmaller: %s', false, undefined],
     ['     skipIfSameSize: %s', false, undefined],
     ['autoCreateLocalPath: %s', true, undefined],
+    ['      keepTimestamp: %s', false, undefined],
     ['       customFilter: %s', 'Yes', undefined],
     ['            verbose: %s', verbose, undefined],
     ['              quiet: %s', quiet, undefined]
@@ -135,6 +139,7 @@ test.each([
       skipIfSmaller: false,
       skipIfSameSize: false,
       autoCreateLocalPath: true,
+      keepTimestamp: false,
       customFilter: null,
       verbose: verbose,
       quiet: quiet
@@ -158,6 +163,7 @@ test.each([
     ['      skipIfSmaller: %s', false, undefined],
     ['     skipIfSameSize: %s', false, undefined],
     ['autoCreateLocalPath: %s', true, undefined],
+    ['      keepTimestamp: %s', false, undefined],
     ['       customFilter: %s', 'No', undefined],
     ['            verbose: %s', verbose, undefined],
     ['              quiet: %s', quiet, undefined]

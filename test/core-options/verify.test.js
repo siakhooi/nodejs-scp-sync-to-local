@@ -44,7 +44,8 @@ test('verify/defaults', () => {
           skipIfBigger: false,
           skipIfSmaller: false,
           skipIfSameSize: false,
-          autoCreateLocalPath: true
+          autoCreateLocalPath: true,
+          keepTimestamp: false
         }
       })
     expect(console.warn).toBeCalled()
@@ -73,7 +74,8 @@ test('verify/all', () => {
       skipIfBigger: true,
       skipIfSmaller: true,
       skipIfSameSize: true,
-      autoCreateLocalPath: false
+      autoCreateLocalPath: false,
+      keepTimestamp: true
     },
     validatedOption: {}
   }
@@ -95,7 +97,8 @@ test('verify/all', () => {
         skipIfBigger: true,
         skipIfSmaller: true,
         skipIfSameSize: true,
-        autoCreateLocalPath: false
+        autoCreateLocalPath: false,
+        keepTimestamp: true
       }
     })
 })
