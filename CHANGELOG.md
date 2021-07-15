@@ -2,15 +2,17 @@
 
 ## Unreleased
 
+- **Fixed**
+  - `#129`: bug: `Error: Error: customFilter is not a function [null]`, when `option.customFilter=null`.
 - **Other**
-- `#131`: As dev, I want to change license to `MIT` license.
+  - `#131`: As dev, I want to change license to `MIT` license.
 
 ## `0.11.0` - 2021-Jul-15
 
-- **Add**
+- **Added**
   - `#111`: As scp user, I want to use built-in filters with custom logic (`scp-sync-to-loca/filters`).
   - `#7`: As scp user, I want to have file datestamp same with original files (`option.keepTimestamp`).
-- **Change**
+- **Changed**
   - `#112`: As scp user, I want to see program name and version prior to parameter verifications. (`lib/core-option-verify-basic`)
 - **Documentation**
   - `#115`: As dev, I want to rename workflow `Build` workflow to `Test with Jest`.
@@ -24,7 +26,7 @@
 
 ## `0.10.0` - 2021-Jul-5
 
-- **Add**
+- **Added**
   - `#10`: As scp user, I want to specify custom function to filter files. (`option.customFilter`)
 - **Code Refactor**
   - `#82`: As dev/test, I want to refactor test scripts directory/files to follow product files.
