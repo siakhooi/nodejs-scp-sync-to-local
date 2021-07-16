@@ -17,9 +17,9 @@ test('verifyHost', () => {
     })
 })
 
-test('verifyHost/blank', () => {
+test.each([null, ''])('verifyHost/blank', (value) => {
   const workingObject = {
-    userOption: { host: '' },
+    userOption: { host: value },
     validatedOption: {}
   }
 
@@ -30,7 +30,7 @@ test('verifyHost/blank', () => {
   expect(cov.verifyHost(workingObject))
     .resolves
     .toMatchObject({
-      userOption: { host: '' },
+      userOption: { host: value },
       validatedOption: { host: DEFAULT_HOSTNAME }
     })
   expect(console.warn).toBeCalled()
@@ -56,9 +56,9 @@ test('verifyHost/undefined', () => {
   expect(warnOutput).toContain(msg)
 })
 
-test('verifyHost/blank/quiet', () => {
+test.each([null, ''])('verifyHost/blank/quiet', (value) => {
   const workingObject = {
-    userOption: { host: '' },
+    userOption: { host: value },
     validatedOption: { quiet: true }
   }
 
@@ -67,7 +67,7 @@ test('verifyHost/blank/quiet', () => {
   expect(cov.verifyHost(workingObject))
     .resolves
     .toMatchObject({
-      userOption: { host: '' },
+      userOption: { host: value },
       validatedOption: {
         host: DEFAULT_HOSTNAME,
         quiet: true

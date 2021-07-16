@@ -17,9 +17,9 @@ test.each([23, '34'])('verifyPort', (value) => {
     })
 })
 
-test('verifyPort/blank', () => {
+test.each([null, ''])('verifyPort/blank', (value) => {
   const workingObject = {
-    userOption: { port: '' },
+    userOption: { port: value },
     validatedOption: {}
   }
 
@@ -29,7 +29,7 @@ test('verifyPort/blank', () => {
   expect(cov.verifyPort(workingObject))
     .resolves
     .toMatchObject({
-      userOption: { port: '' },
+      userOption: { port: value },
       validatedOption: { port: DEFAULT_PORT }
     })
   expect(console.info).toBeCalled()
@@ -66,9 +66,9 @@ test('verifyPort/not-number', () => {
     .toThrow(msg)
 })
 
-test('verifyPort/blank/quiet', () => {
+test.each([null, ''])('verifyPort/blank/quiet', (value) => {
   const workingObject = {
-    userOption: { port: '' },
+    userOption: { port: value },
     validatedOption: { quiet: true }
   }
 
@@ -76,7 +76,7 @@ test('verifyPort/blank/quiet', () => {
   expect(cov.verifyPort(workingObject))
     .resolves
     .toMatchObject({
-      userOption: { port: '' },
+      userOption: { port: value },
       validatedOption: {
         port: DEFAULT_PORT,
         quiet: true

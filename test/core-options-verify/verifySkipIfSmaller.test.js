@@ -50,6 +50,25 @@ test('verifySkipIfSmaller/undefined', () => {
   expect(warnOutput).toContain(msg)
 })
 
+test.each([null, ''])('verifySkipIfSmaller/blank', (value) => {
+  const workingObject = {
+    userOption: { skipIfSmaller: value },
+    validatedOption: {}
+  }
+  const warnOutput = []
+  global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
+
+  expect(cov.verifySkipIfSmaller(workingObject))
+    .resolves
+    .toMatchObject({
+      userOption: { skipIfSmaller: value },
+      validatedOption: { skipIfSmaller: DEFAULT_SKIPIFSMALLER }
+    })
+  const msg = util.format('Warning: skipIfSmaller undefined, defaulting to %s.', DEFAULT_SKIPIFSMALLER)
+  expect(console.warn).toBeCalled()
+  expect(warnOutput).toContain(msg)
+})
+
 test.each(['ANC', '3453', 'xxx', 567])('verifySkipIfSmaller/not-boolaen', (value) => {
   const workingObject = {
     userOption: { skipIfSmaller: value },
@@ -72,6 +91,25 @@ test('verifySkipIfSmaller/undefined/quiet', () => {
     .resolves
     .toMatchObject({
       userOption: {},
+      validatedOption: {
+        skipIfSmaller: DEFAULT_SKIPIFSMALLER,
+        quiet: true
+      }
+    })
+  expect(console.warn).not.toBeCalled()
+})
+
+test.each([null, ''])('verifySkipIfSmaller/blank/quiet', (value) => {
+  const workingObject = {
+    userOption: { skipIfSmaller: value },
+    validatedOption: { quiet: true }
+  }
+  global.console.warn = jest.fn()
+
+  expect(cov.verifySkipIfSmaller(workingObject))
+    .resolves
+    .toMatchObject({
+      userOption: { skipIfSmaller: value },
       validatedOption: {
         skipIfSmaller: DEFAULT_SKIPIFSMALLER,
         quiet: true

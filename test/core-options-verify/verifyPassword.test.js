@@ -14,9 +14,9 @@ test('verifyPassword', () => {
     })
 })
 
-test('verifyPassword/blank', () => {
+test.each([null, ''])('verifyPassword/blank', (value) => {
   const workingObject = {
-    userOption: { password: '' },
+    userOption: { password: value },
     validatedOption: {}
   }
 

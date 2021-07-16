@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **Added**
+  - `#139`: As scp user, I want options to use default value when `null` or `''` is provided.
 - **Changed**
   - `#135`: As dev/test, I want to exclude `test-runner` and `.eslintrc.js` from npm package.
   - `#136`: As scp user, I want to change `skipIfExists` default to `false`.

@@ -17,9 +17,9 @@ test('verifyRemotePath', () => {
     })
 })
 
-test('verifyRemotePath/blank', () => {
+test.each([null, ''])('verifyRemotePath/blank', (value) => {
   const workingObject = {
-    userOption: { remotePath: '' },
+    userOption: { remotePath: value },
     validatedOption: {}
   }
 
@@ -30,7 +30,7 @@ test('verifyRemotePath/blank', () => {
   expect(cov.verifyRemotePath(workingObject))
     .resolves
     .toMatchObject({
-      userOption: { remotePath: '' },
+      userOption: { remotePath: value },
       validatedOption: { remotePath: DEFAULT_REMOTEPATH }
     })
   expect(console.warn).toBeCalled()
@@ -55,9 +55,9 @@ test('verifyRemotePath/undefined', () => {
   expect(warnOutput).toContain(msg)
 })
 
-test('verifyRemotePath/blank/quiet', () => {
+test.each([null, ''])('verifyRemotePath/blank/quiet', (value) => {
   const workingObject = {
-    userOption: { remotePath: '' },
+    userOption: { remotePath: value },
     validatedOption: { quiet: true }
   }
 
@@ -66,7 +66,7 @@ test('verifyRemotePath/blank/quiet', () => {
   expect(cov.verifyRemotePath(workingObject))
     .resolves
     .toMatchObject({
-      userOption: { remotePath: '' },
+      userOption: { remotePath: value },
       validatedOption: {
         remotePath: DEFAULT_REMOTEPATH,
         quiet: true

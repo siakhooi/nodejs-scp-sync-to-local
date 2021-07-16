@@ -3,9 +3,7 @@ const cov = require('../../lib/core-options-verify')
 
 const DEFAULT_SKIPIFEXISTS = false
 
-test.each([
-  true, 'Y', 'on', 1, 'y', 'yes'
-])('verifySkipIfExists/true', (value) => {
+test.each([true, 'Y', 'on', 1, 'y', 'yes'])('verifySkipIfExists/true', (value) => {
   const workingObject = {
     userOption: { skipIfExists: value },
     validatedOption: {}
@@ -19,9 +17,7 @@ test.each([
     })
 })
 
-test.each([
-  false, 'N', 'off', 0, 'n', 'no'
-])('verifySkipIfExists/false', (value) => {
+test.each([false, 'N', 'off', 0, 'n', 'no'])('verifySkipIfExists/false', (value) => {
   const workingObject = {
     userOption: { skipIfExists: value },
     validatedOption: {}
@@ -53,6 +49,24 @@ test('verifySkipIfExists/undefined', () => {
   expect(console.warn).toBeCalled()
   expect(warnOutput).toContain(msg)
 })
+test.each([null, ''])('verifySkipIfExists/blank', (value) => {
+  const workingObject = {
+    userOption: { skipIfExists: value },
+    validatedOption: {}
+  }
+  const warnOutput = []
+  global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
+
+  expect(cov.verifySkipIfExists(workingObject))
+    .resolves
+    .toMatchObject({
+      userOption: { skipIfExists: value },
+      validatedOption: { skipIfExists: DEFAULT_SKIPIFEXISTS }
+    })
+  const msg = util.format('Warning: skipIfExists undefined, defaulting to %s.', DEFAULT_SKIPIFEXISTS)
+  expect(console.warn).toBeCalled()
+  expect(warnOutput).toContain(msg)
+})
 
 test.each(['ANC', '3453'])('verifySkipIfExists/not-boolean', (value) => {
   const workingObject = {
@@ -76,6 +90,25 @@ test('verifySkipIfExists/undefined/quiet', () => {
     .resolves
     .toMatchObject({
       userOption: {},
+      validatedOption: {
+        skipIfExists: DEFAULT_SKIPIFEXISTS,
+        quiet: true
+      }
+    })
+  expect(console.warn).not.toBeCalled()
+})
+
+test.each([null, ''])('verifySkipIfExists/blank/quiet', (value) => {
+  const workingObject = {
+    userOption: { skipIfExists: value },
+    validatedOption: { quiet: true }
+  }
+  global.console.warn = jest.fn()
+
+  expect(cov.verifySkipIfExists(workingObject))
+    .resolves
+    .toMatchObject({
+      userOption: { skipIfExists: value },
       validatedOption: {
         skipIfExists: DEFAULT_SKIPIFEXISTS,
         quiet: true

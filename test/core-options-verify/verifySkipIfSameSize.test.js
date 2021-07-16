@@ -50,6 +50,25 @@ test('verifySkipIfSameSize/undefined', () => {
   expect(warnOutput).toContain(msg)
 })
 
+test.each([null, ''])('verifySkipIfSameSize/blank', (value) => {
+  const workingObject = {
+    userOption: { skipIfSameSize: value },
+    validatedOption: {}
+  }
+  const warnOutput = []
+  global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
+
+  expect(cov.verifySkipIfSameSize(workingObject))
+    .resolves
+    .toMatchObject({
+      userOption: { skipIfSameSize: value },
+      validatedOption: { skipIfSameSize: DEFAULT_SKIPIFSAMESIZE }
+    })
+  const msg = util.format('Warning: skipIfSameSize undefined, defaulting to %s.', DEFAULT_SKIPIFSAMESIZE)
+  expect(console.warn).toBeCalled()
+  expect(warnOutput).toContain(msg)
+})
+
 test.each(['ANC', '3453', 'xxx', 567])('verifySkipIfSameSize/not-boolaen', (value) => {
   const workingObject = {
     userOption: { skipIfSameSize: value },
@@ -72,6 +91,25 @@ test('verifySkipIfSameSize/undefined/quiet', () => {
     .resolves
     .toMatchObject({
       userOption: {},
+      validatedOption: {
+        skipIfSameSize: DEFAULT_SKIPIFSAMESIZE,
+        quiet: true
+      }
+    })
+  expect(console.warn).not.toBeCalled()
+})
+
+test.each([null, ''])('verifySkipIfSameSize/blank/quiet', (value) => {
+  const workingObject = {
+    userOption: { skipIfSameSize: value },
+    validatedOption: { quiet: true }
+  }
+  global.console.warn = jest.fn()
+
+  expect(cov.verifySkipIfSameSize(workingObject))
+    .resolves
+    .toMatchObject({
+      userOption: { skipIfSameSize: value },
       validatedOption: {
         skipIfSameSize: DEFAULT_SKIPIFSAMESIZE,
         quiet: true
