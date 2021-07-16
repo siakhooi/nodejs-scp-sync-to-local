@@ -1,7 +1,7 @@
 const util = require('util')
 const cov = require('../../lib/core-options-verify')
 
-const DEFAULT_SKIPIFEXISTS = true
+const DEFAULT_SKIPIFEXISTS = false
 
 test.each([
   true, 'Y', 'on', 1, 'y', 'yes'

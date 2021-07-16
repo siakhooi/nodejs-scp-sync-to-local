@@ -13,7 +13,7 @@ test('verify/defaults', () => {
   console.info = jest.fn().mockImplementation((s) => { infoOutput.push(s) })
   const warnMsg = [
     'Warning: host undefined, defaulting to localhost.',
-    'Warning: skipIfExists undefined, defaulting to true.',
+    'Warning: skipIfExists undefined, defaulting to false.',
     'Warning: skipIfNotExists undefined, defaulting to false.',
     'Warning: skipIfNewer undefined, defaulting to false.',
     'Warning: skipIfOlder undefined, defaulting to false.',
@@ -36,7 +36,7 @@ test('verify/defaults', () => {
           remotePath: '.',
           localPath: '.',
           port: 22,
-          skipIfExists: true,
+          skipIfExists: false,
           skipIfNotExists: false,
           skipIfNewer: false,
           skipIfOlder: false,
