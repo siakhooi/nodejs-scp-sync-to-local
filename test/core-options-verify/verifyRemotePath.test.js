@@ -25,7 +25,7 @@ test.each([null, ''])('verifyRemotePath/blank', (value) => {
 
   const warnOutput = []
   global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
-  const msg = util.format('Warning: remotePath undefined, defaulting to current directory. [%s]', DEFAULT_REMOTEPATH)
+  const msg = util.format('Warning: remotePath is undefined, defaulting to current directory. [%s]', DEFAULT_REMOTEPATH)
 
   expect(cov.verifyRemotePath(workingObject))
     .resolves
@@ -44,7 +44,7 @@ test('verifyRemotePath/undefined', () => {
 
   const warnOutput = []
   global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
-  const msg = util.format('Warning: remotePath undefined, defaulting to current directory. [%s]', DEFAULT_REMOTEPATH)
+  const msg = util.format('Warning: remotePath is undefined, defaulting to current directory. [%s]', DEFAULT_REMOTEPATH)
   expect(cov.verifyRemotePath(workingObject))
     .resolves
     .toMatchObject({

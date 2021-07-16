@@ -45,7 +45,7 @@ test('verifySkipIfBigger/undefined', () => {
       userOption: {},
       validatedOption: { skipIfBigger: DEFAULT_SKIPIFBIGGER }
     })
-  const msg = util.format('Warning: skipIfBigger undefined, defaulting to %s.', DEFAULT_SKIPIFBIGGER)
+  const msg = util.format('Warning: skipIfBigger is undefined, defaulting to %s.', DEFAULT_SKIPIFBIGGER)
   expect(console.warn).toBeCalled()
   expect(warnOutput).toContain(msg)
 })
@@ -63,7 +63,7 @@ test.each([null, ''])('verifySkipIfBigger/blank', (value) => {
       userOption: { skipIfBigger: value },
       validatedOption: { skipIfBigger: DEFAULT_SKIPIFBIGGER }
     })
-  const msg = util.format('Warning: skipIfBigger undefined, defaulting to %s.', DEFAULT_SKIPIFBIGGER)
+  const msg = util.format('Warning: skipIfBigger is undefined, defaulting to %s.', DEFAULT_SKIPIFBIGGER)
   expect(console.warn).toBeCalled()
   expect(warnOutput).toContain(msg)
 })

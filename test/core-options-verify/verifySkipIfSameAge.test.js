@@ -45,7 +45,7 @@ test('verifySkipIfSameAge/undefined', () => {
       userOption: {},
       validatedOption: { skipIfSameAge: DEFAULT_SKIPIFSAMEAGE }
     })
-  const msg = util.format('Warning: skipIfSameAge undefined, defaulting to %s.', DEFAULT_SKIPIFSAMEAGE)
+  const msg = util.format('Warning: skipIfSameAge is undefined, defaulting to %s.', DEFAULT_SKIPIFSAMEAGE)
   expect(console.warn).toBeCalled()
   expect(warnOutput).toContain(msg)
 })
@@ -64,7 +64,7 @@ test.each([null, ''])('verifySkipIfSameAge/blank', (value) => {
       userOption: { skipIfSameAge: value },
       validatedOption: { skipIfSameAge: DEFAULT_SKIPIFSAMEAGE }
     })
-  const msg = util.format('Warning: skipIfSameAge undefined, defaulting to %s.', DEFAULT_SKIPIFSAMEAGE)
+  const msg = util.format('Warning: skipIfSameAge is undefined, defaulting to %s.', DEFAULT_SKIPIFSAMEAGE)
   expect(console.warn).toBeCalled()
   expect(warnOutput).toContain(msg)
 })

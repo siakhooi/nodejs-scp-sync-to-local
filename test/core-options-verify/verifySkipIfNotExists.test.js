@@ -45,7 +45,7 @@ test('verifySkipIfNotExists/undefined', () => {
       userOption: {},
       validatedOption: { skipIfNotExists: DEFAULT_SKIPIFNOTEXISTS }
     })
-  const msg = util.format('Warning: skipIfNotExists undefined, defaulting to %s.', DEFAULT_SKIPIFNOTEXISTS)
+  const msg = util.format('Warning: skipIfNotExists is undefined, defaulting to %s.', DEFAULT_SKIPIFNOTEXISTS)
   expect(console.warn).toBeCalled()
   expect(warnOutput).toContain(msg)
 })
@@ -63,7 +63,7 @@ test.each([null, ''])('verifySkipIfNotExists/blank', (value) => {
       userOption: { skipIfNotExists: value },
       validatedOption: { skipIfNotExists: DEFAULT_SKIPIFNOTEXISTS }
     })
-  const msg = util.format('Warning: skipIfNotExists undefined, defaulting to %s.', DEFAULT_SKIPIFNOTEXISTS)
+  const msg = util.format('Warning: skipIfNotExists is undefined, defaulting to %s.', DEFAULT_SKIPIFNOTEXISTS)
   expect(console.warn).toBeCalled()
   expect(warnOutput).toContain(msg)
 })

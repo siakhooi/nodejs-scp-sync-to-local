@@ -45,7 +45,7 @@ test('verifySkipIfOlder/undefined', () => {
       userOption: {},
       validatedOption: { skipIfOlder: DEFAULT_SKIPIFOLDER }
     })
-  const msg = util.format('Warning: skipIfOlder undefined, defaulting to %s.', DEFAULT_SKIPIFOLDER)
+  const msg = util.format('Warning: skipIfOlder is undefined, defaulting to %s.', DEFAULT_SKIPIFOLDER)
   expect(console.warn).toBeCalled()
   expect(warnOutput).toContain(msg)
 })
@@ -64,7 +64,7 @@ test.each([null, ''])('verifySkipIfOlder/blank', (value) => {
       userOption: { skipIfOlder: value },
       validatedOption: { skipIfOlder: DEFAULT_SKIPIFOLDER }
     })
-  const msg = util.format('Warning: skipIfOlder undefined, defaulting to %s.', DEFAULT_SKIPIFOLDER)
+  const msg = util.format('Warning: skipIfOlder is undefined, defaulting to %s.', DEFAULT_SKIPIFOLDER)
   expect(console.warn).toBeCalled()
   expect(warnOutput).toContain(msg)
 })

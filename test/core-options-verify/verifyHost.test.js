@@ -25,7 +25,7 @@ test.each([null, ''])('verifyHost/blank', (value) => {
 
   const warnOutput = []
   global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
-  const msg = util.format('Warning: host undefined, defaulting to %s.', DEFAULT_HOSTNAME)
+  const msg = util.format('Warning: host is undefined, defaulting to %s.', DEFAULT_HOSTNAME)
 
   expect(cov.verifyHost(workingObject))
     .resolves
@@ -44,7 +44,7 @@ test('verifyHost/undefined', () => {
 
   const warnOutput = []
   global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
-  const msg = util.format('Warning: host undefined, defaulting to %s.', DEFAULT_HOSTNAME)
+  const msg = util.format('Warning: host is undefined, defaulting to %s.', DEFAULT_HOSTNAME)
 
   expect(cov.verifyHost(workingObject))
     .resolves

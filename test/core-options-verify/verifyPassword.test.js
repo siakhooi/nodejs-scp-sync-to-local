@@ -22,7 +22,7 @@ test.each([null, ''])('verifyPassword/blank', (value) => {
 
   expect(cov.verifyPassword(workingObject))
     .rejects
-    .toThrow('Error: password is not defined.')
+    .toThrow('Error: password is undefined.')
 })
 test('verifyPassword/undefined', () => {
   const workingObject = {
@@ -32,5 +32,5 @@ test('verifyPassword/undefined', () => {
 
   expect(cov.verifyPassword(workingObject))
     .rejects
-    .toThrow('Error: password is not defined.')
+    .toThrow('Error: password is undefined.')
 })

@@ -45,7 +45,7 @@ test('verifySkipIfNewer/undefined', () => {
       userOption: {},
       validatedOption: { skipIfNewer: DEFAULT_SKIPIFNEWER }
     })
-  const msg = util.format('Warning: skipIfNewer undefined, defaulting to %s.', DEFAULT_SKIPIFNEWER)
+  const msg = util.format('Warning: skipIfNewer is undefined, defaulting to %s.', DEFAULT_SKIPIFNEWER)
   expect(console.warn).toBeCalled()
   expect(warnOutput).toContain(msg)
 })
@@ -64,7 +64,7 @@ test.each([null, ''])('verifySkipIfNewer/blank', (value) => {
       userOption: { skipIfNewer: value },
       validatedOption: { skipIfNewer: DEFAULT_SKIPIFNEWER }
     })
-  const msg = util.format('Warning: skipIfNewer undefined, defaulting to %s.', DEFAULT_SKIPIFNEWER)
+  const msg = util.format('Warning: skipIfNewer is undefined, defaulting to %s.', DEFAULT_SKIPIFNEWER)
   expect(console.warn).toBeCalled()
   expect(warnOutput).toContain(msg)
 })

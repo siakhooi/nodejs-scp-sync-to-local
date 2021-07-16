@@ -36,9 +36,9 @@ test('crossVerify/checkQuietAndVerbose/override', () => {
 
   const consoleOutput = []
   global.console.warn = jest.fn().mockImplementation((s) => { consoleOutput.push(s) })
-  const msg = 'Warn: Both quiet and verbose set to true, verbose is ignored.'
+  const msg = 'Warn: Both quiet and verbose are set to true, verbose is ignored.'
 
-  co0.crossVerify(workingObject).then((workingObject) => {
+  co0.crossVerify(workingObject).then(() => {
     expect(console.warn).toBeCalled()
     expect(consoleOutput).toContain(msg)
   })
@@ -55,7 +55,7 @@ test.each([
   }
 
   global.console.warn = jest.fn()
-  co0.crossVerify(workingObject).then((workingObject) => {
+  co0.crossVerify(workingObject).then(() => {
     expect(console.warn).not.toBeCalled()
   })
 })

@@ -45,7 +45,7 @@ test('verifySkipIfSameSize/undefined', () => {
       userOption: {},
       validatedOption: { skipIfSameSize: DEFAULT_SKIPIFSAMESIZE }
     })
-  const msg = util.format('Warning: skipIfSameSize undefined, defaulting to %s.', DEFAULT_SKIPIFSAMESIZE)
+  const msg = util.format('Warning: skipIfSameSize is undefined, defaulting to %s.', DEFAULT_SKIPIFSAMESIZE)
   expect(console.warn).toBeCalled()
   expect(warnOutput).toContain(msg)
 })
@@ -64,7 +64,7 @@ test.each([null, ''])('verifySkipIfSameSize/blank', (value) => {
       userOption: { skipIfSameSize: value },
       validatedOption: { skipIfSameSize: DEFAULT_SKIPIFSAMESIZE }
     })
-  const msg = util.format('Warning: skipIfSameSize undefined, defaulting to %s.', DEFAULT_SKIPIFSAMESIZE)
+  const msg = util.format('Warning: skipIfSameSize is undefined, defaulting to %s.', DEFAULT_SKIPIFSAMESIZE)
   expect(console.warn).toBeCalled()
   expect(warnOutput).toContain(msg)
 })

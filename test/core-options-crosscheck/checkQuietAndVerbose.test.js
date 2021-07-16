@@ -8,7 +8,7 @@ test('checkQuietAndVerbose/override', () => {
 
   const consoleOutput = []
   global.console.warn = jest.fn().mockImplementation((s) => { consoleOutput.push(s) })
-  const msg = 'Warn: Both quiet and verbose set to true, verbose is ignored.'
+  const msg = 'Warn: Both quiet and verbose are set to true, verbose is ignored.'
 
   coc.checkQuietAndVerbose(workingObject)
     .then(() => {
