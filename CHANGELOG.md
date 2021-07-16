@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **Changed**
+  - `#135`: As dev/test, I want to exclude `test-runner` and `.eslintrc.js` from npm package.
 - **Fixed**
   - `#129`: bug: `Error: Error: customFilter is not a function [null]`, when `option.customFilter=null`.
 - **Other**
