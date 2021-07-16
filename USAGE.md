@@ -30,7 +30,7 @@ const scp = require("scp-sync-to-local");
 | `password`            | `String`   |               |                                                                                  |
 | `remotePath`          | `String`   | `.`           |                                                                                  |
 | `localPath`           | `String`   | `.`           |                                                                                  |
-| `skipIfExists`        | `boolean`  | `true`        | Skip download if file exists locally, mutually exclusive with `skipIfNotExists`  |
+| `skipIfExists`        | `boolean`  | `false`       | Skip download if file exists locally, mutually exclusive with `skipIfNotExists`  |
 | `skipIfNotExists`     | `boolean`  | `false`       | Skip download if file NOT exists locally, mutually exclusive with `skipIfExists` |
 | `skipIfNewer`         | `boolean`  | `false`       | Skip download if local file is newer.                                            |
 | `skipIfOlder`         | `boolean`  | `false`       | Skip download if local file is older.                                            |
@@ -56,7 +56,7 @@ var option = {
   password: "yourPassword",
   remotePath: "remotePath",
   localPath: "localPath",
-  skipIfExists: true,
+  skipIfExists: false,
   skipIfNotExists: false,
   skipIfNewer: false,
   skipIfOlder: false,

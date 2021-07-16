@@ -4,6 +4,7 @@
 
 - **Changed**
   - `#135`: As dev/test, I want to exclude `test-runner` and `.eslintrc.js` from npm package.
+  - `#136`: As scp user, I want to change `skipIfExists` default to `false`.
 - **Fixed**
   - `#129`: bug: `Error: Error: customFilter is not a function [null]`, when `option.customFilter=null`.
 - **Other**

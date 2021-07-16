@@ -3,7 +3,7 @@ exports.PROGRAM_VERSION = '0.11.0'
 
 exports.PASSWORD_MASK = '**********'
 
-exports.DEFAULT_SKIPIFEXISTS = true
+exports.DEFAULT_SKIPIFEXISTS = false
 exports.DEFAULT_SKIPIFNOTEXISTS = false
 exports.DEFAULT_SKIPIFNEWER = false
 exports.DEFAULT_SKIPIFOLDER = false
