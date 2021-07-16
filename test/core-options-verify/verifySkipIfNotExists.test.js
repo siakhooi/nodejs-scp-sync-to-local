@@ -49,12 +49,28 @@ test('verifySkipIfNotExists/undefined', () => {
   expect(console.warn).toBeCalled()
   expect(warnOutput).toContain(msg)
 })
+test.each([null, ''])('verifySkipIfNotExists/blank', (value) => {
+  const workingObject = {
+    userOption: { skipIfNotExists: value },
+    validatedOption: {}
+  }
+  const warnOutput = []
+  global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
+
+  expect(cov.verifySkipIfNotExists(workingObject))
+    .resolves
+    .toMatchObject({
+      userOption: { skipIfNotExists: value },
+      validatedOption: { skipIfNotExists: DEFAULT_SKIPIFNOTEXISTS }
+    })
+  const msg = util.format('Warning: skipIfNotExists undefined, defaulting to %s.', DEFAULT_SKIPIFNOTEXISTS)
+  expect(console.warn).toBeCalled()
+  expect(warnOutput).toContain(msg)
+})
 
 test.each(['ANC', '3453', 'xxx', 567])('verifySkipIfNotExists/not-boolaen', (value) => {
   const workingObject = {
-    userOption: {
-      skipIfNotExists: value
-    },
+    userOption: { skipIfNotExists: value },
     validatedOption: {}
   }
   const msg = util.format('Error: skipIfNotExists is not a boolean value [%s].', value)
@@ -74,6 +90,24 @@ test('verifySkipIfNotExists/undefined/quiet', () => {
     .resolves
     .toMatchObject({
       userOption: {},
+      validatedOption: {
+        skipIfNotExists: DEFAULT_SKIPIFNOTEXISTS,
+        quiet: true
+      }
+    })
+  expect(console.warn).not.toBeCalled()
+})
+test.each([null, ''])('verifySkipIfNotExists/blank/quiet', (value) => {
+  const workingObject = {
+    userOption: { skipIfNotExists: value },
+    validatedOption: { quiet: true }
+  }
+  global.console.warn = jest.fn()
+
+  expect(cov.verifySkipIfNotExists(workingObject))
+    .resolves
+    .toMatchObject({
+      userOption: { skipIfNotExists: value },
       validatedOption: {
         skipIfNotExists: DEFAULT_SKIPIFNOTEXISTS,
         quiet: true

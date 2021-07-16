@@ -44,7 +44,7 @@ test.each(['ANC', 3453, true])('verifyCustomFilter/not-function', (value) => {
     .toThrow(msg)
 })
 
-test.each([null, ''])('verifyCustomFilter/null', (value) => {
+test.each([null, ''])('verifyCustomFilter/blank', (value) => {
   const workingObject = {
     userOption: { customFilter: value },
     validatedOption: {}

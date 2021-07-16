@@ -45,6 +45,20 @@ test('verifyQuiet/undefined', () => {
     })
 })
 
+test.each([null, ''])('verifyQuiet/blank', (value) => {
+  const workingObject = {
+    userOption: { quiet: value },
+    validatedOption: {}
+  }
+
+  expect(covb.verifyQuiet(workingObject))
+    .resolves
+    .toMatchObject({
+      userOption: {},
+      validatedOption: { quiet: DEFAULT_QUIET }
+    })
+})
+
 test.each(['ANC', '3453'])('verifyQuiet/not-boolean', (value) => {
   const workingObject = {
     userOption: { quiet: value },

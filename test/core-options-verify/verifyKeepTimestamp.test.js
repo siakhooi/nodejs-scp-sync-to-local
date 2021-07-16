@@ -3,9 +3,7 @@ const cov = require('../../lib/core-options-verify')
 
 const DEFAULT_KEEPTIMESTAMP = false
 
-test.each([
-  true, 'Y', 'on', 1, 'y', 'yes'
-])('verifyKeepTimestamp/true', (value) => {
+test.each([true, 'Y', 'on', 1, 'y', 'yes'])('verifyKeepTimestamp/true', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: {}
@@ -19,9 +17,7 @@ test.each([
     })
 })
 
-test.each([
-  false, 'N', 'off', 0, 'n', 'no'
-])('verifyKeepTimestamp/false', (value) => {
+test.each([false, 'N', 'off', 0, 'n', 'no'])('verifyKeepTimestamp/false', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: {}
@@ -50,6 +46,19 @@ test('verifyKeepTimestamp/undefined', () => {
     })
   expect(console.warn).not.toBeCalled()
 })
+test.each([null, ''])('verifyKeepTimestamp/blank', (value) => {
+  const workingObject = {
+    userOption: { keepTimestamp: value },
+    validatedOption: {}
+  }
+
+  expect(cov.verifyKeepTimestamp(workingObject))
+    .resolves
+    .toMatchObject({
+      userOption: {},
+      validatedOption: { keepTimestamp: DEFAULT_KEEPTIMESTAMP }
+    })
+})
 
 test.each(['ANC', '3453'])('verifyKeepTimestamp/not-boolean', (value) => {
   const workingObject = {
@@ -73,6 +82,26 @@ test('verifyKeepTimestamp/undefined/quiet', () => {
     .resolves
     .toMatchObject({
       userOption: {},
+      validatedOption: {
+        keepTimestamp: DEFAULT_KEEPTIMESTAMP,
+        quiet: true
+      }
+    })
+  expect(console.warn).not.toBeCalled()
+})
+
+test.each([null, ''])('verifyKeepTimestamp/blank/quiet', (value) => {
+  const workingObject = {
+    userOption: { keepTimestamp: value },
+    validatedOption: { quiet: true }
+  }
+
+  global.console.warn = jest.fn()
+
+  expect(cov.verifyKeepTimestamp(workingObject))
+    .resolves
+    .toMatchObject({
+      userOption: { keepTimestamp: value },
       validatedOption: {
         keepTimestamp: DEFAULT_KEEPTIMESTAMP,
         quiet: true

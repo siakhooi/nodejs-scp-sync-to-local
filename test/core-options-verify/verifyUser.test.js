@@ -9,20 +9,14 @@ test('verifyUser/Good', () => {
   expect(cov.verifyUser(workingObject))
     .resolves
     .toMatchObject({
-      userOption: {
-        username: 'testuser'
-      },
-      validatedOption: {
-        username: 'testuser'
-      }
+      userOption: { username: 'testuser' },
+      validatedOption: { username: 'testuser' }
     })
 })
 
-test('verifyUser/blank', () => {
+test.each([null, ''])('verifyUser/blank', (value) => {
   const workingObject = {
-    userOption: {
-      username: ''
-    },
+    userOption: { username: value },
     validatedOption: {}
   }
 
@@ -30,6 +24,7 @@ test('verifyUser/blank', () => {
     .rejects
     .toThrow('Error: username is not defined.')
 })
+
 test('verifyUser/undefined', () => {
   const workingObject = {
     userOption: {},

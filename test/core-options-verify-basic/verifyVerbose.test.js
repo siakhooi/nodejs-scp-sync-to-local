@@ -44,6 +44,19 @@ test('verifyVerbose/undefined', () => {
       validatedOption: { verbose: DEFAULT_VERBOSE }
     })
 })
+test.each([null, ''])('verifyVerbose/blank', (value) => {
+  const workingObject = {
+    userOption: { verbose: value },
+    validatedOption: {}
+  }
+
+  expect(covb.verifyVerbose(workingObject))
+    .resolves
+    .toMatchObject({
+      userOption: {},
+      validatedOption: { verbose: DEFAULT_VERBOSE }
+    })
+})
 
 test.each(['ANC', '3453'])('verifyVerbose/not-boolean', (value) => {
   const workingObject = {

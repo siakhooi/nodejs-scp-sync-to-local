@@ -50,6 +50,25 @@ test('verifySkipIfNewer/undefined', () => {
   expect(warnOutput).toContain(msg)
 })
 
+test.each([null, ''])('verifySkipIfNewer/blank', (value) => {
+  const workingObject = {
+    userOption: { skipIfNewer: value },
+    validatedOption: {}
+  }
+  const warnOutput = []
+  global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
+
+  expect(cov.verifySkipIfNewer(workingObject))
+    .resolves
+    .toMatchObject({
+      userOption: { skipIfNewer: value },
+      validatedOption: { skipIfNewer: DEFAULT_SKIPIFNEWER }
+    })
+  const msg = util.format('Warning: skipIfNewer undefined, defaulting to %s.', DEFAULT_SKIPIFNEWER)
+  expect(console.warn).toBeCalled()
+  expect(warnOutput).toContain(msg)
+})
+
 test.each(['ANC', '3453', 'xxx', 567])('verifySkipIfNewer/not-boolaen', (value) => {
   const workingObject = {
     userOption: { skipIfNewer: value },
@@ -72,6 +91,24 @@ test('verifySkipIfNewer/undefined/quiet', () => {
     .resolves
     .toMatchObject({
       userOption: {},
+      validatedOption: {
+        skipIfNewer: DEFAULT_SKIPIFNEWER,
+        quiet: true
+      }
+    })
+  expect(console.warn).not.toBeCalled()
+})
+test.each([null, ''])('verifySkipIfNewer/blank/quiet', (value) => {
+  const workingObject = {
+    userOption: { skipIfNewer: value },
+    validatedOption: { quiet: true }
+  }
+  global.console.warn = jest.fn()
+
+  expect(cov.verifySkipIfNewer(workingObject))
+    .resolves
+    .toMatchObject({
+      userOption: { skipIfNewer: value },
       validatedOption: {
         skipIfNewer: DEFAULT_SKIPIFNEWER,
         quiet: true

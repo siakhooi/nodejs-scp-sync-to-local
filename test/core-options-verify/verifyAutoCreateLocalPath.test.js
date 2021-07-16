@@ -45,6 +45,20 @@ test('verifyAutoCreateLocalPath/undefined', () => {
     })
 })
 
+test.each([null, ''])('verifyAutoCreateLocalPath/blank', (value) => {
+  const workingObject = {
+    userOption: { autoCreateLocalPath: value },
+    validatedOption: {}
+  }
+
+  expect(cov.verifyAutoCreateLocalPath(workingObject))
+    .resolves
+    .toMatchObject({
+      userOption: {},
+      validatedOption: { autoCreateLocalPath: DEFAULT_AUTOCREATELOCALPATH }
+    })
+})
+
 test.each(['ANC', '3453'])('verifyAutoCreateLocalPath/not-boolean', (value) => {
   const workingObject = {
     userOption: { autoCreateLocalPath: value },

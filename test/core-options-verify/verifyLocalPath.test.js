@@ -17,9 +17,9 @@ test('verifyLocalPath', () => {
     })
 })
 
-test('verifyLocalPath/blank', () => {
+test.each([null, ''])('verifyLocalPath/blank', (value) => {
   const workingObject = {
-    userOption: { localPath: '' },
+    userOption: { localPath: value },
     validatedOption: {}
   }
 
@@ -30,7 +30,7 @@ test('verifyLocalPath/blank', () => {
   expect(cov.verifyLocalPath(workingObject))
     .resolves
     .toMatchObject({
-      userOption: { localPath: '' },
+      userOption: { localPath: value },
       validatedOption: { localPath: DEFAULT_LOCALPATH }
     })
   expect(console.warn).toBeCalled()
@@ -55,9 +55,9 @@ test('verifyLocalPath/undefined', () => {
   expect(warnOutput).toContain(msg)
 })
 
-test('verifyLocalPath/blank/quiet', () => {
+test.each([null, ''])('verifyLocalPath/blank/quiet', (value) => {
   const workingObject = {
-    userOption: { localPath: '' },
+    userOption: { localPath: value },
     validatedOption: { quiet: true }
   }
 
@@ -66,7 +66,7 @@ test('verifyLocalPath/blank/quiet', () => {
   expect(cov.verifyLocalPath(workingObject))
     .resolves
     .toMatchObject({
-      userOption: { localPath: '' },
+      userOption: { localPath: value },
       validatedOption: {
         localPath: DEFAULT_LOCALPATH,
         quiet: true
