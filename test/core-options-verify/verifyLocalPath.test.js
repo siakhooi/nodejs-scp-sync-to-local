@@ -25,7 +25,7 @@ test.each([null, ''])('verifyLocalPath/blank', (value) => {
 
   const warnOutput = []
   global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
-  const msg = util.format('Warning: localPath undefined, defaulting to current directory. [%s]', DEFAULT_LOCALPATH)
+  const msg = util.format('Warning: localPath is undefined, defaulting to current directory. [%s]', DEFAULT_LOCALPATH)
 
   expect(cov.verifyLocalPath(workingObject))
     .resolves
@@ -44,7 +44,7 @@ test('verifyLocalPath/undefined', () => {
 
   const warnOutput = []
   global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
-  const msg = util.format('Warning: localPath undefined, defaulting to current directory. [%s]', DEFAULT_LOCALPATH)
+  const msg = util.format('Warning: localPath is undefined, defaulting to current directory. [%s]', DEFAULT_LOCALPATH)
   expect(cov.verifyLocalPath(workingObject))
     .resolves
     .toMatchObject({

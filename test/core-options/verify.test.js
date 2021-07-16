@@ -12,19 +12,19 @@ test('verify/defaults', () => {
   console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
   console.info = jest.fn().mockImplementation((s) => { infoOutput.push(s) })
   const warnMsg = [
-    'Warning: host undefined, defaulting to localhost.',
-    'Warning: skipIfExists undefined, defaulting to false.',
-    'Warning: skipIfNotExists undefined, defaulting to false.',
-    'Warning: skipIfNewer undefined, defaulting to false.',
-    'Warning: skipIfOlder undefined, defaulting to false.',
-    'Warning: skipIfSameAge undefined, defaulting to false.',
-    'Warning: skipIfBigger undefined, defaulting to false.',
-    'Warning: skipIfSmaller undefined, defaulting to false.',
-    'Warning: skipIfSameSize undefined, defaulting to false.',
-    'Warning: remotePath undefined, defaulting to current directory. [.]',
-    'Warning: localPath undefined, defaulting to current directory. [.]'
+    'Warning: host is undefined, defaulting to localhost.',
+    'Warning: skipIfExists is undefined, defaulting to false.',
+    'Warning: skipIfNotExists is undefined, defaulting to false.',
+    'Warning: skipIfNewer is undefined, defaulting to false.',
+    'Warning: skipIfOlder is undefined, defaulting to false.',
+    'Warning: skipIfSameAge is undefined, defaulting to false.',
+    'Warning: skipIfBigger is undefined, defaulting to false.',
+    'Warning: skipIfSmaller is undefined, defaulting to false.',
+    'Warning: skipIfSameSize is undefined, defaulting to false.',
+    'Warning: remotePath is undefined, defaulting to current directory. [.]',
+    'Warning: localPath is undefined, defaulting to current directory. [.]'
   ]
-  const infoMsg = ['Info: port undefined, defaulting to 22.']
+  const infoMsg = ['Info: port is undefined, defaulting to 22.']
 
   co0.verify(workingObject).then((workingObject) => {
     expect(workingObject)

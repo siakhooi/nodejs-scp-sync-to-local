@@ -45,7 +45,7 @@ test('verifySkipIfSmaller/undefined', () => {
       userOption: {},
       validatedOption: { skipIfSmaller: DEFAULT_SKIPIFSMALLER }
     })
-  const msg = util.format('Warning: skipIfSmaller undefined, defaulting to %s.', DEFAULT_SKIPIFSMALLER)
+  const msg = util.format('Warning: skipIfSmaller is undefined, defaulting to %s.', DEFAULT_SKIPIFSMALLER)
   expect(console.warn).toBeCalled()
   expect(warnOutput).toContain(msg)
 })
@@ -64,7 +64,7 @@ test.each([null, ''])('verifySkipIfSmaller/blank', (value) => {
       userOption: { skipIfSmaller: value },
       validatedOption: { skipIfSmaller: DEFAULT_SKIPIFSMALLER }
     })
-  const msg = util.format('Warning: skipIfSmaller undefined, defaulting to %s.', DEFAULT_SKIPIFSMALLER)
+  const msg = util.format('Warning: skipIfSmaller is undefined, defaulting to %s.', DEFAULT_SKIPIFSMALLER)
   expect(console.warn).toBeCalled()
   expect(warnOutput).toContain(msg)
 })

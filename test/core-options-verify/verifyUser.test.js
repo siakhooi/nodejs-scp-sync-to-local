@@ -22,7 +22,7 @@ test.each([null, ''])('verifyUser/blank', (value) => {
 
   expect(cov.verifyUser(workingObject))
     .rejects
-    .toThrow('Error: username is not defined.')
+    .toThrow('Error: username is undefined.')
 })
 
 test('verifyUser/undefined', () => {
@@ -33,5 +33,5 @@ test('verifyUser/undefined', () => {
 
   expect(cov.verifyUser(workingObject))
     .rejects
-    .toThrow('Error: username is not defined.')
+    .toThrow('Error: username is undefined.')
 })

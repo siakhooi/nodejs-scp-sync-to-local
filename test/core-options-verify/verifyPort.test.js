@@ -25,7 +25,7 @@ test.each([null, ''])('verifyPort/blank', (value) => {
 
   const consoleOutput = []
   global.console.info = jest.fn().mockImplementation((s) => { consoleOutput.push(s) })
-  const msg = util.format('Info: port undefined, defaulting to %d.', DEFAULT_PORT)
+  const msg = util.format('Info: port is undefined, defaulting to %d.', DEFAULT_PORT)
   expect(cov.verifyPort(workingObject))
     .resolves
     .toMatchObject({
@@ -43,7 +43,7 @@ test('verifyPort/undefined', () => {
 
   const consoleOutput = []
   global.console.info = jest.fn().mockImplementation((s) => { consoleOutput.push(s) })
-  const msg = util.format('Info: port undefined, defaulting to %d.', DEFAULT_PORT)
+  const msg = util.format('Info: port is undefined, defaulting to %d.', DEFAULT_PORT)
   expect(cov.verifyPort(workingObject))
     .resolves
     .toMatchObject({
