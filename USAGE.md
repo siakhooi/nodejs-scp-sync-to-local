@@ -104,19 +104,18 @@ function myCustomFilter(localPath, remotePathObject) {
 
 ## Built-In Filters with customFilters
 
-- Filters are AND together when checking all files. In order to have a OR relationship, you have to disable the option and use the `customFilter`.
+- Filters are AND together when checking all files. So be careful when Built-In Filters and customFilters are enabled together.
 
 ```js
 const cf = require("scp-sync-to-local/filters");       //include the built-in filters
 
 function myCustomFilter(localPath, remotePathObject) { //define customFilters
-  return <...other condition...> ||                    //custom condition
+  return <...other condition...> ||                    //custom condition, eg: remotePathObject.name='abc.txt'
          cf.skipIfExists(localPath, remotePathObject); //or with built in filters
 }
 var option = {
   username: "yourUsername",
   password: "yourPassword",
-  skipIfExists: false,                                //disable, if enable, this will an AND condition
   customFilter: myCustomFilter                        //declare customFilter
 };
 
