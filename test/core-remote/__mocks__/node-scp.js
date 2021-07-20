@@ -29,7 +29,7 @@ module.exports.mockClient = {
       if (testName === 'remote/downloadFiles/success' ||
         testName === 'remote/downloadFiles/success/quiet' ||
         testName === 'remote/downloadFiles/success/quiet/keepTimestamp') {
-        return Promise.resolve()
+        resolve()
       } else reject(new Error('Unexpected Test'))
     })
   },

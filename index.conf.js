@@ -1,5 +1,5 @@
 exports.PROGRAM_NAME = 'scp-sync-to-local'
-exports.PROGRAM_VERSION = '0.11.0'
+exports.PROGRAM_VERSION = '0.12.0'
 
 exports.PASSWORD_MASK = '**********'
 

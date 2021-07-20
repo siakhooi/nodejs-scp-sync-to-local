@@ -13,7 +13,7 @@ const option = {
   password: 'testpassword',
   remotePath: '/home/testuser/data',
   localPath: './test-data',
-  skipIfExists: false,
+  skipIfExists: true,
   skipIfNotExists: false,
   skipIfNewer: false,
   skipIfOlder: false,
