@@ -1,7 +1,7 @@
 const scp = require('node-scp')
 const cr0 = require('../../lib/core-remote')
-const md0 = require('../mock-data/remotefilelist')
 const cuf = require('../../lib/core-util-fs')
+const md0 = require('../mock-data/remotefilelist')
 
 beforeEach(() => jest.clearAllMocks())
 
@@ -18,20 +18,25 @@ test('remote/downloadFiles/success', () => {
   }
 
   const consoleOutput = []
-  global.console.info = jest.fn().mockImplementation((s) => { consoleOutput.push(s) })
+  console.info = jest.fn().mockImplementation((s) => { consoleOutput.push(s) })
 
   const msg = [
     '1 downloading /home/testuser/data/Mock_File_1.zip',
-    '2 downloading /home/testuser/data/Mock_File_2.zip']
+    '2 downloading /home/testuser/data/Mock_File_2.zip',
+    '1 downloaded /home/testuser/data/Mock_File_1.zip ./test-data//Mock_File_1.zip 2928',
+    '2 downloaded /home/testuser/data/Mock_File_2.zip ./test-data//Mock_File_2.zip 49453'
+  ]
 
   cr0.downloadFiles(workingObject)
     .then((workingObject) => {
       expect(workingObject.allDownloadPromises).toHaveLength(md0.mockRemoteFileList.length)
       workingObject.allDownloadPromises.forEach((x) => expect(x).toBeInstanceOf(Promise))
 
-      expect(console.info).toBeCalled()
-      consoleOutput.forEach((x) => expect(msg).toContainEqual(x))
-      msg.forEach((x) => expect(consoleOutput).toContainEqual(x))
+      Promise.all(workingObject.allDownloadPromises).then(() => {
+        expect(console.info).toBeCalled()
+        consoleOutput.forEach((x) => expect(msg).toContainEqual(x))
+        msg.forEach((x) => expect(consoleOutput).toContainEqual(x))
+      })
     })
 })
 
@@ -47,7 +52,7 @@ test('remote/downloadFiles/success/quiet', () => {
     filteredFileList: md0.mockRemoteFileList
   }
 
-  global.console.info = jest.fn()
+  console.info = jest.fn()
 
   cr0.downloadFiles(workingObject)
     .then((workingObject) => {
@@ -69,9 +74,8 @@ test('remote/downloadFiles/success/quiet/keepTimestamp', () => {
     filteredFileList: md0.mockRemoteFileList
   }
 
-  global.console.info = jest.fn()
-
-  jest.spyOn(cuf, 'updateTimes').mockImplementation()
+  console.info = jest.fn()
+  cuf.updateTimes = jest.fn()
 
   cr0.downloadFiles(workingObject)
     .then((workingObject) => {

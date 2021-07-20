@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased
+## Unreleased `0.12.0`
 
 - **Added**
   - `#139`: As scp user, I want options to use default value when `null` or `''` is provided.
@@ -9,6 +9,7 @@
   - `#136`: As scp user, I want to change `skipIfExists` default to `false`.
   - `#140`: As scp user, I want to standardize the warning to be `'is undefined'` for `undefined`, `null` or `blank`.
     - and other comestic changes in error message and warning messages.
+  - `#128`: As dev, I want to refactor `core-remote.downloadFiles` to individual promise.
 - **Fixed**
   - `#129`: bug: `Error: Error: customFilter is not a function [null]`, when `option.customFilter=null`.
 - **Other**
