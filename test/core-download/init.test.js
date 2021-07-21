@@ -1,4 +1,5 @@
 const cd0 = require('../../lib/core-download')
+const path = require('path')
 
 test('download/init', () => {
   const workingObject = {
@@ -35,8 +36,8 @@ test('download/init', () => {
     modifyTime: 1623577546000,
     localPath: '.',
     remotePath: '.',
-    localFile: './test.txt',
-    remoteFile: './test.txt'
+    localFile: path.normalize('.' + path.sep + 'test.txt'),
+    remoteFile: '.' + path.posix.sep + 'test.txt'
   }
 
   expect(cd0.init(workingObject, remoteFileObject, n)).resolves.toMatchObject(expected)
