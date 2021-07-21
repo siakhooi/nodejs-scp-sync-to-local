@@ -13,6 +13,7 @@
   - `#143`: As dev, I want to update `USAGE.md` to not include disable built in filter.
 - **Fixed**
   - `#129`: bug: `Error: Error: customFilter is not a function [null]`, when `option.customFilter=null`.
+  - `#148`: bug: As dev, I want to replace `'/'` with `path.sep` for local path.
 - **Other**
   - `#131`: As dev, I want to change license to `MIT` license.
 

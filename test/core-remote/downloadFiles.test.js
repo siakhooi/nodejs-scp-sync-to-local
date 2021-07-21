@@ -2,14 +2,14 @@ const scp = require('node-scp')
 const cr0 = require('../../lib/core-remote')
 const cuf = require('../../lib/core-util-fs')
 const md0 = require('../mock-data/remotefilelist')
-
+const path = require('path')
 beforeEach(() => jest.clearAllMocks())
 
 test('remote/downloadFiles/success', () => {
   const workingObject = {
     validatedOption: {
       remotePath: '/home/testuser/data',
-      localPath: './test-data/',
+      localPath: './test-data',
       keepTimestamp: false,
       quiet: false
     },
@@ -23,8 +23,8 @@ test('remote/downloadFiles/success', () => {
   const msg = [
     '1 downloading /home/testuser/data/Mock_File_1.zip',
     '2 downloading /home/testuser/data/Mock_File_2.zip',
-    '1 downloaded /home/testuser/data/Mock_File_1.zip ./test-data//Mock_File_1.zip 2928',
-    '2 downloaded /home/testuser/data/Mock_File_2.zip ./test-data//Mock_File_2.zip 49453'
+    '1 downloaded /home/testuser/data/Mock_File_1.zip ' + path.normalize('./test-data/Mock_File_1.zip') + ' 2928',
+    '2 downloaded /home/testuser/data/Mock_File_2.zip ' + path.normalize('./test-data/Mock_File_2.zip') + ' 49453'
   ]
 
   cr0.downloadFiles(workingObject)
@@ -44,7 +44,7 @@ test('remote/downloadFiles/success/quiet', () => {
   const workingObject = {
     validatedOption: {
       remotePath: '/home/testuser/data',
-      localPath: './test-data/',
+      localPath: './test-data',
       keepTimestamp: false,
       quiet: true
     },
@@ -66,7 +66,7 @@ test('remote/downloadFiles/success/quiet/keepTimestamp', () => {
   const workingObject = {
     validatedOption: {
       remotePath: '/home/testuser/data',
-      localPath: './test-data/',
+      localPath: './test-data',
       keepTimestamp: true,
       quiet: true
     },

@@ -86,7 +86,7 @@ function myCustomFilter(localPath, remotePathObject) {
 ```
 
 - `localPath`
-  - `option.localPath +'/' + remotePathObject.name`
+  - `option.localPath + path.sep + remotePathObject.name`
 - `remotePathObject` - an object, example:
 
 ```js
