@@ -1,16 +1,28 @@
 const scp = require('../index')
+const fs = require('fs')
+
+// enable to test customFilters
 // const cf = require('../filters')
-
-function err(e) { console.error(e) }
-
 // downloadOnlyThisFile = (l, r) => { return r.name == 'xxx.zip' }
 // downloadOnlyThisFile = (l, r) => { return r.name == 'xxx.zip' || cf.skipIfExists(l, r); }
 
+const CONFIG_FILE = 'test-local-config/remote-server.js'
+let REMOTE_HOST = '1.0.0.0'
+let REMOTE_USERNAME = 'abc'
+let REMOTE_PASSWORD = 'abc'
+
+if (fs.existsSync(CONFIG_FILE)) {
+  const l = require('../' + CONFIG_FILE)
+  REMOTE_HOST = l.REMOTE_HOST
+  REMOTE_USERNAME = l.REMOTE_USERNAME
+  REMOTE_PASSWORD = l.REMOTE_PASSWORD
+}
+
 const option = {
-  host: '192.168.0.106', // local vm
+  host: REMOTE_HOST,
   port: 22,
-  username: 'testuser',
-  password: 'testpassword',
+  username: REMOTE_USERNAME,
+  password: REMOTE_PASSWORD,
   remotePath: '/home/testuser/data',
   localPath: './test-data',
   skipIfExists: true,
@@ -26,4 +38,5 @@ const option = {
   quiet: false
 }
 
-scp.download(option).catch(err)
+scp.download(option)
+  .catch((err) => console.error(err))
