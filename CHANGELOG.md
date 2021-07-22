@@ -16,6 +16,7 @@
   - `#148`: bug: As dev, I want to replace `'/'` with `path.sep` for local path.
 - **Other**
   - `#131`: As dev, I want to change license to `MIT` license.
+  - `#150`: As dev, I want to isolate local server credential to a npm & git ignored config file. `test-runner/*.js`
 
 ## `0.11.0` - 2021-Jul-15
 
