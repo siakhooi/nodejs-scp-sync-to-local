@@ -1,4 +1,5 @@
 const scp = require('../../index')
+const path = require('path')
 
 beforeEach(() => jest.clearAllMocks())
 
@@ -8,8 +9,8 @@ test('scp/download/ok/1', () => {
   const expectedInfo = ['Info: port is undefined, defaulting to 22.',
     '1 downloading /home/testuser/data/Mock_File_1.zip',
     '2 downloading /home/testuser/data/Mock_File_2.zip',
-    '1 downloaded /home/testuser/data/Mock_File_1.zip test-data\\Mock_File_1.zip 2928',
-    '2 downloaded /home/testuser/data/Mock_File_2.zip test-data\\Mock_File_2.zip 49453',
+    '1 downloaded /home/testuser/data/Mock_File_1.zip ' + path.normalize('test-data/Mock_File_1.zip') + ' 2928',
+    '2 downloaded /home/testuser/data/Mock_File_2.zip ' + path.normalize('test-data/Mock_File_2.zip') + ' 49453',
     'All done, total downloads = %d.',
     'done']
 
@@ -57,8 +58,8 @@ test('scp/download/ok/2', () => {
   const expectedInfo = [
     '1 downloading /home/testuser/data/Mock_File_1.zip',
     '2 downloading /home/testuser/data/Mock_File_2.zip',
-    '1 downloaded /home/testuser/data/Mock_File_1.zip test-data\\Mock_File_1.zip 2928',
-    '2 downloaded /home/testuser/data/Mock_File_2.zip test-data\\Mock_File_2.zip 49453',
+    '1 downloaded /home/testuser/data/Mock_File_1.zip ' + path.normalize('test-data/Mock_File_1.zip') + ' 2928',
+    '2 downloaded /home/testuser/data/Mock_File_2.zip ' + path.normalize('test-data/Mock_File_2.zip') + ' 49453',
     'All done, total downloads = %d.',
     'done']
 
