@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased `0.12.0`
+## `0.12.0` - 2021-Jul-27
 
 - **Added**
   - `#139`: As scp user, I want options to use default value when `null` or `''` is provided.
@@ -17,6 +17,7 @@
 - **Other**
   - `#131`: As dev, I want to change license to `MIT` license.
   - `#150`: As dev, I want to isolate local server credential to a npm & git ignored config file. `test-runner/*.js`
+  - `#99`: As test, i want to jest test `index/download`.
 
 ## `0.11.0` - 2021-Jul-15
 
