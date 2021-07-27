@@ -35,7 +35,7 @@ test('scp/download/ok/1', () => {
     username: 'testuser',
     password: 'testpassord',
     remotePath: '/home/testuser/data',
-    localPath: '.\\test-data'
+    localPath: './test-data'
   }
 
   return scp.download(option)
@@ -85,7 +85,7 @@ test('scp/download/ok/2', () => {
     username: 'testuser',
     password: 'testpassord',
     remotePath: '/home/testuser/data',
-    localPath: '.\\test-data'
+    localPath: './test-data'
   }
 
   return scp.download(option).then(() => {
