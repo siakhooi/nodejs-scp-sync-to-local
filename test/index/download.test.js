@@ -1,5 +1,6 @@
 const scp = require('../../index')
 const path = require('path')
+const cuf = require('../../lib/core-util-fs')
 
 beforeEach(() => jest.clearAllMocks())
 
@@ -9,8 +10,8 @@ test('scp/download/ok/1', () => {
   const expectedInfo = ['Info: port is undefined, defaulting to 22.',
     '1 downloading /home/testuser/data/Mock_File_1.zip',
     '2 downloading /home/testuser/data/Mock_File_2.zip',
-    '1 downloaded /home/testuser/data/Mock_File_1.zip ' + path.normalize('./test-data/Mock_File_1.zip') + ' 2928',
-    '2 downloaded /home/testuser/data/Mock_File_2.zip ' + path.normalize('./test-data/Mock_File_2.zip') + ' 49453',
+    '1 downloaded /home/testuser/data/Mock_File_1.zip ' + path.normalize('./test-data1/Mock_File_1.zip') + ' 2928',
+    '2 downloaded /home/testuser/data/Mock_File_2.zip ' + path.normalize('./test-data1/Mock_File_2.zip') + ' 49453',
     'All done, total downloads = %d.',
     'done']
 
@@ -24,18 +25,21 @@ test('scp/download/ok/1', () => {
     'Warning: skipIfSameAge is undefined, defaulting to false.',
     'Warning: skipIfBigger is undefined, defaulting to false.',
     'Warning: skipIfSmaller is undefined, defaulting to false.',
-    'Warning: skipIfSameSize is undefined, defaulting to false.']
+    'Warning: skipIfSameSize is undefined, defaulting to false.',
+    'Warning: localPath is not exists, auto create. [./test-data1]']
 
   const actualWrite = []
   process.stdout.write = jest.fn().mockImplementation((s) => { actualWrite.push(s) })
   const expectedWrite = ['Downloading Remote File List...']
+
+  cuf.mkdir = jest.fn()
 
   const option = {
     host: '1.0.0.0',
     username: 'testuser',
     password: 'testpassord',
     remotePath: '/home/testuser/data',
-    localPath: './test-data'
+    localPath: './test-data1'
   }
 
   return scp.download(option)
@@ -58,8 +62,8 @@ test('scp/download/ok/2', () => {
   const expectedInfo = [
     '1 downloading /home/testuser/data/Mock_File_1.zip',
     '2 downloading /home/testuser/data/Mock_File_2.zip',
-    '1 downloaded /home/testuser/data/Mock_File_1.zip ' + path.normalize('./test-data/Mock_File_1.zip') + ' 2928',
-    '2 downloaded /home/testuser/data/Mock_File_2.zip ' + path.normalize('./test-data/Mock_File_2.zip') + ' 49453',
+    '1 downloaded /home/testuser/data/Mock_File_1.zip ' + path.normalize('./test-data1/Mock_File_1.zip') + ' 2928',
+    '2 downloaded /home/testuser/data/Mock_File_2.zip ' + path.normalize('./test-data1/Mock_File_2.zip') + ' 49453',
     'All done, total downloads = %d.',
     'done']
 
@@ -77,15 +81,17 @@ test('scp/download/ok/2', () => {
     'Warning: skipIfSameAge is undefined, defaulting to false.',
     'Warning: skipIfBigger is undefined, defaulting to false.',
     'Warning: skipIfSmaller is undefined, defaulting to false.',
-    'Warning: skipIfSameSize is undefined, defaulting to false.']
+    'Warning: skipIfSameSize is undefined, defaulting to false.',
+    'Warning: localPath is not exists, auto create. [./test-data1]']
 
+  cuf.mkdir = jest.fn()
   const option = {
     host: '1.0.0.0',
     port: 23,
     username: 'testuser',
     password: 'testpassord',
     remotePath: '/home/testuser/data',
-    localPath: './test-data'
+    localPath: './test-data1'
   }
 
   return scp.download(option).then(() => {
