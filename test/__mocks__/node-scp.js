@@ -1,12 +1,16 @@
-const md0 = require('../../mock-data/remotefilelist')
+const md0 = require('../mock-data/remotefilelist')
 
 module.exports = function (scpLoginOption) {
   return new Promise((resolve, reject) => {
-    if (expect.getState().currentTestName === 'remote/login/success') {
+    const testName = expect.getState().currentTestName
+
+    if (testName === 'remote/login/success') {
       resolve({ result: 'Mock Connection: Success' })
-    } else if (expect.getState().currentTestName === 'remote/login/fail') {
+    } else if (testName === 'remote/login/fail') {
       reject(new Error('Mock Connection: Fail'))
-    } else { reject(new Error('Unexpected Test')) }
+    } else if (testName.startsWith('scp/download/')) {
+      resolve(module.exports.mockClient)
+    } else { reject(new Error('Unexpected Test(scp): ' + expect.getState().currentTestName)) }
   })
 }
 module.exports.mockClient = {
@@ -15,12 +19,13 @@ module.exports.mockClient = {
       const testName = expect.getState().currentTestName
 
       if (testName === 'remote/getFileList/success' ||
-        testName === 'remote/getFileList/success/quiet') {
+        testName === 'remote/getFileList/success/quiet' ||
+        testName.startsWith('scp/download/')) {
         resolve(md0.mockRemoteFileList)
       } else if (testName === 'remote/getFileList/fail' ||
         testName === 'remote/getFileList/fail/quiet') {
         reject(new Error('Mock getList: Fail'))
-      } else reject(new Error('Unexpected Test'))
+      } else reject(new Error('Unexpected Test(list):' + expect.getState().currentTestName))
     })
   },
   downloadFile: function (remotePath, localPath) {
@@ -28,17 +33,19 @@ module.exports.mockClient = {
       const testName = expect.getState().currentTestName
       if (testName === 'remote/downloadFiles/success' ||
         testName === 'remote/downloadFiles/success/quiet' ||
-        testName === 'remote/downloadFiles/success/quiet/keepTimestamp') {
+        testName === 'remote/downloadFiles/success/quiet/keepTimestamp' ||
+        testName.startsWith('scp/download/')) {
         resolve()
-      } else reject(new Error('Unexpected Test'))
+      } else reject(new Error('Unexpected Test(downloadFile):' + expect.getState().currentTestName))
     })
   },
   close: function () {
     const testName = expect.getState().currentTestName
     if (testName === 'remote/disconnectOnAllDone/success' ||
       testName === 'remote/disconnectOnAllDone/success/quiet' ||
-      testName === 'remote/disconnectOnAllDone/no-download') {
+      testName === 'remote/disconnectOnAllDone/no-download' ||
+      testName.startsWith('scp/download/')) {
       // Doing Nothing
-    } else throw new Error('Unexpected Test')
+    } else throw new Error('Unexpected Test(close):' + expect.getState().currentTestName)
   }
 }
