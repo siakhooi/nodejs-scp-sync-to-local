@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- **Other**
+  - `#160`: As test, I want to jest test and eslint test for all non-master branch commit
+
 ## `0.12.0` - 2021-Jul-27
 
 - **Added**
