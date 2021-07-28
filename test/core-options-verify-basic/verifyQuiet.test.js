@@ -18,7 +18,7 @@ test.each(dt.TrueDataSet)('verifyQuiet/true', (value) => {
     })
 })
 
-test.each([false, 'N', 'off', 0, 'n', 'no'])('verifyQuiet/false', (value) => {
+test.each(dt.FalseDataSet)('verifyQuiet/false', (value) => {
   const workingObject = {
     userOption: { quiet: value },
     validatedOption: {}

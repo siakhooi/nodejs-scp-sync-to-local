@@ -21,7 +21,7 @@ test.each(dt.TrueDataSet)('verifySkipIfNewer/true', (value) => {
     })
 })
 
-test.each([false, 'N', 'off', 0, 'n', 'no'])('verifySkipIfNewer/false', (value) => {
+test.each(dt.FalseDataSet)('verifySkipIfNewer/false', (value) => {
   const workingObject = {
     userOption: { skipIfNewer: value },
     validatedOption: {}

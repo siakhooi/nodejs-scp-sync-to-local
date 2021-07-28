@@ -4,9 +4,7 @@ const dt = require('../mock-data/common-data-sets')
 test.each(dt.TrueDataSet)('isBoolean/true', (value) => {
   return expect(cu.isBoolean(value)).toBe(true)
 })
-test.each([
-  '0', 'N', 'n', 'off', 'Off', 'No', 'NO', 0, false, 'FALSE'
-])('isBoolean/false', (value) => {
+test.each(dt.FalseDataSet)('isBoolean/false', (value) => {
   return expect(cu.isBoolean(value)).toBe(true)
 })
 test.each([

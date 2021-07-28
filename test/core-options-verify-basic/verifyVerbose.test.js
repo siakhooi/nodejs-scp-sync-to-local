@@ -18,7 +18,7 @@ test.each(dt.TrueDataSet)('verifyVerbose/true', (value) => {
     })
 })
 
-test.each([false, 'N', 'off', 0, 'n', 'no'])('verifyVerbose/false', (value) => {
+test.each(dt.FalseDataSet)('verifyVerbose/false', (value) => {
   const workingObject = {
     userOption: { verbose: value },
     validatedOption: {}

@@ -19,7 +19,7 @@ test.each(dt.TrueDataSet)('verifyKeepTimestamp/true', (value) => {
     })
 })
 
-test.each([false, 'N', 'off', 0, 'n', 'no'])('verifyKeepTimestamp/false', (value) => {
+test.each(dt.FalseDataSet)('verifyKeepTimestamp/false', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: {}
