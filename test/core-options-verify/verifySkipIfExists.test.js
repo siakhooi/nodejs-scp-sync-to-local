@@ -22,7 +22,7 @@ test.each(dt.TrueDataSet)('verifySkipIfExists/true', (value) => {
     })
 })
 
-test.each([false, 'N', 'off', 0, 'n', 'no'])('verifySkipIfExists/false', (value) => {
+test.each(dt.FalseDataSet)('verifySkipIfExists/false', (value) => {
   const workingObject = {
     userOption: { skipIfExists: value },
     validatedOption: {}

@@ -21,7 +21,7 @@ test.each(dt.TrueDataSet)('verifySkipIfSameSize/true', (value) => {
     })
 })
 
-test.each([false, 'N', 'off', 0, 'n', 'no'])('verifySkipIfSameSize/false', (value) => {
+test.each(dt.FalseDataSet)('verifySkipIfSameSize/false', (value) => {
   const workingObject = {
     userOption: { skipIfSameSize: value },
     validatedOption: {}

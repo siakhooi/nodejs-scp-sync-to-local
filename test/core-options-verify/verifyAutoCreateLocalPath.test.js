@@ -18,7 +18,7 @@ test.each(dt.TrueDataSet)('verifyAutoCreateLocalPath/true', (value) => {
     })
 })
 
-test.each([false, 'N', 'off', 0, 'n', 'no'])('verifyAutoCreateLocalPath/false', (value) => {
+test.each(dt.FalseDataSet)('verifyAutoCreateLocalPath/false', (value) => {
   const workingObject = {
     userOption: { autoCreateLocalPath: value },
     validatedOption: {}
