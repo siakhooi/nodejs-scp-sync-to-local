@@ -48,7 +48,7 @@ test('verifyKeepTimestamp/undefined', () => {
     })
   expect(cou.warn).not.toBeCalled()
 })
-test.each([null, ''])('verifyKeepTimestamp/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyKeepTimestamp/blank', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: {}
@@ -92,7 +92,7 @@ test('verifyKeepTimestamp/undefined/quiet', () => {
   expect(cou.warn).not.toBeCalled()
 })
 
-test.each([null, ''])('verifyKeepTimestamp/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifyKeepTimestamp/blank/quiet', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: { quiet: true }

@@ -52,7 +52,7 @@ test('verifySkipIfOlder/undefined', () => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each([null, ''])('verifySkipIfOlder/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfOlder/blank', (value) => {
   const workingObject = {
     userOption: { skipIfOlder: value },
     validatedOption: {}
@@ -98,7 +98,7 @@ test('verifySkipIfOlder/undefined/quiet', () => {
   expect(co0.warn).not.toBeCalled()
 })
 
-test.each([null, ''])('verifySkipIfOlder/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfOlder/blank/quiet', (value) => {
   const workingObject = {
     userOption: { skipIfOlder: value },
     validatedOption: { quiet: true }

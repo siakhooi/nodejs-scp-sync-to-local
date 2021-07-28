@@ -2,6 +2,7 @@ const util = require('util')
 const cov = require('../../lib/core-options-verify')
 const co0 = require('../../lib/core-output')
 const m = require('../mocklib')
+const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_LOCALPATH = '.'
 const expectedWarn = [util.format('Warning: localPath is undefined, defaulting to current directory. [%s]', DEFAULT_LOCALPATH)]
@@ -20,7 +21,7 @@ test('verifyLocalPath/text', () => {
     })
 })
 
-test.each([null, ''])('verifyLocalPath/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyLocalPath/blank', (value) => {
   const workingObject = {
     userOption: { localPath: value },
     validatedOption: {}
@@ -54,7 +55,7 @@ test('verifyLocalPath/undefined', () => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each([null, ''])('verifyLocalPath/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifyLocalPath/blank/quiet', (value) => {
   const workingObject = {
     userOption: { localPath: value },
     validatedOption: { quiet: true }

@@ -52,7 +52,7 @@ test('verifySkipIfSameSize/undefined', () => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each([null, ''])('verifySkipIfSameSize/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfSameSize/blank', (value) => {
   const workingObject = {
     userOption: { skipIfSameSize: value },
     validatedOption: {}
@@ -99,7 +99,7 @@ test('verifySkipIfSameSize/undefined/quiet', () => {
   expect(co0.warn).not.toBeCalled()
 })
 
-test.each([null, ''])('verifySkipIfSameSize/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfSameSize/blank/quiet', (value) => {
   const workingObject = {
     userOption: { skipIfSameSize: value },
     validatedOption: { quiet: true }

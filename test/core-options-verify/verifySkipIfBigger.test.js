@@ -51,7 +51,7 @@ test('verifySkipIfBigger/undefined', () => {
     })
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
-test.each([null, ''])('verifySkipIfBigger/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfBigger/blank', (value) => {
   const workingObject = {
     userOption: { skipIfBigger: value },
     validatedOption: {}
@@ -97,7 +97,7 @@ test('verifySkipIfBigger/undefined/quiet', () => {
     })
   expect(co0.warn).not.toBeCalled()
 })
-test.each([null, ''])('verifySkipIfBigger/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfBigger/blank/quiet', (value) => {
   const workingObject = {
     userOption: { skipIfBigger: value },
     validatedOption: { quiet: true }
