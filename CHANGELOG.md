@@ -10,7 +10,8 @@
   - `#164`: As test, I want to standardize test data set for `true` (`common-data-sets.js/TrueDataSet`).
   - `#165`: As test, I want to standardize test data set for `false` (`common-data-sets.js/FalseDataSet`).
   - `#163`: As test, I want to standardize test data set for not `boolean` (`common-data-sets.js/NotBooleanDataSet`).
-  - `#167`: As test, I want to standardize test data set for blank values. (`common-data-sets.js/BlankValueDataSet`)..
+  - `#167`: As test, I want to standardize test data set for blank values. (`common-data-sets.js/BlankValueDataSet`).
+  - `#171`: As test, I want to standardize test data set for not Integer.(`common-data-sets.js/NotIntegerDataSet`).
 
 ## `0.12.0` - 2021-Jul-27
 

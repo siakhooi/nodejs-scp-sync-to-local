@@ -55,9 +55,9 @@ test('verifyPort/undefined', () => {
   expect(i.verify(expectedInfo)).resolves.toBe(true)
 })
 
-test('verifyPort/not-number', () => {
+test.each(dt.NotIntegerDataSet)('verifyPort/not-Integer', (value) => {
   const workingObject = {
-    userOption: { port: 'xxx' },
+    userOption: { port: value },
     validatedOption: {}
   }
 
