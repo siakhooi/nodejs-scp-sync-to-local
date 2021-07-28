@@ -1,9 +1,10 @@
 const util = require('util')
 const covb = require('../../lib/core-options-verify-basic')
+const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_QUIET = false
 
-test.each([true, 'Y', 'on', 1, 'y', 'yes'])('verifyQuiet/true', (value) => {
+test.each(dt.TrueDataSet)('verifyQuiet/true', (value) => {
   const workingObject = {
     userOption: { quiet: value },
     validatedOption: {}

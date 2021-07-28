@@ -2,11 +2,12 @@ const util = require('util')
 const cov = require('../../lib/core-options-verify')
 const co0 = require('../../lib/core-output')
 const m = require('../mocklib')
+const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_SKIPIFSAMEAGE = false
 const expectedWarn = [util.format('Warning: skipIfSameAge is undefined, defaulting to %s.', DEFAULT_SKIPIFSAMEAGE)]
 
-test.each([true, 'Y', 'on', 1, 'y', 'yes'])('verifySkipIfSameAge/true', (value) => {
+test.each(dt.TrueDataSet)('verifySkipIfSameAge/true', (value) => {
   const workingObject = {
     userOption: { skipIfSameAge: value },
     validatedOption: {}

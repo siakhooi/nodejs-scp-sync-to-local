@@ -2,11 +2,12 @@ const util = require('util')
 const cov = require('../../lib/core-options-verify')
 const co0 = require('../../lib/core-output')
 const m = require('../mocklib')
+const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_SKIPIFBIGGER = false
 const expectedWarn = [util.format('Warning: skipIfBigger is undefined, defaulting to %s.', DEFAULT_SKIPIFBIGGER)]
 
-test.each([true, 'Y', 'on', 1, 'y', 'yes'])('verifySkipIfBigger/true', (value) => {
+test.each(dt.TrueDataSet)('verifySkipIfBigger/true', (value) => {
   const workingObject = {
     userOption: { skipIfBigger: value },
     validatedOption: {}

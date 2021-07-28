@@ -5,8 +5,9 @@
 - **Change**
   - `#107`: As dev, I want to refactor `console.warn`, `console.info`, `console.log` to `lib/core-output`.
   - `#154`: As dev, I want to change all `console.log` to `console.info` so that i can standardize the codes.
-- **Other**
+- **Test**
   - `#160`: As test, I want to jest test and eslint test for all non-master branch commit
+  - `#164`: As test, I want to standardize test data set for `true`.
 
 ## `0.12.0` - 2021-Jul-27
 
@@ -24,6 +25,7 @@
   - `#148`: bug: As dev, I want to replace `'/'` with `path.sep` for local path.
 - **Other**
   - `#131`: As dev, I want to change license to `MIT` license.
+- **Test**
   - `#150`: As dev, I want to isolate local server credential to a npm & git ignored config file. `test-runner/*.js`
   - `#99`: As test, i want to jest test `index/download`.
 
@@ -40,7 +42,7 @@
     - As dev, I want to rename `Publish to GPR` and `Publish to NPM` workflow.
     - As dev, I want to rename npm version badge to `release`.
   - `#122`: As Dev, I want to add github top language badge to `README.md`.
-- **Other**
+- **Test**
   - `#121`: As dev, i want to use `eslint` to standardize coding style so that the code has better quality.
   - `#124`: As dev, I want to add `eslint` as github workflow.
 

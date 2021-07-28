@@ -2,11 +2,12 @@ const util = require('util')
 const cov = require('../../lib/core-options-verify')
 const co0 = require('../../lib/core-output')
 const m = require('../mocklib')
+const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_SKIPIFOLDER = false
 const expectedWarn = [util.format('Warning: skipIfOlder is undefined, defaulting to %s.', DEFAULT_SKIPIFOLDER)]
 
-test.each([true, 'Y', 'on', 1, 'y', 'yes'])('verifySkipIfOlder/true', (value) => {
+test.each(dt.TrueDataSet)('verifySkipIfOlder/true', (value) => {
   const workingObject = {
     userOption: { skipIfOlder: value },
     validatedOption: {}

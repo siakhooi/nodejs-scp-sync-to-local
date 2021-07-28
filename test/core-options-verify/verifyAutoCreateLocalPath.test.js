@@ -1,9 +1,10 @@
 const cov = require('../../lib/core-options-verify')
 const util = require('util')
+const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_AUTOCREATELOCALPATH = true
 
-test.each([true, 'Y', 'on', 1, 'y', 'yes'])('verifyAutoCreateLocalPath/true', (value) => {
+test.each(dt.TrueDataSet)('verifyAutoCreateLocalPath/true', (value) => {
   const workingObject = {
     userOption: { autoCreateLocalPath: value },
     validatedOption: {}

@@ -1,8 +1,7 @@
 const cu = require('../../lib/core-util')
+const dt = require('../mock-data/common-data-sets')
 
-test.each([
-  '1', 'Y', 'y', 'on', 'On', 'Yes', 'YES', 1, true, 'TRUE'
-])('isTrue/true', (value) => {
+test.each(dt.TrueDataSet)('isTrue/true', (value) => {
   return expect(cu.isTrue(value)).toBe(true)
 })
 test.each([
