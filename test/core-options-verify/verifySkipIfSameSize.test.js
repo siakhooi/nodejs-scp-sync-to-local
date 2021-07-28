@@ -2,11 +2,12 @@ const util = require('util')
 const cov = require('../../lib/core-options-verify')
 const co0 = require('../../lib/core-output')
 const m = require('../mocklib')
+const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_SKIPIFSAMESIZE = false
 const expectedWarn = [util.format('Warning: skipIfSameSize is undefined, defaulting to %s.', DEFAULT_SKIPIFSAMESIZE)]
 
-test.each([true, 'Y', 'on', 1, 'y', 'yes'])('verifySkipIfSameSize/true', (value) => {
+test.each(dt.TrueDataSet)('verifySkipIfSameSize/true', (value) => {
   const workingObject = {
     userOption: { skipIfSameSize: value },
     validatedOption: {}

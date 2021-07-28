@@ -2,11 +2,12 @@ const util = require('util')
 const cov = require('../../lib/core-options-verify')
 const co0 = require('../../lib/core-output')
 const m = require('../mocklib')
+const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_SKIPIFSMALLER = false
 const expectedWarn = [util.format('Warning: skipIfSmaller is undefined, defaulting to %s.', DEFAULT_SKIPIFSMALLER)]
 
-test.each([true, 'Y', 'on', 1, 'y', 'yes'])('verifySkipIfSmaller/true', (value) => {
+test.each(dt.TrueDataSet)('verifySkipIfSmaller/true', (value) => {
   const workingObject = {
     userOption: { skipIfSmaller: value },
     validatedOption: {}

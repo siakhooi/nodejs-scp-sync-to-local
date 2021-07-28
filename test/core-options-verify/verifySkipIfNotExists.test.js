@@ -2,11 +2,12 @@ const util = require('util')
 const cov = require('../../lib/core-options-verify')
 const co0 = require('../../lib/core-output')
 const m = require('../mocklib')
+const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_SKIPIFNOTEXISTS = false
 const expectedWarn = [util.format('Warning: skipIfNotExists is undefined, defaulting to %s.', DEFAULT_SKIPIFNOTEXISTS)]
 
-test.each([true, 'Y', 'on', 1, 'y', 'yes'])('verifySkipIfNotExists/true', (value) => {
+test.each(dt.TrueDataSet)('verifySkipIfNotExists/true', (value) => {
   const workingObject = {
     userOption: { skipIfNotExists: value },
     validatedOption: {}

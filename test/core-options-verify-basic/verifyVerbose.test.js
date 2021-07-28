@@ -1,9 +1,10 @@
 const util = require('util')
 const covb = require('../../lib/core-options-verify-basic')
+const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_VERBOSE = false
 
-test.each([true, 'Y', 'on', 1, 'y', 'yes'])('verifyVerbose/true', (value) => {
+test.each(dt.TrueDataSet)('verifyVerbose/true', (value) => {
   const workingObject = {
     userOption: { verbose: value },
     validatedOption: {}

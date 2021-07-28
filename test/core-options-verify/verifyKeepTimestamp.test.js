@@ -1,10 +1,11 @@
 const util = require('util')
 const cov = require('../../lib/core-options-verify')
 const cou = require('../../lib/core-output')
+const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_KEEPTIMESTAMP = false
 
-test.each([true, 'Y', 'on', 1, 'y', 'yes'])('verifyKeepTimestamp/true', (value) => {
+test.each(dt.TrueDataSet)('verifyKeepTimestamp/true', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: {}
