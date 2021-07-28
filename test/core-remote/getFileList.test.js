@@ -1,5 +1,7 @@
 const scp = require('node-scp')
 const cr0 = require('../../lib/core-remote')
+const cou = require('../../lib/core-output')
+const m = require('../mocklib')
 
 test('remote/getFileList/success', () => {
   const workingObject = {
@@ -10,26 +12,28 @@ test('remote/getFileList/success', () => {
     scpClient: scp.mockClient,
     remoteFileList: []
   }
-  const consoleOutput = []; const writeOutput = []
-  global.process.stdout.write = jest.fn().mockImplementation((s) => { writeOutput.push(s) })
-  global.console.info = jest.fn().mockImplementation((s) => { consoleOutput.push(s) })
+  const i = new m.MockOutput()
+  cou.info = i.fn()
 
-  const msg1 = 'Downloading Remote File List...'
-  const msg2 = 'done'
+  const p = new m.MockOutput()
+  cou.print = p.fn()
 
-  cr0.getFileList(workingObject).then((workingObject) => {
-    expect(workingObject)
-      .toMatchObject({
-        remoteFileList: [
-          { name: 'Mock_File_1.zip' },
-          { name: 'Mock_File_2.zip' }
-        ]
-      })
-    expect(process.stdout.write).toBeCalled()
-    expect(console.info).toBeCalled()
-    expect(writeOutput).toContain(msg1)
-    expect(consoleOutput).toContain(msg2)
-  })
+  const expectedPrint = ['Downloading Remote File List...']
+  const expectedInfo = ['done']
+
+  cr0.getFileList(workingObject)
+    .then((workingObject) => {
+      expect(workingObject)
+        .toMatchObject({
+          remoteFileList: [
+            { name: 'Mock_File_1.zip' },
+            { name: 'Mock_File_2.zip' }
+          ]
+        })
+    }).then(() => {
+      expect(i.verify(expectedInfo)).resolves.toBe(true)
+      expect(p.verify(expectedPrint)).resolves.toBe(true)
+    })
 })
 
 test('remote/getFileList/success/quiet', () => {
@@ -41,8 +45,8 @@ test('remote/getFileList/success/quiet', () => {
     scpClient: scp.mockClient,
     remoteFileList: []
   }
-  global.process.stdout.write = jest.fn()
-  global.console.info = jest.fn()
+  cou.print = jest.fn()
+  cou.info = jest.fn()
 
   cr0.getFileList(workingObject).then((workingObject) => {
     expect(workingObject)
@@ -52,8 +56,8 @@ test('remote/getFileList/success/quiet', () => {
           { name: 'Mock_File_2.zip' }
         ]
       })
-    expect(process.stdout.write).not.toBeCalled()
-    expect(console.info).not.toBeCalled()
+    expect(cou.print).not.toBeCalled()
+    expect(cou.info).not.toBeCalled()
   })
 })
 
@@ -67,15 +71,15 @@ test('remote/getFileList/fail', () => {
     remoteFileList: []
   }
 
-  const consoleOutput = []
-  global.process.stdout.write = jest.fn().mockImplementation((s) => { consoleOutput.push(s) })
-  const msg = 'Downloading Remote File List...'
+  const p = new m.MockOutput()
+  cou.print = p.fn()
+
+  const expectedPrint = ['Downloading Remote File List...']
 
   expect(cr0.getFileList(workingObject))
     .rejects
     .toThrow('Mock getList: Fail')
-  expect(process.stdout.write).toBeCalled()
-  expect(consoleOutput).toContain(msg)
+  expect(p.verify(expectedPrint)).resolves.toBe(true)
 })
 
 test('remote/getFileList/fail/quiet', () => {
@@ -88,10 +92,10 @@ test('remote/getFileList/fail/quiet', () => {
     remoteFileList: []
   }
 
-  global.process.stdout.write = jest.fn()
+  cou.print = jest.fn()
 
   expect(cr0.getFileList(workingObject))
     .rejects
     .toThrow('Mock getList: Fail')
-  expect(process.stdout.write).not.toBeCalled()
+  expect(cou.print).not.toBeCalled()
 })

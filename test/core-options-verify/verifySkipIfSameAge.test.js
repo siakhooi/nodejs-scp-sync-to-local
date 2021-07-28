@@ -1,7 +1,10 @@
 const util = require('util')
 const cov = require('../../lib/core-options-verify')
+const co0 = require('../../lib/core-output')
+const m = require('../mocklib')
 
 const DEFAULT_SKIPIFSAMEAGE = false
+const expectedWarn = [util.format('Warning: skipIfSameAge is undefined, defaulting to %s.', DEFAULT_SKIPIFSAMEAGE)]
 
 test.each([true, 'Y', 'on', 1, 'y', 'yes'])('verifySkipIfSameAge/true', (value) => {
   const workingObject = {
@@ -36,8 +39,8 @@ test('verifySkipIfSameAge/undefined', () => {
     userOption: {},
     validatedOption: {}
   }
-  const warnOutput = []
-  global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
+  const w = new m.MockOutput()
+  co0.warn = w.fn()
 
   expect(cov.verifySkipIfSameAge(workingObject))
     .resolves
@@ -45,9 +48,7 @@ test('verifySkipIfSameAge/undefined', () => {
       userOption: {},
       validatedOption: { skipIfSameAge: DEFAULT_SKIPIFSAMEAGE }
     })
-  const msg = util.format('Warning: skipIfSameAge is undefined, defaulting to %s.', DEFAULT_SKIPIFSAMEAGE)
-  expect(console.warn).toBeCalled()
-  expect(warnOutput).toContain(msg)
+  expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
 test.each([null, ''])('verifySkipIfSameAge/blank', (value) => {
@@ -55,8 +56,8 @@ test.each([null, ''])('verifySkipIfSameAge/blank', (value) => {
     userOption: { skipIfSameAge: value },
     validatedOption: {}
   }
-  const warnOutput = []
-  global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
+  const w = new m.MockOutput()
+  co0.warn = w.fn()
 
   expect(cov.verifySkipIfSameAge(workingObject))
     .resolves
@@ -64,9 +65,7 @@ test.each([null, ''])('verifySkipIfSameAge/blank', (value) => {
       userOption: { skipIfSameAge: value },
       validatedOption: { skipIfSameAge: DEFAULT_SKIPIFSAMEAGE }
     })
-  const msg = util.format('Warning: skipIfSameAge is undefined, defaulting to %s.', DEFAULT_SKIPIFSAMEAGE)
-  expect(console.warn).toBeCalled()
-  expect(warnOutput).toContain(msg)
+  expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
 test.each(['ANC', '3453', 'xxx', 567])('verifySkipIfSameAge/not-boolaen', (value) => {
@@ -85,7 +84,7 @@ test('verifySkipIfSameAge/undefined/quiet', () => {
     userOption: {},
     validatedOption: { quiet: true }
   }
-  global.console.warn = jest.fn()
+  co0.warn = jest.fn()
 
   expect(cov.verifySkipIfSameAge(workingObject))
     .resolves
@@ -96,7 +95,7 @@ test('verifySkipIfSameAge/undefined/quiet', () => {
         quiet: true
       }
     })
-  expect(console.warn).not.toBeCalled()
+  expect(co0.warn).not.toBeCalled()
 })
 
 test.each([null, ''])('verifySkipIfSameAge/blank/quiet', (value) => {
@@ -104,7 +103,7 @@ test.each([null, ''])('verifySkipIfSameAge/blank/quiet', (value) => {
     userOption: { skipIfSameAge: value },
     validatedOption: { quiet: true }
   }
-  global.console.warn = jest.fn()
+  co0.warn = jest.fn()
 
   expect(cov.verifySkipIfSameAge(workingObject))
     .resolves
@@ -115,5 +114,5 @@ test.each([null, ''])('verifySkipIfSameAge/blank/quiet', (value) => {
         quiet: true
       }
     })
-  expect(console.warn).not.toBeCalled()
+  expect(co0.warn).not.toBeCalled()
 })

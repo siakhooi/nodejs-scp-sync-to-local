@@ -1,7 +1,10 @@
 const util = require('util')
 const cov = require('../../lib/core-options-verify')
+const co0 = require('../../lib/core-output')
+const m = require('../mocklib')
 
 const DEFAULT_SKIPIFBIGGER = false
+const expectedWarn = [util.format('Warning: skipIfBigger is undefined, defaulting to %s.', DEFAULT_SKIPIFBIGGER)]
 
 test.each([true, 'Y', 'on', 1, 'y', 'yes'])('verifySkipIfBigger/true', (value) => {
   const workingObject = {
@@ -36,8 +39,8 @@ test('verifySkipIfBigger/undefined', () => {
     userOption: {},
     validatedOption: {}
   }
-  const warnOutput = []
-  global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
+  const w = new m.MockOutput()
+  co0.warn = w.fn()
 
   expect(cov.verifySkipIfBigger(workingObject))
     .resolves
@@ -45,17 +48,15 @@ test('verifySkipIfBigger/undefined', () => {
       userOption: {},
       validatedOption: { skipIfBigger: DEFAULT_SKIPIFBIGGER }
     })
-  const msg = util.format('Warning: skipIfBigger is undefined, defaulting to %s.', DEFAULT_SKIPIFBIGGER)
-  expect(console.warn).toBeCalled()
-  expect(warnOutput).toContain(msg)
+  expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 test.each([null, ''])('verifySkipIfBigger/blank', (value) => {
   const workingObject = {
     userOption: { skipIfBigger: value },
     validatedOption: {}
   }
-  const warnOutput = []
-  global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
+  const w = new m.MockOutput()
+  co0.warn = w.fn()
 
   expect(cov.verifySkipIfBigger(workingObject))
     .resolves
@@ -63,12 +64,10 @@ test.each([null, ''])('verifySkipIfBigger/blank', (value) => {
       userOption: { skipIfBigger: value },
       validatedOption: { skipIfBigger: DEFAULT_SKIPIFBIGGER }
     })
-  const msg = util.format('Warning: skipIfBigger is undefined, defaulting to %s.', DEFAULT_SKIPIFBIGGER)
-  expect(console.warn).toBeCalled()
-  expect(warnOutput).toContain(msg)
+  expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(['ANC', '3453', 'xxx', 567])('verifySkipIfBigger/not-boolaen', (value) => {
+test.each(['ANC', '3453', 'xxx', 567, { x: 1 }])('verifySkipIfBigger/not-boolean', (value) => {
   const workingObject = {
     userOption: { skipIfBigger: value },
     validatedOption: {}
@@ -84,7 +83,7 @@ test('verifySkipIfBigger/undefined/quiet', () => {
     userOption: {},
     validatedOption: { quiet: true }
   }
-  global.console.warn = jest.fn()
+  co0.warn = jest.fn()
 
   expect(cov.verifySkipIfBigger(workingObject))
     .resolves
@@ -95,14 +94,14 @@ test('verifySkipIfBigger/undefined/quiet', () => {
         quiet: true
       }
     })
-  expect(console.warn).not.toBeCalled()
+  expect(co0.warn).not.toBeCalled()
 })
 test.each([null, ''])('verifySkipIfBigger/blank/quiet', (value) => {
   const workingObject = {
     userOption: { skipIfBigger: value },
     validatedOption: { quiet: true }
   }
-  global.console.warn = jest.fn()
+  co0.warn = jest.fn()
 
   expect(cov.verifySkipIfBigger(workingObject))
     .resolves
@@ -113,5 +112,5 @@ test.each([null, ''])('verifySkipIfBigger/blank/quiet', (value) => {
         quiet: true
       }
     })
-  expect(console.warn).not.toBeCalled()
+  expect(co0.warn).not.toBeCalled()
 })

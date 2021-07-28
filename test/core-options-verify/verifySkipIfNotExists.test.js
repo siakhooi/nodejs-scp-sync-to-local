@@ -1,7 +1,10 @@
 const util = require('util')
 const cov = require('../../lib/core-options-verify')
+const co0 = require('../../lib/core-output')
+const m = require('../mocklib')
 
 const DEFAULT_SKIPIFNOTEXISTS = false
+const expectedWarn = [util.format('Warning: skipIfNotExists is undefined, defaulting to %s.', DEFAULT_SKIPIFNOTEXISTS)]
 
 test.each([true, 'Y', 'on', 1, 'y', 'yes'])('verifySkipIfNotExists/true', (value) => {
   const workingObject = {
@@ -36,8 +39,8 @@ test('verifySkipIfNotExists/undefined', () => {
     userOption: {},
     validatedOption: {}
   }
-  const warnOutput = []
-  global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
+  const w = new m.MockOutput()
+  co0.warn = w.fn()
 
   expect(cov.verifySkipIfNotExists(workingObject))
     .resolves
@@ -45,17 +48,15 @@ test('verifySkipIfNotExists/undefined', () => {
       userOption: {},
       validatedOption: { skipIfNotExists: DEFAULT_SKIPIFNOTEXISTS }
     })
-  const msg = util.format('Warning: skipIfNotExists is undefined, defaulting to %s.', DEFAULT_SKIPIFNOTEXISTS)
-  expect(console.warn).toBeCalled()
-  expect(warnOutput).toContain(msg)
+  expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 test.each([null, ''])('verifySkipIfNotExists/blank', (value) => {
   const workingObject = {
     userOption: { skipIfNotExists: value },
     validatedOption: {}
   }
-  const warnOutput = []
-  global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
+  const w = new m.MockOutput()
+  co0.warn = w.fn()
 
   expect(cov.verifySkipIfNotExists(workingObject))
     .resolves
@@ -63,9 +64,7 @@ test.each([null, ''])('verifySkipIfNotExists/blank', (value) => {
       userOption: { skipIfNotExists: value },
       validatedOption: { skipIfNotExists: DEFAULT_SKIPIFNOTEXISTS }
     })
-  const msg = util.format('Warning: skipIfNotExists is undefined, defaulting to %s.', DEFAULT_SKIPIFNOTEXISTS)
-  expect(console.warn).toBeCalled()
-  expect(warnOutput).toContain(msg)
+  expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
 test.each(['ANC', '3453', 'xxx', 567])('verifySkipIfNotExists/not-boolaen', (value) => {
@@ -84,7 +83,7 @@ test('verifySkipIfNotExists/undefined/quiet', () => {
     userOption: {},
     validatedOption: { quiet: true }
   }
-  global.console.warn = jest.fn()
+  co0.warn = jest.fn()
 
   expect(cov.verifySkipIfNotExists(workingObject))
     .resolves
@@ -95,14 +94,14 @@ test('verifySkipIfNotExists/undefined/quiet', () => {
         quiet: true
       }
     })
-  expect(console.warn).not.toBeCalled()
+  expect(co0.warn).not.toBeCalled()
 })
 test.each([null, ''])('verifySkipIfNotExists/blank/quiet', (value) => {
   const workingObject = {
     userOption: { skipIfNotExists: value },
     validatedOption: { quiet: true }
   }
-  global.console.warn = jest.fn()
+  co0.warn = jest.fn()
 
   expect(cov.verifySkipIfNotExists(workingObject))
     .resolves
@@ -113,5 +112,5 @@ test.each([null, ''])('verifySkipIfNotExists/blank/quiet', (value) => {
         quiet: true
       }
     })
-  expect(console.warn).not.toBeCalled()
+  expect(co0.warn).not.toBeCalled()
 })

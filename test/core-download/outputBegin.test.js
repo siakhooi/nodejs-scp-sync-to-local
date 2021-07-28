@@ -1,24 +1,24 @@
 const cd0 = require('../../lib/core-download')
+const cou = require('../../lib/core-output')
+const m = require('../mocklib')
 
-test('download/outputBegin', () => {
+test('download/outputBegin/1', () => {
   const fileWorkingObject = {
     fileNum: 1,
     quiet: false,
     remoteFile: './test.txt'
   }
 
-  const logValues = [
-    ['1 downloading ./test.txt']
+  const expectedInfo = [
+    '1 downloading ./test.txt'
   ]
 
-  const logOutput = []
-  global.console.info = jest.fn().mockImplementation((s) => { logOutput.push([s]) })
+  const i = new m.MockOutput()
+  cou.info = i.fn()
 
   cd0.outputBegin(fileWorkingObject)
     .then(() => {
-      expect(console.info).toBeCalled()
-      logValues.forEach((x) => expect(logOutput).toContainEqual(x))
-      logOutput.forEach((x) => expect(logValues).toContainEqual(x))
+      expect(i.verify(expectedInfo)).resolves.toBe(true)
     })
 })
 
@@ -29,10 +29,10 @@ test('download/outputBegin/quiet', () => {
     remoteFile: './test.txt'
   }
 
-  global.console.info = jest.fn()
+  cou.info = jest.fn()
 
   cd0.outputBegin(fileWorkingObject)
     .then(() => {
-      expect(console.info).not.toBeCalled()
+      expect(cou.info).not.toBeCalled()
     })
 })

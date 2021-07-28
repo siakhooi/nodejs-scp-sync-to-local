@@ -1,7 +1,10 @@
 const util = require('util')
 const cov = require('../../lib/core-options-verify')
+const co0 = require('../../lib/core-output')
+const m = require('../mocklib')
 
 const DEFAULT_SKIPIFSAMESIZE = false
+const expectedWarn = [util.format('Warning: skipIfSameSize is undefined, defaulting to %s.', DEFAULT_SKIPIFSAMESIZE)]
 
 test.each([true, 'Y', 'on', 1, 'y', 'yes'])('verifySkipIfSameSize/true', (value) => {
   const workingObject = {
@@ -36,8 +39,8 @@ test('verifySkipIfSameSize/undefined', () => {
     userOption: {},
     validatedOption: {}
   }
-  const warnOutput = []
-  global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
+  const w = new m.MockOutput()
+  co0.warn = w.fn()
 
   expect(cov.verifySkipIfSameSize(workingObject))
     .resolves
@@ -45,9 +48,7 @@ test('verifySkipIfSameSize/undefined', () => {
       userOption: {},
       validatedOption: { skipIfSameSize: DEFAULT_SKIPIFSAMESIZE }
     })
-  const msg = util.format('Warning: skipIfSameSize is undefined, defaulting to %s.', DEFAULT_SKIPIFSAMESIZE)
-  expect(console.warn).toBeCalled()
-  expect(warnOutput).toContain(msg)
+  expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
 test.each([null, ''])('verifySkipIfSameSize/blank', (value) => {
@@ -55,8 +56,8 @@ test.each([null, ''])('verifySkipIfSameSize/blank', (value) => {
     userOption: { skipIfSameSize: value },
     validatedOption: {}
   }
-  const warnOutput = []
-  global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
+  const w = new m.MockOutput()
+  co0.warn = w.fn()
 
   expect(cov.verifySkipIfSameSize(workingObject))
     .resolves
@@ -64,9 +65,7 @@ test.each([null, ''])('verifySkipIfSameSize/blank', (value) => {
       userOption: { skipIfSameSize: value },
       validatedOption: { skipIfSameSize: DEFAULT_SKIPIFSAMESIZE }
     })
-  const msg = util.format('Warning: skipIfSameSize is undefined, defaulting to %s.', DEFAULT_SKIPIFSAMESIZE)
-  expect(console.warn).toBeCalled()
-  expect(warnOutput).toContain(msg)
+  expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
 test.each(['ANC', '3453', 'xxx', 567])('verifySkipIfSameSize/not-boolaen', (value) => {
@@ -85,7 +84,7 @@ test('verifySkipIfSameSize/undefined/quiet', () => {
     userOption: {},
     validatedOption: { quiet: true }
   }
-  global.console.warn = jest.fn()
+  co0.warn = jest.fn()
 
   expect(cov.verifySkipIfSameSize(workingObject))
     .resolves
@@ -96,7 +95,7 @@ test('verifySkipIfSameSize/undefined/quiet', () => {
         quiet: true
       }
     })
-  expect(console.warn).not.toBeCalled()
+  expect(co0.warn).not.toBeCalled()
 })
 
 test.each([null, ''])('verifySkipIfSameSize/blank/quiet', (value) => {
@@ -104,7 +103,7 @@ test.each([null, ''])('verifySkipIfSameSize/blank/quiet', (value) => {
     userOption: { skipIfSameSize: value },
     validatedOption: { quiet: true }
   }
-  global.console.warn = jest.fn()
+  co0.warn = jest.fn()
 
   expect(cov.verifySkipIfSameSize(workingObject))
     .resolves
@@ -115,5 +114,5 @@ test.each([null, ''])('verifySkipIfSameSize/blank/quiet', (value) => {
         quiet: true
       }
     })
-  expect(console.warn).not.toBeCalled()
+  expect(co0.warn).not.toBeCalled()
 })

@@ -1,8 +1,11 @@
 const co0 = require('../../lib/core-options')
 const conf = require('../../index.conf')
+const cou = require('../../lib/core-output')
+const m = require('../mocklib')
+const util = require('util')
 
 /* -- Sample Output
-[Parameters]
+[Parameters)
                    host: 192.168.0.106
                    port: 22
                username: testuser
@@ -52,10 +55,10 @@ test.each([
     }
   }
 
-  global.console.log = jest.fn()
+  cou.info = jest.fn()
 
   co0.print(workingObject).then(() => {
-    expect(console.log).not.toBeCalled()
+    expect(cou.info).not.toBeCalled()
   })
 })
 
@@ -86,36 +89,34 @@ test.each([
     }
   }
 
-  const logValues = [
-    ['[Parameters]', undefined, undefined],
-    ['               host: %s', 'localhost', undefined],
-    ['               port: %d', 22, undefined],
-    ['           username: %s', 'testuser', undefined],
-    ['           password: %s', conf.PASSWORD_MASK, undefined],
-    ['         remotePath: %s', '/home/testuser/data', undefined],
-    ['          localPath: %s', './test-data', undefined],
-    ['       skipIfExists: %s', false, undefined],
-    ['    skipIfNotExists: %s', false, undefined],
-    ['        skipIfNewer: %s', false, undefined],
-    ['        skipIfOlder: %s', false, undefined],
-    ['      skipIfSameAge: %s', false, undefined],
-    ['       skipIfBigger: %s', false, undefined],
-    ['      skipIfSmaller: %s', false, undefined],
-    ['     skipIfSameSize: %s', false, undefined],
-    ['autoCreateLocalPath: %s', true, undefined],
-    ['      keepTimestamp: %s', false, undefined],
-    ['       customFilter: %s', 'Yes', undefined],
-    ['            verbose: %s', verbose, undefined],
-    ['              quiet: %s', quiet, undefined]
+  const expectedInfo = [
+    util.format('[Parameters]'),
+    util.format('               host: %s', 'localhost'),
+    util.format('               port: %d', 22),
+    util.format('           username: %s', 'testuser'),
+    util.format('           password: %s', conf.PASSWORD_MASK),
+    util.format('         remotePath: %s', '/home/testuser/data'),
+    util.format('          localPath: %s', './test-data'),
+    util.format('       skipIfExists: %s', false),
+    util.format('    skipIfNotExists: %s', false),
+    util.format('        skipIfNewer: %s', false),
+    util.format('        skipIfOlder: %s', false),
+    util.format('      skipIfSameAge: %s', false),
+    util.format('       skipIfBigger: %s', false),
+    util.format('      skipIfSmaller: %s', false),
+    util.format('     skipIfSameSize: %s', false),
+    util.format('autoCreateLocalPath: %s', true),
+    util.format('      keepTimestamp: %s', false),
+    util.format('       customFilter: %s', 'Yes'),
+    util.format('            verbose: %s', verbose),
+    util.format('              quiet: %s', quiet)
   ]
 
-  const logOutput = []
-  global.console.log = jest.fn().mockImplementation((s, i, j) => { logOutput.push([s, i, j]) })
+  const i = new m.MockOutput()
+  cou.info = i.fn()
 
   co0.print(workingObject).then(() => {
-    expect(console.log).toBeCalled()
-    logValues.forEach((x) => expect(logOutput).toContainEqual(x))
-    logOutput.forEach((x) => expect(logValues).toContainEqual(x))
+    expect(i.verify(expectedInfo)).resolves.toBe(true)
   })
 })
 
@@ -146,36 +147,34 @@ test.each([
     }
   }
 
-  const logValues = [
-    ['[Parameters]', undefined, undefined],
-    ['               host: %s', 'localhost', undefined],
-    ['               port: %d', 22, undefined],
-    ['           username: %s', 'testuser', undefined],
-    ['           password: %s', conf.PASSWORD_MASK, undefined],
-    ['         remotePath: %s', '/home/testuser/data', undefined],
-    ['          localPath: %s', './test-data', undefined],
-    ['       skipIfExists: %s', false, undefined],
-    ['    skipIfNotExists: %s', false, undefined],
-    ['        skipIfNewer: %s', false, undefined],
-    ['        skipIfOlder: %s', false, undefined],
-    ['      skipIfSameAge: %s', false, undefined],
-    ['       skipIfBigger: %s', false, undefined],
-    ['      skipIfSmaller: %s', false, undefined],
-    ['     skipIfSameSize: %s', false, undefined],
-    ['autoCreateLocalPath: %s', true, undefined],
-    ['      keepTimestamp: %s', false, undefined],
-    ['       customFilter: %s', 'No', undefined],
-    ['            verbose: %s', verbose, undefined],
-    ['              quiet: %s', quiet, undefined]
+  const expectedInfo = [
+    util.format('[Parameters]'),
+    util.format('               host: %s', 'localhost'),
+    util.format('               port: %d', 22),
+    util.format('           username: %s', 'testuser'),
+    util.format('           password: %s', conf.PASSWORD_MASK),
+    util.format('         remotePath: %s', '/home/testuser/data'),
+    util.format('          localPath: %s', './test-data'),
+    util.format('       skipIfExists: %s', false),
+    util.format('    skipIfNotExists: %s', false),
+    util.format('        skipIfNewer: %s', false),
+    util.format('        skipIfOlder: %s', false),
+    util.format('      skipIfSameAge: %s', false),
+    util.format('       skipIfBigger: %s', false),
+    util.format('      skipIfSmaller: %s', false),
+    util.format('     skipIfSameSize: %s', false),
+    util.format('autoCreateLocalPath: %s', true),
+    util.format('      keepTimestamp: %s', false),
+    util.format('       customFilter: %s', 'No'),
+    util.format('            verbose: %s', verbose),
+    util.format('              quiet: %s', quiet)
   ]
 
-  const logOutput = []
-  global.console.log = jest.fn().mockImplementation((s, i, j) => { logOutput.push([s, i, j]) })
+  const i = new m.MockOutput()
+  cou.info = i.fn()
 
   co0.print(workingObject)
     .then(() => {
-      expect(console.log).toBeCalled()
-      logValues.forEach((x) => expect(logOutput).toContainEqual(x))
-      logOutput.forEach((x) => expect(logValues).toContainEqual(x))
+      expect(i.verify(expectedInfo)).resolves.toBe(true)
     })
 })

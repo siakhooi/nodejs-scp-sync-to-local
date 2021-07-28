@@ -1,9 +1,15 @@
 const util = require('util')
 const cov = require('../../lib/core-options-verify')
+const co0 = require('../../lib/core-output')
+const m = require('../mocklib')
 
 const DEFAULT_HOSTNAME = 'localhost'
 
-test('verifyHost', () => {
+const expectedWarn = [
+  util.format('Warning: host is undefined, defaulting to %s.', DEFAULT_HOSTNAME)
+]
+
+test('verifyHost/0', () => {
   const workingObject = {
     userOption: { host: 'localhost' },
     validatedOption: {}
@@ -23,9 +29,8 @@ test.each([null, ''])('verifyHost/blank', (value) => {
     validatedOption: {}
   }
 
-  const warnOutput = []
-  global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
-  const msg = util.format('Warning: host is undefined, defaulting to %s.', DEFAULT_HOSTNAME)
+  const w = new m.MockOutput()
+  co0.warn = w.fn()
 
   expect(cov.verifyHost(workingObject))
     .resolves
@@ -33,8 +38,7 @@ test.each([null, ''])('verifyHost/blank', (value) => {
       userOption: { host: value },
       validatedOption: { host: DEFAULT_HOSTNAME }
     })
-  expect(console.warn).toBeCalled()
-  expect(warnOutput).toContain(msg)
+  expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 test('verifyHost/undefined', () => {
   const workingObject = {
@@ -42,9 +46,8 @@ test('verifyHost/undefined', () => {
     validatedOption: {}
   }
 
-  const warnOutput = []
-  global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
-  const msg = util.format('Warning: host is undefined, defaulting to %s.', DEFAULT_HOSTNAME)
+  const w = new m.MockOutput()
+  co0.warn = w.fn()
 
   expect(cov.verifyHost(workingObject))
     .resolves
@@ -52,8 +55,7 @@ test('verifyHost/undefined', () => {
       userOption: {},
       validatedOption: { host: DEFAULT_HOSTNAME }
     })
-  expect(console.warn).toBeCalled()
-  expect(warnOutput).toContain(msg)
+  expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
 test.each([null, ''])('verifyHost/blank/quiet', (value) => {
@@ -62,7 +64,7 @@ test.each([null, ''])('verifyHost/blank/quiet', (value) => {
     validatedOption: { quiet: true }
   }
 
-  global.console.warn = jest.fn()
+  co0.warn = jest.fn()
 
   expect(cov.verifyHost(workingObject))
     .resolves
@@ -73,7 +75,7 @@ test.each([null, ''])('verifyHost/blank/quiet', (value) => {
         quiet: true
       }
     })
-  expect(console.warn).not.toBeCalled()
+  expect(co0.warn).not.toBeCalled()
 })
 test('verifyHost/undefined/quiet', () => {
   const workingObject = {
@@ -81,7 +83,7 @@ test('verifyHost/undefined/quiet', () => {
     validatedOption: { quiet: true }
   }
 
-  global.console.warn = jest.fn()
+  co0.warn = jest.fn()
 
   expect(cov.verifyHost(workingObject))
     .resolves
@@ -92,5 +94,5 @@ test('verifyHost/undefined/quiet', () => {
         quiet: true
       }
     })
-  expect(console.warn).not.toBeCalled()
+  expect(co0.warn).not.toBeCalled()
 })

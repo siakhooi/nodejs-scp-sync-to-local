@@ -1,5 +1,6 @@
 const util = require('util')
 const cov = require('../../lib/core-options-verify')
+const cou = require('../../lib/core-output')
 
 const DEFAULT_KEEPTIMESTAMP = false
 
@@ -36,7 +37,7 @@ test('verifyKeepTimestamp/undefined', () => {
     userOption: {},
     validatedOption: {}
   }
-  global.console.warn = jest.fn()
+  cou.warn = jest.fn()
 
   expect(cov.verifyKeepTimestamp(workingObject))
     .resolves
@@ -44,7 +45,7 @@ test('verifyKeepTimestamp/undefined', () => {
       userOption: {},
       validatedOption: { keepTimestamp: DEFAULT_KEEPTIMESTAMP }
     })
-  expect(console.warn).not.toBeCalled()
+  expect(cou.warn).not.toBeCalled()
 })
 test.each([null, ''])('verifyKeepTimestamp/blank', (value) => {
   const workingObject = {
@@ -76,7 +77,7 @@ test('verifyKeepTimestamp/undefined/quiet', () => {
     userOption: {},
     validatedOption: { quiet: true }
   }
-  global.console.warn = jest.fn()
+  cou.warn = jest.fn()
 
   expect(cov.verifyKeepTimestamp(workingObject))
     .resolves
@@ -87,7 +88,7 @@ test('verifyKeepTimestamp/undefined/quiet', () => {
         quiet: true
       }
     })
-  expect(console.warn).not.toBeCalled()
+  expect(cou.warn).not.toBeCalled()
 })
 
 test.each([null, ''])('verifyKeepTimestamp/blank/quiet', (value) => {
@@ -96,7 +97,7 @@ test.each([null, ''])('verifyKeepTimestamp/blank/quiet', (value) => {
     validatedOption: { quiet: true }
   }
 
-  global.console.warn = jest.fn()
+  cou.warn = jest.fn()
 
   expect(cov.verifyKeepTimestamp(workingObject))
     .resolves
@@ -107,5 +108,5 @@ test.each([null, ''])('verifyKeepTimestamp/blank/quiet', (value) => {
         quiet: true
       }
     })
-  expect(console.warn).not.toBeCalled()
+  expect(cou.warn).not.toBeCalled()
 })

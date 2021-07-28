@@ -1,4 +1,6 @@
 const coc = require('../../lib/core-options-crosscheck')
+const co0 = require('../../lib/core-output')
+const m = require('../mocklib')
 
 test('checkQuietAndVerbose/override', () => {
   const workingObject = {
@@ -6,14 +8,14 @@ test('checkQuietAndVerbose/override', () => {
     validatedOption: { quiet: true, verbose: true }
   }
 
-  const consoleOutput = []
-  global.console.warn = jest.fn().mockImplementation((s) => { consoleOutput.push(s) })
-  const msg = 'Warn: Both quiet and verbose are set to true, verbose is ignored.'
+  const w = new m.MockOutput()
+  co0.warn = w.fn()
+
+  const expectedWarn = ['Warn: Both quiet and verbose are set to true, verbose is ignored.']
 
   coc.checkQuietAndVerbose(workingObject)
     .then(() => {
-      expect(console.warn).toBeCalled()
-      expect(consoleOutput).toContain(msg)
+      expect(w.verify(expectedWarn)).resolves.toBe(true)
     })
 })
 
@@ -21,15 +23,15 @@ test.each([
   [true, false],
   [false, true],
   [false, false]
-])('checkQuietAndVerbose', (quiet, verbose) => {
+])('checkQuietAndVerbose/3', (quiet, verbose) => {
   const workingObject = {
     userOption: {},
     validatedOption: { quiet: quiet, verbose: verbose }
   }
 
-  global.console.warn = jest.fn()
+  co0.warn = jest.fn()
   coc.checkQuietAndVerbose(workingObject)
     .then(() => {
-      expect(console.warn).not.toBeCalled()
+      expect(co0.warn).not.toBeCalled()
     })
 })

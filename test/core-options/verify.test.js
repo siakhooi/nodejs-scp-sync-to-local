@@ -1,4 +1,6 @@
 const co0 = require('../../lib/core-options')
+const cou = require('../../lib/core-output')
+const m = require('../mocklib')
 
 test('verify/defaults', () => {
   const workingObject = {
@@ -8,10 +10,13 @@ test('verify/defaults', () => {
     },
     validatedOption: {}
   }
-  const warnOutput = []; const infoOutput = []
-  console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
-  console.info = jest.fn().mockImplementation((s) => { infoOutput.push(s) })
-  const warnMsg = [
+  const i = new m.MockOutput()
+  cou.info = i.fn()
+
+  const w = new m.MockOutput()
+  cou.warn = w.fn()
+
+  const expectedWarn = [
     'Warning: host is undefined, defaulting to localhost.',
     'Warning: skipIfExists is undefined, defaulting to false.',
     'Warning: skipIfNotExists is undefined, defaulting to false.',
@@ -24,7 +29,7 @@ test('verify/defaults', () => {
     'Warning: remotePath is undefined, defaulting to current directory. [.]',
     'Warning: localPath is undefined, defaulting to current directory. [.]'
   ]
-  const infoMsg = ['Info: port is undefined, defaulting to 22.']
+  const expectedInfo = ['Info: port is undefined, defaulting to 22.']
 
   co0.verify(workingObject).then((workingObject) => {
     expect(workingObject)
@@ -48,12 +53,8 @@ test('verify/defaults', () => {
           keepTimestamp: false
         }
       })
-    expect(console.warn).toBeCalled()
-    expect(console.info).toBeCalled()
-    warnOutput.forEach((x) => expect(warnMsg).toContainEqual(x))
-    warnMsg.forEach((x) => expect(warnOutput).toContainEqual(x))
-    infoOutput.forEach((x) => expect(infoMsg).toContainEqual(x))
-    infoMsg.forEach((x) => expect(infoOutput).toContainEqual(x))
+    expect(i.verify(expectedInfo)).resolves.toBe(true)
+    expect(w.verify(expectedWarn)).resolves.toBe(true)
   })
 })
 

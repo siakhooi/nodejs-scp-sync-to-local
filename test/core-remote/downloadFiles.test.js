@@ -2,8 +2,16 @@ const scp = require('node-scp')
 const cr0 = require('../../lib/core-remote')
 const cuf = require('../../lib/core-util-fs')
 const md0 = require('../mock-data/remotefilelist')
+const cou = require('../../lib/core-output')
+const m = require('../mocklib')
 const path = require('path')
-beforeEach(() => jest.clearAllMocks())
+
+const i = new m.MockOutput()
+cou.info = i.fn()
+
+beforeEach(() => {
+  i.clear()
+})
 
 test('remote/downloadFiles/success', () => {
   const workingObject = {
@@ -17,10 +25,7 @@ test('remote/downloadFiles/success', () => {
     filteredFileList: md0.mockRemoteFileList
   }
 
-  const consoleOutput = []
-  console.info = jest.fn().mockImplementation((s) => { consoleOutput.push(s) })
-
-  const msg = [
+  const expectedInfo = [
     '1 downloading /home/testuser/data/Mock_File_1.zip',
     '2 downloading /home/testuser/data/Mock_File_2.zip',
     '1 downloaded /home/testuser/data/Mock_File_1.zip ' + path.normalize('./test-data/Mock_File_1.zip') + ' 2928',
@@ -33,9 +38,7 @@ test('remote/downloadFiles/success', () => {
       workingObject.allDownloadPromises.forEach((x) => expect(x).toBeInstanceOf(Promise))
 
       Promise.all(workingObject.allDownloadPromises).then(() => {
-        expect(console.info).toBeCalled()
-        consoleOutput.forEach((x) => expect(msg).toContainEqual(x))
-        msg.forEach((x) => expect(consoleOutput).toContainEqual(x))
+        expect(i.verify(expectedInfo)).resolves.toBe(true)
       })
     })
 })
@@ -52,14 +55,12 @@ test('remote/downloadFiles/success/quiet', () => {
     filteredFileList: md0.mockRemoteFileList
   }
 
-  console.info = jest.fn()
-
   cr0.downloadFiles(workingObject)
     .then((workingObject) => {
       expect(workingObject.allDownloadPromises).toHaveLength(md0.mockRemoteFileList.length)
       workingObject.allDownloadPromises.forEach((x) => expect(x).toBeInstanceOf(Promise))
 
-      expect(console.info).not.toBeCalled()
+      expect(i.verifyFalse()).resolves.toBe(true)
     })
 })
 test('remote/downloadFiles/success/quiet/keepTimestamp', () => {
@@ -74,7 +75,6 @@ test('remote/downloadFiles/success/quiet/keepTimestamp', () => {
     filteredFileList: md0.mockRemoteFileList
   }
 
-  console.info = jest.fn()
   cuf.updateTimes = jest.fn()
 
   cr0.downloadFiles(workingObject)
@@ -83,7 +83,7 @@ test('remote/downloadFiles/success/quiet/keepTimestamp', () => {
       workingObject.allDownloadPromises.forEach((x) => expect(x).toBeInstanceOf(Promise))
 
       Promise.all(workingObject.allDownloadPromises).then((r) => {
-        expect(console.info).not.toBeCalled()
+        expect(i.verifyFalse()).resolves.toBe(true)
         expect(cuf.updateTimes).toBeCalled()
       })
     })

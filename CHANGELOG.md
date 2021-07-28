@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- **Change**
+  - `#107`: As dev, I want to refactor `console.warn`, `console.info`, `console.log` to `lib/core-output`.
+  - `#154`: As dev, I want to change all `console.log` to `console.info` so that i can standardize the codes.
 - **Other**
   - `#160`: As test, I want to jest test and eslint test for all non-master branch commit
 
