@@ -69,7 +69,7 @@ test.each([null, ''])('verifySkipIfSameAge/blank', (value) => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(['ANC', '3453', 'xxx', 567])('verifySkipIfSameAge/not-boolaen', (value) => {
+test.each(dt.NotBooleanDataSet)('verifySkipIfSameAge/not-boolaen', (value) => {
   const workingObject = {
     userOption: { skipIfSameAge: value },
     validatedOption: {}

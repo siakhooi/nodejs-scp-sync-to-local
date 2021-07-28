@@ -68,7 +68,7 @@ test.each([null, ''])('verifySkipIfNotExists/blank', (value) => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(['ANC', '3453', 'xxx', 567])('verifySkipIfNotExists/not-boolaen', (value) => {
+test.each(dt.NotBooleanDataSet)('verifySkipIfNotExists/not-boolaen', (value) => {
   const workingObject = {
     userOption: { skipIfNotExists: value },
     validatedOption: {}

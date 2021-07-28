@@ -62,7 +62,7 @@ test.each([null, ''])('verifyKeepTimestamp/blank', (value) => {
     })
 })
 
-test.each(['ANC', '3453'])('verifyKeepTimestamp/not-boolean', (value) => {
+test.each(dt.NotBooleanDataSet)('verifyKeepTimestamp/not-boolean', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: {}
