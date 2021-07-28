@@ -68,7 +68,7 @@ test.each([null, ''])('verifySkipIfBigger/blank', (value) => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(['ANC', '3453', 'xxx', 567, { x: 1 }])('verifySkipIfBigger/not-boolean', (value) => {
+test.each(dt.NotBooleanDataSet)('verifySkipIfBigger/not-boolean', (value) => {
   const workingObject = {
     userOption: { skipIfBigger: value },
     validatedOption: {}

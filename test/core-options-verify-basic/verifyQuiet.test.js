@@ -60,7 +60,7 @@ test.each([null, ''])('verifyQuiet/blank', (value) => {
     })
 })
 
-test.each(['ANC', '3453'])('verifyQuiet/not-boolean', (value) => {
+test.each(dt.NotBooleanDataSet)('verifyQuiet/not-boolean', (value) => {
   const workingObject = {
     userOption: { quiet: value },
     validatedOption: {}

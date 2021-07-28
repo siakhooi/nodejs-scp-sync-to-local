@@ -59,7 +59,7 @@ test.each([null, ''])('verifyVerbose/blank', (value) => {
     })
 })
 
-test.each(['ANC', '3453'])('verifyVerbose/not-boolean', (value) => {
+test.each(dt.NotBooleanDataSet)('verifyVerbose/not-boolean', (value) => {
   const workingObject = {
     userOption: { verbose: value },
     validatedOption: {}

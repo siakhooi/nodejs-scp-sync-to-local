@@ -2,13 +2,14 @@
 
 ## Unreleased
 
-- **Change**
+- **Code Refactor**
   - `#107`: As dev, I want to refactor `console.warn`, `console.info`, `console.log` to `lib/core-output`.
   - `#154`: As dev, I want to change all `console.log` to `console.info` so that i can standardize the codes.
 - **Test**
   - `#160`: As test, I want to jest test and eslint test for all non-master branch commit
   - `#164`: As test, I want to standardize test data set for `true` (`common-data-sets.js/TrueDataSet`).
   - `#165`: As test, I want to standardize test data set for `false` (`common-data-sets.js/FalseDataSet`).
+  - `#163`: As test, I want to standardize test data set for not `boolean` (`common-data-sets.js/NotBooleanDataSet`).
 
 ## `0.12.0` - 2021-Jul-27
 

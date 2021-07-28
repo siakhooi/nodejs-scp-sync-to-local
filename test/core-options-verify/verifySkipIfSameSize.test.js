@@ -69,7 +69,7 @@ test.each([null, ''])('verifySkipIfSameSize/blank', (value) => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(['ANC', '3453', 'xxx', 567])('verifySkipIfSameSize/not-boolaen', (value) => {
+test.each(dt.NotBooleanDataSet)('verifySkipIfSameSize/not-boolaen', (value) => {
   const workingObject = {
     userOption: { skipIfSameSize: value },
     validatedOption: {}

@@ -7,8 +7,6 @@ test.each(dt.TrueDataSet)('isTrue/true', (value) => {
 test.each(dt.FalseDataSet)('isTrue/false', (value) => {
   return expect(cu.isTrue(value)).toBe(false)
 })
-test.each([
-  'ABC', 123
-])('isTrue/not-boolean', (value) => {
+test.each(dt.NotBooleanDataSet)('isTrue/not-boolean', (value) => {
   return expect(cu.isTrue(value)).toBe(true)
 })

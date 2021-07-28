@@ -60,7 +60,7 @@ test.each([null, ''])('verifyAutoCreateLocalPath/blank', (value) => {
     })
 })
 
-test.each(['ANC', '3453'])('verifyAutoCreateLocalPath/not-boolean', (value) => {
+test.each(dt.NotBooleanDataSet)('verifyAutoCreateLocalPath/not-boolean', (value) => {
   const workingObject = {
     userOption: { autoCreateLocalPath: value },
     validatedOption: {}

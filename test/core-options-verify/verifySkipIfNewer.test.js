@@ -69,7 +69,7 @@ test.each([null, ''])('verifySkipIfNewer/blank', (value) => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(['ANC', '3453', 'xxx', 567])('verifySkipIfNewer/not-boolaen', (value) => {
+test.each(dt.NotBooleanDataSet)('verifySkipIfNewer/not-boolaen', (value) => {
   const workingObject = {
     userOption: { skipIfNewer: value },
     validatedOption: {}
