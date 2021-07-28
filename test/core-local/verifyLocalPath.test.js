@@ -1,6 +1,8 @@
 const util = require('util')
 const cl0 = require('../../lib/core-local')
 const cuf = require('../../lib/core-util-fs')
+const co0 = require('../../lib/core-output')
+const m = require('../mocklib')
 
 beforeEach(() => jest.clearAllMocks())
 
@@ -41,16 +43,17 @@ test('verifyLocalPath/path-not-exist/auto-create', () => {
   jest.spyOn(cuf, 'isPathExist').mockImplementation(() => { return false })
   jest.spyOn(cuf, 'mkdir').mockImplementation(() => { })
 
-  const warnOutput = []
-  global.console.warn = jest.fn().mockImplementation((s) => { warnOutput.push(s) })
+  const w = new m.MockOutput()
+  co0.warn = w.fn()
 
-  const msg = util.format('Warning: localPath is not exists, auto create. [%s]', workingObject.validatedOption.localPath)
+  const expectedWarn = [
+    util.format('Warning: localPath is not exists, auto create. [%s]', workingObject.validatedOption.localPath)
+  ]
   cl0.verifyLocalPath(workingObject)
     .then(() => {
+      expect(w.verify(expectedWarn)).resolves.toBe(true)
       expect(cuf.isPathExist).toBeCalled()
       expect(cuf.mkdir).toBeCalled()
-      expect(console.warn).toBeCalled()
-      expect(warnOutput).toContain(msg)
     })
 })
 
@@ -66,13 +69,13 @@ test('verifyLocalPath/path-not-exist/auto-create/quiet', () => {
   jest.spyOn(cuf, 'isPathExist').mockImplementation(() => { return false })
   jest.spyOn(cuf, 'mkdir').mockImplementation(() => { })
 
-  global.console.warn = jest.fn()
+  co0.warn = jest.fn()
 
   cl0.verifyLocalPath(workingObject)
     .then(() => {
       expect(cuf.isPathExist).toBeCalled()
       expect(cuf.mkdir).toBeCalled()
-      expect(console.warn).not.toBeCalled()
+      expect(co0.warn).not.toBeCalled()
     })
 })
 

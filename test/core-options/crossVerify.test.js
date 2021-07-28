@@ -1,4 +1,6 @@
 const co0 = require('../../lib/core-options')
+const cou = require('../../lib/core-output')
+const m = require('../mocklib')
 
 test('crossVerify/skip/error', () => {
   const workingObject = {
@@ -21,10 +23,10 @@ test.each([
     validatedOption: { skipIfExists: exist, skipIfNotExists: notExist }
   }
 
-  global.console.warn = jest.fn()
+  cou.warn = jest.fn()
   co0.crossVerify(workingObject)
     .then(() => {
-      expect(console.warn).not.toBeCalled()
+      expect(cou.warn).not.toBeCalled()
     })
 })
 
@@ -34,13 +36,13 @@ test('crossVerify/checkQuietAndVerbose/override', () => {
     validatedOption: { quiet: true, verbose: true }
   }
 
-  const consoleOutput = []
-  global.console.warn = jest.fn().mockImplementation((s) => { consoleOutput.push(s) })
-  const msg = 'Warn: Both quiet and verbose are set to true, verbose is ignored.'
+  const w = new m.MockOutput()
+  cou.warn = w.fn()
+
+  const expectedWarn = ['Warn: Both quiet and verbose are set to true, verbose is ignored.']
 
   co0.crossVerify(workingObject).then(() => {
-    expect(console.warn).toBeCalled()
-    expect(consoleOutput).toContain(msg)
+    expect(w.verify(expectedWarn)).resolves.toBe(true)
   })
 })
 
@@ -54,8 +56,8 @@ test.each([
     validatedOption: { quiet: quiet, verbose: verbose }
   }
 
-  global.console.warn = jest.fn()
+  cou.warn = jest.fn()
   co0.crossVerify(workingObject).then(() => {
-    expect(console.warn).not.toBeCalled()
+    expect(cou.warn).not.toBeCalled()
   })
 })

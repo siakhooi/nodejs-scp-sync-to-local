@@ -1,10 +1,17 @@
 const co0 = require('../../lib/core-options')
 const conf = require('../../index.conf')
+const cou = require('../../lib/core-output')
+const m = require('../mocklib')
+const util = require('util')
 
 /* -- Sample Output
 scp-sync-to-local 0.10.0
 
 */
+const expectedInfo = [
+  util.format('%s %s', conf.PROGRAM_NAME, conf.PROGRAM_VERSION),
+  ''
+]
 
 test.each([
   [true, true],
@@ -18,10 +25,10 @@ test.each([
     }
   }
 
-  global.console.log = jest.fn()
+  cou.info = jest.fn()
 
   co0.printProgramName(workingObject).then(() => {
-    expect(console.log).not.toBeCalled()
+    expect(cou.info).not.toBeCalled()
   })
 })
 
@@ -30,25 +37,17 @@ test.each([
 ])('printProgramName/Yes', (verbose, quiet) => {
   const workingObject = {
     validatedOption: {
-
       verbose: verbose,
       quiet: quiet
     }
   }
 
-  const logValues = [
-    ['%s %s', conf.PROGRAM_NAME, conf.PROGRAM_VERSION],
-    ['', undefined, undefined]
-  ]
-
-  const logOutput = []
-  global.console.log = jest.fn().mockImplementation((s, i, j) => { logOutput.push([s, i, j]) })
+  const i = new m.MockOutput()
+  cou.info = i.fn()
 
   co0.printProgramName(workingObject)
     .then(() => {
-      expect(console.log).toBeCalled()
-      logValues.forEach((x) => expect(logOutput).toContainEqual(x))
-      logOutput.forEach((x) => expect(logValues).toContainEqual(x))
+      expect(i.verify(expectedInfo)).resolves.toBe(true)
     })
 })
 
@@ -62,18 +61,11 @@ test.each([
     }
   }
 
-  const logValues = [
-    ['%s %s', conf.PROGRAM_NAME, conf.PROGRAM_VERSION],
-    ['', undefined, undefined]
-  ]
-
-  const logOutput = []
-  global.console.log = jest.fn().mockImplementation((s, i, j) => { logOutput.push([s, i, j]) })
+  const i = new m.MockOutput()
+  cou.info = i.fn()
 
   co0.printProgramName(workingObject)
     .then(() => {
-      expect(console.log).toBeCalled()
-      logValues.forEach((x) => expect(logOutput).toContainEqual(x))
-      logOutput.forEach((x) => expect(logValues).toContainEqual(x))
+      expect(i.verify(expectedInfo)).resolves.toBe(true)
     })
 })

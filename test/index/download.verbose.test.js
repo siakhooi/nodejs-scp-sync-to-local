@@ -3,6 +3,8 @@ const path = require('path')
 const cuf = require('../../lib/core-util-fs')
 const cou = require('../../lib/core-output')
 const m = require('../mocklib')
+const conf = require('../../index.conf')
+const util = require('util')
 
 const i = new m.MockOutput()
 cou.info = i.fn()
@@ -17,8 +19,30 @@ beforeEach(() => {
   p.clear()
 })
 
-test('scp/download/ok/1', () => {
+test('scp/download/verbose/1', () => {
   const expectedInfo = [
+    util.format('%s %s', conf.PROGRAM_NAME, conf.PROGRAM_VERSION),
+    '',
+    util.format('[Parameters]'),
+    util.format('               host: %s', '1.0.0.0'),
+    util.format('               port: %d', 22),
+    util.format('           username: %s', 'testuser'),
+    util.format('           password: %s', conf.PASSWORD_MASK),
+    util.format('         remotePath: %s', '/home/testuser/data'),
+    util.format('          localPath: %s', './test-data1'),
+    util.format('       skipIfExists: %s', false),
+    util.format('    skipIfNotExists: %s', false),
+    util.format('        skipIfNewer: %s', false),
+    util.format('        skipIfOlder: %s', false),
+    util.format('      skipIfSameAge: %s', false),
+    util.format('       skipIfBigger: %s', false),
+    util.format('      skipIfSmaller: %s', false),
+    util.format('     skipIfSameSize: %s', false),
+    util.format('autoCreateLocalPath: %s', true),
+    util.format('      keepTimestamp: %s', false),
+    util.format('       customFilter: %s', 'No'),
+    util.format('            verbose: %s', true),
+    util.format('              quiet: %s', false),
     'Info: port is undefined, defaulting to 22.',
     '1 downloading /home/testuser/data/Mock_File_1.zip',
     '2 downloading /home/testuser/data/Mock_File_2.zip',
@@ -47,6 +71,7 @@ test('scp/download/ok/1', () => {
     username: 'testuser',
     password: 'testpassord',
     remotePath: '/home/testuser/data',
+    verbose: true,
     localPath: './test-data1'
   }
 
@@ -58,8 +83,30 @@ test('scp/download/ok/1', () => {
     })
 })
 
-test('scp/download/ok/2', () => {
+test('scp/download/verbose/2', () => {
   const expectedInfo = [
+    util.format('%s %s', conf.PROGRAM_NAME, conf.PROGRAM_VERSION),
+    '',
+    util.format('[Parameters]'),
+    util.format('               host: %s', '1.0.0.0'),
+    util.format('               port: %d', 23),
+    util.format('           username: %s', 'testuser'),
+    util.format('           password: %s', conf.PASSWORD_MASK),
+    util.format('         remotePath: %s', '/home/testuser/data'),
+    util.format('          localPath: %s', './test-data1'),
+    util.format('       skipIfExists: %s', false),
+    util.format('    skipIfNotExists: %s', false),
+    util.format('        skipIfNewer: %s', false),
+    util.format('        skipIfOlder: %s', false),
+    util.format('      skipIfSameAge: %s', false),
+    util.format('       skipIfBigger: %s', false),
+    util.format('      skipIfSmaller: %s', false),
+    util.format('     skipIfSameSize: %s', false),
+    util.format('autoCreateLocalPath: %s', true),
+    util.format('      keepTimestamp: %s', false),
+    util.format('       customFilter: %s', 'No'),
+    util.format('            verbose: %s', true),
+    util.format('              quiet: %s', false),
     '1 downloading /home/testuser/data/Mock_File_1.zip',
     '2 downloading /home/testuser/data/Mock_File_2.zip',
     '1 downloaded /home/testuser/data/Mock_File_1.zip ' + path.normalize('./test-data1/Mock_File_1.zip') + ' 2928',
@@ -84,6 +131,7 @@ test('scp/download/ok/2', () => {
   const option = {
     host: '1.0.0.0',
     port: 23,
+    verbose: true,
     username: 'testuser',
     password: 'testpassord',
     remotePath: '/home/testuser/data',

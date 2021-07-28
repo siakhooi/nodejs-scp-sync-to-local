@@ -1,9 +1,12 @@
 const util = require('util')
 const cov = require('../../lib/core-options-verify')
+const cou = require('../../lib/core-output')
+const m = require('../mocklib')
 
 const DEFAULT_PORT = 22
+const expectedInfo = [util.format('Info: port is undefined, defaulting to %d.', DEFAULT_PORT)]
 
-test.each([23, '34'])('verifyPort', (value) => {
+test.each([23, '34'])('verifyPort/number', (value) => {
   const workingObject = {
     userOption: { port: value },
     validatedOption: {}
@@ -23,17 +26,16 @@ test.each([null, ''])('verifyPort/blank', (value) => {
     validatedOption: {}
   }
 
-  const consoleOutput = []
-  global.console.info = jest.fn().mockImplementation((s) => { consoleOutput.push(s) })
-  const msg = util.format('Info: port is undefined, defaulting to %d.', DEFAULT_PORT)
+  const i = new m.MockOutput()
+  cou.info = i.fn()
+
   expect(cov.verifyPort(workingObject))
     .resolves
     .toMatchObject({
       userOption: { port: value },
       validatedOption: { port: DEFAULT_PORT }
     })
-  expect(console.info).toBeCalled()
-  expect(consoleOutput).toContain(msg)
+  expect(i.verify(expectedInfo)).resolves.toBe(true)
 })
 test('verifyPort/undefined', () => {
   const workingObject = {
@@ -41,17 +43,15 @@ test('verifyPort/undefined', () => {
     validatedOption: {}
   }
 
-  const consoleOutput = []
-  global.console.info = jest.fn().mockImplementation((s) => { consoleOutput.push(s) })
-  const msg = util.format('Info: port is undefined, defaulting to %d.', DEFAULT_PORT)
+  const i = new m.MockOutput()
+  cou.info = i.fn()
   expect(cov.verifyPort(workingObject))
     .resolves
     .toMatchObject({
       userOption: {},
       validatedOption: { port: DEFAULT_PORT }
     })
-  expect(console.info).toBeCalled()
-  expect(consoleOutput).toContain(msg)
+  expect(i.verify(expectedInfo)).resolves.toBe(true)
 })
 
 test('verifyPort/not-number', () => {
@@ -72,7 +72,7 @@ test.each([null, ''])('verifyPort/blank/quiet', (value) => {
     validatedOption: { quiet: true }
   }
 
-  global.console.info = jest.fn()
+  cou.info = jest.fn()
   expect(cov.verifyPort(workingObject))
     .resolves
     .toMatchObject({
@@ -82,7 +82,7 @@ test.each([null, ''])('verifyPort/blank/quiet', (value) => {
         quiet: true
       }
     })
-  expect(console.info).not.toBeCalled()
+  expect(cou.info).not.toBeCalled()
 })
 test('verifyPort/undefined/quiet', () => {
   const workingObject = {
@@ -90,7 +90,7 @@ test('verifyPort/undefined/quiet', () => {
     validatedOption: { quiet: true }
   }
 
-  global.console.info = jest.fn()
+  cou.info = jest.fn()
   expect(cov.verifyPort(workingObject))
     .resolves
     .toMatchObject({
@@ -100,5 +100,5 @@ test('verifyPort/undefined/quiet', () => {
         quiet: true
       }
     })
-  expect(console.info).not.toBeCalled()
+  expect(cou.info).not.toBeCalled()
 })

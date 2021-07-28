@@ -1,12 +1,11 @@
 const scp = require('../../index')
+const cou = require('../../lib/core-output')
 
-beforeEach(() => jest.clearAllMocks())
+cou.info = jest.fn()
+cou.warn = jest.fn()
+cou.print = jest.fn()
 
 test('scp/download/quiet/1', () => {
-  console.info = jest.fn()
-  console.warn = jest.fn()
-  process.stdout.write = jest.fn()
-
   const option = {
     host: '1.0.0.0',
     quiet: true,
@@ -18,17 +17,13 @@ test('scp/download/quiet/1', () => {
 
   return scp.download(option)
     .then(() => {
-      expect(console.warn).not.toBeCalled()
-      expect(console.info).not.toBeCalled()
-      expect(process.stdout.write).not.toBeCalled()
+      expect(cou.warn).not.toBeCalled()
+      expect(cou.info).not.toBeCalled()
+      expect(cou.print).not.toBeCalled()
     })
 })
 
 test('scp/download/quiet/2', () => {
-  console.info = jest.fn()
-  console.warn = jest.fn()
-  process.stdout.write = jest.fn()
-
   const option = {
     host: '1.0.0.0',
     port: 23,
@@ -40,8 +35,8 @@ test('scp/download/quiet/2', () => {
   }
 
   return scp.download(option).then(() => {
-    expect(console.warn).not.toBeCalled()
-    expect(console.info).not.toBeCalled()
-    expect(process.stdout.write).not.toBeCalled()
+    expect(cou.warn).not.toBeCalled()
+    expect(cou.info).not.toBeCalled()
+    expect(cou.print).not.toBeCalled()
   })
 })
