@@ -2,6 +2,7 @@ const util = require('util')
 const cov = require('../../lib/core-options-verify')
 const co0 = require('../../lib/core-output')
 const m = require('../mocklib')
+const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_HOSTNAME = 'localhost'
 
@@ -23,7 +24,7 @@ test('verifyHost/0', () => {
     })
 })
 
-test.each([null, ''])('verifyHost/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyHost/blank', (value) => {
   const workingObject = {
     userOption: { host: value },
     validatedOption: {}
@@ -58,7 +59,7 @@ test('verifyHost/undefined', () => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each([null, ''])('verifyHost/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifyHost/blank/quiet', (value) => {
   const workingObject = {
     userOption: { host: value },
     validatedOption: { quiet: true }

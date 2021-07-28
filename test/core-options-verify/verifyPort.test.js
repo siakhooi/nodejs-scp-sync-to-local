@@ -2,6 +2,7 @@ const util = require('util')
 const cov = require('../../lib/core-options-verify')
 const cou = require('../../lib/core-output')
 const m = require('../mocklib')
+const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_PORT = 22
 const expectedInfo = [util.format('Info: port is undefined, defaulting to %d.', DEFAULT_PORT)]
@@ -20,7 +21,7 @@ test.each([23, '34'])('verifyPort/number', (value) => {
     })
 })
 
-test.each([null, ''])('verifyPort/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyPort/blank', (value) => {
   const workingObject = {
     userOption: { port: value },
     validatedOption: {}
@@ -66,7 +67,7 @@ test('verifyPort/not-number', () => {
     .toThrow(msg)
 })
 
-test.each([null, ''])('verifyPort/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifyPort/blank/quiet', (value) => {
   const workingObject = {
     userOption: { port: value },
     validatedOption: { quiet: true }

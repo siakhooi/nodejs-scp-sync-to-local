@@ -1,4 +1,5 @@
 const cov = require('../../lib/core-options-verify')
+const dt = require('../mock-data/common-data-sets')
 
 test('verifyPassword', () => {
   const workingObject = {
@@ -14,7 +15,7 @@ test('verifyPassword', () => {
     })
 })
 
-test.each([null, ''])('verifyPassword/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyPassword/blank', (value) => {
   const workingObject = {
     userOption: { password: value },
     validatedOption: {}

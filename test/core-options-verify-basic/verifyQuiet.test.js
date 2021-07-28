@@ -46,7 +46,7 @@ test('verifyQuiet/undefined', () => {
     })
 })
 
-test.each([null, ''])('verifyQuiet/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyQuiet/blank', (value) => {
   const workingObject = {
     userOption: { quiet: value },
     validatedOption: {}

@@ -51,7 +51,7 @@ test('verifySkipIfNotExists/undefined', () => {
     })
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
-test.each([null, ''])('verifySkipIfNotExists/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfNotExists/blank', (value) => {
   const workingObject = {
     userOption: { skipIfNotExists: value },
     validatedOption: {}
@@ -97,7 +97,7 @@ test('verifySkipIfNotExists/undefined/quiet', () => {
     })
   expect(co0.warn).not.toBeCalled()
 })
-test.each([null, ''])('verifySkipIfNotExists/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfNotExists/blank/quiet', (value) => {
   const workingObject = {
     userOption: { skipIfNotExists: value },
     validatedOption: { quiet: true }

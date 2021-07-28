@@ -45,7 +45,7 @@ test('verifyVerbose/undefined', () => {
       validatedOption: { verbose: DEFAULT_VERBOSE }
     })
 })
-test.each([null, ''])('verifyVerbose/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyVerbose/blank', (value) => {
   const workingObject = {
     userOption: { verbose: value },
     validatedOption: {}

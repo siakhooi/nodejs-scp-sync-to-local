@@ -46,7 +46,7 @@ test('verifyAutoCreateLocalPath/undefined', () => {
     })
 })
 
-test.each([null, ''])('verifyAutoCreateLocalPath/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyAutoCreateLocalPath/blank', (value) => {
   const workingObject = {
     userOption: { autoCreateLocalPath: value },
     validatedOption: {}

@@ -2,6 +2,7 @@ const util = require('util')
 const cov = require('../../lib/core-options-verify')
 const co0 = require('../../lib/core-output')
 const m = require('../mocklib')
+const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_REMOTEPATH = '.'
 const expectedWarn = [util.format('Warning: remotePath is undefined, defaulting to current directory. [%s]', DEFAULT_REMOTEPATH)]
@@ -20,7 +21,7 @@ test('verifyRemotePath/text', () => {
     })
 })
 
-test.each([null, ''])('verifyRemotePath/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyRemotePath/blank', (value) => {
   const workingObject = {
     userOption: { remotePath: value },
     validatedOption: {}
@@ -54,7 +55,7 @@ test('verifyRemotePath/undefined', () => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each([null, ''])('verifyRemotePath/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifyRemotePath/blank/quiet', (value) => {
   const workingObject = {
     userOption: { remotePath: value },
     validatedOption: { quiet: true }

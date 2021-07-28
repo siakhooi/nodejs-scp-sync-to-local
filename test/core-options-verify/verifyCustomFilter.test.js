@@ -1,5 +1,6 @@
 const cov = require('../../lib/core-options-verify')
 const util = require('util')
+const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_CUSTOMFILTER = null
 
@@ -44,7 +45,7 @@ test.each(['ANC', 3453, true])('verifyCustomFilter/not-function', (value) => {
     .toThrow(msg)
 })
 
-test.each([null, ''])('verifyCustomFilter/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyCustomFilter/blank', (value) => {
   const workingObject = {
     userOption: { customFilter: value },
     validatedOption: {}
