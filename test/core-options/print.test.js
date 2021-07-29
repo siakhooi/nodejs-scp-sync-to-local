@@ -23,6 +23,7 @@ const util = require('util')
     autoCreateLocalPath: true
           keepTimestamp: false
            customFilter: Yes
+         postProcessing: Yes
                 verbose: true
                   quiet: false
 */
@@ -84,6 +85,7 @@ test.each([
       autoCreateLocalPath: true,
       keepTimestamp: false,
       customFilter: () => { },
+      postProcessing: () => { },
       verbose: verbose,
       quiet: quiet
     }
@@ -108,6 +110,7 @@ test.each([
     util.format('autoCreateLocalPath: %s', true),
     util.format('      keepTimestamp: %s', false),
     util.format('       customFilter: %s', 'Yes'),
+    util.format('     postProcessing: %s', 'Yes'),
     util.format('            verbose: %s', verbose),
     util.format('              quiet: %s', quiet)
   ]
@@ -142,6 +145,7 @@ test.each([
       autoCreateLocalPath: true,
       keepTimestamp: false,
       customFilter: null,
+      postProcessing: null,
       verbose: verbose,
       quiet: quiet
     }
@@ -166,6 +170,7 @@ test.each([
     util.format('autoCreateLocalPath: %s', true),
     util.format('      keepTimestamp: %s', false),
     util.format('       customFilter: %s', 'No'),
+    util.format('     postProcessing: %s', 'No'),
     util.format('            verbose: %s', verbose),
     util.format('              quiet: %s', quiet)
   ]

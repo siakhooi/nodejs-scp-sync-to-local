@@ -41,8 +41,9 @@ const scp = require("scp-sync-to-local");
 | `verbose`             | `boolean`  | `false`       | Print full option values before downloads. Override by `quiet`                   |
 | `quiet`               | `boolean`  | `false`       | no output, except error. override `verbose`                                      |
 | `autoCreateLocalPath` | `boolean`  | `true`        | auto Create Local Path if it is not exist, otherwise, throw an Error.            |
-| `customFilter`        | `function` | `null`        | use custom filter function                                                       |
 | `keepTimestamp`       | `boolean`  | `false`       | Keep the Timestamp of file same with remote.                                     |
+| `customFilter`        | `function` | `null`        | use custom filter function                                                       |
+| `postProcessing`      | `function` | `null`        | user defined function to process file after download                             |
 
 - A file will be downloaded only if **all filters** return `true`.
 
@@ -74,7 +75,6 @@ const scp = require("scp-sync-to-local");
     localPath: './localPath',
     remotePath: '/remotePath',
     autoCreateLocalPath: true,
-    customFilter: null,
     keepTimestamp: false,
     quiet: false,
     skipIfBigger: false,
@@ -85,7 +85,9 @@ const scp = require("scp-sync-to-local");
     skipIfSameAge: false,
     skipIfSameSize: false,
     skipIfSmaller: false,
-    verbose: false
+    verbose: false,
+    customFilter: null,
+    postProcessing: null
   }
 }
 ```
@@ -116,6 +118,44 @@ var option = {
 scp.download(option).then((returnValue) => {
   console.log("downloads: ", returnValue.totalDownloaded); //see returnValue above for more information.
 });
+```
+
+### Post Download Processing - `postProcessing`
+
+- User defined function can be provided to process the file after downloaded.
+- Example of the function
+
+```js
+function myPostProcessing(localPath, remotePathObject) {}
+```
+
+- `localPath`
+  - `option.localPath + path.sep + remotePathObject.name`
+- `remotePathObject` - an object, example:
+
+```js
+    {
+        type: '-',
+        name: 'filename.ext',
+        size: 49453,
+        modifyTime: 1622867586000,
+        accessTime: 1623577546000,
+        rights: { user: 'rw', group: 'rw', other: 'r' },
+        owner: 1001,
+        group: 1001
+    }
+```
+
+- Usage
+
+```js
+var option = {
+  username: "yourUsername",
+  password: "yourPassword",
+  postProcessing: myPostProcessing, //declare postProcessing
+};
+
+scp.download(option);
 ```
 
 ### Custom Filter

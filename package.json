@@ -1,13 +1,13 @@
 {
   "name": "scp-sync-to-local",
-  "version": "0.12.0",
+  "version": "0.13.0",
   "description": "SCP all files in remote directory to local directory",
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "download-from-vm": "node test-runner/download-from-vm.js",
     "eslint": "npx eslint --format table .",
-    "test-single": "jest -t 'core-report/returnReport/*'"
+    "test-single": "jest -t 'remote/downloadFiles/success/postProcessin*'"
   },
   "repository": {
     "type": "git",

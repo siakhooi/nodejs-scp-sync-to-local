@@ -19,7 +19,8 @@ test('remote/downloadFiles/success', () => {
       remotePath: '/home/testuser/data',
       localPath: './test-data',
       keepTimestamp: false,
-      quiet: false
+      quiet: false,
+      postProcessing: null
     },
     scpClient: scp.mockClient,
     filteredFileList: md0.mockRemoteFileList
@@ -49,7 +50,8 @@ test('remote/downloadFiles/success/quiet', () => {
       remotePath: '/home/testuser/data',
       localPath: './test-data',
       keepTimestamp: false,
-      quiet: true
+      quiet: true,
+      postProcessing: null
     },
     scpClient: scp.mockClient,
     filteredFileList: md0.mockRemoteFileList
@@ -69,7 +71,8 @@ test('remote/downloadFiles/success/quiet/keepTimestamp', () => {
       remotePath: '/home/testuser/data',
       localPath: './test-data',
       keepTimestamp: true,
-      quiet: true
+      quiet: true,
+      postProcessing: null
     },
     scpClient: scp.mockClient,
     filteredFileList: md0.mockRemoteFileList
@@ -85,6 +88,40 @@ test('remote/downloadFiles/success/quiet/keepTimestamp', () => {
       Promise.all(workingObject.allDownloadPromises).then((r) => {
         expect(i.verifyFalse()).resolves.toBe(true)
         expect(cuf.updateTimes).toBeCalled()
+      })
+    })
+})
+
+test('remote/downloadFiles/success/postProcessing', () => {
+  const echoHello = (l, r) => { cou.info('Hello %s %s', l, r.name) }
+  const workingObject = {
+    validatedOption: {
+      remotePath: '/home/testuser/data',
+      localPath: './test-data',
+      keepTimestamp: false,
+      quiet: false,
+      postProcessing: echoHello
+    },
+    scpClient: scp.mockClient,
+    filteredFileList: md0.mockRemoteFileList
+  }
+
+  const expectedInfo = [
+    '1 downloading /home/testuser/data/Mock_File_1.zip',
+    '2 downloading /home/testuser/data/Mock_File_2.zip',
+    'Hello ' + path.normalize('./test-data/Mock_File_1.zip') + ' Mock_File_1.zip',
+    'Hello ' + path.normalize('./test-data/Mock_File_2.zip') + ' Mock_File_2.zip',
+    '1 downloaded /home/testuser/data/Mock_File_1.zip ' + path.normalize('./test-data/Mock_File_1.zip') + ' 2928',
+    '2 downloaded /home/testuser/data/Mock_File_2.zip ' + path.normalize('./test-data/Mock_File_2.zip') + ' 49453'
+  ]
+
+  cr0.downloadFiles(workingObject)
+    .then((workingObject) => {
+      expect(workingObject.allDownloadPromises).toHaveLength(md0.mockRemoteFileList.length)
+      workingObject.allDownloadPromises.forEach((x) => expect(x).toBeInstanceOf(Promise))
+
+      Promise.all(workingObject.allDownloadPromises).then(() => {
+        expect(i.verify(expectedInfo)).resolves.toBe(true)
       })
     })
 })

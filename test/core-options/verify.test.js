@@ -59,6 +59,7 @@ test('verify/defaults', () => {
 })
 
 test('verify/all', () => {
+  const dummyFunction = () => { }
   const workingObject = {
     userOption: {
       host: 'xxxxx',
@@ -76,7 +77,9 @@ test('verify/all', () => {
       skipIfSmaller: true,
       skipIfSameSize: true,
       autoCreateLocalPath: false,
-      keepTimestamp: true
+      keepTimestamp: true,
+      customFilter: dummyFunction,
+      postProcessing: dummyFunction
     },
     validatedOption: {}
   }
@@ -99,7 +102,9 @@ test('verify/all', () => {
         skipIfSmaller: true,
         skipIfSameSize: true,
         autoCreateLocalPath: false,
-        keepTimestamp: true
+        keepTimestamp: true,
+        customFilter: dummyFunction,
+        postProcessing: dummyFunction
       }
     })
 })
