@@ -7,7 +7,7 @@ const dt = require('../mock-data/common-data-sets')
 const DEFAULT_PORT = 22
 const expectedInfo = [util.format('Info: port is undefined, defaulting to %d.', DEFAULT_PORT)]
 
-test.each([23, '34'])('verifyPort/number', (value) => {
+test.each(dt.IntegerDataSet)('verifyPort/Integer', (value) => {
   const workingObject = {
     userOption: { port: value },
     validatedOption: {}
