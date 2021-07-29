@@ -3,6 +3,7 @@ const co0 = require('./lib/core-options')
 const cf0 = require('./lib/core-filters')
 const cl0 = require('./lib/core-local')
 const cr0 = require('./lib/core-remote')
+const crp = require('./lib/core-report')
 
 exports.getVersionNumber = cv0.getVersionNumber
 
@@ -20,4 +21,5 @@ exports.download = function (option) {
     .then(cf0.filterFiles)
     .then(cr0.downloadFiles)
     .then(cr0.disconnectOnAllDone)
+    .then(crp.returnReport)
 }

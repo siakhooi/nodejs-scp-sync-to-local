@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- **Added**
+  - `#152`: As scp user, I want `scp.download` to return statistics so that i can further use the info.
 - **Code Refactor**
   - `#107`: As dev, I want to refactor `console.warn`, `console.info`, `console.log` to `lib/core-output`.
   - `#154`: As dev, I want to change all `console.log` to `console.info` so that i can standardize the codes.

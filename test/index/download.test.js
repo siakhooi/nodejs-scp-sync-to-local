@@ -49,12 +49,49 @@ test('scp/download/ok/1', () => {
     remotePath: '/home/testuser/data',
     localPath: './test-data1'
   }
+  const expectedReturnValue = {
+    files: [{
+      accessTime: 1623577546000,
+      modifyTime: 1622867586000,
+      name: 'Mock_File_1.zip',
+      size: 2928
+    },
+    {
+      accessTime: 1623577546000,
+      modifyTime: 1622867586000,
+      name: 'Mock_File_2.zip',
+      size: 49453
+    }],
+    totalDownloaded: 0,
+    validatedOption: {
+      autoCreateLocalPath: true,
+      customFilter: null,
+      host: '1.0.0.0',
+      keepTimestamp: false,
+      localPath: './test-data1',
+      password: 'testpassord',
+      port: 22,
+      quiet: false,
+      remotePath: '/home/testuser/data',
+      skipIfBigger: false,
+      skipIfExists: false,
+      skipIfNewer: false,
+      skipIfNotExists: false,
+      skipIfOlder: false,
+      skipIfSameAge: false,
+      skipIfSameSize: false,
+      skipIfSmaller: false,
+      username: 'testuser',
+      verbose: false
+    }
+  }
 
   return scp.download(option)
-    .then(() => {
+    .then((returnValue) => {
       expect(i.verify(expectedInfo)).resolves.toBe(true)
       expect(w.verify(expectedWarn)).resolves.toBe(true)
       expect(p.verify(expectedPrint)).resolves.toBe(true)
+      expect(returnValue).toMatchObject(expectedReturnValue)
     })
 })
 
@@ -89,10 +126,46 @@ test('scp/download/ok/2', () => {
     remotePath: '/home/testuser/data',
     localPath: './test-data1'
   }
-
-  return scp.download(option).then(() => {
+  const expectedReturnValue = {
+    files: [{
+      accessTime: 1623577546000,
+      modifyTime: 1622867586000,
+      name: 'Mock_File_1.zip',
+      size: 2928
+    },
+    {
+      accessTime: 1623577546000,
+      modifyTime: 1622867586000,
+      name: 'Mock_File_2.zip',
+      size: 49453
+    }],
+    totalDownloaded: 0,
+    validatedOption: {
+      autoCreateLocalPath: true,
+      customFilter: null,
+      host: '1.0.0.0',
+      keepTimestamp: false,
+      localPath: './test-data1',
+      password: 'testpassord',
+      port: 23,
+      quiet: false,
+      remotePath: '/home/testuser/data',
+      skipIfBigger: false,
+      skipIfExists: false,
+      skipIfNewer: false,
+      skipIfNotExists: false,
+      skipIfOlder: false,
+      skipIfSameAge: false,
+      skipIfSameSize: false,
+      skipIfSmaller: false,
+      username: 'testuser',
+      verbose: false
+    }
+  }
+  return scp.download(option).then((returnValue) => {
     expect(p.verify(expectedPrint)).resolves.toBe(true)
     expect(i.verify(expectedInfo)).resolves.toBe(true)
     expect(w.verify(expectedWarn)).resolves.toBe(true)
+    expect(returnValue).toMatchObject(expectedReturnValue)
   })
 })
