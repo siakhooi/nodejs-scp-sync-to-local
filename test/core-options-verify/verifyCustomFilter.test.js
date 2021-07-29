@@ -34,7 +34,7 @@ test('verifyCustomFilter/undefined', () => {
     })
 })
 
-test.each(['ANC', 3453, true])('verifyCustomFilter/not-function', (value) => {
+test.each(dt.NotFunctionDataSet)('verifyCustomFilter/not-function', (value) => {
   const workingObject = {
     userOption: { customFilter: value },
     validatedOption: {}
