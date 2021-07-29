@@ -1,0 +1,98 @@
+const scp = require('../../index')
+const path = require('path')
+const cuf = require('../../lib/core-util-fs')
+const cou = require('../../lib/core-output')
+const m = require('../mocklib')
+
+const i = new m.MockOutput()
+cou.info = i.fn()
+const w = new m.MockOutput()
+cou.warn = w.fn()
+const p = new m.MockOutput()
+cou.print = p.fn()
+
+beforeEach(() => {
+  i.clear()
+  w.clear()
+  p.clear()
+})
+
+test('scp/download/postProcessing/1', () => {
+  const echoHello = (l, r) => { cou.info('Hello %s %s', l, r.name) }
+
+  const expectedInfo = [
+    '1 downloading /home/testuser/data/Mock_File_1.zip',
+    '2 downloading /home/testuser/data/Mock_File_2.zip',
+    'Hello ' + path.normalize('./test-data1/Mock_File_1.zip') + ' Mock_File_1.zip',
+    'Hello ' + path.normalize('./test-data1/Mock_File_2.zip') + ' Mock_File_2.zip',
+    '1 downloaded /home/testuser/data/Mock_File_1.zip ' + path.normalize('./test-data1/Mock_File_1.zip') + ' 2928',
+    '2 downloaded /home/testuser/data/Mock_File_2.zip ' + path.normalize('./test-data1/Mock_File_2.zip') + ' 49453',
+    'All done, total downloads = 2.',
+    'done']
+
+  const expectedPrint = ['Downloading Remote File List...']
+
+  const expectedWarn = [
+    'Warning: skipIfExists is undefined, defaulting to false.',
+    'Warning: skipIfNotExists is undefined, defaulting to false.',
+    'Warning: skipIfNewer is undefined, defaulting to false.',
+    'Warning: skipIfOlder is undefined, defaulting to false.',
+    'Warning: skipIfSameAge is undefined, defaulting to false.',
+    'Warning: skipIfBigger is undefined, defaulting to false.',
+    'Warning: skipIfSmaller is undefined, defaulting to false.',
+    'Warning: skipIfSameSize is undefined, defaulting to false.',
+    'Warning: localPath is not exists, auto create. [./test-data1]']
+
+  cuf.mkdir = jest.fn()
+  const option = {
+    host: '1.0.0.0',
+    port: 23,
+    username: 'testuser',
+    password: 'testpassord',
+    remotePath: '/home/testuser/data',
+    localPath: './test-data1',
+    postProcessing: echoHello
+  }
+  const expectedReturnValue = {
+    files: [{
+      accessTime: 1623577546000,
+      modifyTime: 1622867586000,
+      name: 'Mock_File_1.zip',
+      size: 2928
+    },
+    {
+      accessTime: 1623577546000,
+      modifyTime: 1622867586000,
+      name: 'Mock_File_2.zip',
+      size: 49453
+    }],
+    totalDownloaded: 0,
+    validatedOption: {
+      autoCreateLocalPath: true,
+      customFilter: null,
+      host: '1.0.0.0',
+      keepTimestamp: false,
+      localPath: './test-data1',
+      password: 'testpassord',
+      port: 23,
+      quiet: false,
+      remotePath: '/home/testuser/data',
+      skipIfBigger: false,
+      skipIfExists: false,
+      skipIfNewer: false,
+      skipIfNotExists: false,
+      skipIfOlder: false,
+      skipIfSameAge: false,
+      skipIfSameSize: false,
+      skipIfSmaller: false,
+      username: 'testuser',
+      verbose: false
+    }
+  }
+  return scp.download(option).then((returnValue) => {
+    expect(p.verify(expectedPrint)).resolves.toBe(true)
+    expect(i.verify(expectedInfo)).resolves.toBe(true)
+    expect(w.verify(expectedWarn)).resolves.toBe(true)
+    expect(returnValue).toMatchObject(expectedReturnValue)
+  })
+})

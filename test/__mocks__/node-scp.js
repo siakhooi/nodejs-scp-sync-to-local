@@ -34,6 +34,7 @@ module.exports.mockClient = {
       if (testName === 'remote/downloadFiles/success' ||
         testName === 'remote/downloadFiles/success/quiet' ||
         testName === 'remote/downloadFiles/success/quiet/keepTimestamp' ||
+        testName === 'remote/downloadFiles/success/postProcessing' ||
         testName.startsWith('scp/download/')) {
         resolve()
       } else reject(new Error('Unexpected Test(downloadFile):' + expect.getState().currentTestName))

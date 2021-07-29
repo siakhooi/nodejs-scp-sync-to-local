@@ -1,13 +1,15 @@
 const cd0 = require('../../lib/core-download')
 const path = require('path')
 
-test('download/init', () => {
+test('download/init/0', () => {
+  const dummyFunction = () => { }
   const workingObject = {
     validatedOption: {
       quiet: true,
       keepTimestamp: true,
       localPath: '.',
-      remotePath: '.'
+      remotePath: '.',
+      postProcessing: dummyFunction
     },
     scpClient: {}
   }
@@ -37,7 +39,8 @@ test('download/init', () => {
     localPath: '.',
     remotePath: '.',
     localFile: path.normalize('.' + path.sep + 'test.txt'),
-    remoteFile: '.' + path.posix.sep + 'test.txt'
+    remoteFile: '.' + path.posix.sep + 'test.txt',
+    postProcessing: dummyFunction
   }
 
   expect(cd0.init(workingObject, remoteFileObject, n)).resolves.toMatchObject(expected)
