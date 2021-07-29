@@ -20,6 +20,7 @@ test('init', () => {
       scpClient: null,
       remoteFileList: [],
       filteredFileList: [],
-      allDownloadPromises: []
+      allDownloadPromises: [],
+      totalDownloaded: 0
     })
 })

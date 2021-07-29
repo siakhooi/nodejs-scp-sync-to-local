@@ -46,6 +46,50 @@ const scp = require("scp-sync-to-local");
 
 - A file will be downloaded only if **all filters** return `true`.
 
+### returValue
+
+- `scp.download` is a `Promise` that on `resolve` will return an object with statistical information.
+
+```js
+## sample
+ {
+  files: [{
+    accessTime: 1623577546000,
+    modifyTime: 1622867586000,
+    name: 'Mock_File_1.zip',
+    size: 2928
+  },
+  {
+    accessTime: 1623577546000,
+    modifyTime: 1622867586000,
+    name: 'Mock_File_2.zip',
+    size: 49453
+  }],
+  totalDownloaded: 2,
+  validatedOption: {
+    host: 'hostname',
+    port: 22,
+    username: 'yourUsername',
+    password: 'yourPassword',
+    localPath: './localPath',
+    remotePath: '/remotePath',
+    autoCreateLocalPath: true,
+    customFilter: null,
+    keepTimestamp: false,
+    quiet: false,
+    skipIfBigger: false,
+    skipIfExists: false,
+    skipIfNewer: false,
+    skipIfNotExists: false,
+    skipIfOlder: false,
+    skipIfSameAge: false,
+    skipIfSameSize: false,
+    skipIfSmaller: false,
+    verbose: false
+  }
+}
+```
+
 ### Example
 
 ```js
@@ -54,8 +98,8 @@ var option = {
   port: 22,
   username: "yourUsername",
   password: "yourPassword",
-  remotePath: "remotePath",
-  localPath: "localPath",
+  remotePath: "./remotePath",
+  localPath: "./localPath",
   skipIfExists: false,
   skipIfNotExists: false,
   skipIfNewer: false,
@@ -69,7 +113,9 @@ var option = {
   keepTimestamp: false,
 };
 
-scp.download(option);
+scp.download(option).then((returnValue) => {
+  console.log("downloads: ", returnValue.totalDownloaded); //see returnValue above for more information.
+});
 ```
 
 ### Custom Filter
