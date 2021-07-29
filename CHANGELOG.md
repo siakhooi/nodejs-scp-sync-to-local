@@ -5,6 +5,7 @@
 - **Code Refactor**
   - `#107`: As dev, I want to refactor `console.warn`, `console.info`, `console.log` to `lib/core-output`.
   - `#154`: As dev, I want to change all `console.log` to `console.info` so that i can standardize the codes.
+  - `#162`: As dev, I want to refactor `new Error()` to `lib/core-output`.
 - **Test**
   - `#160`: As test, I want to jest test and eslint test for all non-master branch commit
   - `#164`: As test, I want to standardize test data set for `true`. (`common-data-sets.js/TrueDataSet`).
