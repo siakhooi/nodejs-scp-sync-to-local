@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "download-from-vm": "node test-runner/download-from-vm.js",
     "eslint": "npx eslint --format table .",
-    "test-single": "jest -t 'remote/downloadFiles/success/postProcessin*'"
+    "download-from-vm": "node test-runner/download-from-vm.js",
+    "test-single": "jest -t 'scp/download/checkPortNumber/*'"
   },
   "repository": {
     "type": "git",
