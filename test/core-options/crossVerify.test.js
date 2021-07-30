@@ -1,6 +1,7 @@
 const co0 = require('../../lib/core-options')
 const cou = require('../../lib/core-output')
 const m = require('../mocklib')
+const dt = require('../mock-data/common-data-sets')
 
 test('crossVerify/skip/error', () => {
   const workingObject = {
@@ -60,4 +61,25 @@ test.each([
   co0.crossVerify(workingObject).then(() => {
     expect(cou.warn).not.toBeCalled()
   })
+})
+
+test.each(dt.CorrectPortNumber)('crossVerify/checkPortNumberRange/ok', (value) => {
+  const workingObject = {
+    userOption: {},
+    validatedOption: { quiet: false, verbose: false, port: value }
+  }
+
+  cou.warn = jest.fn()
+  co0.crossVerify(workingObject).then(() => {
+    expect(cou.warn).not.toBeCalled()
+  })
+})
+test.each(dt.IncorrectPortNumber)('crossVerify/checkPortNumberRange/error', (value) => {
+  const workingObject = {
+    validatedOption: { quiet: false, verbose: false, port: value }
+  }
+
+  expect(co0.crossVerify(workingObject))
+    .rejects
+    .toThrow('Error: port must between 1 and 65535.')
 })
