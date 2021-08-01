@@ -31,14 +31,19 @@
     "https://ko-fi.com/siakhooi"
   ],
   "dependencies": {
-    "node-scp": "^0.0.14"
+    "node-scp": "^0.0.15"
   },
   "devDependencies": {
-    "eslint": "^7.30.0",
+    "coveralls": "^3.1.1",
+    "eslint": "^7.31.0",
     "eslint-config-standard": "^16.0.3",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-promise": "^5.1.0",
-    "jest": "^27.0.4"
+    "jest": "^27.0.6"
+  },
+  "jest": {
+    "verbose": true,
+    "collectCoverage": true
   }
 }

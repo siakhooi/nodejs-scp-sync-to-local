@@ -4,9 +4,11 @@
 
 ## Status
 
+![GitHub](https://img.shields.io/github/license/siakhooi/nodejs-scp-sync-to-local)
 ![GitHub issues](https://img.shields.io/github/issues/siakhooi/nodejs-scp-sync-to-local)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed/siakhooi/nodejs-scp-sync-to-local)
 ![GitHub top language](https://img.shields.io/github/languages/top/siakhooi/nodejs-scp-sync-to-local)
+![GitHub language count](https://img.shields.io/github/languages/count/siakhooi/nodejs-scp-sync-to-local)
 ![GitHub repo size](https://img.shields.io/github/repo-size/siakhooi/nodejs-scp-sync-to-local)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/siakhooi/nodejs-scp-sync-to-local)<BR>
 ![test](https://github.com/siakhooi/nodejs-scp-sync-to-local/actions/workflows/test-jest.yml/badge.svg)
