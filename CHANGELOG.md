@@ -19,6 +19,7 @@
   - `#171`: As test, I want to standardize test data set for not Integer. (`common-data-sets.js/NotIntegerDataSet`).
   - `#166`: As test, I want to standardize test data set for Integer. (`common-data-sets.js/IntegerDataSet`).
   - `#173`: As test, I want to standardize test data set for not function. (`common-data-sets.js/NotFunctionDataSet`).
+  - `#184`: As dev, I want to add coverage analysis.
 
 ## `0.12.0` - 2021-Jul-27
 
