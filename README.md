@@ -11,8 +11,9 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/siakhooi/nodejs-scp-sync-to-local)
 ![GitHub repo size](https://img.shields.io/github/repo-size/siakhooi/nodejs-scp-sync-to-local)
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/siakhooi/nodejs-scp-sync-to-local)<BR>
+![test](https://github.com/siakhooi/nodejs-scp-sync-to-local/actions/workflows/test-eslint.yml/badge.svg)
 ![test](https://github.com/siakhooi/nodejs-scp-sync-to-local/actions/workflows/test-jest.yml/badge.svg)
-![test](https://github.com/siakhooi/nodejs-scp-sync-to-local/actions/workflows/test-eslint.yml/badge.svg)<BR>
+![Coveralls](https://img.shields.io/coveralls/github/siakhooi/nodejs-scp-sync-to-local)<BR>
 ![deploy gpr](https://github.com/siakhooi/nodejs-scp-sync-to-local/actions/workflows/publish-gpr.yml/badge.svg)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/siakhooi/nodejs-scp-sync-to-local)
 ![GitHub all releases](https://img.shields.io/github/downloads/siakhooi/nodejs-scp-sync-to-local/total?color=33cb56)
