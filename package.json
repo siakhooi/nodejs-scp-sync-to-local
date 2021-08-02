@@ -44,6 +44,10 @@
   },
   "jest": {
     "verbose": true,
-    "collectCoverage": true
+    "collectCoverage": true,
+    "coverageReporters": [
+      "lcov",
+      "text"
+    ]
   }
 }
