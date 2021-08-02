@@ -23,7 +23,8 @@
   - `#127`: As test, I want to do jest testing. (`core-util-fs.js/updateTimes`)
   - `#98`: As test, I want to do jest testing. (`core-util-fs.js/mkdir`)
   - `#186`: As test, I want to do negative tests on `core-util-fs.js`
-  - `#188`: As test, I want to separate `npm test` and Coverage Report submissionin.
+  - `#188`: As test, I want to separate `npm test` and Coverage Report submission.
+  - `#191`: As test, I want to test `common-data-sets.js/dummyFunction`
 
 ## `0.12.0` - 2021-Jul-27
 
