@@ -1,9 +1,8 @@
-name: Test with Jest (non-master branch)
+name: Coverage Report
 on:
   push:
     branches:
-      - "*"
-      - "!master"
+      - master
 
 jobs:
   test:
@@ -17,6 +16,9 @@ jobs:
       - run: npm install
       - run: . .github/workflows/fix-coverage-directories.sh
       - run: npm test
+      - uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/upload-artifact@v2
         with:
           name: coverage-report
