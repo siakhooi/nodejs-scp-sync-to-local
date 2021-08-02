@@ -4,7 +4,7 @@
 
 - **Added**
   - `#152`: As scp user, I want `scp.download` to return statistics so that I can further use the info.
-  - `#5`: As scp user, I want to call custom function for each downloaded file.
+  - `#5`: As scp user, I want to call custom function for each downloaded file. (`option.postProcessing`)
   - `#177`: As scp user, I want to validate `port` number to be between `1` to `65535`, so that I can detect wrong port number option as earliest as possible. (`core-options-crosscheck.js/checkPortNumberRange`)
 - **Code Refactor**
   - `#107`: As dev, I want to refactor `console.warn`, `console.info`, `console.log` to `lib/core-output`.
@@ -20,6 +20,9 @@
   - `#166`: As test, I want to standardize test data set for Integer. (`common-data-sets.js/IntegerDataSet`).
   - `#173`: As test, I want to standardize test data set for not function. (`common-data-sets.js/NotFunctionDataSet`).
   - `#184`: As dev, I want to add coverage analysis.
+  - `#127`: As test, I want to do jest testing. (`core-util-fs.js/updateTimes`)
+  - `#98`: As test, I want to do jest testing. (`core-util-fs.js/mkdir`)
+  - `#186`: As test, I want to do negative tests on `core-util-fs.js`
 
 ## `0.12.0` - 2021-Jul-27
 
