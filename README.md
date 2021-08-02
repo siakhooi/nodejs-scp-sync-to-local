@@ -13,6 +13,7 @@
 ![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/siakhooi/nodejs-scp-sync-to-local)<BR>
 ![test](https://github.com/siakhooi/nodejs-scp-sync-to-local/actions/workflows/test-eslint.yml/badge.svg)
 ![test](https://github.com/siakhooi/nodejs-scp-sync-to-local/actions/workflows/test-jest.yml/badge.svg)
+![test](https://github.com/siakhooi/nodejs-scp-sync-to-local/actions/workflows/test-jest-coveralls.yml/badge.svg)
 [![Coverage Status](https://coveralls.io/repos/github/siakhooi/nodejs-scp-sync-to-local/badge.svg?branch=master)](https://coveralls.io/github/siakhooi/nodejs-scp-sync-to-local?branch=master)
 ![Coveralls](https://img.shields.io/coveralls/github/siakhooi/nodejs-scp-sync-to-local)<BR>
 ![deploy gpr](https://github.com/siakhooi/nodejs-scp-sync-to-local/actions/workflows/publish-gpr.yml/badge.svg)
