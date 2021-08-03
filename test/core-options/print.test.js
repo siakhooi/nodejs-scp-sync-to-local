@@ -24,6 +24,7 @@ const util = require('util')
           keepTimestamp: false
            customFilter: Yes
          postProcessing: Yes
+  postProcessingOptions: {}
                 verbose: true
                   quiet: false
 */
@@ -32,7 +33,7 @@ test.each([
   [true, true],
   [false, false],
   [false, true]
-])('print/No', (verbose, quiet) => {
+])('core-options/print/No', (verbose, quiet) => {
   const workingObject = {
     validatedOption: {
       host: 'localhost',
@@ -65,7 +66,7 @@ test.each([
 
 test.each([
   [true, false]
-])('print/Yes', (verbose, quiet) => {
+])('core-options/print/Yes', (verbose, quiet) => {
   const workingObject = {
     validatedOption: {
       host: 'localhost',
@@ -86,6 +87,7 @@ test.each([
       keepTimestamp: false,
       customFilter: () => { },
       postProcessing: () => { },
+      postProcessingOptions: {},
       verbose: verbose,
       quiet: quiet
     }
@@ -93,26 +95,28 @@ test.each([
 
   const expectedInfo = [
     util.format('[Parameters]'),
-    util.format('               host: %s', 'localhost'),
-    util.format('               port: %d', 22),
-    util.format('           username: %s', 'testuser'),
-    util.format('           password: %s', conf.PASSWORD_MASK),
-    util.format('         remotePath: %s', '/home/testuser/data'),
-    util.format('          localPath: %s', './test-data'),
-    util.format('       skipIfExists: %s', false),
-    util.format('    skipIfNotExists: %s', false),
-    util.format('        skipIfNewer: %s', false),
-    util.format('        skipIfOlder: %s', false),
-    util.format('      skipIfSameAge: %s', false),
-    util.format('       skipIfBigger: %s', false),
-    util.format('      skipIfSmaller: %s', false),
-    util.format('     skipIfSameSize: %s', false),
-    util.format('autoCreateLocalPath: %s', true),
-    util.format('      keepTimestamp: %s', false),
-    util.format('       customFilter: %s', 'Yes'),
-    util.format('     postProcessing: %s', 'Yes'),
-    util.format('            verbose: %s', verbose),
-    util.format('              quiet: %s', quiet)
+    util.format('                 host: %s', 'localhost'),
+    util.format('                 port: %d', 22),
+    util.format('             username: %s', 'testuser'),
+    util.format('             password: %s', conf.PASSWORD_MASK),
+    util.format('           remotePath: %s', '/home/testuser/data'),
+    util.format('            localPath: %s', './test-data'),
+    util.format('         skipIfExists: %s', false),
+    util.format('      skipIfNotExists: %s', false),
+    util.format('          skipIfNewer: %s', false),
+    util.format('          skipIfOlder: %s', false),
+    util.format('        skipIfSameAge: %s', false),
+    util.format('         skipIfBigger: %s', false),
+    util.format('        skipIfSmaller: %s', false),
+    util.format('       skipIfSameSize: %s', false),
+    util.format('  autoCreateLocalPath: %s', true),
+    util.format('        keepTimestamp: %s', false),
+    util.format('         customFilter: %s', 'Yes'),
+    util.format('       postProcessing: %s', 'Yes'),
+    util.format('postProcessingOptions: %s', '{}'),
+    util.format('        keepTimestamp: %s', false),
+    util.format('              verbose: %s', verbose),
+    util.format('                quiet: %s', quiet)
   ]
 
   const i = new m.MockOutput()
@@ -125,7 +129,7 @@ test.each([
 
 test.each([
   [true, false]
-])('print/Yes', (verbose, quiet) => {
+])('core-options/print/Yes', (verbose, quiet) => {
   const workingObject = {
     validatedOption: {
       host: 'localhost',
@@ -146,6 +150,7 @@ test.each([
       keepTimestamp: false,
       customFilter: null,
       postProcessing: null,
+      postProcessingOptions: {},
       verbose: verbose,
       quiet: quiet
     }
@@ -153,26 +158,27 @@ test.each([
 
   const expectedInfo = [
     util.format('[Parameters]'),
-    util.format('               host: %s', 'localhost'),
-    util.format('               port: %d', 22),
-    util.format('           username: %s', 'testuser'),
-    util.format('           password: %s', conf.PASSWORD_MASK),
-    util.format('         remotePath: %s', '/home/testuser/data'),
-    util.format('          localPath: %s', './test-data'),
-    util.format('       skipIfExists: %s', false),
-    util.format('    skipIfNotExists: %s', false),
-    util.format('        skipIfNewer: %s', false),
-    util.format('        skipIfOlder: %s', false),
-    util.format('      skipIfSameAge: %s', false),
-    util.format('       skipIfBigger: %s', false),
-    util.format('      skipIfSmaller: %s', false),
-    util.format('     skipIfSameSize: %s', false),
-    util.format('autoCreateLocalPath: %s', true),
-    util.format('      keepTimestamp: %s', false),
-    util.format('       customFilter: %s', 'No'),
-    util.format('     postProcessing: %s', 'No'),
-    util.format('            verbose: %s', verbose),
-    util.format('              quiet: %s', quiet)
+    util.format('                 host: %s', 'localhost'),
+    util.format('                 port: %d', 22),
+    util.format('             username: %s', 'testuser'),
+    util.format('             password: %s', conf.PASSWORD_MASK),
+    util.format('           remotePath: %s', '/home/testuser/data'),
+    util.format('            localPath: %s', './test-data'),
+    util.format('         skipIfExists: %s', false),
+    util.format('      skipIfNotExists: %s', false),
+    util.format('          skipIfNewer: %s', false),
+    util.format('          skipIfOlder: %s', false),
+    util.format('        skipIfSameAge: %s', false),
+    util.format('         skipIfBigger: %s', false),
+    util.format('        skipIfSmaller: %s', false),
+    util.format('       skipIfSameSize: %s', false),
+    util.format('  autoCreateLocalPath: %s', true),
+    util.format('         customFilter: %s', 'No'),
+    util.format('       postProcessing: %s', 'No'),
+    util.format('postProcessingOptions: %s', '{}'),
+    util.format('        keepTimestamp: %s', false),
+    util.format('              verbose: %s', verbose),
+    util.format('                quiet: %s', quiet)
   ]
 
   const i = new m.MockOutput()
