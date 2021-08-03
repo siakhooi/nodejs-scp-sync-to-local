@@ -7,7 +7,7 @@ const dt = require('../mock-data/common-data-sets')
 const DEFAULT_SKIPIFBIGGER = false
 const expectedWarn = [util.format('Warning: skipIfBigger is undefined, defaulting to %s.', DEFAULT_SKIPIFBIGGER)]
 
-test.each(dt.TrueDataSet)('verifySkipIfBigger/true', (value) => {
+test.each(dt.TrueDataSet)('verifySkipIfBigger/TrueDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfBigger: value },
     validatedOption: {}
@@ -21,7 +21,7 @@ test.each(dt.TrueDataSet)('verifySkipIfBigger/true', (value) => {
     })
 })
 
-test.each(dt.FalseDataSet)('verifySkipIfBigger/false', (value) => {
+test.each(dt.FalseDataSet)('verifySkipIfBigger/FalseDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfBigger: value },
     validatedOption: {}
@@ -51,7 +51,7 @@ test('verifySkipIfBigger/undefined', () => {
     })
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
-test.each(dt.BlankValueDataSet)('verifySkipIfBigger/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfBigger/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfBigger: value },
     validatedOption: {}
@@ -68,7 +68,7 @@ test.each(dt.BlankValueDataSet)('verifySkipIfBigger/blank', (value) => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.NotBooleanDataSet)('verifySkipIfBigger/not-boolean', (value) => {
+test.each(dt.NotBooleanDataSet)('verifySkipIfBigger/NotBooleanDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfBigger: value },
     validatedOption: {}
@@ -97,7 +97,7 @@ test('verifySkipIfBigger/undefined/quiet', () => {
     })
   expect(co0.warn).not.toBeCalled()
 })
-test.each(dt.BlankValueDataSet)('verifySkipIfBigger/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfBigger/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { skipIfBigger: value },
     validatedOption: { quiet: true }

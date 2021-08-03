@@ -1,6 +1,6 @@
 # Change Log
 
-## Unreleased `0.13.0`
+## `0.13.0` - 2021-Aug-3
 
 - **Added**
   - `#152`: As scp user, I want `scp.download` to return statistics so that I can further use the info.
@@ -27,6 +27,7 @@
   - `#188`: As test, I want to separate `npm test` and Coverage Report submission.
   - `#191`: As test, I want to test `common-data-sets.js/dummyFunction`
   - `#190`: As test, I want to test `core-remote.js/disconnectOnAllDone` on errors.
+  - `#195`: As test, I want to standardize the test name that use common data sets.
 
 ## `0.12.0` - 2021-Jul-27
 

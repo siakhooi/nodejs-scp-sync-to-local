@@ -34,7 +34,7 @@ test('verifyCustomFilter/undefined', () => {
     })
 })
 
-test.each(dt.NotFunctionDataSet)('verifyCustomFilter/not-function', (value) => {
+test.each(dt.NotFunctionDataSet)('verifyCustomFilter/NotFunctionDataSet', (value) => {
   const workingObject = {
     userOption: { customFilter: value },
     validatedOption: {}
@@ -45,7 +45,7 @@ test.each(dt.NotFunctionDataSet)('verifyCustomFilter/not-function', (value) => {
     .toThrow(msg)
 })
 
-test.each(dt.BlankValueDataSet)('verifyCustomFilter/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyCustomFilter/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { customFilter: value },
     validatedOption: {}

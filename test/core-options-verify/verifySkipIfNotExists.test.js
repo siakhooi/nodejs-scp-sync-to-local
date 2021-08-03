@@ -7,7 +7,7 @@ const dt = require('../mock-data/common-data-sets')
 const DEFAULT_SKIPIFNOTEXISTS = false
 const expectedWarn = [util.format('Warning: skipIfNotExists is undefined, defaulting to %s.', DEFAULT_SKIPIFNOTEXISTS)]
 
-test.each(dt.TrueDataSet)('verifySkipIfNotExists/true', (value) => {
+test.each(dt.TrueDataSet)('verifySkipIfNotExists/TrueDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfNotExists: value },
     validatedOption: {}
@@ -21,7 +21,7 @@ test.each(dt.TrueDataSet)('verifySkipIfNotExists/true', (value) => {
     })
 })
 
-test.each(dt.FalseDataSet)('verifySkipIfNotExists/false', (value) => {
+test.each(dt.FalseDataSet)('verifySkipIfNotExists/FalseDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfNotExists: value },
     validatedOption: {}
@@ -51,7 +51,7 @@ test('verifySkipIfNotExists/undefined', () => {
     })
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
-test.each(dt.BlankValueDataSet)('verifySkipIfNotExists/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfNotExists/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfNotExists: value },
     validatedOption: {}
@@ -68,7 +68,7 @@ test.each(dt.BlankValueDataSet)('verifySkipIfNotExists/blank', (value) => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.NotBooleanDataSet)('verifySkipIfNotExists/not-boolaen', (value) => {
+test.each(dt.NotBooleanDataSet)('verifySkipIfNotExists/NotBooleanDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfNotExists: value },
     validatedOption: {}
@@ -97,7 +97,7 @@ test('verifySkipIfNotExists/undefined/quiet', () => {
     })
   expect(co0.warn).not.toBeCalled()
 })
-test.each(dt.BlankValueDataSet)('verifySkipIfNotExists/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfNotExists/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { skipIfNotExists: value },
     validatedOption: { quiet: true }

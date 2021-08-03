@@ -4,7 +4,7 @@ const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_QUIET = false
 
-test.each(dt.TrueDataSet)('verifyQuiet/true', (value) => {
+test.each(dt.TrueDataSet)('verifyQuiet/TrueDataSet', (value) => {
   const workingObject = {
     userOption: { quiet: value },
     validatedOption: {}
@@ -18,7 +18,7 @@ test.each(dt.TrueDataSet)('verifyQuiet/true', (value) => {
     })
 })
 
-test.each(dt.FalseDataSet)('verifyQuiet/false', (value) => {
+test.each(dt.FalseDataSet)('verifyQuiet/FalseDataSet', (value) => {
   const workingObject = {
     userOption: { quiet: value },
     validatedOption: {}
@@ -46,7 +46,7 @@ test('verifyQuiet/undefined', () => {
     })
 })
 
-test.each(dt.BlankValueDataSet)('verifyQuiet/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyQuiet/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { quiet: value },
     validatedOption: {}
@@ -60,7 +60,7 @@ test.each(dt.BlankValueDataSet)('verifyQuiet/blank', (value) => {
     })
 })
 
-test.each(dt.NotBooleanDataSet)('verifyQuiet/not-boolean', (value) => {
+test.each(dt.NotBooleanDataSet)('verifyQuiet/NotBooleanDataSet', (value) => {
   const workingObject = {
     userOption: { quiet: value },
     validatedOption: {}

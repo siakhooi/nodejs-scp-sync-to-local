@@ -15,7 +15,7 @@ test('verifyPassword', () => {
     })
 })
 
-test.each(dt.BlankValueDataSet)('verifyPassword/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyPassword/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { password: value },
     validatedOption: {}

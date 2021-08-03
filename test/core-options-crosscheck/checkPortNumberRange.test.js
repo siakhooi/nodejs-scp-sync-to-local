@@ -1,7 +1,7 @@
 const coc = require('../../lib/core-options-crosscheck')
 const dt = require('../mock-data/common-data-sets')
 
-test.each(dt.IncorrectPortNumber)('checkPortNumberRange/error', (value) => {
+test.each(dt.IncorrectPortNumber)('checkPortNumberRange/IncorrectPortNumber', (value) => {
   const workingObject = {
     validatedOption: { port: value }
   }
@@ -11,7 +11,7 @@ test.each(dt.IncorrectPortNumber)('checkPortNumberRange/error', (value) => {
     .toThrow('Error: port must between 1 and 65535.')
 })
 
-test.each(dt.CorrectPortNumber)('checkPortNumberRange/ok', (value) => {
+test.each(dt.CorrectPortNumber)('checkPortNumberRange/CorrectPortNumber', (value) => {
   const workingObject = {
     validatedOption: { port: value }
   }

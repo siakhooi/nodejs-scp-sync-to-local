@@ -7,7 +7,7 @@ const dt = require('../mock-data/common-data-sets')
 const DEFAULT_SKIPIFNEWER = false
 const expectedWarn = [util.format('Warning: skipIfNewer is undefined, defaulting to %s.', DEFAULT_SKIPIFNEWER)]
 
-test.each(dt.TrueDataSet)('verifySkipIfNewer/true', (value) => {
+test.each(dt.TrueDataSet)('verifySkipIfNewer/TrueDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfNewer: value },
     validatedOption: {}
@@ -21,7 +21,7 @@ test.each(dt.TrueDataSet)('verifySkipIfNewer/true', (value) => {
     })
 })
 
-test.each(dt.FalseDataSet)('verifySkipIfNewer/false', (value) => {
+test.each(dt.FalseDataSet)('verifySkipIfNewer/FalseDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfNewer: value },
     validatedOption: {}
@@ -52,7 +52,7 @@ test('verifySkipIfNewer/undefined', () => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.BlankValueDataSet)('verifySkipIfNewer/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfNewer/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfNewer: value },
     validatedOption: {}
@@ -69,7 +69,7 @@ test.each(dt.BlankValueDataSet)('verifySkipIfNewer/blank', (value) => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.NotBooleanDataSet)('verifySkipIfNewer/not-boolaen', (value) => {
+test.each(dt.NotBooleanDataSet)('verifySkipIfNewer/NotBooleanDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfNewer: value },
     validatedOption: {}
@@ -98,7 +98,7 @@ test('verifySkipIfNewer/undefined/quiet', () => {
     })
   expect(co0.warn).not.toBeCalled()
 })
-test.each(dt.BlankValueDataSet)('verifySkipIfNewer/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfNewer/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { skipIfNewer: value },
     validatedOption: { quiet: true }

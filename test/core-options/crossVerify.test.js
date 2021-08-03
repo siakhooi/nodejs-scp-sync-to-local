@@ -63,7 +63,7 @@ test.each([
   })
 })
 
-test.each(dt.CorrectPortNumber)('crossVerify/checkPortNumberRange/ok', (value) => {
+test.each(dt.CorrectPortNumber)('crossVerify/checkPortNumberRange/CorrectPortNumber', (value) => {
   const workingObject = {
     userOption: {},
     validatedOption: { quiet: false, verbose: false, port: value }
@@ -74,7 +74,7 @@ test.each(dt.CorrectPortNumber)('crossVerify/checkPortNumberRange/ok', (value) =
     expect(cou.warn).not.toBeCalled()
   })
 })
-test.each(dt.IncorrectPortNumber)('crossVerify/checkPortNumberRange/error', (value) => {
+test.each(dt.IncorrectPortNumber)('crossVerify/checkPortNumberRange/IncorrectPortNumber', (value) => {
   const workingObject = {
     validatedOption: { quiet: false, verbose: false, port: value }
   }

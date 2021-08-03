@@ -24,7 +24,7 @@ test('verifyHost/0', () => {
     })
 })
 
-test.each(dt.BlankValueDataSet)('verifyHost/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyHost/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { host: value },
     validatedOption: {}
@@ -59,7 +59,7 @@ test('verifyHost/undefined', () => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.BlankValueDataSet)('verifyHost/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifyHost/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { host: value },
     validatedOption: { quiet: true }

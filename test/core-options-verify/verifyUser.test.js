@@ -15,7 +15,7 @@ test('verifyUser/Good', () => {
     })
 })
 
-test.each(dt.BlankValueDataSet)('verifyUser/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyUser/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { username: value },
     validatedOption: {}

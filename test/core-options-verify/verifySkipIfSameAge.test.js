@@ -7,7 +7,7 @@ const dt = require('../mock-data/common-data-sets')
 const DEFAULT_SKIPIFSAMEAGE = false
 const expectedWarn = [util.format('Warning: skipIfSameAge is undefined, defaulting to %s.', DEFAULT_SKIPIFSAMEAGE)]
 
-test.each(dt.TrueDataSet)('verifySkipIfSameAge/true', (value) => {
+test.each(dt.TrueDataSet)('verifySkipIfSameAge/TrueDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfSameAge: value },
     validatedOption: {}
@@ -21,7 +21,7 @@ test.each(dt.TrueDataSet)('verifySkipIfSameAge/true', (value) => {
     })
 })
 
-test.each(dt.FalseDataSet)('verifySkipIfSameAge/false', (value) => {
+test.each(dt.FalseDataSet)('verifySkipIfSameAge/FalseDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfSameAge: value },
     validatedOption: {}
@@ -52,7 +52,7 @@ test('verifySkipIfSameAge/undefined', () => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.BlankValueDataSet)('verifySkipIfSameAge/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfSameAge/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfSameAge: value },
     validatedOption: {}
@@ -69,7 +69,7 @@ test.each(dt.BlankValueDataSet)('verifySkipIfSameAge/blank', (value) => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.NotBooleanDataSet)('verifySkipIfSameAge/not-boolaen', (value) => {
+test.each(dt.NotBooleanDataSet)('verifySkipIfSameAge/NotBooleanDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfSameAge: value },
     validatedOption: {}
@@ -99,7 +99,7 @@ test('verifySkipIfSameAge/undefined/quiet', () => {
   expect(co0.warn).not.toBeCalled()
 })
 
-test.each(dt.BlankValueDataSet)('verifySkipIfSameAge/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfSameAge/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { skipIfSameAge: value },
     validatedOption: { quiet: true }

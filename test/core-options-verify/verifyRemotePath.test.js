@@ -21,7 +21,7 @@ test('verifyRemotePath/text', () => {
     })
 })
 
-test.each(dt.BlankValueDataSet)('verifyRemotePath/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyRemotePath/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { remotePath: value },
     validatedOption: {}
@@ -55,7 +55,7 @@ test('verifyRemotePath/undefined', () => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.BlankValueDataSet)('verifyRemotePath/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifyRemotePath/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { remotePath: value },
     validatedOption: { quiet: true }
