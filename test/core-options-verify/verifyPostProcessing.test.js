@@ -34,7 +34,7 @@ test('verifyPostProcessing/undefined', () => {
     })
 })
 
-test.each(dt.NotFunctionDataSet)('verifyPostProcessing/not-function', (value) => {
+test.each(dt.NotFunctionDataSet)('verifyPostProcessing/NotFunctionDataSet', (value) => {
   const workingObject = {
     userOption: { postProcessing: value },
     validatedOption: {}
@@ -45,7 +45,7 @@ test.each(dt.NotFunctionDataSet)('verifyPostProcessing/not-function', (value) =>
     .toThrow(msg)
 })
 
-test.each(dt.BlankValueDataSet)('verifyPostProcessing/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyPostProcessing/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { postProcessing: value },
     validatedOption: {}

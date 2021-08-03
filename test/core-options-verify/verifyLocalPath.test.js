@@ -21,7 +21,7 @@ test('verifyLocalPath/text', () => {
     })
 })
 
-test.each(dt.BlankValueDataSet)('verifyLocalPath/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyLocalPath/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { localPath: value },
     validatedOption: {}
@@ -55,7 +55,7 @@ test('verifyLocalPath/undefined', () => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.BlankValueDataSet)('verifyLocalPath/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifyLocalPath/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { localPath: value },
     validatedOption: { quiet: true }

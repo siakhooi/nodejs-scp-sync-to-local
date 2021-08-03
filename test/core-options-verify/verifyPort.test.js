@@ -7,7 +7,7 @@ const dt = require('../mock-data/common-data-sets')
 const DEFAULT_PORT = 22
 const expectedInfo = [util.format('Info: port is undefined, defaulting to %d.', DEFAULT_PORT)]
 
-test.each(dt.IntegerDataSet)('verifyPort/Integer', (value) => {
+test.each(dt.IntegerDataSet)('verifyPort/IntegerDataSet', (value) => {
   const workingObject = {
     userOption: { port: value },
     validatedOption: {}
@@ -21,7 +21,7 @@ test.each(dt.IntegerDataSet)('verifyPort/Integer', (value) => {
     })
 })
 
-test.each(dt.BlankValueDataSet)('verifyPort/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyPort/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { port: value },
     validatedOption: {}
@@ -55,7 +55,7 @@ test('verifyPort/undefined', () => {
   expect(i.verify(expectedInfo)).resolves.toBe(true)
 })
 
-test.each(dt.NotIntegerDataSet)('verifyPort/not-Integer', (value) => {
+test.each(dt.NotIntegerDataSet)('verifyPort/NotIntegerDataSet', (value) => {
   const workingObject = {
     userOption: { port: value },
     validatedOption: {}
@@ -67,7 +67,7 @@ test.each(dt.NotIntegerDataSet)('verifyPort/not-Integer', (value) => {
     .toThrow(msg)
 })
 
-test.each(dt.BlankValueDataSet)('verifyPort/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifyPort/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { port: value },
     validatedOption: { quiet: true }

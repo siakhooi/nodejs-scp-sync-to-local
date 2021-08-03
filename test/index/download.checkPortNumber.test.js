@@ -18,7 +18,7 @@ beforeEach(() => {
   p.clear()
 })
 
-test.each(dt.CorrectPortNumber)('scp/download/checkPortNumber/ok', (value) => {
+test.each(dt.CorrectPortNumber)('scp/download/checkPortNumber/CorrectPortNumber', (value) => {
   const expectedInfo = [
     '1 downloading /home/testuser/data/Mock_File_1.zip',
     '2 downloading /home/testuser/data/Mock_File_2.zip',
@@ -93,7 +93,7 @@ test.each(dt.CorrectPortNumber)('scp/download/checkPortNumber/ok', (value) => {
   })
 })
 
-test.each(dt.IncorrectPortNumber)('scp/download/checkPortNumber/err', (value) => {
+test.each(dt.IncorrectPortNumber)('scp/download/checkPortNumber/IncorrectPortNumber', (value) => {
   const option = {
     host: '1.0.0.0',
     port: value,

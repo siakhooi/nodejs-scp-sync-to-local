@@ -7,7 +7,7 @@ const dt = require('../mock-data/common-data-sets')
 const DEFAULT_SKIPIFOLDER = false
 const expectedWarn = [util.format('Warning: skipIfOlder is undefined, defaulting to %s.', DEFAULT_SKIPIFOLDER)]
 
-test.each(dt.TrueDataSet)('verifySkipIfOlder/true', (value) => {
+test.each(dt.TrueDataSet)('verifySkipIfOlder/TrueDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfOlder: value },
     validatedOption: {}
@@ -21,7 +21,7 @@ test.each(dt.TrueDataSet)('verifySkipIfOlder/true', (value) => {
     })
 })
 
-test.each(dt.FalseDataSet)('verifySkipIfOlder/false', (value) => {
+test.each(dt.FalseDataSet)('verifySkipIfOlder/FalseDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfOlder: value },
     validatedOption: {}
@@ -52,7 +52,7 @@ test('verifySkipIfOlder/undefined', () => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.BlankValueDataSet)('verifySkipIfOlder/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfOlder/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfOlder: value },
     validatedOption: {}
@@ -68,7 +68,7 @@ test.each(dt.BlankValueDataSet)('verifySkipIfOlder/blank', (value) => {
     })
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
-test.each(dt.NotBooleanDataSet)('verifySkipIfOlder/not-boolaen', (value) => {
+test.each(dt.NotBooleanDataSet)('verifySkipIfOlder/NotBooleanDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfOlder: value },
     validatedOption: {}
@@ -98,7 +98,7 @@ test('verifySkipIfOlder/undefined/quiet', () => {
   expect(co0.warn).not.toBeCalled()
 })
 
-test.each(dt.BlankValueDataSet)('verifySkipIfOlder/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifySkipIfOlder/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { skipIfOlder: value },
     validatedOption: { quiet: true }

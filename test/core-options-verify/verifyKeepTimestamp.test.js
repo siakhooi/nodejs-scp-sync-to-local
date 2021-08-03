@@ -5,7 +5,7 @@ const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_KEEPTIMESTAMP = false
 
-test.each(dt.TrueDataSet)('verifyKeepTimestamp/true', (value) => {
+test.each(dt.TrueDataSet)('verifyKeepTimestamp/TrueDataSet', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: {}
@@ -19,7 +19,7 @@ test.each(dt.TrueDataSet)('verifyKeepTimestamp/true', (value) => {
     })
 })
 
-test.each(dt.FalseDataSet)('verifyKeepTimestamp/false', (value) => {
+test.each(dt.FalseDataSet)('verifyKeepTimestamp/FalseDataSet', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: {}
@@ -48,7 +48,7 @@ test('verifyKeepTimestamp/undefined', () => {
     })
   expect(cou.warn).not.toBeCalled()
 })
-test.each(dt.BlankValueDataSet)('verifyKeepTimestamp/blank', (value) => {
+test.each(dt.BlankValueDataSet)('verifyKeepTimestamp/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: {}
@@ -62,7 +62,7 @@ test.each(dt.BlankValueDataSet)('verifyKeepTimestamp/blank', (value) => {
     })
 })
 
-test.each(dt.NotBooleanDataSet)('verifyKeepTimestamp/not-boolean', (value) => {
+test.each(dt.NotBooleanDataSet)('verifyKeepTimestamp/NotBooleanDataSet', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: {}
@@ -92,7 +92,7 @@ test('verifyKeepTimestamp/undefined/quiet', () => {
   expect(cou.warn).not.toBeCalled()
 })
 
-test.each(dt.BlankValueDataSet)('verifyKeepTimestamp/blank/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('verifyKeepTimestamp/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: { quiet: true }
