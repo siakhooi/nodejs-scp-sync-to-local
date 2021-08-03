@@ -22,28 +22,29 @@ const scp = require("scp-sync-to-local");
 
 ### `option`
 
-| name                  | type       | default value | description                                                                      |
-| --------------------- | ---------- | ------------- | -------------------------------------------------------------------------------- |
-| `host`                | `String`   | `localhost`   |                                                                                  |
-| `port`                | `integer`  | `22`          |                                                                                  |
-| `username`            | `String`   |               |                                                                                  |
-| `password`            | `String`   |               |                                                                                  |
-| `remotePath`          | `String`   | `.`           |                                                                                  |
-| `localPath`           | `String`   | `.`           |                                                                                  |
-| `skipIfExists`        | `boolean`  | `false`       | Skip download if file exists locally, mutually exclusive with `skipIfNotExists`  |
-| `skipIfNotExists`     | `boolean`  | `false`       | Skip download if file NOT exists locally, mutually exclusive with `skipIfExists` |
-| `skipIfNewer`         | `boolean`  | `false`       | Skip download if local file is newer.                                            |
-| `skipIfOlder`         | `boolean`  | `false`       | Skip download if local file is older.                                            |
-| `skipIfSameAge`       | `boolean`  | `false`       | Skip download if local file and remote file have same file modified time.        |
-| `skipIfBigger`        | `boolean`  | `false`       | Skip download if local file is bigger in size.                                   |
-| `skipIfSmaller`       | `boolean`  | `false`       | Skip download if local file is smaller in size.                                  |
-| `skipIfSameSize`      | `boolean`  | `false`       | Skip download if local file and remote file is same in size.                     |
-| `verbose`             | `boolean`  | `false`       | Print full option values before downloads. Override by `quiet`                   |
-| `quiet`               | `boolean`  | `false`       | no output, except error. override `verbose`                                      |
-| `autoCreateLocalPath` | `boolean`  | `true`        | auto Create Local Path if it is not exist, otherwise, throw an Error.            |
-| `keepTimestamp`       | `boolean`  | `false`       | Keep the Timestamp of file same with remote.                                     |
-| `customFilter`        | `function` | `null`        | use custom filter function                                                       |
-| `postProcessing`      | `function` | `null`        | user defined function to process file after download                             |
+| name                    | type       | default value | description                                                                      |
+| ----------------------- | ---------- | ------------- | -------------------------------------------------------------------------------- |
+| `host`                  | `String`   | `localhost`   |                                                                                  |
+| `port`                  | `integer`  | `22`          |                                                                                  |
+| `username`              | `String`   |               |                                                                                  |
+| `password`              | `String`   |               |                                                                                  |
+| `remotePath`            | `String`   | `.`           |                                                                                  |
+| `localPath`             | `String`   | `.`           |                                                                                  |
+| `skipIfExists`          | `boolean`  | `false`       | Skip download if file exists locally, mutually exclusive with `skipIfNotExists`  |
+| `skipIfNotExists`       | `boolean`  | `false`       | Skip download if file NOT exists locally, mutually exclusive with `skipIfExists` |
+| `skipIfNewer`           | `boolean`  | `false`       | Skip download if local file is newer.                                            |
+| `skipIfOlder`           | `boolean`  | `false`       | Skip download if local file is older.                                            |
+| `skipIfSameAge`         | `boolean`  | `false`       | Skip download if local file and remote file have same file modified time.        |
+| `skipIfBigger`          | `boolean`  | `false`       | Skip download if local file is bigger in size.                                   |
+| `skipIfSmaller`         | `boolean`  | `false`       | Skip download if local file is smaller in size.                                  |
+| `skipIfSameSize`        | `boolean`  | `false`       | Skip download if local file and remote file is same in size.                     |
+| `verbose`               | `boolean`  | `false`       | Print full option values before downloads. Override by `quiet`                   |
+| `quiet`                 | `boolean`  | `false`       | no output, except error. override `verbose`                                      |
+| `autoCreateLocalPath`   | `boolean`  | `true`        | auto Create Local Path if it is not exist, otherwise, throw an Error.            |
+| `keepTimestamp`         | `boolean`  | `false`       | Keep the Timestamp of file same with remote.                                     |
+| `customFilter`          | `function` | `null`        | use custom filter function                                                       |
+| `postProcessing`        | `function` | `null`        | user defined function to process file after download                             |
+| `postProcessingOptions` | `object`   | `{}`          | user defined option for user defined function in `postProcessing`                |
 
 - A file will be downloaded only if **all filters** return `true`.
 
@@ -126,7 +127,7 @@ scp.download(option).then((returnValue) => {
 - Example of the function
 
 ```js
-function myPostProcessing(localPath, remotePathObject) {}
+function myPostProcessing(localPath, remotePathObject, [postProcessingOptions = {}]) {}
 ```
 
 - `localPath`

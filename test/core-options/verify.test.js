@@ -79,7 +79,8 @@ test('verify/all', () => {
       autoCreateLocalPath: false,
       keepTimestamp: true,
       customFilter: dummyFunction,
-      postProcessing: dummyFunction
+      postProcessing: dummyFunction,
+      postProcessingOptions: { x: 3 }
     },
     validatedOption: {}
   }
@@ -104,7 +105,8 @@ test('verify/all', () => {
         autoCreateLocalPath: false,
         keepTimestamp: true,
         customFilter: dummyFunction,
-        postProcessing: dummyFunction
+        postProcessing: dummyFunction,
+        postProcessingOptions: { x: 3 }
       }
     })
 })

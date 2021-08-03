@@ -6,6 +6,7 @@
   - `#152`: As scp user, I want `scp.download` to return statistics so that I can further use the info.
   - `#5`: As scp user, I want to call custom function for each downloaded file. (`option.postProcessing`)
   - `#177`: As scp user, I want to validate `port` number to be between `1` to `65535`, so that I can detect wrong port number option as earliest as possible. (`core-options-crosscheck.js/checkPortNumberRange`)
+  - `#182`: As scp user, I want to provide custom options to `postProcessing` function.(`option.postProcessingOptions`)
 - **Code Refactor**
   - `#107`: As dev, I want to refactor `console.warn`, `console.info`, `console.log` to `lib/core-output`.
   - `#154`: As dev, I want to change all `console.log` to `console.info` so that i can standardize the codes.

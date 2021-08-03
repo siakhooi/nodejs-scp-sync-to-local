@@ -93,14 +93,15 @@ test('remote/downloadFiles/success/quiet/keepTimestamp', () => {
 })
 
 test('remote/downloadFiles/success/postProcessing', () => {
-  const echoHello = (l, r) => { cou.info('Hello %s %s', l, r.name) }
+  const echoHello = (l, r, o) => { cou.info('Hello %s %s %d', l, r.name, o.x) }
   const workingObject = {
     validatedOption: {
       remotePath: '/home/testuser/data',
       localPath: './test-data',
       keepTimestamp: false,
       quiet: false,
-      postProcessing: echoHello
+      postProcessing: echoHello,
+      postProcessingOptions: { x: 55 }
     },
     scpClient: scp.mockClient,
     filteredFileList: md0.mockRemoteFileList
@@ -109,8 +110,8 @@ test('remote/downloadFiles/success/postProcessing', () => {
   const expectedInfo = [
     '1 downloading /home/testuser/data/Mock_File_1.zip',
     '2 downloading /home/testuser/data/Mock_File_2.zip',
-    'Hello ' + path.normalize('./test-data/Mock_File_1.zip') + ' Mock_File_1.zip',
-    'Hello ' + path.normalize('./test-data/Mock_File_2.zip') + ' Mock_File_2.zip',
+    'Hello ' + path.normalize('./test-data/Mock_File_1.zip') + ' Mock_File_1.zip 55',
+    'Hello ' + path.normalize('./test-data/Mock_File_2.zip') + ' Mock_File_2.zip 55',
     '1 downloaded /home/testuser/data/Mock_File_1.zip ' + path.normalize('./test-data/Mock_File_1.zip') + ' 2928',
     '2 downloaded /home/testuser/data/Mock_File_2.zip ' + path.normalize('./test-data/Mock_File_2.zip') + ' 49453'
   ]

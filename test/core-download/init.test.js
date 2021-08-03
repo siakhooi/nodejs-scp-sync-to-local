@@ -9,7 +9,8 @@ test('download/init/0', () => {
       keepTimestamp: true,
       localPath: '.',
       remotePath: '.',
-      postProcessing: dummyFunction
+      postProcessing: dummyFunction,
+      postProcessingOptions: { x: 3 }
     },
     scpClient: {}
   }
@@ -40,7 +41,8 @@ test('download/init/0', () => {
     remotePath: '.',
     localFile: path.normalize('.' + path.sep + 'test.txt'),
     remoteFile: '.' + path.posix.sep + 'test.txt',
-    postProcessing: dummyFunction
+    postProcessing: dummyFunction,
+    postProcessingOptions: { x: 3 }
   }
 
   expect(cd0.init(workingObject, remoteFileObject, n)).resolves.toMatchObject(expected)

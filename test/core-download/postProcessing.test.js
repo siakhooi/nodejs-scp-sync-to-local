@@ -3,18 +3,20 @@ const cou = require('../../lib/core-output')
 const m = require('../mocklib')
 
 test('download/postProcessing/ok', () => {
-  const echoHello = (l, r) => { cou.info('Hello %s %s', l, r.name) }
+  const echoHello = (l, r, o) => { cou.info('Hello %s %s %d', l, r.name, o.x) }
+  const helloOptions = { x: 4 }
 
   const fileWorkingObject = {
     localFile: './test-data',
     postProcessing: echoHello,
+    postProcessingOptions: helloOptions,
     remoteFileObject: {
       name: 'Mock_File_1.zip'
     }
   }
 
   const expectedInfo = [
-    'Hello ./test-data Mock_File_1.zip'
+    'Hello ./test-data Mock_File_1.zip 4'
   ]
 
   const i = new m.MockOutput()
