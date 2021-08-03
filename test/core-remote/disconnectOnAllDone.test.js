@@ -56,3 +56,15 @@ test('remote/disconnectOnAllDone/no-download', () => {
       expect(w.verify(expectedWarn)).resolves.toBe(true)
     })
 })
+
+test('remote/disconnectOnAllDone/error', () => {
+  const workingObject = {
+    scpClient: scp.mockClient,
+    validatedOption: { quiet: false },
+    allDownloadPromises: [Promise.resolve(), Promise.reject(new Error('dummy error'))]
+  }
+
+  expect(cr0.disconnectOnAllDone(workingObject))
+    .rejects
+    .toThrow('dummy error')
+})

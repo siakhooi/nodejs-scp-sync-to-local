@@ -45,6 +45,7 @@ module.exports.mockClient = {
     if (testName === 'remote/disconnectOnAllDone/success' ||
       testName === 'remote/disconnectOnAllDone/success/quiet' ||
       testName === 'remote/disconnectOnAllDone/no-download' ||
+      testName === 'remote/disconnectOnAllDone/error' ||
       testName.startsWith('scp/download/')) {
       // Doing Nothing
     } else throw new Error('Unexpected Test(close):' + expect.getState().currentTestName)

@@ -25,6 +25,7 @@
   - `#186`: As test, I want to do negative tests on `core-util-fs.js`
   - `#188`: As test, I want to separate `npm test` and Coverage Report submission.
   - `#191`: As test, I want to test `common-data-sets.js/dummyFunction`
+  - `#190`: As test, I want to test `core-remote.js/disconnectOnAllDone` on errors.
 
 ## `0.12.0` - 2021-Jul-27
 
