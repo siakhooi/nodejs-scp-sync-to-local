@@ -1,5 +1,11 @@
 # Change Log
 
+## Unrelease
+
+## `0.13.1` - 2021-Aug-4
+
+- `#197`: bug: fail to connect caused by `node-scp` upgrade.
+
 ## `0.13.0` - 2021-Aug-3
 
 - **Added**

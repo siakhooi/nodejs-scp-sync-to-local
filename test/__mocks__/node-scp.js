@@ -1,17 +1,19 @@
 const md0 = require('../mock-data/remotefilelist')
 
-module.exports = function (scpLoginOption) {
-  return new Promise((resolve, reject) => {
-    const testName = expect.getState().currentTestName
+module.exports = {
+  Client: function (scpLoginOption) {
+    return new Promise((resolve, reject) => {
+      const testName = expect.getState().currentTestName
 
-    if (testName === 'remote/login/success') {
-      resolve({ result: 'Mock Connection: Success' })
-    } else if (testName === 'remote/login/fail') {
-      reject(new Error('Mock Connection: Fail'))
-    } else if (testName.startsWith('scp/download/')) {
-      resolve(module.exports.mockClient)
-    } else { reject(new Error('Unexpected Test(scp): ' + expect.getState().currentTestName)) }
-  })
+      if (testName === 'remote/login/success') {
+        resolve({ result: 'Mock Connection: Success' })
+      } else if (testName === 'remote/login/fail') {
+        reject(new Error('Mock Connection: Fail'))
+      } else if (testName.startsWith('scp/download/')) {
+        resolve(module.exports.mockClient)
+      } else { reject(new Error('Unexpected Test(scp): ' + expect.getState().currentTestName)) }
+    })
+  }
 }
 module.exports.mockClient = {
   list: function (remotePath) {
