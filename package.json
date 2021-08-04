@@ -1,6 +1,6 @@
 {
   "name": "scp-sync-to-local",
-  "version": "0.13.0",
+  "version": "0.13.1",
   "description": "SCP all files in remote directory to local directory",
   "main": "index.js",
   "scripts": {
