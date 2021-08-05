@@ -35,3 +35,32 @@ test('verifyPassword/undefined', () => {
     .rejects
     .toThrow('Error: password is undefined.')
 })
+test.each(dt.BlankValueDataSet)('verifyPassword/BlankValueDataSet/prompt', (value) => {
+  const workingObject = {
+    userOption: { password: value, prompt: true },
+    validatedOption: { prompt: true }
+  }
+
+  const expectWorkingObject = {
+    userOption: { password: value, prompt: true },
+    validatedOption: { prompt: true, password: null }
+  }
+
+  expect(cov.verifyPassword(workingObject))
+    .resolves
+    .toEqual(expectWorkingObject)
+})
+
+test('verifyPassword/undefined/prompt', () => {
+  const workingObject = {
+    userOption: { prompt: true },
+    validatedOption: { prompt: true }
+  }
+  const expectWorkingObject = {
+    userOption: { prompt: true },
+    validatedOption: { prompt: true, password: null }
+  }
+  expect(cov.verifyPassword(workingObject))
+    .resolves
+    .toEqual(expectWorkingObject)
+})

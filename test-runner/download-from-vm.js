@@ -19,6 +19,8 @@ if (fs.existsSync(CONFIG_FILE)) {
 }
 
 REMOTE_USERNAME = null
+REMOTE_PASSWORD = null
+
 const option = {
   host: REMOTE_HOST,
   port: 22,
