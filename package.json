@@ -1,13 +1,13 @@
 {
   "name": "scp-sync-to-local",
-  "version": "0.13.1",
+  "version": "0.14.0",
   "description": "SCP all files in remote directory to local directory",
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "eslint": "npx eslint --format table .",
     "download-from-vm": "node test-runner/download-from-vm.js",
-    "test-single": "jest --collectCoverage=false -t 'scp/download/postProcessing/*'"
+    "test-single": "jest --collectCoverage=false -t 'verify/*'"
   },
   "repository": {
     "type": "git",
@@ -31,7 +31,8 @@
     "https://ko-fi.com/siakhooi"
   ],
   "dependencies": {
-    "node-scp": "^0.0.15"
+    "node-scp": "^0.0.15",
+    "prompt": "^1.1.0"
   },
   "devDependencies": {
     "coveralls": "^3.1.1",

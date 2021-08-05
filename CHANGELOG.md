@@ -2,9 +2,13 @@
 
 ## Unrelease
 
+- **Added**
+  - `#198`: As scp user, I want to opt for a prompt if `username` is missing. (`option.prompt`)
+
 ## `0.13.1` - 2021-Aug-4
 
-- `#197`: bug: fail to connect caused by `node-scp` upgrade.
+- **Changed**
+  - `#197`: bug: fail to connect caused by `node-scp` upgrade.
 
 ## `0.13.0` - 2021-Aug-3
 

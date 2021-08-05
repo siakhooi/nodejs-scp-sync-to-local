@@ -1,5 +1,5 @@
 exports.PROGRAM_NAME = 'scp-sync-to-local'
-exports.PROGRAM_VERSION = '0.13.1'
+exports.PROGRAM_VERSION = '0.14.0'
 
 exports.PASSWORD_MASK = '**********'
 
@@ -22,3 +22,4 @@ exports.DEFAULT_KEEPTIMESTAMP = false
 exports.DEFAULT_CUSTOMFILTER = null
 exports.DEFAULT_POSTPROCESSING = null
 exports.DEFAULT_POSTPROCESSINGOPTIONS = {}
+exports.DEFAULT_PROMPT = false

@@ -26,7 +26,7 @@ const scp = require("scp-sync-to-local");
 | ----------------------- | ---------- | ------------- | -------------------------------------------------------------------------------- |
 | `host`                  | `String`   | `localhost`   |                                                                                  |
 | `port`                  | `integer`  | `22`          |                                                                                  |
-| `username`              | `String`   |               |                                                                                  |
+| `username`              | `String`   |               | prompt user to enter on screen if `prompt=true`                                  |
 | `password`              | `String`   |               |                                                                                  |
 | `remotePath`            | `String`   | `.`           |                                                                                  |
 | `localPath`             | `String`   | `.`           |                                                                                  |
@@ -45,6 +45,7 @@ const scp = require("scp-sync-to-local");
 | `customFilter`          | `function` | `null`        | use custom filter function                                                       |
 | `postProcessing`        | `function` | `null`        | user defined function to process file after download                             |
 | `postProcessingOptions` | `object`   | `{}`          | user defined option for user defined function in `postProcessing`                |
+| `prompt`                | `boolean`  | `false`       | Prompt on console if value is missing, applicable to field `username`.           |
 
 - A file will be downloaded only if **all filters** return `true`.
 

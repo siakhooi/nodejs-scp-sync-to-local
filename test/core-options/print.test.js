@@ -25,6 +25,7 @@ const util = require('util')
            customFilter: Yes
          postProcessing: Yes
   postProcessingOptions: {}
+                 prompt: false
                 verbose: true
                   quiet: false
 */
@@ -52,6 +53,7 @@ test.each([
       skipIfSameSize: false,
       autoCreateLocalPath: true,
       keepTimestamp: false,
+      prompt: false,
       verbose: verbose,
       quiet: quiet
     }
@@ -88,6 +90,7 @@ test.each([
       customFilter: () => { },
       postProcessing: () => { },
       postProcessingOptions: {},
+      prompt: false,
       verbose: verbose,
       quiet: quiet
     }
@@ -115,6 +118,7 @@ test.each([
     util.format('       postProcessing: %s', 'Yes'),
     util.format('postProcessingOptions: %s', '{}'),
     util.format('        keepTimestamp: %s', false),
+    util.format('               prompt: %s', false),
     util.format('              verbose: %s', verbose),
     util.format('                quiet: %s', quiet)
   ]
@@ -151,6 +155,7 @@ test.each([
       customFilter: null,
       postProcessing: null,
       postProcessingOptions: {},
+      prompt: false,
       verbose: verbose,
       quiet: quiet
     }
@@ -177,6 +182,7 @@ test.each([
     util.format('       postProcessing: %s', 'No'),
     util.format('postProcessingOptions: %s', '{}'),
     util.format('        keepTimestamp: %s', false),
+    util.format('               prompt: %s', false),
     util.format('              verbose: %s', verbose),
     util.format('                quiet: %s', quiet)
   ]

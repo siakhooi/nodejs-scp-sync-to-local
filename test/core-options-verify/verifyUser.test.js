@@ -36,3 +36,31 @@ test('verifyUser/undefined', () => {
     .rejects
     .toThrow('Error: username is undefined.')
 })
+test('verifyUser/undefined/prompt', () => {
+  const workingObject = {
+    userOption: { prompt: true },
+    validatedOption: { prompt: true }
+  }
+  const expectWorkingObject = {
+    userOption: { prompt: true },
+    validatedOption: { prompt: true, username: null }
+  }
+
+  expect(cov.verifyUser(workingObject))
+    .resolves
+    .toEqual(expectWorkingObject)
+})
+test.each(dt.BlankValueDataSet)('verifyUser/BlankValueDataSet/prompt', (value) => {
+  const workingObject = {
+    userOption: { username: value, prompt: true },
+    validatedOption: { prompt: true }
+  }
+  const expectWorkingObject = {
+    userOption: { prompt: true, username: value },
+    validatedOption: { prompt: true, username: null }
+  }
+
+  expect(cov.verifyUser(workingObject))
+    .resolves
+    .toEqual(expectWorkingObject)
+})
