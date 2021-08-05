@@ -8,10 +8,12 @@ test('verifyBasic/defaults', () => {
 
   co0.verifyBasic(workingObject).then((workingObject) => {
     expect(workingObject)
-      .toMatchObject({
+      .toEqual({
+        userOption: {},
         validatedOption: {
           verbose: false,
-          quiet: false
+          quiet: false,
+          prompt: false
         }
       })
   })
@@ -21,16 +23,23 @@ test('verifyBasic/all', () => {
   const workingObject = {
     userOption: {
       verbose: true,
-      quiet: true
+      quiet: true,
+      prompt: true
     },
     validatedOption: {}
   }
   return expect(co0.verifyBasic(workingObject))
     .resolves
-    .toMatchObject({
+    .toEqual({
+      userOption: {
+        verbose: true,
+        quiet: true,
+        prompt: true
+      },
       validatedOption: {
         verbose: true,
-        quiet: true
+        quiet: true,
+        prompt: true
       }
     })
 })

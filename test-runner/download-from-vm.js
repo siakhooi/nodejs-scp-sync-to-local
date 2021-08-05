@@ -18,6 +18,7 @@ if (fs.existsSync(CONFIG_FILE)) {
   REMOTE_PASSWORD = l.REMOTE_PASSWORD
 }
 
+REMOTE_USERNAME = null
 const option = {
   host: REMOTE_HOST,
   port: 22,
@@ -25,7 +26,7 @@ const option = {
   password: REMOTE_PASSWORD,
   remotePath: '/home/testuser/data',
   localPath: './test-data',
-  skipIfExists: true,
+  skipIfExists: false,
   skipIfNotExists: false,
   skipIfNewer: false,
   skipIfOlder: false,
@@ -35,7 +36,8 @@ const option = {
   skipIfSameSize: false,
   keepTimestamp: true,
   verbose: true,
-  quiet: false
+  quiet: false,
+  prompt: true
 }
 
 scp.download(option)
