@@ -111,7 +111,7 @@ test('verify/all', () => {
       }
     })
 })
-test('verify/prompt', () => {
+test('verify/prompt/username', () => {
   const dummyFunction = () => { }
   const workingObject = {
     userOption: {
@@ -139,7 +139,7 @@ test('verify/prompt', () => {
     validatedOption: { prompt: true }
   }
   prompt.start = jest.fn()
-  prompt.get = jest.fn().mockImplementation(() => { return Promise.resolve({ username: 'consoleinputusername' }) })
+  prompt.get = jest.fn().mockResolvedValueOnce({ username: 'consoleinputusername' })
 
   return expect(co0.verify(workingObject))
     .resolves
@@ -148,6 +148,64 @@ test('verify/prompt', () => {
         host: 'xxxxx',
         username: 'consoleinputusername',
         password: 'testpassword',
+        remotePath: '/home/testuser/test-data/',
+        localPath: './test-data/',
+        port: 2222,
+        skipIfExists: false,
+        skipIfNotExists: true,
+        skipIfNewer: true,
+        skipIfOlder: true,
+        skipIfSameAge: true,
+        skipIfBigger: true,
+        skipIfSmaller: true,
+        skipIfSameSize: true,
+        autoCreateLocalPath: false,
+        keepTimestamp: true,
+        customFilter: dummyFunction,
+        postProcessing: dummyFunction,
+        postProcessingOptions: { x: 3 },
+        prompt: true
+      }
+    })
+})
+
+test('verify/prompt/password', () => {
+  const dummyFunction = () => { }
+  const workingObject = {
+    userOption: {
+      host: 'xxxxx',
+      username: 'testusername',
+      remotePath: '/home/testuser/test-data/',
+      localPath: './test-data/',
+      port: 2222,
+      skipIfExists: false,
+      skipIfNotExists: true,
+      skipIfNewer: true,
+      skipIfOlder: true,
+      skipIfSameAge: true,
+      skipIfBigger: true,
+      skipIfSmaller: true,
+      skipIfSameSize: true,
+      autoCreateLocalPath: false,
+      keepTimestamp: true,
+      customFilter: dummyFunction,
+      postProcessing: dummyFunction,
+      postProcessingOptions: { x: 3 },
+      prompt: true
+
+    },
+    validatedOption: { prompt: true }
+  }
+  prompt.start = jest.fn()
+  prompt.get = jest.fn().mockResolvedValueOnce({ password: 'consoleinputpassword' })
+
+  return expect(co0.verify(workingObject))
+    .resolves
+    .toMatchObject({
+      validatedOption: {
+        host: 'xxxxx',
+        username: 'testusername',
+        password: 'consoleinputpassword',
         remotePath: '/home/testuser/test-data/',
         localPath: './test-data/',
         port: 2222,

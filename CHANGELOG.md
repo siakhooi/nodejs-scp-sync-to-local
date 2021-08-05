@@ -4,6 +4,7 @@
 
 - **Added**
   - `#198`: As scp user, I want to opt for a prompt if `username` is missing. (`option.prompt`)
+  - `#201`: As scp user, I want to opt for a prompt if `password` is missing.
 
 ## `0.13.1` - 2021-Aug-4
 
