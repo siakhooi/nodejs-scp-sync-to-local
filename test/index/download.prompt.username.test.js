@@ -87,7 +87,7 @@ test('scp/download/prompt/username/1', () => {
     }
   }
   prompt.start = jest.fn()
-  prompt.get = jest.fn().mockImplementation(() => { return Promise.resolve({ username: 'consoleinputusername' }) })
+  prompt.get = jest.fn().mockResolvedValueOnce({ username: 'consoleinputusername' })
 
   return scp.download(option)
     .then((returnValue) => {
