@@ -97,3 +97,34 @@ test('verifyHost/undefined/quiet', () => {
     })
   expect(co0.warn).not.toBeCalled()
 })
+
+test.each(dt.BlankValueDataSet)('verifyHost/BlankValueDataSet/prompt', (value) => {
+  const workingObject = {
+    userOption: { host: value, prompt: true },
+    validatedOption: { prompt: true }
+  }
+
+  const expectWorkingObject = {
+    userOption: { host: value, prompt: true },
+    validatedOption: { prompt: true, host: null }
+  }
+
+  expect(cov.verifyHost(workingObject))
+    .resolves
+    .toEqual(expectWorkingObject)
+})
+test('verifyHost/undefined/prompt', () => {
+  const workingObject = {
+    userOption: { prompt: true },
+    validatedOption: { prompt: true }
+  }
+
+  const expectWorkingObject = {
+    userOption: { prompt: true },
+    validatedOption: { prompt: true, host: null }
+  }
+
+  expect(cov.verifyHost(workingObject))
+    .resolves
+    .toEqual(expectWorkingObject)
+})
