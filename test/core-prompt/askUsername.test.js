@@ -20,12 +20,12 @@ test('core-prompt/askUsername/1', () => {
   }
   const expectedWorkingObject = {
     validatedOption: {
-      username: 'cde'
+      username: 'consoleinputusername'
     }
   }
 
   prompt.start = jest.fn()
-  prompt.get = jest.fn().mockImplementation(() => { return Promise.resolve({ username: 'cde' }) })
+  prompt.get = jest.fn().mockResolvedValueOnce({ username: 'consoleinputusername' })
 
   expect(cpr.askUsername(workingObject))
     .resolves
