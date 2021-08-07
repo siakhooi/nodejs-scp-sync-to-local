@@ -92,3 +92,34 @@ test('verifyLocalPath/undefined/quiet', () => {
     })
   expect(co0.warn).not.toBeCalled()
 })
+
+test.each(dt.BlankValueDataSet)('verifyLocalPath/BlankValueDataSet/prompt', (value) => {
+  const workingObject = {
+    userOption: { prompt: true, localPath: value },
+    validatedOption: { prompt: true }
+  }
+
+  const expectWorkingObject = {
+    userOption: { prompt: true, localPath: value },
+    validatedOption: { prompt: true, localPath: null }
+  }
+
+  expect(cov.verifyLocalPath(workingObject))
+    .resolves
+    .toEqual(expectWorkingObject)
+})
+test('verifyLocalPath/undefined/prompt', () => {
+  const workingObject = {
+    userOption: { prompt: true },
+    validatedOption: { prompt: true }
+  }
+
+  const expectWorkingObject = {
+    userOption: { prompt: true },
+    validatedOption: { prompt: true, localPath: null }
+  }
+
+  expect(cov.verifyLocalPath(workingObject))
+    .resolves
+    .toEqual(expectWorkingObject)
+})
