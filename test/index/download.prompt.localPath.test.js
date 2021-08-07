@@ -18,7 +18,7 @@ beforeEach(() => {
   p.clear()
 })
 
-test('scp/download/prompt/all/1', () => {
+test('scp/download/prompt/localPath/1', () => {
   const expectedInfo = [
     'Info: port is undefined, defaulting to 22.',
     '1 downloading /home/testuser/data/Mock_File_1.zip',
@@ -44,7 +44,10 @@ test('scp/download/prompt/all/1', () => {
   cuf.mkdir = jest.fn()
 
   const option = {
+    username: 'testuser',
+    password: 'testpassword',
     remotePath: '/home/testuser/data',
+    host: 'host123',
     prompt: true
   }
   const expectedReturnValue = {
@@ -62,11 +65,11 @@ test('scp/download/prompt/all/1', () => {
     }],
     totalDownloaded: 0,
     validatedOption: {
-      autoCreateLocalPath: true,
-      customFilter: null,
-      keepTimestamp: false,
+      username: 'testuser',
+      password: 'testpassword',
+      host: 'host123',
       port: 22,
-      quiet: false,
+      localPath: 'console/input/localPath',
       remotePath: '/home/testuser/data',
       skipIfBigger: false,
       skipIfExists: false,
@@ -76,18 +79,15 @@ test('scp/download/prompt/all/1', () => {
       skipIfSameAge: false,
       skipIfSameSize: false,
       skipIfSmaller: false,
-      host: 'consoleinputhost',
-      username: 'consoleinputusername',
-      password: 'consoleinputpassword',
-      localPath: 'console/input/localPath',
+      autoCreateLocalPath: true,
+      customFilter: null,
+      keepTimestamp: false,
+      quiet: false,
       verbose: false
     }
   }
   prompt.start = jest.fn()
   prompt.get = jest.fn()
-    .mockResolvedValueOnce({ host: 'consoleinputhost' })
-    .mockResolvedValueOnce({ username: 'consoleinputusername' })
-    .mockResolvedValueOnce({ password: 'consoleinputpassword' })
     .mockResolvedValueOnce({ localPath: 'console/input/localPath' })
 
   return scp.download(option)

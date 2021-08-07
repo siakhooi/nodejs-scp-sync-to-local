@@ -284,3 +284,61 @@ test('verify/prompt/host', () => {
       }
     })
 })
+
+test('verify/prompt/localPath', () => {
+  const dummyFunction = () => { }
+  const workingObject = {
+    userOption: {
+      username: 'testusername',
+      password: 'testpassword',
+      remotePath: '/home/testuser/test-data/',
+      host: 'host123',
+      port: 2222,
+      skipIfExists: false,
+      skipIfNotExists: true,
+      skipIfNewer: true,
+      skipIfOlder: true,
+      skipIfSameAge: true,
+      skipIfBigger: true,
+      skipIfSmaller: true,
+      skipIfSameSize: true,
+      autoCreateLocalPath: false,
+      keepTimestamp: true,
+      customFilter: dummyFunction,
+      postProcessing: dummyFunction,
+      postProcessingOptions: { x: 3 },
+      prompt: true
+
+    },
+    validatedOption: { prompt: true }
+  }
+  prompt.start = jest.fn()
+  prompt.get = jest.fn().mockResolvedValueOnce({ localPath: 'console/input/local/Path' })
+
+  return expect(co0.verify(workingObject))
+    .resolves
+    .toMatchObject({
+      validatedOption: {
+        host: 'host123',
+        username: 'testusername',
+        password: 'testpassword',
+        remotePath: '/home/testuser/test-data/',
+        localPath: 'console/input/local/Path',
+        port: 2222,
+        skipIfExists: false,
+        skipIfNotExists: true,
+        skipIfNewer: true,
+        skipIfOlder: true,
+        skipIfSameAge: true,
+        skipIfBigger: true,
+        skipIfSmaller: true,
+        skipIfSameSize: true,
+        autoCreateLocalPath: false,
+        keepTimestamp: true,
+        customFilter: dummyFunction,
+        postProcessing: dummyFunction,
+        postProcessingOptions: { x: 3 },
+        prompt: true
+      }
+    })
+})
