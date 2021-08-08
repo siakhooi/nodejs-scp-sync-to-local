@@ -74,7 +74,7 @@ test.each(dt.BlankValueDataSet)('verifyRemotePath/BlankValueDataSet/quiet', (val
     })
   expect(co0.warn).not.toBeCalled()
 })
-test('verifyRemotePath/undefined', () => {
+test('verifyRemotePath/undefined/quiet', () => {
   const workingObject = {
     userOption: {},
     validatedOption: { quiet: true }
@@ -91,4 +91,35 @@ test('verifyRemotePath/undefined', () => {
       }
     })
   expect(co0.warn).not.toBeCalled()
+})
+
+test.each(dt.BlankValueDataSet)('verifyRemotePath/BlankValueDataSet/prompt', (value) => {
+  const workingObject = {
+    userOption: { prompt: true, remotePath: value },
+    validatedOption: { prompt: true }
+  }
+
+  const expectWorkingObject = {
+    userOption: { prompt: true, remotePath: value },
+    validatedOption: { prompt: true, remotePath: null }
+  }
+
+  expect(cov.verifyRemotePath(workingObject))
+    .resolves
+    .toEqual(expectWorkingObject)
+})
+test('verifyRemotePath/undefined/prompt', () => {
+  const workingObject = {
+    userOption: { prompt: true },
+    validatedOption: { prompt: true }
+  }
+
+  const expectWorkingObject = {
+    userOption: { prompt: true },
+    validatedOption: { prompt: true, remotePath: null }
+  }
+
+  expect(cov.verifyRemotePath(workingObject))
+    .resolves
+    .toEqual(expectWorkingObject)
 })

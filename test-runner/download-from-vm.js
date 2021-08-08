@@ -27,7 +27,7 @@ const option = {
   port: 22,
   username: REMOTE_USERNAME,
   password: REMOTE_PASSWORD,
-  remotePath: '/home/testuser/data',
+  // remotePath: '/home/testuser/data',
   // localPath: './test-data',
   skipIfExists: false,
   skipIfNotExists: false,

@@ -7,7 +7,7 @@
     "test": "jest",
     "eslint": "npx eslint --format table .",
     "download-from-vm": "node test-runner/download-from-vm.js",
-    "test-single": "jest --collectCoverage=false -t 'scp/download/prompt/localPath/*'"
+    "test-single": "jest --collectCoverage=false -t 'scp/download/prompt/remotePath/*'"
   },
   "repository": {
     "type": "git",
