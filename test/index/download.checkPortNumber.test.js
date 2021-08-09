@@ -20,12 +20,13 @@ beforeEach(() => {
 
 test.each(dt.CorrectPortNumber)('scp/download/checkPortNumber/CorrectPortNumber', (value) => {
   const expectedInfo = [
+    'done',
     '1 downloading /home/testuser/data/Mock_File_1.zip',
     '2 downloading /home/testuser/data/Mock_File_2.zip',
     '1 downloaded /home/testuser/data/Mock_File_1.zip ' + path.normalize('./test-data1/Mock_File_1.zip') + ' 2928',
     '2 downloaded /home/testuser/data/Mock_File_2.zip ' + path.normalize('./test-data1/Mock_File_2.zip') + ' 49453',
-    'All done, total downloads = 2.',
-    'done']
+    'All done, total downloads = 2.'
+  ]
 
   const expectedPrint = ['Downloading Remote File List...']
 

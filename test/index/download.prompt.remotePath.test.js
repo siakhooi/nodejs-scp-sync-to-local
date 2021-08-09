@@ -21,12 +21,12 @@ beforeEach(() => {
 test('scp/download/prompt/remotePath/1', () => {
   const expectedInfo = [
     'Info: port is undefined, defaulting to 22.',
+    'done',
     '1 downloading console/input/remotePath/Mock_File_1.zip',
     '2 downloading console/input/remotePath/Mock_File_2.zip',
     '1 downloaded console/input/remotePath/Mock_File_1.zip ' + path.normalize('./test-data1/Mock_File_1.zip') + ' 2928',
     '2 downloaded console/input/remotePath/Mock_File_2.zip ' + path.normalize('./test-data1/Mock_File_2.zip') + ' 49453',
-    'All done, total downloads = 2.',
-    'done']
+    'All done, total downloads = 2.']
 
   const expectedWarn = [
     'Warning: skipIfExists is undefined, defaulting to false.',

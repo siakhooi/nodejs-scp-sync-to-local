@@ -23,6 +23,7 @@ test('scp/download/verbose/1', () => {
   const expectedInfo = [
     util.format('%s %s', conf.PROGRAM_NAME, conf.PROGRAM_VERSION),
     '',
+    'Info: port is undefined, defaulting to 22.',
     util.format('[Parameters]'),
     util.format('                 host: %s', '1.0.0.0'),
     util.format('                 port: %d', 22),
@@ -39,20 +40,19 @@ test('scp/download/verbose/1', () => {
     util.format('        skipIfSmaller: %s', false),
     util.format('       skipIfSameSize: %s', false),
     util.format('  autoCreateLocalPath: %s', true),
-    util.format('        keepTimestamp: %s', false),
     util.format('         customFilter: %s', 'No'),
     util.format('       postProcessing: %s', 'No'),
     util.format('postProcessingOptions: %s', '{}'),
+    util.format('        keepTimestamp: %s', false),
     util.format('               prompt: %s', false),
     util.format('              verbose: %s', true),
     util.format('                quiet: %s', false),
-    'Info: port is undefined, defaulting to 22.',
+    'done',
     '1 downloading /home/testuser/data/Mock_File_1.zip',
     '2 downloading /home/testuser/data/Mock_File_2.zip',
     '1 downloaded /home/testuser/data/Mock_File_1.zip ' + path.normalize('./test-data1/Mock_File_1.zip') + ' 2928',
     '2 downloaded /home/testuser/data/Mock_File_2.zip ' + path.normalize('./test-data1/Mock_File_2.zip') + ' 49453',
-    'All done, total downloads = 2.',
-    'done']
+    'All done, total downloads = 2.']
 
   const expectedWarn = [
     'Warning: skipIfExists is undefined, defaulting to false.',
@@ -106,19 +106,19 @@ test('scp/download/verbose/2', () => {
     util.format('        skipIfSmaller: %s', false),
     util.format('       skipIfSameSize: %s', false),
     util.format('  autoCreateLocalPath: %s', true),
-    util.format('        keepTimestamp: %s', false),
     util.format('         customFilter: %s', 'No'),
     util.format('       postProcessing: %s', 'No'),
     util.format('postProcessingOptions: %s', '{}'),
+    util.format('        keepTimestamp: %s', false),
     util.format('               prompt: %s', false),
     util.format('              verbose: %s', true),
     util.format('                quiet: %s', false),
+    'done',
     '1 downloading /home/testuser/data/Mock_File_1.zip',
     '2 downloading /home/testuser/data/Mock_File_2.zip',
     '1 downloaded /home/testuser/data/Mock_File_1.zip ' + path.normalize('./test-data1/Mock_File_1.zip') + ' 2928',
     '2 downloaded /home/testuser/data/Mock_File_2.zip ' + path.normalize('./test-data1/Mock_File_2.zip') + ' 49453',
-    'All done, total downloads = 2.',
-    'done']
+    'All done, total downloads = 2.']
 
   const expectedPrint = ['Downloading Remote File List...']
 

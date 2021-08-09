@@ -113,7 +113,6 @@ test.each([
     util.format('        skipIfSmaller: %s', false),
     util.format('       skipIfSameSize: %s', false),
     util.format('  autoCreateLocalPath: %s', true),
-    util.format('        keepTimestamp: %s', false),
     util.format('         customFilter: %s', 'Yes'),
     util.format('       postProcessing: %s', 'Yes'),
     util.format('postProcessingOptions: %s', '{}'),

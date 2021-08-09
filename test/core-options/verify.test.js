@@ -19,6 +19,8 @@ test('verify/defaults', () => {
 
   const expectedWarn = [
     'Warning: host is undefined, defaulting to localhost.',
+    'Warning: localPath is undefined, defaulting to current directory. [.]',
+    'Warning: remotePath is undefined, defaulting to current directory. [.]',
     'Warning: skipIfExists is undefined, defaulting to false.',
     'Warning: skipIfNotExists is undefined, defaulting to false.',
     'Warning: skipIfNewer is undefined, defaulting to false.',
@@ -26,9 +28,7 @@ test('verify/defaults', () => {
     'Warning: skipIfSameAge is undefined, defaulting to false.',
     'Warning: skipIfBigger is undefined, defaulting to false.',
     'Warning: skipIfSmaller is undefined, defaulting to false.',
-    'Warning: skipIfSameSize is undefined, defaulting to false.',
-    'Warning: remotePath is undefined, defaulting to current directory. [.]',
-    'Warning: localPath is undefined, defaulting to current directory. [.]'
+    'Warning: skipIfSameSize is undefined, defaulting to false.'
   ]
   const expectedInfo = ['Info: port is undefined, defaulting to 22.']
 

@@ -21,14 +21,14 @@ test('scp/download/postProcessing/1', () => {
   const echoHello = (l, r, o) => { cou.info('Hello %s %s %d', l, r.name, o.x) }
 
   const expectedInfo = [
+    'done',
     '1 downloading /home/testuser/data/Mock_File_1.zip',
     '2 downloading /home/testuser/data/Mock_File_2.zip',
     'Hello ' + path.normalize('./test-data1/Mock_File_1.zip') + ' Mock_File_1.zip 6',
     'Hello ' + path.normalize('./test-data1/Mock_File_2.zip') + ' Mock_File_2.zip 6',
     '1 downloaded /home/testuser/data/Mock_File_1.zip ' + path.normalize('./test-data1/Mock_File_1.zip') + ' 2928',
     '2 downloaded /home/testuser/data/Mock_File_2.zip ' + path.normalize('./test-data1/Mock_File_2.zip') + ' 49453',
-    'All done, total downloads = 2.',
-    'done']
+    'All done, total downloads = 2.']
 
   const expectedPrint = ['Downloading Remote File List...']
 
