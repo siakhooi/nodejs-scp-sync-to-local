@@ -18,8 +18,7 @@ class MockOutput {
   verify(expectedOutput) {
     return new Promise((resolve, reject) => {
       expect(this.fn1).toBeCalled()
-      expectedOutput.forEach((x) => expect(this.actualOutput).toContainEqual(x))
-      this.actualOutput.forEach((x) => expect(expectedOutput).toContainEqual(x))
+      expect(expectedOutput).toEqual(this.actualOutput)
       resolve(true)
     })
   }

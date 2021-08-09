@@ -1,5 +1,10 @@
 # Change Log
 
+## Unrelease
+
+- **Test**
+  - `#200`: As test, I want `mocklib/verify` to test exact array so that the sequence of array elements are tested.
+
 ## `0.14.0` - 2021-Aug-9
 
 - **Added**
