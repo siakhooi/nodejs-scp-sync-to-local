@@ -10,6 +10,8 @@ exports.NotBooleanDataSet = ['ANC', '3453', 'xxx', '%%', ' ', 567, 3.3, [], {}, 
 exports.NotIntegerDataSet = ['ANC', ' ', '^^', true, 3.3, {}, [], { x: 1 }, dummyFunction, class { }]
 exports.NotFunctionDataSet = ['ANC', 3453, 3.6, true, [], {}]
 exports.NotObjectDataSet = ['ABC', 3, 3.3, [], dummyFunction, class { }]
+exports.NotBlankValueDataSet = [-1, 0, 3, 3.3, 'ABC', ' ', true, false, [], dummyFunction, {}, class { }]
+
 exports.CorrectPortNumber = [1, 65535, 22, 300, 6455]
 exports.IncorrectPortNumber = [0, 65536, 100100]
 

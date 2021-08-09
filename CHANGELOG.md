@@ -1,15 +1,15 @@
 # Change Log
 
-## Unrelease `0.14.0`
+## `0.14.0` - 2021-Aug-9
 
 - **Added**
-
   - `#198`: As scp user, I want to opt for a prompt if `username` is missing. (`option.prompt`)
   - `#201`: As scp user, I want to opt for a prompt if `password` is missing.
   - `#204`: As scp user, I want to opt for a prompt if `host` is missing.
   - `#202`: As scp user, I want to opt for a prompt if `localPath` is missing.
   - `#203`: As scp user, I want to opt for a prompt if `remotePath` is missing.
-
+- **Code Refactored**
+  - `#205`: As dev, I want to refactor blank verification logic into `isBlank` so that the code is DRY.
 - **Test**
   - `#208`: As test, I want to refactor `username` tests to use `mockResolvedValueOnce`
 
