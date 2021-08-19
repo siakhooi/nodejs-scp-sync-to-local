@@ -40,7 +40,8 @@ npm install scp-sync-to-local [--save]
 
 ## Usage
 
-- see [USAGE.md](USAGE.md)
+- see [USAGE as package](USAGE.md)
+- see [Usage as CLI](CLI.md)
 
 ### Quick Example
 

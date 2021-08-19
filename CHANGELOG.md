@@ -2,6 +2,8 @@
 
 ## Unrelease
 
+- **Added**
+  - `#6`: As cli user, I want to run the function from cli.
 - **Test**
   - `#200`: As test, I want `mocklib/verify` to test exact array so that the sequence of array elements are tested.
 
