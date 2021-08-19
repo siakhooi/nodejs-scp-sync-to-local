@@ -105,4 +105,5 @@ dist
 
 ##
 test-data
+test-cli
 test-local-config
