@@ -13,7 +13,7 @@ beforeEach(() => {
   i.clear()
 })
 
-test('remote/downloadFiles/success', () => {
+test('core-remote/downloadFiles/+', () => {
   const workingObject = {
     validatedOption: {
       remotePath: '/home/testuser/data',
@@ -44,7 +44,7 @@ test('remote/downloadFiles/success', () => {
     })
 })
 
-test('remote/downloadFiles/success/quiet', () => {
+test('core-remote/downloadFiles/quiet', () => {
   const workingObject = {
     validatedOption: {
       remotePath: '/home/testuser/data',
@@ -65,7 +65,7 @@ test('remote/downloadFiles/success/quiet', () => {
       expect(i.verifyFalse()).resolves.toBe(true)
     })
 })
-test('remote/downloadFiles/success/quiet/keepTimestamp', () => {
+test('core-remote/downloadFiles/quiet/keepTimestamp', () => {
   const workingObject = {
     validatedOption: {
       remotePath: '/home/testuser/data',
@@ -92,7 +92,7 @@ test('remote/downloadFiles/success/quiet/keepTimestamp', () => {
     })
 })
 
-test('remote/downloadFiles/success/postProcessing', () => {
+test('core-remote/downloadFiles/postProcessing', () => {
   const echoHello = (l, r, o) => { cou.info('Hello %s %s %d', l, r.name, o.x) }
   const workingObject = {
     validatedOption: {

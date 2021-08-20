@@ -1,6 +1,6 @@
 const coc = require('../../lib/core-options-crosscheck')
 
-test('checkExistsRule/error', () => {
+test('core-options-crosscheck/checkExistsRule/-', () => {
   const workingObject = {
     userOption: {},
     validatedOption: { skipIfExists: true, skipIfNotExists: true }
@@ -15,7 +15,7 @@ test.each([
   [true, false],
   [false, true],
   [false, false]
-])('checkExistsRule/ok', (exist, notExist) => {
+])('core-options-crosscheck/checkExistsRule/+', (exist, notExist) => {
   const workingObject = {
     userOption: {},
     validatedOption: { skipIfExists: exist, skipIfNotExists: notExist }

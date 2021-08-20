@@ -1,7 +1,7 @@
 const cov = require('../../lib/core-options-verify')
 const dt = require('../mock-data/common-data-sets')
 
-test('verifyPassword', () => {
+test('core-options-verify/verifyPassword/+', () => {
   const workingObject = {
     userOption: { password: 'testpassword' },
     validatedOption: {}
@@ -15,7 +15,7 @@ test('verifyPassword', () => {
     })
 })
 
-test.each(dt.BlankValueDataSet)('verifyPassword/BlankValueDataSet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyPassword/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { password: value },
     validatedOption: {}
@@ -25,7 +25,7 @@ test.each(dt.BlankValueDataSet)('verifyPassword/BlankValueDataSet', (value) => {
     .rejects
     .toThrow('Error: password is undefined.')
 })
-test('verifyPassword/undefined', () => {
+test('core-options-verify/verifyPassword/undefined', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -35,7 +35,7 @@ test('verifyPassword/undefined', () => {
     .rejects
     .toThrow('Error: password is undefined.')
 })
-test.each(dt.BlankValueDataSet)('verifyPassword/BlankValueDataSet/prompt', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyPassword/BlankValueDataSet/prompt', (value) => {
   const workingObject = {
     userOption: { password: value, prompt: true },
     validatedOption: { prompt: true }
@@ -51,7 +51,7 @@ test.each(dt.BlankValueDataSet)('verifyPassword/BlankValueDataSet/prompt', (valu
     .toEqual(expectWorkingObject)
 })
 
-test('verifyPassword/undefined/prompt', () => {
+test('core-options-verify/verifyPassword/undefined/prompt', () => {
   const workingObject = {
     userOption: { prompt: true },
     validatedOption: { prompt: true }

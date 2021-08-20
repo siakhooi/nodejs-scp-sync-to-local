@@ -63,7 +63,7 @@ const workingObject = {
   totalDownloaded: 2
 
 }
-test('core-report/returnReport/1', () => {
+test('core-report/returnReport/+', () => {
   expect(crp.returnReport(workingObject))
     .resolves
     .toMatchObject(expectedReturnValue)

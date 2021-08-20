@@ -4,13 +4,14 @@ const cuf = require('../../lib/core-util-fs')
 const remoteFile = {
   modifyTime: 0
 }
+
 const localFile = 'xxxx'
 
 test.each([
   [true, false],
   [false, true]
-])('skipIfNewer', (testValue, testResult) => {
-  jest.spyOn(cuf, 'isNewer').mockImplementation(() => { return testValue })
+])('core-filters/skipIfSameAge/+', (testValue, testResult) => {
+  jest.spyOn(cuf, 'isSameAge').mockReturnValue(testValue)
 
-  expect(cf0.skipIfNewer(localFile, remoteFile)).toBe(testResult)
+  expect(cf0.skipIfSameAge(localFile, remoteFile)).toBe(testResult)
 })

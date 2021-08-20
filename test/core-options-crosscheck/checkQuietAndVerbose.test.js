@@ -2,7 +2,7 @@ const coc = require('../../lib/core-options-crosscheck')
 const co0 = require('../../lib/core-output')
 const m = require('../mocklib')
 
-test('checkQuietAndVerbose/override', () => {
+test('core-options-crosscheck/checkQuietAndVerbose/override', () => {
   const workingObject = {
     userOption: {},
     validatedOption: { quiet: true, verbose: true }
@@ -23,7 +23,7 @@ test.each([
   [true, false],
   [false, true],
   [false, false]
-])('checkQuietAndVerbose/3', (quiet, verbose) => {
+])('core-options-crosscheck/checkQuietAndVerbose/-', (quiet, verbose) => {
   const workingObject = {
     userOption: {},
     validatedOption: { quiet: quiet, verbose: verbose }

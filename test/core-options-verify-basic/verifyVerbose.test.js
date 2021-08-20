@@ -4,7 +4,7 @@ const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_VERBOSE = false
 
-test.each(dt.TrueDataSet)('verifyVerbose/TrueDataSet', (value) => {
+test.each(dt.TrueDataSet)('core-options-verify-basic/verifyVerbose/TrueDataSet', (value) => {
   const workingObject = {
     userOption: { verbose: value },
     validatedOption: {}
@@ -18,7 +18,7 @@ test.each(dt.TrueDataSet)('verifyVerbose/TrueDataSet', (value) => {
     })
 })
 
-test.each(dt.FalseDataSet)('verifyVerbose/FalseDataSet', (value) => {
+test.each(dt.FalseDataSet)('core-options-verify-basic/verifyVerbose/FalseDataSet', (value) => {
   const workingObject = {
     userOption: { verbose: value },
     validatedOption: {}
@@ -32,7 +32,7 @@ test.each(dt.FalseDataSet)('verifyVerbose/FalseDataSet', (value) => {
     })
 })
 
-test('verifyVerbose/undefined', () => {
+test('core-options-verify-basic/verifyVerbose/undefined', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -45,7 +45,7 @@ test('verifyVerbose/undefined', () => {
       validatedOption: { verbose: DEFAULT_VERBOSE }
     })
 })
-test.each(dt.BlankValueDataSet)('verifyVerbose/BlankValueDataSet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify-basic/verifyVerbose/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { verbose: value },
     validatedOption: {}
@@ -59,7 +59,7 @@ test.each(dt.BlankValueDataSet)('verifyVerbose/BlankValueDataSet', (value) => {
     })
 })
 
-test.each(dt.NotBooleanDataSet)('verifyVerbose/NotBooleanDataSet', (value) => {
+test.each(dt.NotBooleanDataSet)('core-options-verify-basic/verifyVerbose/NotBooleanDataSet', (value) => {
   const workingObject = {
     userOption: { verbose: value },
     validatedOption: {}

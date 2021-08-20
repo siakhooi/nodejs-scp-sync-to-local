@@ -1,6 +1,6 @@
 const co0 = require('../../lib/core-options')
 
-test('init', () => {
+test('core-options/init', () => {
   const option = {
     host: 'localhost',
     username: 'testuser',

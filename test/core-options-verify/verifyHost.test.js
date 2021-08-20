@@ -10,7 +10,7 @@ const expectedWarn = [
   util.format('Warning: host is undefined, defaulting to %s.', DEFAULT_HOSTNAME)
 ]
 
-test('verifyHost/0', () => {
+test('core-options-verify/verifyHost/+', () => {
   const workingObject = {
     userOption: { host: 'localhost' },
     validatedOption: {}
@@ -24,7 +24,7 @@ test('verifyHost/0', () => {
     })
 })
 
-test.each(dt.BlankValueDataSet)('verifyHost/BlankValueDataSet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyHost/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { host: value },
     validatedOption: {}
@@ -41,7 +41,7 @@ test.each(dt.BlankValueDataSet)('verifyHost/BlankValueDataSet', (value) => {
     })
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
-test('verifyHost/undefined', () => {
+test('core-options-verify/verifyHost/undefined', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -59,7 +59,7 @@ test('verifyHost/undefined', () => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.BlankValueDataSet)('verifyHost/BlankValueDataSet/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyHost/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { host: value },
     validatedOption: { quiet: true }
@@ -78,7 +78,7 @@ test.each(dt.BlankValueDataSet)('verifyHost/BlankValueDataSet/quiet', (value) =>
     })
   expect(co0.warn).not.toBeCalled()
 })
-test('verifyHost/undefined/quiet', () => {
+test('core-options-verify/verifyHost/undefined/quiet', () => {
   const workingObject = {
     userOption: {},
     validatedOption: { quiet: true }
@@ -98,7 +98,7 @@ test('verifyHost/undefined/quiet', () => {
   expect(co0.warn).not.toBeCalled()
 })
 
-test.each(dt.BlankValueDataSet)('verifyHost/BlankValueDataSet/prompt', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyHost/BlankValueDataSet/prompt', (value) => {
   const workingObject = {
     userOption: { host: value, prompt: true },
     validatedOption: { prompt: true }
@@ -113,7 +113,7 @@ test.each(dt.BlankValueDataSet)('verifyHost/BlankValueDataSet/prompt', (value) =
     .resolves
     .toEqual(expectWorkingObject)
 })
-test('verifyHost/undefined/prompt', () => {
+test('core-options-verify/verifyHost/undefined/prompt', () => {
   const workingObject = {
     userOption: { prompt: true },
     validatedOption: { prompt: true }

@@ -2,10 +2,12 @@ const cf0 = require('../../lib/core-filters')
 const cuf = require('../../lib/core-util-fs')
 const md0 = require('../mock-data/remotefilelist')
 
-test.each([true, false])('filterFiles/conflict', (value) => {
+test.each([true, false])('core-filters/filterFiles/conflict/skipIfExists', (value) => {
   const workingObject = {
     validatedOption: { localPath: '.' },
-    fileFilters: [cf0.skipIfExists, cf0.skipIfNotExists],
+    fileFilters: [
+      cf0.skipIfExists,
+      cf0.skipIfNotExists],
     remoteFileList: md0.mockRemoteFileList,
     filteredFileList: []
   }

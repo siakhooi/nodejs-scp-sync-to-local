@@ -5,7 +5,7 @@ const dt = require('../mock-data/common-data-sets')
 const DEFAULT_POSTPROCESSINGOPTIONS = {}
 
 const dummyOptions = { x: 3 }
-test('verifyPostProcessingOptions/OK', () => {
+test('core-options-verify/verifyPostProcessingOptions/+', () => {
   const workingObject = {
     userOption: { postProcessingOptions: dummyOptions },
     validatedOption: {}
@@ -19,7 +19,7 @@ test('verifyPostProcessingOptions/OK', () => {
     })
 })
 
-test('verifyPostProcessingOptions/undefined', () => {
+test('core-options-verify/verifyPostProcessingOptions/undefined', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -33,7 +33,7 @@ test('verifyPostProcessingOptions/undefined', () => {
     })
 })
 
-test.each(dt.NotObjectDataSet)('verifyPostProcessingOptions/NotObjectDataSet', (value) => {
+test.each(dt.NotObjectDataSet)('core-options-verify/verifyPostProcessingOptions/NotObjectDataSet', (value) => {
   const workingObject = {
     userOption: { postProcessingOptions: value },
     validatedOption: {}
@@ -44,7 +44,7 @@ test.each(dt.NotObjectDataSet)('verifyPostProcessingOptions/NotObjectDataSet', (
     .toThrow(msg)
 })
 
-test.each(dt.BlankValueDataSet)('verifyPostProcessingOptions/BlankValueDataSet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyPostProcessingOptions/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { postProcessingOptions: value },
     validatedOption: {}

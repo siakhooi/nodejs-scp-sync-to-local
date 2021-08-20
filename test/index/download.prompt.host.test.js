@@ -18,7 +18,7 @@ beforeEach(() => {
   p.clear()
 })
 
-test('scp/download/prompt/host/1', () => {
+test('scp/download/prompt/host/+', () => {
   const expectedInfo = [
     'Info: port is undefined, defaulting to 22.',
     'done',

@@ -3,7 +3,7 @@ const md0 = require('../mock-data/remotefilelist')
 
 const dummyFunction = (localPath, remotePathObject) => { return remotePathObject.name === 'Mock_File_1.zip' }
 
-test('filterFiles/customFilter/true', () => {
+test('core-filters/filterFiles/customFilter/+', () => {
   const workingObject = {
     validatedOption: { customFilter: dummyFunction },
     fileFilters: [dummyFunction],

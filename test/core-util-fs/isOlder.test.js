@@ -4,22 +4,24 @@ const cuf = require('../../lib/core-util-fs')
 test.each([
   [0, true],
   [100, false]
-])('isOlder/ok', (testValue, testResult) => {
+])('core-util-fs/isOlder/+', (testValue, testResult) => {
   const localFile = 'xxxx'
 
   jest.mock('fs')
-  jest.spyOn(fs, 'statSync').mockImplementation(() => { return { mtime: testValue } })
+  jest.spyOn(fs, 'statSync')
+    .mockReturnValue({ mtime: testValue })
 
   return expect(cuf.isOlder(localFile, 50)).toBe(testResult)
 })
 test.each([
   [0, false],
   [100, false]
-])('isOlder/Error', (testValue, testResult) => {
+])('core-util-fs/isOlder/-', (testValue, testResult) => {
   const localFile = 'xxxx'
 
   jest.mock('fs')
-  jest.spyOn(fs, 'statSync').mockImplementation(() => { return undefined })
+  jest.spyOn(fs, 'statSync')
+    .mockReturnValue(undefined)
 
   return expect(cuf.isOlder(localFile, 50)).toBe(testResult)
 })

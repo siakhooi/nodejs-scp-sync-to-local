@@ -1,6 +1,6 @@
 const cf0 = require('../../lib/core-filters')
 
-test('setupFilters/skipIfBigger/true', () => {
+test('core-filters/setupFilters/skipIfBigger/true', () => {
   const workingObject = {
     validatedOption: { skipIfBigger: true },
     fileFilters: []
@@ -11,7 +11,7 @@ test('setupFilters/skipIfBigger/true', () => {
     .toMatchObject({ fileFilters: [cf0.skipIfBigger] })
 })
 
-test('setupFilters/skipIfBigger/false', () => {
+test('core-filters/setupFilters/skipIfBigger/false', () => {
   const workingObject = {
     validatedOption: { skipIfBigger: false },
     fileFilters: []

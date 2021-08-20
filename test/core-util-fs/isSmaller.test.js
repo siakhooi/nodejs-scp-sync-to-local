@@ -4,11 +4,12 @@ const cuf = require('../../lib/core-util-fs')
 test.each([
   [0, true],
   [100, false]
-])('isSmaller/ok', (testValue, testResult) => {
+])('core-util-fs/isSmaller/+', (testValue, testResult) => {
   const localFile = 'xxxx'
 
   jest.mock('fs')
-  jest.spyOn(fs, 'statSync').mockImplementation(() => { return { size: testValue } })
+  jest.spyOn(fs, 'statSync')
+    .mockReturnValue({ size: testValue })
 
   return expect(cuf.isSmaller(localFile, 50)).toBe(testResult)
 })
@@ -16,11 +17,12 @@ test.each([
 test.each([
   [0, false],
   [100, false]
-])('isSmaller/Error', (testValue, testResult) => {
+])('core-util-fs/isSmaller/-', (testValue, testResult) => {
   const localFile = 'xxxx'
 
   jest.mock('fs')
-  jest.spyOn(fs, 'statSync').mockImplementation(() => { return undefined })
+  jest.spyOn(fs, 'statSync')
+    .mockReturnValue(undefined)
 
   return expect(cuf.isSmaller(localFile, 50)).toBe(testResult)
 })

@@ -1,6 +1,6 @@
 const cf0 = require('../../lib/core-filters')
 
-test('setupFilters/skipIfNewer/true', () => {
+test('core-filters/setupFilters/skipIfNewer/true', () => {
   const workingObject = {
     validatedOption: { skipIfNewer: true },
     fileFilters: []
@@ -11,7 +11,7 @@ test('setupFilters/skipIfNewer/true', () => {
     .toMatchObject({ fileFilters: [cf0.skipIfNewer] })
 })
 
-test('setupFilters/skipIfNewer/false', () => {
+test('core-filters/setupFilters/skipIfNewer/false', () => {
   const workingObject = {
     validatedOption: { skipIfNewer: false },
     fileFilters: []

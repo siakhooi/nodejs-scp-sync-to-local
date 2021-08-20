@@ -2,7 +2,7 @@ const cd0 = require('../../lib/core-download')
 const cou = require('../../lib/core-output')
 const m = require('../mocklib')
 
-test('download/outputBegin/1', () => {
+test('core-download/outputBegin/+', () => {
   const fileWorkingObject = {
     fileNum: 1,
     quiet: false,
@@ -22,7 +22,7 @@ test('download/outputBegin/1', () => {
     })
 })
 
-test('download/outputBegin/quiet', () => {
+test('core-download/outputBegin/quiet', () => {
   const fileWorkingObject = {
     fileNum: 1,
     quiet: true,

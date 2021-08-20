@@ -15,6 +15,6 @@ exports.NotBlankValueDataSet = [-1, 0, 3, 3.3, 'ABC', ' ', true, false, [], dumm
 exports.CorrectPortNumber = [1, 65535, 22, 300, 6455]
 exports.IncorrectPortNumber = [0, 65536, 100100]
 
-test('dummyFunction', () => {
+test('common-data-sets/dummyFunction/+', () => {
   expect(dummyFunction()).toBeUndefined()
 })

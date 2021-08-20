@@ -9,8 +9,8 @@ const localFile = 'xxxx'
 test.each([
   [true, false],
   [false, true]
-])('skipIfSameSize', (testValue, testResult) => {
-  jest.spyOn(cuf, 'isSameSize').mockImplementation(() => { return testValue })
+])('core-filters/skipIfSameSize/+', (testValue, testResult) => {
+  jest.spyOn(cuf, 'isSameSize').mockReturnValue(testValue)
 
   expect(cf0.skipIfSameSize(localFile, remoteFile)).toBe(testResult)
 })

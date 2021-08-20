@@ -1,7 +1,7 @@
 const cd0 = require('../../lib/core-download')
 const path = require('path')
 
-test('download/init/0', () => {
+test('core-download/init/+', () => {
   const dummyFunction = () => { }
   const workingObject = {
     validatedOption: {

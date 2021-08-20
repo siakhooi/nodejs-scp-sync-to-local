@@ -3,7 +3,7 @@ const cou = require('../../lib/core-output')
 const m = require('../mocklib')
 const dt = require('../mock-data/common-data-sets')
 
-test('crossVerify/skip/error', () => {
+test('core-options/crossVerify/checkExistsRule/-', () => {
   const workingObject = {
     userOption: {},
     validatedOption: { skipIfExists: true, skipIfNotExists: true }
@@ -18,7 +18,7 @@ test.each([
   [true, false],
   [false, true],
   [false, false]
-])('crossVerify/skip/ok', (exist, notExist) => {
+])('core-options/crossVerify/checkExistsRule/+', (exist, notExist) => {
   const workingObject = {
     userOption: {},
     validatedOption: { skipIfExists: exist, skipIfNotExists: notExist }
@@ -31,7 +31,7 @@ test.each([
     })
 })
 
-test('crossVerify/checkQuietAndVerbose/override', () => {
+test('core-options/crossVerify/checkQuietAndVerbose/override', () => {
   const workingObject = {
     userOption: {},
     validatedOption: { quiet: true, verbose: true }
@@ -51,7 +51,7 @@ test.each([
   [true, false],
   [false, true],
   [false, false]
-])('crossVerify/checkQuietAndVerbose/ok', (quiet, verbose) => {
+])('core-options/crossVerify/checkQuietAndVerbose/+', (quiet, verbose) => {
   const workingObject = {
     userOption: {},
     validatedOption: { quiet: quiet, verbose: verbose }
@@ -63,7 +63,7 @@ test.each([
   })
 })
 
-test.each(dt.CorrectPortNumber)('crossVerify/checkPortNumberRange/CorrectPortNumber', (value) => {
+test.each(dt.CorrectPortNumber)('core-options/crossVerify/checkPortNumberRange/CorrectPortNumber', (value) => {
   const workingObject = {
     userOption: {},
     validatedOption: { quiet: false, verbose: false, port: value }
@@ -74,7 +74,7 @@ test.each(dt.CorrectPortNumber)('crossVerify/checkPortNumberRange/CorrectPortNum
     expect(cou.warn).not.toBeCalled()
   })
 })
-test.each(dt.IncorrectPortNumber)('crossVerify/checkPortNumberRange/IncorrectPortNumber', (value) => {
+test.each(dt.IncorrectPortNumber)('core-options/crossVerify/checkPortNumberRange/IncorrectPortNumber', (value) => {
   const workingObject = {
     validatedOption: { quiet: false, verbose: false, port: value }
   }

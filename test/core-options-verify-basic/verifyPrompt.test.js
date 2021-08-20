@@ -4,7 +4,7 @@ const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_PROMPT = false
 
-test.each(dt.TrueDataSet)('verifyPrompt/TrueDataSet', (value) => {
+test.each(dt.TrueDataSet)('core-options-verify-basic/verifyPrompt/TrueDataSet', (value) => {
   const workingObject = {
     userOption: { prompt: value },
     validatedOption: {}
@@ -18,7 +18,7 @@ test.each(dt.TrueDataSet)('verifyPrompt/TrueDataSet', (value) => {
     })
 })
 
-test.each(dt.FalseDataSet)('verifyPrompt/FalseDataSet', (value) => {
+test.each(dt.FalseDataSet)('core-options-verify-basic/verifyPrompt/FalseDataSet', (value) => {
   const workingObject = {
     userOption: { prompt: value },
     validatedOption: {}
@@ -32,7 +32,7 @@ test.each(dt.FalseDataSet)('verifyPrompt/FalseDataSet', (value) => {
     })
 })
 
-test('verifyPrompt/undefined', () => {
+test('core-options-verify-basic/verifyPrompt/undefined', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -46,7 +46,7 @@ test('verifyPrompt/undefined', () => {
     })
 })
 
-test.each(dt.BlankValueDataSet)('verifyPrompt/BlankValueDataSet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify-basic/verifyPrompt/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { prompt: value },
     validatedOption: {}
@@ -60,7 +60,7 @@ test.each(dt.BlankValueDataSet)('verifyPrompt/BlankValueDataSet', (value) => {
     })
 })
 
-test.each(dt.NotBooleanDataSet)('verifyPrompt/NotBooleanDataSet', (value) => {
+test.each(dt.NotBooleanDataSet)('core-options-verify-basic/verifyPrompt/NotBooleanDataSet', (value) => {
   const workingObject = {
     userOption: { prompt: value },
     validatedOption: {}

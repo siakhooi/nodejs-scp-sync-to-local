@@ -1,7 +1,7 @@
 const cov = require('../../lib/core-options-verify')
 const dt = require('../mock-data/common-data-sets')
 
-test('verifyUser/Good', () => {
+test('core-options-verify/verifyUser/+', () => {
   const workingObject = {
     userOption: { username: 'testuser' },
     validatedOption: {}
@@ -15,7 +15,7 @@ test('verifyUser/Good', () => {
     })
 })
 
-test.each(dt.BlankValueDataSet)('verifyUser/BlankValueDataSet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyUser/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { username: value },
     validatedOption: {}
@@ -26,7 +26,7 @@ test.each(dt.BlankValueDataSet)('verifyUser/BlankValueDataSet', (value) => {
     .toThrow('Error: username is undefined.')
 })
 
-test('verifyUser/undefined', () => {
+test('core-options-verify/verifyUser/undefined', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -36,7 +36,7 @@ test('verifyUser/undefined', () => {
     .rejects
     .toThrow('Error: username is undefined.')
 })
-test('verifyUser/undefined/prompt', () => {
+test('core-options-verify/verifyUser/undefined/prompt', () => {
   const workingObject = {
     userOption: { prompt: true },
     validatedOption: { prompt: true }
@@ -50,7 +50,7 @@ test('verifyUser/undefined/prompt', () => {
     .resolves
     .toEqual(expectWorkingObject)
 })
-test.each(dt.BlankValueDataSet)('verifyUser/BlankValueDataSet/prompt', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyUser/BlankValueDataSet/prompt', (value) => {
   const workingObject = {
     userOption: { username: value, prompt: true },
     validatedOption: { prompt: true }

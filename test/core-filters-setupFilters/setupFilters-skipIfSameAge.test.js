@@ -1,6 +1,6 @@
 const cf0 = require('../../lib/core-filters')
 
-test('setupFilters/skipIfSameAge/true', () => {
+test('core-filters/setupFilters/skipIfSameAge/true', () => {
   const workingObject = {
     validatedOption: { skipIfSameAge: true },
     fileFilters: []
@@ -11,7 +11,7 @@ test('setupFilters/skipIfSameAge/true', () => {
     .toMatchObject({ fileFilters: [cf0.skipIfSameAge] })
 })
 
-test('setupFilters/skipIfSameAge/false', () => {
+test('core-filters/setupFilters/skipIfSameAge/false', () => {
   const workingObject = {
     validatedOption: { skipIfSameAge: false },
     fileFilters: []

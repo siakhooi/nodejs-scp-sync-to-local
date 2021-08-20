@@ -1,6 +1,6 @@
 const cf0 = require('../../lib/core-filters')
 
-test('setupFilters/skipIfNotExists/true', () => {
+test('core-filters/setupFilters/skipIfNotExists/true', () => {
   const workingObject = {
     validatedOption: { skipIfNotExists: true },
     fileFilters: []
@@ -10,7 +10,7 @@ test('setupFilters/skipIfNotExists/true', () => {
     .resolves
     .toMatchObject({ fileFilters: [cf0.skipIfNotExists] })
 })
-test('setupFilters/skipIfNotExists/false', () => {
+test('core-filters/setupFilters/skipIfNotExists/false', () => {
   const workingObject = {
     validatedOption: { skipIfNotExists: false },
     fileFilters: []

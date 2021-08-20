@@ -1,7 +1,7 @@
 const cd0 = require('../../lib/core-download')
 const cuf = require('../../lib/core-util-fs')
 
-test('download/keepTimestamp', () => {
+test('core-download/keepTimestamp/+', () => {
   const fileWorkingObject = {
     keepTimestamp: true,
     accessTime: 1622867586000,
@@ -14,7 +14,7 @@ test('download/keepTimestamp', () => {
       expect(cuf.updateTimes).toBeCalled()
     })
 })
-test('download/keepTimestamp/false', () => {
+test('core-download/keepTimestamp/-', () => {
   const fileWorkingObject = {
     keepTimestamp: false,
     accessTime: 1622867586000,

@@ -7,7 +7,7 @@ const dt = require('../mock-data/common-data-sets')
 const DEFAULT_PORT = 22
 const expectedInfo = [util.format('Info: port is undefined, defaulting to %d.', DEFAULT_PORT)]
 
-test.each(dt.IntegerDataSet)('verifyPort/IntegerDataSet', (value) => {
+test.each(dt.IntegerDataSet)('core-options-verify/verifyPort/IntegerDataSet', (value) => {
   const workingObject = {
     userOption: { port: value },
     validatedOption: {}
@@ -21,7 +21,7 @@ test.each(dt.IntegerDataSet)('verifyPort/IntegerDataSet', (value) => {
     })
 })
 
-test.each(dt.BlankValueDataSet)('verifyPort/BlankValueDataSet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyPort/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { port: value },
     validatedOption: {}
@@ -38,7 +38,7 @@ test.each(dt.BlankValueDataSet)('verifyPort/BlankValueDataSet', (value) => {
     })
   expect(i.verify(expectedInfo)).resolves.toBe(true)
 })
-test('verifyPort/undefined', () => {
+test('core-options-verify/verifyPort/undefined', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -55,7 +55,7 @@ test('verifyPort/undefined', () => {
   expect(i.verify(expectedInfo)).resolves.toBe(true)
 })
 
-test.each(dt.NotIntegerDataSet)('verifyPort/NotIntegerDataSet', (value) => {
+test.each(dt.NotIntegerDataSet)('core-options-verify/verifyPort/NotIntegerDataSet', (value) => {
   const workingObject = {
     userOption: { port: value },
     validatedOption: {}
@@ -67,7 +67,7 @@ test.each(dt.NotIntegerDataSet)('verifyPort/NotIntegerDataSet', (value) => {
     .toThrow(msg)
 })
 
-test.each(dt.BlankValueDataSet)('verifyPort/BlankValueDataSet/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyPort/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { port: value },
     validatedOption: { quiet: true }
@@ -85,7 +85,7 @@ test.each(dt.BlankValueDataSet)('verifyPort/BlankValueDataSet/quiet', (value) =>
     })
   expect(cou.info).not.toBeCalled()
 })
-test('verifyPort/undefined/quiet', () => {
+test('core-options-verify/verifyPort/undefined/quiet', () => {
   const workingObject = {
     userOption: {},
     validatedOption: { quiet: true }

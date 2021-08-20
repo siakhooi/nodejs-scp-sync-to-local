@@ -7,7 +7,7 @@ const dt = require('../mock-data/common-data-sets')
 const DEFAULT_REMOTEPATH = '.'
 const expectedWarn = [util.format('Warning: remotePath is undefined, defaulting to current directory. [%s]', DEFAULT_REMOTEPATH)]
 
-test('verifyRemotePath/text', () => {
+test('core-options-verify/verifyRemotePath/+', () => {
   const workingObject = {
     userOption: { remotePath: '/home/testuser/files/' },
     validatedOption: {}
@@ -21,7 +21,7 @@ test('verifyRemotePath/text', () => {
     })
 })
 
-test.each(dt.BlankValueDataSet)('verifyRemotePath/BlankValueDataSet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyRemotePath/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { remotePath: value },
     validatedOption: {}
@@ -38,7 +38,7 @@ test.each(dt.BlankValueDataSet)('verifyRemotePath/BlankValueDataSet', (value) =>
     })
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
-test('verifyRemotePath/undefined', () => {
+test('core-options-verify/verifyRemotePath/undefined', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -55,7 +55,7 @@ test('verifyRemotePath/undefined', () => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.BlankValueDataSet)('verifyRemotePath/BlankValueDataSet/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyRemotePath/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { remotePath: value },
     validatedOption: { quiet: true }
@@ -74,7 +74,7 @@ test.each(dt.BlankValueDataSet)('verifyRemotePath/BlankValueDataSet/quiet', (val
     })
   expect(co0.warn).not.toBeCalled()
 })
-test('verifyRemotePath/undefined/quiet', () => {
+test('core-options-verify/verifyRemotePath/undefined/quiet', () => {
   const workingObject = {
     userOption: {},
     validatedOption: { quiet: true }
@@ -93,7 +93,7 @@ test('verifyRemotePath/undefined/quiet', () => {
   expect(co0.warn).not.toBeCalled()
 })
 
-test.each(dt.BlankValueDataSet)('verifyRemotePath/BlankValueDataSet/prompt', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyRemotePath/BlankValueDataSet/prompt', (value) => {
   const workingObject = {
     userOption: { prompt: true, remotePath: value },
     validatedOption: { prompt: true }
@@ -108,7 +108,7 @@ test.each(dt.BlankValueDataSet)('verifyRemotePath/BlankValueDataSet/prompt', (va
     .resolves
     .toEqual(expectWorkingObject)
 })
-test('verifyRemotePath/undefined/prompt', () => {
+test('core-options-verify/verifyRemotePath/undefined/prompt', () => {
   const workingObject = {
     userOption: { prompt: true },
     validatedOption: { prompt: true }

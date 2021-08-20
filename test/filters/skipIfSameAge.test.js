@@ -10,8 +10,9 @@ const localFile = 'xxxx'
 test.each([
   [true, false],
   [false, true]
-])('skipIfSameAge', (testValue, testResult) => {
-  jest.spyOn(cuf, 'isSameAge').mockImplementation(() => { return testValue })
+])('filters/skipIfSameAge/+', (testValue, testResult) => {
+  jest.spyOn(cuf, 'isSameAge')
+    .mockReturnValue(testValue)
 
   return expect(cf0.skipIfSameAge(localFile, remoteFile)).toBe(testResult)
 })

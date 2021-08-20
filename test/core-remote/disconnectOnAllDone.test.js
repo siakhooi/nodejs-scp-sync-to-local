@@ -13,7 +13,7 @@ beforeEach(() => {
   w.clear()
 })
 
-test('remote/disconnectOnAllDone/success', () => {
+test('core-remote/disconnectOnAllDone/+', () => {
   const workingObject = {
     scpClient: scp.mockClient,
     validatedOption: { quiet: false },
@@ -29,7 +29,7 @@ test('remote/disconnectOnAllDone/success', () => {
     })
 })
 
-test('remote/disconnectOnAllDone/success/quiet', () => {
+test('core-remote/disconnectOnAllDone/quiet', () => {
   const workingObject = {
     scpClient: scp.mockClient,
     validatedOption: { quiet: true },
@@ -42,7 +42,7 @@ test('remote/disconnectOnAllDone/success/quiet', () => {
       expect(i.verifyFalse()).resolves.toBe(true)
     })
 })
-test('remote/disconnectOnAllDone/no-download', () => {
+test('core-remote/disconnectOnAllDone/no-download', () => {
   const workingObject = {
     scpClient: scp.mockClient,
     validatedOption: { quiet: false },
@@ -57,7 +57,7 @@ test('remote/disconnectOnAllDone/no-download', () => {
     })
 })
 
-test('remote/disconnectOnAllDone/error', () => {
+test('core-remote/disconnectOnAllDone/-', () => {
   const workingObject = {
     scpClient: scp.mockClient,
     validatedOption: { quiet: false },

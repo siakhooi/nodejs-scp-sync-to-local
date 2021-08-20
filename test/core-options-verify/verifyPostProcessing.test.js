@@ -6,7 +6,7 @@ const DEFAULT_POSTPROCESSING = null
 
 const dummyFunction = () => { }
 
-test('verifyPostProcessing/good', () => {
+test('core-options-verify/verifyPostProcessing/+', () => {
   const workingObject = {
     userOption: { postProcessing: dummyFunction },
     validatedOption: {}
@@ -20,7 +20,7 @@ test('verifyPostProcessing/good', () => {
     })
 })
 
-test('verifyPostProcessing/undefined', () => {
+test('core-options-verify/verifyPostProcessing/undefined', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -34,7 +34,7 @@ test('verifyPostProcessing/undefined', () => {
     })
 })
 
-test.each(dt.NotFunctionDataSet)('verifyPostProcessing/NotFunctionDataSet', (value) => {
+test.each(dt.NotFunctionDataSet)('core-options-verify/verifyPostProcessing/NotFunctionDataSet', (value) => {
   const workingObject = {
     userOption: { postProcessing: value },
     validatedOption: {}
@@ -45,7 +45,7 @@ test.each(dt.NotFunctionDataSet)('verifyPostProcessing/NotFunctionDataSet', (val
     .toThrow(msg)
 })
 
-test.each(dt.BlankValueDataSet)('verifyPostProcessing/BlankValueDataSet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyPostProcessing/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { postProcessing: value },
     validatedOption: {}

@@ -17,7 +17,7 @@ beforeEach(() => {
   p.clear()
 })
 
-test('scp/download/ok/1', () => {
+test('scp/download/+', () => {
   const expectedInfo = [
     'Info: port is undefined, defaulting to 22.',
     'done',
@@ -95,7 +95,7 @@ test('scp/download/ok/1', () => {
     })
 })
 
-test('scp/download/ok/2', () => {
+test('scp/download/port', () => {
   const expectedInfo = [
     'done',
     '1 downloading /home/testuser/data/Mock_File_1.zip',

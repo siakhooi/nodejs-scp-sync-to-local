@@ -8,7 +8,7 @@ const DEFAULT_SKIPIFEXISTS = false
 
 const expectedWarn = [util.format('Warning: skipIfExists is undefined, defaulting to %s.', DEFAULT_SKIPIFEXISTS)]
 
-test.each(dt.TrueDataSet)('verifySkipIfExists/TrueDataSet', (value) => {
+test.each(dt.TrueDataSet)('core-options-verify/verifySkipIfExists/TrueDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfExists: value },
     validatedOption: {}
@@ -22,7 +22,7 @@ test.each(dt.TrueDataSet)('verifySkipIfExists/TrueDataSet', (value) => {
     })
 })
 
-test.each(dt.FalseDataSet)('verifySkipIfExists/FalseDataSet', (value) => {
+test.each(dt.FalseDataSet)('core-options-verify/verifySkipIfExists/FalseDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfExists: value },
     validatedOption: {}
@@ -36,7 +36,7 @@ test.each(dt.FalseDataSet)('verifySkipIfExists/FalseDataSet', (value) => {
     })
 })
 
-test('verifySkipIfExists/undefined', () => {
+test('core-options-verify/verifySkipIfExists/undefined', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -52,7 +52,7 @@ test('verifySkipIfExists/undefined', () => {
     })
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
-test.each(dt.BlankValueDataSet)('verifySkipIfExists/BlankValueDataSet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifySkipIfExists/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfExists: value },
     validatedOption: {}
@@ -69,7 +69,7 @@ test.each(dt.BlankValueDataSet)('verifySkipIfExists/BlankValueDataSet', (value) 
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.NotBooleanDataSet)('verifySkipIfExists/NotBooleanDataSet', (value) => {
+test.each(dt.NotBooleanDataSet)('core-options-verify/verifySkipIfExists/NotBooleanDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfExists: value },
     validatedOption: {}
@@ -80,7 +80,7 @@ test.each(dt.NotBooleanDataSet)('verifySkipIfExists/NotBooleanDataSet', (value) 
     .toThrow(msg)
 })
 
-test('verifySkipIfExists/undefined/quiet', () => {
+test('core-options-verify/verifySkipIfExists/undefined/quiet', () => {
   const workingObject = {
     userOption: {},
     validatedOption: { quiet: true }
@@ -99,7 +99,7 @@ test('verifySkipIfExists/undefined/quiet', () => {
   expect(co0.warn).not.toBeCalled()
 })
 
-test.each(dt.BlankValueDataSet)('verifySkipIfExists/BlankValueDataSet/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifySkipIfExists/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { skipIfExists: value },
     validatedOption: { quiet: true }

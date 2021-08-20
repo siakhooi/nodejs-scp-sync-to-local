@@ -6,7 +6,7 @@ const m = require('../mocklib')
 
 beforeEach(() => jest.clearAllMocks())
 
-test('verifyLocalPath/path-exist', () => {
+test('core-local/verifyLocalPath/path-exist/+', () => {
   const workingObject = {
     validatedOption: { localPath: './test-data/aeeeaaa2' }
   }
@@ -19,7 +19,7 @@ test('verifyLocalPath/path-exist', () => {
   })
 })
 
-test('verifyLocalPath/path-not-exist/not-directory', () => {
+test('core-local/verifyLocalPath/path-exist/not-directory', () => {
   const workingObject = {
     validatedOption: { localPath: './test-data/aeeeaaa1' }
   }
@@ -33,7 +33,7 @@ test('verifyLocalPath/path-not-exist/not-directory', () => {
   expect(cuf.isDirectory).toBeCalled()
 })
 
-test('verifyLocalPath/path-not-exist/auto-create', () => {
+test('core-local/verifyLocalPath/path-not-exist/auto-create', () => {
   const workingObject = {
     validatedOption: {
       localPath: './test-data/aeeeaaa3',
@@ -57,7 +57,7 @@ test('verifyLocalPath/path-not-exist/auto-create', () => {
     })
 })
 
-test('verifyLocalPath/path-not-exist/auto-create/quiet', () => {
+test('core-local/verifyLocalPath/path-not-exist/auto-create/quiet', () => {
   const workingObject = {
     validatedOption: {
       localPath: './test-data/aeeeaaa4',
@@ -79,7 +79,7 @@ test('verifyLocalPath/path-not-exist/auto-create/quiet', () => {
     })
 })
 
-test('verifyLocalPath/path-not-exist/not-auto-create', () => {
+test('core-local/verifyLocalPath/path-not-exist/not-auto-create', () => {
   const workingObject = {
     validatedOption: {
       localPath: './test-data/aeeeaaa5',

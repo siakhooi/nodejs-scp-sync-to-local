@@ -1,6 +1,6 @@
 const cd0 = require('../../lib/core-download')
 
-test('download/downloadFile', () => {
+test('core-download/downloadFile/+', () => {
   const fileWorkingObject = {
     client: {
       downloadFile: jest.fn().mockResolvedValue()

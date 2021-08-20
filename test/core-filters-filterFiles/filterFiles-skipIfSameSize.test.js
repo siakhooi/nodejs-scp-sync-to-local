@@ -2,7 +2,7 @@ const cf0 = require('../../lib/core-filters')
 const cuf = require('../../lib/core-util-fs')
 const md0 = require('../mock-data/remotefilelist')
 
-test('filterFiles/skipIfSameSize/true', () => {
+test('core-filters/filterFiles/skipIfSameSize/+', () => {
   const workingObject = {
     validatedOption: { localPath: '.' },
     fileFilters: [cf0.skipIfSameSize],
@@ -21,7 +21,7 @@ test('filterFiles/skipIfSameSize/true', () => {
     })
 })
 
-test('filterFiles/skipIfSameSize/false', () => {
+test('core-filters/filterFiles/skipIfSameSize/-', () => {
   const workingObject = {
     validatedOption: { localPath: '.' },
     fileFilters: [cf0.skipIfSameSize],

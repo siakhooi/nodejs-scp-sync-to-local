@@ -9,8 +9,9 @@ const localFile = 'xxxx'
 test.each([
   [true, false],
   [false, true]
-])('skipIfNewer', (testValue, testResult) => {
-  jest.spyOn(cuf, 'isNewer').mockImplementation(() => { return testValue })
+])('filters/skipIfNewer/+', (testValue, testResult) => {
+  jest.spyOn(cuf, 'isNewer')
+    .mockReturnValue(testValue)
 
   return expect(cf0.skipIfNewer(localFile, remoteFile)).toBe(testResult)
 })

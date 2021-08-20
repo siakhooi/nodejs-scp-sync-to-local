@@ -5,7 +5,7 @@ cou.info = jest.fn()
 cou.warn = jest.fn()
 cou.print = jest.fn()
 
-test('scp/download/quiet/1', () => {
+test('scp/download/quiet/+', () => {
   const option = {
     host: '1.0.0.0',
     quiet: true,
@@ -23,7 +23,7 @@ test('scp/download/quiet/1', () => {
     })
 })
 
-test('scp/download/quiet/2', () => {
+test('scp/download/quiet/port', () => {
   const option = {
     host: '1.0.0.0',
     port: 23,

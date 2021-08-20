@@ -1,7 +1,7 @@
 const cpr = require('../../lib/core-prompt')
 const prompt = require('prompt')
 
-test('core-prompt/askHost/1', () => {
+test('core-prompt/askHost/-', () => {
   const workingObject = {
     validatedOption: {
       host: 'abc'
@@ -12,7 +12,7 @@ test('core-prompt/askHost/1', () => {
     .toEqual(workingObject)
 })
 
-test('core-prompt/askHost/1', () => {
+test('core-prompt/askHost/+', () => {
   const workingObject = {
     validatedOption: {
       host: null

@@ -9,8 +9,8 @@ const localFile = 'xxxx'
 test.each([
   [true, false],
   [false, true]
-])('skipIfOlder', (testValue, testResult) => {
-  jest.spyOn(cuf, 'isOlder').mockImplementation(() => { return testValue })
+])('core-filters/skipIfOlder/+', (testValue, testResult) => {
+  jest.spyOn(cuf, 'isOlder').mockReturnValue(testValue)
 
   expect(cf0.skipIfOlder(localFile, remoteFile)).toBe(testResult)
 })

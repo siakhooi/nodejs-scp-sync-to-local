@@ -1,7 +1,7 @@
 const cpr = require('../../lib/core-prompt')
 const prompt = require('prompt')
 
-test('core-prompt/askPassword/1', () => {
+test('core-prompt/askPassword/-', () => {
   const workingObject = {
     validatedOption: {
       password: 'abc'
@@ -12,7 +12,7 @@ test('core-prompt/askPassword/1', () => {
     .toEqual(workingObject)
 })
 
-test('core-prompt/askPassword/1', () => {
+test('core-prompt/askPassword/+', () => {
   const workingObject = {
     validatedOption: {
       password: null

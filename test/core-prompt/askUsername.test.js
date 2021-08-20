@@ -1,7 +1,7 @@
 const cpr = require('../../lib/core-prompt')
 const prompt = require('prompt')
 
-test('core-prompt/askUsername/1', () => {
+test('core-prompt/askUsername/-', () => {
   const workingObject = {
     validatedOption: {
       username: 'abc'
@@ -12,7 +12,7 @@ test('core-prompt/askUsername/1', () => {
     .toEqual(workingObject)
 })
 
-test('core-prompt/askUsername/1', () => {
+test('core-prompt/askUsername/+', () => {
   const workingObject = {
     validatedOption: {
       username: null
