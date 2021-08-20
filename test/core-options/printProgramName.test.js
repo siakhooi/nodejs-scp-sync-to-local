@@ -17,7 +17,7 @@ test.each([
   [true, true],
   [false, false],
   [false, true]
-])('printProgramName/No', (verbose, quiet) => {
+])('core-options/printProgramName/-', (verbose, quiet) => {
   const workingObject = {
     validatedOption: {
       verbose: verbose,
@@ -34,26 +34,7 @@ test.each([
 
 test.each([
   [true, false]
-])('printProgramName/Yes', (verbose, quiet) => {
-  const workingObject = {
-    validatedOption: {
-      verbose: verbose,
-      quiet: quiet
-    }
-  }
-
-  const i = new m.MockOutput()
-  cou.info = i.fn()
-
-  co0.printProgramName(workingObject)
-    .then(() => {
-      expect(i.verify(expectedInfo)).resolves.toBe(true)
-    })
-})
-
-test.each([
-  [true, false]
-])('printProgramName/Yes', (verbose, quiet) => {
+])('core-options/printProgramName/+', (verbose, quiet) => {
   const workingObject = {
     validatedOption: {
       verbose: verbose,

@@ -2,7 +2,7 @@ const cd0 = require('../../lib/core-download')
 const cou = require('../../lib/core-output')
 const m = require('../mocklib')
 
-test('download/postProcessing/ok', () => {
+test('core-download/postProcessing/+', () => {
   const echoHello = (l, r, o) => { cou.info('Hello %s %s %d', l, r.name, o.x) }
   const helloOptions = { x: 4 }
 
@@ -28,7 +28,7 @@ test('download/postProcessing/ok', () => {
     })
 })
 
-test('download/postProcessing/err', () => {
+test('core-download/postProcessing/-', () => {
   const echoHello = (l, r) => { throw new Error('Error!') }
 
   const fileWorkingObject = {

@@ -7,7 +7,7 @@ const dt = require('../mock-data/common-data-sets')
 const DEFAULT_SKIPIFSAMESIZE = false
 const expectedWarn = [util.format('Warning: skipIfSameSize is undefined, defaulting to %s.', DEFAULT_SKIPIFSAMESIZE)]
 
-test.each(dt.TrueDataSet)('verifySkipIfSameSize/TrueDataSet', (value) => {
+test.each(dt.TrueDataSet)('core-options-verify/verifySkipIfSameSize/TrueDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfSameSize: value },
     validatedOption: {}
@@ -21,7 +21,7 @@ test.each(dt.TrueDataSet)('verifySkipIfSameSize/TrueDataSet', (value) => {
     })
 })
 
-test.each(dt.FalseDataSet)('verifySkipIfSameSize/FalseDataSet', (value) => {
+test.each(dt.FalseDataSet)('core-options-verify/verifySkipIfSameSize/FalseDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfSameSize: value },
     validatedOption: {}
@@ -35,7 +35,7 @@ test.each(dt.FalseDataSet)('verifySkipIfSameSize/FalseDataSet', (value) => {
     })
 })
 
-test('verifySkipIfSameSize/undefined', () => {
+test('core-options-verify/verifySkipIfSameSize/undefined', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -52,7 +52,7 @@ test('verifySkipIfSameSize/undefined', () => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.BlankValueDataSet)('verifySkipIfSameSize/BlankValueDataSet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifySkipIfSameSize/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfSameSize: value },
     validatedOption: {}
@@ -69,7 +69,7 @@ test.each(dt.BlankValueDataSet)('verifySkipIfSameSize/BlankValueDataSet', (value
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.NotBooleanDataSet)('verifySkipIfSameSize/NotBooleanDataSet', (value) => {
+test.each(dt.NotBooleanDataSet)('core-options-verify/verifySkipIfSameSize/NotBooleanDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfSameSize: value },
     validatedOption: {}
@@ -80,7 +80,7 @@ test.each(dt.NotBooleanDataSet)('verifySkipIfSameSize/NotBooleanDataSet', (value
     .toThrow(msg)
 })
 
-test('verifySkipIfSameSize/undefined/quiet', () => {
+test('core-options-verify/verifySkipIfSameSize/undefined/quiet', () => {
   const workingObject = {
     userOption: {},
     validatedOption: { quiet: true }
@@ -99,7 +99,7 @@ test('verifySkipIfSameSize/undefined/quiet', () => {
   expect(co0.warn).not.toBeCalled()
 })
 
-test.each(dt.BlankValueDataSet)('verifySkipIfSameSize/BlankValueDataSet/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifySkipIfSameSize/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { skipIfSameSize: value },
     validatedOption: { quiet: true }

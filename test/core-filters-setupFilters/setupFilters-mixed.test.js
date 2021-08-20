@@ -1,6 +1,6 @@
 const cf0 = require('../../lib/core-filters')
 
-test('setupFilters/mixed/1', () => {
+test('core-filters/setupFilters/mixed/SkipIfExists+SkipIfNewer', () => {
   const workingObject = {
     validatedOption: { skipIfExists: true, skipIfNewer: true },
     fileFilters: []
@@ -11,7 +11,7 @@ test('setupFilters/mixed/1', () => {
     .toMatchObject({ fileFilters: [cf0.skipIfExists, cf0.skipIfNewer] })
 })
 
-test('setupFilters/mixed/2', () => {
+test('core-filters/setupFilters/mixed/skipIfNotExists+skipIfOlder', () => {
   const workingObject = {
     validatedOption: { skipIfNotExists: true, skipIfOlder: true },
     fileFilters: []
@@ -22,7 +22,7 @@ test('setupFilters/mixed/2', () => {
     .toMatchObject({ fileFilters: [cf0.skipIfNotExists, cf0.skipIfOlder] })
 })
 
-test('setupFilters/mixed/3', () => {
+test('core-filters/setupFilters/mixed/skipIfBigger+skipIfSmaller', () => {
   const workingObject = {
     validatedOption: { skipIfBigger: true, skipIfSmaller: true },
     fileFilters: []
@@ -33,7 +33,7 @@ test('setupFilters/mixed/3', () => {
     .toMatchObject({ fileFilters: [cf0.skipIfBigger, cf0.skipIfSmaller] })
 })
 
-test('setupFilters/mixed/4', () => {
+test('core-filters/setupFilters/mixed/skipIfNewer+skipIfOlder', () => {
   const workingObject = {
     validatedOption: { skipIfNewer: true, skipIfOlder: true },
     fileFilters: []
@@ -43,7 +43,7 @@ test('setupFilters/mixed/4', () => {
     .resolves
     .toMatchObject({ fileFilters: [cf0.skipIfNewer, cf0.skipIfOlder] })
 })
-test('setupFilters/mixed/5', () => {
+test('core-filters/setupFilters/mixed/+skipIfNewer+skipIfOlder+skipIfSameAge', () => {
   const workingObject = {
     validatedOption: { skipIfNewer: true, skipIfOlder: true, skipIfSameAge: true },
     fileFilters: []

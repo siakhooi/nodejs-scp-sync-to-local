@@ -1,6 +1,6 @@
 const cf0 = require('../../lib/core-filters')
 
-test('setupFilters/skipIfOlder/true', () => {
+test('core-filters/setupFilters/skipIfOlder/true', () => {
   const workingObject = {
     validatedOption: { skipIfOlder: true },
     fileFilters: []
@@ -11,7 +11,7 @@ test('setupFilters/skipIfOlder/true', () => {
     .toMatchObject({ fileFilters: [cf0.skipIfOlder] })
 })
 
-test('setupFilters/skipIfOlder/false', () => {
+test('core-filters/setupFilters/skipIfOlder/false', () => {
   const workingObject = {
     validatedOption: { skipIfOlder: false },
     fileFilters: []

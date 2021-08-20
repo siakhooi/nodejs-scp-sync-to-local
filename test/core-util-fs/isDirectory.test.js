@@ -3,11 +3,12 @@ const cus = require('../../lib/core-util-fs')
 
 test.each([
   true, false
-])('isDirectory', (testValue) => {
+])('core-util-fs/isDirectory/+', (testValue) => {
   const localFile = 'xxxx'
 
   jest.mock('fs')
-  jest.spyOn(fs, 'lstatSync').mockImplementation(() => { return { isDirectory: function (f) { return testValue } } })
+  jest.spyOn(fs, 'lstatSync')
+    .mockReturnValue({ isDirectory: function (f) { return testValue } })
 
   return expect(cus.isDirectory(localFile)).toBe(testValue)
 })

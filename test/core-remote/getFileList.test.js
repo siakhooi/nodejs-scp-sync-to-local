@@ -3,7 +3,7 @@ const cr0 = require('../../lib/core-remote')
 const cou = require('../../lib/core-output')
 const m = require('../mocklib')
 
-test('remote/getFileList/success', () => {
+test('core-remote/getFileList/+', () => {
   const workingObject = {
     validatedOption: {
       remotePath: '/home/testuser/data',
@@ -36,7 +36,7 @@ test('remote/getFileList/success', () => {
     })
 })
 
-test('remote/getFileList/success/quiet', () => {
+test('core-remote/getFileList/quiet', () => {
   const workingObject = {
     validatedOption: {
       remotePath: '/home/testuser/data',
@@ -61,7 +61,7 @@ test('remote/getFileList/success/quiet', () => {
   })
 })
 
-test('remote/getFileList/fail', () => {
+test('core-remote/getFileList/-', () => {
   const workingObject = {
     validatedOption: {
       remotePath: '/home/testuser/data',
@@ -82,7 +82,7 @@ test('remote/getFileList/fail', () => {
   expect(p.verify(expectedPrint)).resolves.toBe(true)
 })
 
-test('remote/getFileList/fail/quiet', () => {
+test('core-remote/getFileList/quiet/-', () => {
   const workingObject = {
     validatedOption: {
       remotePath: '/home/testuser/data',

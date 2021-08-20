@@ -3,9 +3,10 @@
 ## Unrelease
 
 - **Added**
-  - `#6`: As cli user, I want to run the function from cli.
+  - `#6`: As cli user, I want to run the function from cli. (`cli.js`)
 - **Test**
   - `#200`: As test, I want `mocklib/verify` to test exact array so that the sequence of array elements are tested.
+  - `#211`: As test. I want to standardize a test naming convention. (`CONTRIBUTING.md`)
 
 ## `0.14.0` - 2021-Aug-9
 

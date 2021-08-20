@@ -2,7 +2,7 @@ const cf0 = require('../../lib/core-filters')
 const cuf = require('../../lib/core-util-fs')
 const md0 = require('../mock-data/remotefilelist')
 
-test('filterFiles/skipIfSameAge/true', () => {
+test('core-filters/filterFiles/skipIfSameAge/+', () => {
   const workingObject = {
     validatedOption: { localPath: '.' },
     fileFilters: [cf0.skipIfSameAge],
@@ -21,7 +21,7 @@ test('filterFiles/skipIfSameAge/true', () => {
     })
 })
 
-test('filterFiles/skipIfSameAge/false', () => {
+test('core-filters/filterFiles/skipIfSameAge/-', () => {
   const workingObject = {
     validatedOption: { localPath: '.' },
     fileFilters: [cf0.skipIfSameAge],

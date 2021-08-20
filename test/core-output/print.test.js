@@ -1,7 +1,7 @@
 const cou = require('../../lib/core-output')
 const util = require('util')
 
-test('core-output/print/1', () => {
+test('core-output/print/Arg-1', () => {
   const actualPrint = []
   process.stdout.write = jest.fn().mockImplementation((...v) => { actualPrint.push(util.format(...v)) })
   const expectedPrint = ['Hello World']
@@ -16,7 +16,7 @@ test('core-output/print/1', () => {
 test.each([
   ['Hello World', 'Hello You', 'Hello World Hello You'],
   ['Hello %s World', 'Hello You', 'Hello Hello You World']
-])('core-output/print/2', (v1, v2, r1) => {
+])('core-output/print/Arg-2', (v1, v2, r1) => {
   const actualPrint = []
   process.stdout.write = jest.fn().mockImplementation((...v) => { actualPrint.push(util.format(...v)) })
   const expectedPrint = [r1]
@@ -31,7 +31,7 @@ test.each([
 test.each([
   ['Hello World', 'Hello You', 'Hello Him', 'Hello World Hello You Hello Him'],
   ['Hello %s %s World', 'Hello You', 'Hello Him', 'Hello Hello You Hello Him World']
-])('core-output/print/3', (v1, v2, v3, r1) => {
+])('core-output/print/Arg-3', (v1, v2, v3, r1) => {
   const actualPrint = []
   process.stdout.write = jest.fn().mockImplementation((...v) => { actualPrint.push(util.format(...v)) })
   const expectedPrint = [r1]

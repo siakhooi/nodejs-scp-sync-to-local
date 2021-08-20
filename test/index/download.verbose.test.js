@@ -19,7 +19,7 @@ beforeEach(() => {
   p.clear()
 })
 
-test('scp/download/verbose/1', () => {
+test('scp/download/verbose/+', () => {
   const expectedInfo = [
     util.format('%s %s', conf.PROGRAM_NAME, conf.PROGRAM_VERSION),
     '',
@@ -86,7 +86,7 @@ test('scp/download/verbose/1', () => {
     })
 })
 
-test('scp/download/verbose/2', () => {
+test('scp/download/verbose/port', () => {
   const expectedInfo = [
     util.format('%s %s', conf.PROGRAM_NAME, conf.PROGRAM_VERSION),
     '',

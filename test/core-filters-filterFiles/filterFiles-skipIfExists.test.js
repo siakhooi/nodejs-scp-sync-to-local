@@ -2,7 +2,7 @@ const cf0 = require('../../lib/core-filters')
 const cuf = require('../../lib/core-util-fs')
 const md0 = require('../mock-data/remotefilelist')
 
-test('filterFiles/skipIfExists/true', () => {
+test('core-filters/filterFiles/skipIfExists/+', () => {
   const workingObject = {
     validatedOption: { localPath: '.' },
     fileFilters: [cf0.skipIfExists],
@@ -21,7 +21,7 @@ test('filterFiles/skipIfExists/true', () => {
     })
 })
 
-test('filterFiles/skipIfExists/false', () => {
+test('core-filters/filterFiles/skipIfExists/-', () => {
   const workingObject = {
     validatedOption: { localPath: '.' },
     fileFilters: [cf0.skipIfExists],

@@ -4,7 +4,7 @@ const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_AUTOCREATELOCALPATH = true
 
-test.each(dt.TrueDataSet)('verifyAutoCreateLocalPath/TrueDataSet', (value) => {
+test.each(dt.TrueDataSet)('core-options-verify/verifyAutoCreateLocalPath/TrueDataSet', (value) => {
   const workingObject = {
     userOption: { autoCreateLocalPath: value },
     validatedOption: {}
@@ -18,7 +18,7 @@ test.each(dt.TrueDataSet)('verifyAutoCreateLocalPath/TrueDataSet', (value) => {
     })
 })
 
-test.each(dt.FalseDataSet)('verifyAutoCreateLocalPath/FalseDataSet', (value) => {
+test.each(dt.FalseDataSet)('core-options-verify/verifyAutoCreateLocalPath/FalseDataSet', (value) => {
   const workingObject = {
     userOption: { autoCreateLocalPath: value },
     validatedOption: {}
@@ -32,7 +32,7 @@ test.each(dt.FalseDataSet)('verifyAutoCreateLocalPath/FalseDataSet', (value) => 
     })
 })
 
-test('verifyAutoCreateLocalPath/undefined', () => {
+test('core-options-verify/verifyAutoCreateLocalPath/undefined', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -46,7 +46,7 @@ test('verifyAutoCreateLocalPath/undefined', () => {
     })
 })
 
-test.each(dt.BlankValueDataSet)('verifyAutoCreateLocalPath/BlankValueDataSet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyAutoCreateLocalPath/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { autoCreateLocalPath: value },
     validatedOption: {}
@@ -60,7 +60,7 @@ test.each(dt.BlankValueDataSet)('verifyAutoCreateLocalPath/BlankValueDataSet', (
     })
 })
 
-test.each(dt.NotBooleanDataSet)('verifyAutoCreateLocalPath/NotBooleanDataSet', (value) => {
+test.each(dt.NotBooleanDataSet)('core-options-verify/verifyAutoCreateLocalPath/NotBooleanDataSet', (value) => {
   const workingObject = {
     userOption: { autoCreateLocalPath: value },
     validatedOption: {}

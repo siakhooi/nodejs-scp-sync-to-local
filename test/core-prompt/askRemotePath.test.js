@@ -1,7 +1,7 @@
 const cpr = require('../../lib/core-prompt')
 const prompt = require('prompt')
 
-test('core-prompt/askRemotePath/0', () => {
+test('core-prompt/askRemotePath/-', () => {
   const workingObject = {
     validatedOption: {
       remotePath: 'abc'
@@ -12,7 +12,7 @@ test('core-prompt/askRemotePath/0', () => {
     .toEqual(workingObject)
 })
 
-test('core-prompt/askRemotePath/1', () => {
+test('core-prompt/askRemotePath/+', () => {
   const workingObject = {
     validatedOption: {
       remotePath: null

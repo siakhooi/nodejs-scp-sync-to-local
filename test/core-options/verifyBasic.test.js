@@ -1,6 +1,6 @@
 const co0 = require('../../lib/core-options')
 
-test('verifyBasic/defaults', () => {
+test('core-options/verifyBasic/defaults', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -19,7 +19,7 @@ test('verifyBasic/defaults', () => {
   })
 })
 
-test('verifyBasic/all', () => {
+test('core-options/verifyBasic/all', () => {
   const workingObject = {
     userOption: {
       verbose: true,

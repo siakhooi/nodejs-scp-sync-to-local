@@ -9,8 +9,9 @@ const localFile = 'xxxx'
 test.each([
   [true, false],
   [false, true]
-])('skipIfBigger', (testValue, testResult) => {
-  jest.spyOn(cuf, 'isBigger').mockImplementation(() => { return testValue })
+])('filters/skipIfBigger/+', (testValue, testResult) => {
+  jest.spyOn(cuf, 'isBigger')
+    .mockReturnValue(testValue)
 
   return expect(cf0.skipIfBigger(localFile, remoteFile)).toBe(testResult)
 })

@@ -34,7 +34,7 @@ test.each([
   [true, true],
   [false, false],
   [false, true]
-])('core-options/print/No', (verbose, quiet) => {
+])('core-options/print/-', (verbose, quiet) => {
   const workingObject = {
     validatedOption: {
       host: 'localhost',
@@ -68,7 +68,7 @@ test.each([
 
 test.each([
   [true, false]
-])('core-options/print/Yes', (verbose, quiet) => {
+])('core-options/print/with-customFilter+postProcessing', (verbose, quiet) => {
   const workingObject = {
     validatedOption: {
       host: 'localhost',
@@ -132,7 +132,7 @@ test.each([
 
 test.each([
   [true, false]
-])('core-options/print/Yes', (verbose, quiet) => {
+])('core-options/print/without-customFilter+postProcessing', (verbose, quiet) => {
   const workingObject = {
     validatedOption: {
       host: 'localhost',

@@ -1,6 +1,6 @@
 const cr0 = require('../../lib/core-remote')
 
-test('remote/login/success', () => {
+test('core-remote/login/+', () => {
   const workingObject = {
     validatedOption: {
       host: '192.168.0.106',
@@ -17,7 +17,7 @@ test('remote/login/success', () => {
     .toHaveProperty('scpClient.result', 'Mock Connection: Success')
 })
 
-test('remote/login/fail', () => {
+test('core-remote/login/-', () => {
   const workingObject = {
     validatedOption: {
       host: 'xyxasdkhasldkf',

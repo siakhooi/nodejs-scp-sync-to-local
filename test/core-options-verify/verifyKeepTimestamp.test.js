@@ -5,7 +5,7 @@ const dt = require('../mock-data/common-data-sets')
 
 const DEFAULT_KEEPTIMESTAMP = false
 
-test.each(dt.TrueDataSet)('verifyKeepTimestamp/TrueDataSet', (value) => {
+test.each(dt.TrueDataSet)('core-options-verify/verifyKeepTimestamp/TrueDataSet', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: {}
@@ -19,7 +19,7 @@ test.each(dt.TrueDataSet)('verifyKeepTimestamp/TrueDataSet', (value) => {
     })
 })
 
-test.each(dt.FalseDataSet)('verifyKeepTimestamp/FalseDataSet', (value) => {
+test.each(dt.FalseDataSet)('core-options-verify/verifyKeepTimestamp/FalseDataSet', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: {}
@@ -33,7 +33,7 @@ test.each(dt.FalseDataSet)('verifyKeepTimestamp/FalseDataSet', (value) => {
     })
 })
 
-test('verifyKeepTimestamp/undefined', () => {
+test('core-options-verify/verifyKeepTimestamp/undefined', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -48,7 +48,7 @@ test('verifyKeepTimestamp/undefined', () => {
     })
   expect(cou.warn).not.toBeCalled()
 })
-test.each(dt.BlankValueDataSet)('verifyKeepTimestamp/BlankValueDataSet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyKeepTimestamp/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: {}
@@ -62,7 +62,7 @@ test.each(dt.BlankValueDataSet)('verifyKeepTimestamp/BlankValueDataSet', (value)
     })
 })
 
-test.each(dt.NotBooleanDataSet)('verifyKeepTimestamp/NotBooleanDataSet', (value) => {
+test.each(dt.NotBooleanDataSet)('core-options-verify/verifyKeepTimestamp/NotBooleanDataSet', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: {}
@@ -73,7 +73,7 @@ test.each(dt.NotBooleanDataSet)('verifyKeepTimestamp/NotBooleanDataSet', (value)
     .toThrow(msg)
 })
 
-test('verifyKeepTimestamp/undefined/quiet', () => {
+test('core-options-verify/verifyKeepTimestamp/undefined/quiet', () => {
   const workingObject = {
     userOption: {},
     validatedOption: { quiet: true }
@@ -92,7 +92,7 @@ test('verifyKeepTimestamp/undefined/quiet', () => {
   expect(cou.warn).not.toBeCalled()
 })
 
-test.each(dt.BlankValueDataSet)('verifyKeepTimestamp/BlankValueDataSet/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyKeepTimestamp/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { keepTimestamp: value },
     validatedOption: { quiet: true }

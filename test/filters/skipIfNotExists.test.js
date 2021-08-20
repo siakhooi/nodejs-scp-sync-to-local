@@ -6,8 +6,9 @@ const localFile = 'xxxx'
 test.each([
   [true, true],
   [false, false]
-])('skipIfNotExists', (testValue, testResult) => {
-  jest.spyOn(cuf, 'isPathExist').mockImplementation(() => { return testValue })
+])('filters/skipIfNotExists/+', (testValue, testResult) => {
+  jest.spyOn(cuf, 'isPathExist')
+    .mockReturnValue(testValue)
 
   return expect(cf0.skipIfNotExists(localFile)).toBe(testResult)
 })

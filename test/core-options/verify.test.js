@@ -3,7 +3,7 @@ const cou = require('../../lib/core-output')
 const m = require('../mocklib')
 const prompt = require('prompt')
 
-test('verify/defaults', () => {
+test('core-options/verify/defaults', () => {
   const workingObject = {
     userOption: {
       username: 'testuser',
@@ -59,7 +59,7 @@ test('verify/defaults', () => {
   })
 })
 
-test('verify/all', () => {
+test('core-options/verify/all', () => {
   const dummyFunction = () => { }
   const workingObject = {
     userOption: {
@@ -111,7 +111,7 @@ test('verify/all', () => {
       }
     })
 })
-test('verify/prompt/username', () => {
+test('core-options/verify/prompt/username', () => {
   const dummyFunction = () => { }
   const workingObject = {
     userOption: {
@@ -169,7 +169,7 @@ test('verify/prompt/username', () => {
     })
 })
 
-test('verify/prompt/password', () => {
+test('core-options/verify/prompt/password', () => {
   const dummyFunction = () => { }
   const workingObject = {
     userOption: {
@@ -227,7 +227,7 @@ test('verify/prompt/password', () => {
     })
 })
 
-test('verify/prompt/host', () => {
+test('core-options/verify/prompt/host', () => {
   const dummyFunction = () => { }
   const workingObject = {
     userOption: {
@@ -285,7 +285,7 @@ test('verify/prompt/host', () => {
     })
 })
 
-test('verify/prompt/localPath', () => {
+test('core-options/verify/prompt/localPath', () => {
   const dummyFunction = () => { }
   const workingObject = {
     userOption: {
@@ -343,7 +343,7 @@ test('verify/prompt/localPath', () => {
     })
 })
 
-test('verify/prompt/remotePath', () => {
+test('core-options/verify/prompt/remotePath', () => {
   const dummyFunction = () => { }
   const workingObject = {
     userOption: {

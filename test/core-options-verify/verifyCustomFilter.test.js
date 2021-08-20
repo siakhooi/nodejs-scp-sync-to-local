@@ -6,7 +6,7 @@ const DEFAULT_CUSTOMFILTER = null
 
 const dummyFunction = () => { }
 
-test('verifyCustomFilter/good', () => {
+test('core-options-verify/verifyCustomFilter/+', () => {
   const workingObject = {
     userOption: { customFilter: dummyFunction },
     validatedOption: {}
@@ -20,7 +20,7 @@ test('verifyCustomFilter/good', () => {
     })
 })
 
-test('verifyCustomFilter/undefined', () => {
+test('core-options-verify/verifyCustomFilter/undefined', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -34,7 +34,7 @@ test('verifyCustomFilter/undefined', () => {
     })
 })
 
-test.each(dt.NotFunctionDataSet)('verifyCustomFilter/NotFunctionDataSet', (value) => {
+test.each(dt.NotFunctionDataSet)('core-options-verify/verifyCustomFilter/NotFunctionDataSet', (value) => {
   const workingObject = {
     userOption: { customFilter: value },
     validatedOption: {}
@@ -45,7 +45,7 @@ test.each(dt.NotFunctionDataSet)('verifyCustomFilter/NotFunctionDataSet', (value
     .toThrow(msg)
 })
 
-test.each(dt.BlankValueDataSet)('verifyCustomFilter/BlankValueDataSet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyCustomFilter/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { customFilter: value },
     validatedOption: {}

@@ -7,7 +7,7 @@ const dt = require('../mock-data/common-data-sets')
 const DEFAULT_SKIPIFSMALLER = false
 const expectedWarn = [util.format('Warning: skipIfSmaller is undefined, defaulting to %s.', DEFAULT_SKIPIFSMALLER)]
 
-test.each(dt.TrueDataSet)('verifySkipIfSmaller/TrueDataSet', (value) => {
+test.each(dt.TrueDataSet)('core-options-verify/verifySkipIfSmaller/TrueDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfSmaller: value },
     validatedOption: {}
@@ -21,7 +21,7 @@ test.each(dt.TrueDataSet)('verifySkipIfSmaller/TrueDataSet', (value) => {
     })
 })
 
-test.each(dt.FalseDataSet)('verifySkipIfSmaller/FalseDataSet', (value) => {
+test.each(dt.FalseDataSet)('core-options-verify/verifySkipIfSmaller/FalseDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfSmaller: value },
     validatedOption: {}
@@ -35,7 +35,7 @@ test.each(dt.FalseDataSet)('verifySkipIfSmaller/FalseDataSet', (value) => {
     })
 })
 
-test('verifySkipIfSmaller/undefined', () => {
+test('core-options-verify/verifySkipIfSmaller/undefined', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -52,7 +52,7 @@ test('verifySkipIfSmaller/undefined', () => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.BlankValueDataSet)('verifySkipIfSmaller/BlankValueDataSet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifySkipIfSmaller/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfSmaller: value },
     validatedOption: {}
@@ -69,7 +69,7 @@ test.each(dt.BlankValueDataSet)('verifySkipIfSmaller/BlankValueDataSet', (value)
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.NotBooleanDataSet)('verifySkipIfSmaller/NotBooleanDataSet', (value) => {
+test.each(dt.NotBooleanDataSet)('core-options-verify/verifySkipIfSmaller/NotBooleanDataSet', (value) => {
   const workingObject = {
     userOption: { skipIfSmaller: value },
     validatedOption: {}
@@ -80,7 +80,7 @@ test.each(dt.NotBooleanDataSet)('verifySkipIfSmaller/NotBooleanDataSet', (value)
     .toThrow(msg)
 })
 
-test('verifySkipIfSmaller/undefined/quiet', () => {
+test('core-options-verify/verifySkipIfSmaller/undefined/quiet', () => {
   const workingObject = {
     userOption: {},
     validatedOption: { quiet: true }
@@ -99,7 +99,7 @@ test('verifySkipIfSmaller/undefined/quiet', () => {
   expect(co0.warn).not.toBeCalled()
 })
 
-test.each(dt.BlankValueDataSet)('verifySkipIfSmaller/BlankValueDataSet/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifySkipIfSmaller/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { skipIfSmaller: value },
     validatedOption: { quiet: true }

@@ -1,6 +1,6 @@
 const cf0 = require('../../lib/core-filters')
 
-test('setupFilters/skipIfSameSize/true', () => {
+test('core-filters/setupFilters/skipIfSameSize/true', () => {
   const workingObject = {
     validatedOption: { skipIfSameSize: true },
     fileFilters: []
@@ -11,7 +11,7 @@ test('setupFilters/skipIfSameSize/true', () => {
     .toMatchObject({ fileFilters: [cf0.skipIfSameSize] })
 })
 
-test('setupFilters/skipIfSameSize/false', () => {
+test('core-filters/setupFilters/skipIfSameSize/false', () => {
   const workingObject = {
     validatedOption: { skipIfSameSize: false },
     fileFilters: []

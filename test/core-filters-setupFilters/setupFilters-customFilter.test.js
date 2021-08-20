@@ -2,7 +2,7 @@ const cf0 = require('../../lib/core-filters')
 
 const dummyFunction = () => { }
 
-test('setupFilters/customFilter/true', () => {
+test('core-filters/setupFilters/customFilter/+', () => {
   const workingObject = {
     validatedOption: { customFilter: dummyFunction },
     fileFilters: []
@@ -13,7 +13,7 @@ test('setupFilters/customFilter/true', () => {
     .toMatchObject({ fileFilters: [dummyFunction] })
 })
 
-test('setupFilters/customFilter/false', () => {
+test('core-filters/setupFilters/customFilter/null', () => {
   const workingObject = {
     validatedOption: { customFilter: null },
     fileFilters: []

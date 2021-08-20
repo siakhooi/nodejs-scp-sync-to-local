@@ -1,7 +1,7 @@
 const co0 = require('../../lib/core-output')
 const util = require('util')
 
-test('core-output/warn/1', () => {
+test('core-output/warn/Arg-1', () => {
   const actualWarn = []
   console.warn = jest.fn().mockImplementation((...v) => { actualWarn.push(...v) })
   const expectedWarn = ['Hello World']
@@ -16,7 +16,7 @@ test('core-output/warn/1', () => {
 test.each([
   ['Hello World', 'Hello You', 'Hello World Hello You'],
   ['Hello %s World', 'Hello You', 'Hello Hello You World']
-])('core-output/warn/2', (v1, v2, r1) => {
+])('core-output/warn/Arg-2', (v1, v2, r1) => {
   const actualWarn = []
   console.warn = jest.fn().mockImplementation((...v) => { actualWarn.push(util.format(...v)) })
   const expectedWarn = [r1]
@@ -31,7 +31,7 @@ test.each([
 test.each([
   ['Hello World', 'Hello You', 'Hello Him', 'Hello World Hello You Hello Him'],
   ['Hello %s %s World', 'Hello You', 'Hello Him', 'Hello Hello You Hello Him World']
-])('core-output/warn/3', (v1, v2, v3, r1) => {
+])('core-output/warn/Arg-3', (v1, v2, v3, r1) => {
   const actualWarn = []
   console.warn = jest.fn().mockImplementation((...v) => { actualWarn.push(util.format(...v)) })
   const expectedWarn = [r1]

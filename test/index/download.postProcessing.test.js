@@ -17,7 +17,7 @@ beforeEach(() => {
   p.clear()
 })
 
-test('scp/download/postProcessing/1', () => {
+test('scp/download/postProcessing/+', () => {
   const echoHello = (l, r, o) => { cou.info('Hello %s %s %d', l, r.name, o.x) }
 
   const expectedInfo = [

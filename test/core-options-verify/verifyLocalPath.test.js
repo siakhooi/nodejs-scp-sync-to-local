@@ -7,7 +7,7 @@ const dt = require('../mock-data/common-data-sets')
 const DEFAULT_LOCALPATH = '.'
 const expectedWarn = [util.format('Warning: localPath is undefined, defaulting to current directory. [%s]', DEFAULT_LOCALPATH)]
 
-test('verifyLocalPath/text', () => {
+test('core-options-verify/verifyLocalPath/+', () => {
   const workingObject = {
     userOption: { localPath: '/home/testuser/files/' },
     validatedOption: {}
@@ -21,7 +21,7 @@ test('verifyLocalPath/text', () => {
     })
 })
 
-test.each(dt.BlankValueDataSet)('verifyLocalPath/BlankValueDataSet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyLocalPath/BlankValueDataSet', (value) => {
   const workingObject = {
     userOption: { localPath: value },
     validatedOption: {}
@@ -38,7 +38,7 @@ test.each(dt.BlankValueDataSet)('verifyLocalPath/BlankValueDataSet', (value) => 
     })
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
-test('verifyLocalPath/undefined', () => {
+test('core-options-verify/verifyLocalPath/undefined', () => {
   const workingObject = {
     userOption: {},
     validatedOption: {}
@@ -55,7 +55,7 @@ test('verifyLocalPath/undefined', () => {
   expect(w.verify(expectedWarn)).resolves.toBe(true)
 })
 
-test.each(dt.BlankValueDataSet)('verifyLocalPath/BlankValueDataSet/quiet', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyLocalPath/BlankValueDataSet/quiet', (value) => {
   const workingObject = {
     userOption: { localPath: value },
     validatedOption: { quiet: true }
@@ -74,7 +74,7 @@ test.each(dt.BlankValueDataSet)('verifyLocalPath/BlankValueDataSet/quiet', (valu
     })
   expect(co0.warn).not.toBeCalled()
 })
-test('verifyLocalPath/undefined/quiet', () => {
+test('core-options-verify/verifyLocalPath/undefined/quiet', () => {
   const workingObject = {
     userOption: {},
     validatedOption: { quiet: true }
@@ -93,7 +93,7 @@ test('verifyLocalPath/undefined/quiet', () => {
   expect(co0.warn).not.toBeCalled()
 })
 
-test.each(dt.BlankValueDataSet)('verifyLocalPath/BlankValueDataSet/prompt', (value) => {
+test.each(dt.BlankValueDataSet)('core-options-verify/verifyLocalPath/BlankValueDataSet/prompt', (value) => {
   const workingObject = {
     userOption: { prompt: true, localPath: value },
     validatedOption: { prompt: true }
@@ -108,7 +108,7 @@ test.each(dt.BlankValueDataSet)('verifyLocalPath/BlankValueDataSet/prompt', (val
     .resolves
     .toEqual(expectWorkingObject)
 })
-test('verifyLocalPath/undefined/prompt', () => {
+test('core-options-verify/verifyLocalPath/undefined/prompt', () => {
   const workingObject = {
     userOption: { prompt: true },
     validatedOption: { prompt: true }
