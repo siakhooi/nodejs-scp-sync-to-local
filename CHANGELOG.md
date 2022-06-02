@@ -7,6 +7,8 @@
 - **Test**
   - `#200`: As test, I want `mocklib/verify` to test exact array so that the sequence of array elements are tested.
   - `#211`: As test. I want to standardize a test naming convention. (`CONTRIBUTING.md`)
+    **Other**
+  - `#230`: Dependencies updates - 2022-Jun.
 
 ## `0.14.0` - 2021-Aug-9
 
