@@ -31,6 +31,7 @@
 ![npms.io (final)](https://img.shields.io/npms-io/popularity-score/scp-sync-to-local)  
 [![Generic badge](https://img.shields.io/badge/Funding-BuyMeACoffee-33cb56.svg)](https://www.buymeacoffee.com/siakhooi)
 [![Generic badge](https://img.shields.io/badge/Funding-Ko%20Fi-33cb56.svg)](https://ko-fi.com/siakhooi)
+![visitors](https://hit-tztugwlsja-uc.a.run.app/?outputtype=badge&counter=ghmd-js-scp2local)
 
 ## Install
 
