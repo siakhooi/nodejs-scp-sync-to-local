@@ -1,6 +1,6 @@
 # Change Log
 
-## Unrelease
+## `0.15.0` - 2023-Jun-14
 
 - **Added**
   - `#6`: As cli user, I want to run the function from cli. (`cli.js`)

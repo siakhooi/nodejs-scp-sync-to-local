@@ -26,7 +26,7 @@ test.each([
 ])('core-options-crosscheck/checkQuietAndVerbose/-', (quiet, verbose) => {
   const workingObject = {
     userOption: {},
-    validatedOption: { quiet: quiet, verbose: verbose }
+    validatedOption: { quiet, verbose }
   }
 
   co0.warn = jest.fn()

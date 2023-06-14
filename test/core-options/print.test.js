@@ -54,8 +54,8 @@ test.each([
       autoCreateLocalPath: true,
       keepTimestamp: false,
       prompt: false,
-      verbose: verbose,
-      quiet: quiet
+      verbose,
+      quiet
     }
   }
 
@@ -91,8 +91,8 @@ test.each([
       postProcessing: () => { },
       postProcessingOptions: {},
       prompt: false,
-      verbose: verbose,
-      quiet: quiet
+      verbose,
+      quiet
     }
   }
 
@@ -155,8 +155,8 @@ test.each([
       postProcessing: null,
       postProcessingOptions: {},
       prompt: false,
-      verbose: verbose,
-      quiet: quiet
+      verbose,
+      quiet
     }
   }
 

@@ -20,8 +20,8 @@ test.each([
 ])('core-options/printProgramName/-', (verbose, quiet) => {
   const workingObject = {
     validatedOption: {
-      verbose: verbose,
-      quiet: quiet
+      verbose,
+      quiet
     }
   }
 
@@ -37,8 +37,8 @@ test.each([
 ])('core-options/printProgramName/+', (verbose, quiet) => {
   const workingObject = {
     validatedOption: {
-      verbose: verbose,
-      quiet: quiet
+      verbose,
+      quiet
     }
   }
 
