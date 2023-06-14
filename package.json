@@ -1,6 +1,6 @@
 {
   "name": "scp-sync-to-local",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "description": "SCP all files in remote directory to local directory",
   "main": "index.js",
   "bin": "cli.js",
@@ -33,17 +33,17 @@
     "https://ko-fi.com/siakhooi"
   ],
   "dependencies": {
-    "node-scp": "^0.0.15",
+    "node-scp": "^0.0.22",
     "prompt": "^1.1.0"
   },
   "devDependencies": {
     "coveralls": "^3.1.1",
-    "eslint": "^7.32.0",
-    "eslint-config-standard": "^16.0.3",
-    "eslint-plugin-import": "^2.23.4",
+    "eslint": "^8.42.0",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-node": "^11.1.0",
-    "eslint-plugin-promise": "^5.1.0",
-    "jest": "^27.0.6"
+    "eslint-plugin-promise": "^6.1.1",
+    "jest": "^29.5.0"
   },
   "jest": {
     "verbose": true,
