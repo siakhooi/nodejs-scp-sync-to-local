@@ -2,7 +2,7 @@ name: Coverage Report
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   test:
@@ -16,7 +16,7 @@ jobs:
       - run: npm install
       - run: . .github/workflows/fix-coverage-directories.sh
       - run: npm test
-      - uses: coverallsapp/github-action@master
+      - uses: coverallsapp/github-action@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/upload-artifact@v7

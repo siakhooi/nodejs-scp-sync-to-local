@@ -1,9 +1,9 @@
-name: Test with ESLint (non-master branch)
+name: Test with ESLint (non-main branch)
 on:
   push:
     branches:
       - "*"
-      - "!master"
+      - "!main"
 
 jobs:
   test:

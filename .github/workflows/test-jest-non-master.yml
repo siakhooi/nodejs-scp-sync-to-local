@@ -1,9 +1,9 @@
-name: Test with Jest (non-master branch)
+name: Test with Jest (non-main branch)
 on:
   push:
     branches:
       - "*"
-      - "!master"
+      - "!main"
 
 jobs:
   test:
